@@ -4,15 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Kampfstil Selbsttest</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
     <style>
+      /* ── FONTS: selbst gehostet / System-Fallback (kein externer Request) ── */
+      /* Bebas Neue → Impact / Haettenschweiler als Fallback */
+      /* DM Sans → System-UI Stack */
+      /* DM Mono → System Mono Stack */
       :root {
         --bg: #f5f2ed;
         --surface: #ffffff;
         --surface2: #ede9e2;
+        /* Font-Variablen: System-Fonts, kein externer Server-Request */
+        --font-display:
+          "Impact", "Haettenschweiler", "Arial Narrow", Arial, sans-serif;
+        --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        --font-mono:
+          "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
         --border: #d8d2c8;
         --accent: #8a6a1f;
         --accent2: #b5891e;
@@ -29,7 +35,7 @@
       body {
         background: var(--bg);
         color: var(--text);
-        font-family: "DM Sans", sans-serif;
+        font-family: var(--font-body);
         line-height: 1.6;
         overflow-x: hidden;
       }
@@ -48,7 +54,7 @@
         padding: 0 20px;
       }
       .nav-logo {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 20px;
         letter-spacing: 2px;
         color: var(--accent);
@@ -57,7 +63,7 @@
         white-space: nowrap;
       }
       .nav-tab {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 10px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -68,15 +74,25 @@
         cursor: pointer;
         color: var(--muted);
         border-bottom: 2px solid transparent;
-        transition: all 0.2s;
+        transition:
+          color 0.18s,
+          border-color 0.18s,
+          background 0.18s;
         white-space: nowrap;
+        user-select: none;
+        position: relative;
       }
       .nav-tab:hover {
         color: var(--accent);
+        background: rgba(138, 106, 31, 0.05);
+      }
+      .nav-tab:active {
+        transform: translateY(1px);
       }
       .nav-tab.active {
         color: var(--accent);
         border-bottom-color: var(--accent);
+        background: rgba(138, 106, 31, 0.04);
       }
       @media (max-width: 600px) {
         nav {
@@ -113,7 +129,7 @@
         text-align: center;
       }
       #page-home h1 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: clamp(44px, 7vw, 86px);
         letter-spacing: 3px;
         line-height: 0.92;
@@ -153,6 +169,11 @@
         transform: translateY(-3px);
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
       }
+      .sport-card:active {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+        transition: transform 0.08s;
+      }
       .sport-card::before {
         content: attr(data-emoji);
         position: absolute;
@@ -163,7 +184,7 @@
         pointer-events: none;
       }
       .sport-card-tag {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -171,7 +192,7 @@
         margin-bottom: 8px;
       }
       .sport-card h2 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 28px;
         letter-spacing: 1px;
         color: var(--text);
@@ -184,7 +205,7 @@
         margin-bottom: 18px;
       }
       .sport-card-btn {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 13px;
         letter-spacing: 2px;
         background: var(--accent);
@@ -220,7 +241,7 @@
         pointer-events: none;
       }
       .library-hero .header-label {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 11px;
         letter-spacing: 3px;
         text-transform: uppercase;
@@ -228,7 +249,7 @@
         margin-bottom: 10px;
       }
       .library-hero h2 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: clamp(36px, 5vw, 60px);
         letter-spacing: 2px;
         color: var(--text);
@@ -254,7 +275,7 @@
         z-index: 50;
       }
       .lib-sport-tab {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 10px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -269,6 +290,9 @@
       .lib-sport-tab:hover {
         border-color: var(--accent2);
         color: var(--accent2);
+      }
+      .lib-sport-tab:active {
+        transform: scale(0.97);
       }
       .lib-sport-tab.active {
         background: var(--accent);
@@ -328,7 +352,7 @@
         flex: 1;
       }
       .lib-card-name {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 20px;
         letter-spacing: 1px;
         color: var(--text);
@@ -381,7 +405,7 @@
         padding: 14px 16px;
       }
       .lib-sw-title {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -425,7 +449,7 @@
         margin-bottom: 16px;
       }
       .lib-boxer-chip {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -447,7 +471,7 @@
       }
       .lib-start-btn {
         margin-top: 16px;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 14px;
         letter-spacing: 2px;
         background: var(--accent);
@@ -465,7 +489,7 @@
         margin-top: 0;
       }
       .lib-compare-title {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 22px;
         letter-spacing: 1px;
         color: var(--accent);
@@ -479,7 +503,7 @@
         font-size: 12.5px;
       }
       .lib-compare-table th {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -502,7 +526,7 @@
         background: rgba(200, 180, 130, 0.04);
       }
       .lib-compare-name {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 16px;
         letter-spacing: 1px;
         display: flex;
@@ -555,7 +579,7 @@
         pointer-events: none;
       }
       .header-label {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 11px;
         letter-spacing: 3px;
         text-transform: uppercase;
@@ -563,7 +587,7 @@
         margin-bottom: 10px;
       }
       .test-header h1 {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: clamp(48px, 6vw, 80px);
         letter-spacing: 2px;
         line-height: 0.92;
@@ -605,7 +629,7 @@
         transition: width 0.4s ease;
       }
       .progress-text {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 11px;
         color: var(--muted);
         white-space: nowrap;
@@ -617,7 +641,7 @@
       }
       .attr-section-header {
         padding: 13px 40px 9px;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 16px;
         letter-spacing: 2px;
         color: var(--accent2);
@@ -631,7 +655,7 @@
         z-index: 10;
       }
       .attr-key-badge {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         background: var(--accent2);
         color: var(--bg);
@@ -654,7 +678,7 @@
         margin-bottom: 16px;
       }
       .q-num {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 34px;
         color: var(--border);
         line-height: 1;
@@ -669,10 +693,10 @@
         color: var(--accent2);
         font-style: italic;
         margin-bottom: 3px;
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
       }
       .q-title {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 19px;
         letter-spacing: 1px;
         color: var(--text);
@@ -714,7 +738,7 @@
         border-radius: 4px 4px 0 0;
       }
       .opt-letter {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 22px;
         color: var(--border);
         line-height: 1;
@@ -750,7 +774,7 @@
         flex: 1;
       }
       .btn-primary {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 16px;
         letter-spacing: 2px;
         background: var(--accent);
@@ -772,7 +796,7 @@
         transform: none;
       }
       .btn-secondary {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 14px;
         letter-spacing: 2px;
         background: transparent;
@@ -806,7 +830,7 @@
         position: absolute;
         right: -10px;
         bottom: -22px;
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 130px;
         color: rgba(180, 155, 100, 0.05);
         letter-spacing: 4px;
@@ -814,7 +838,7 @@
         white-space: nowrap;
       }
       .result-label {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 10px;
         letter-spacing: 3px;
         text-transform: uppercase;
@@ -822,7 +846,7 @@
         margin-bottom: 8px;
       }
       .result-name {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: clamp(40px, 6vw, 68px);
         letter-spacing: 2px;
         color: var(--text);
@@ -849,7 +873,7 @@
         min-width: 120px;
       }
       .kpi-label {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -857,7 +881,7 @@
         margin-bottom: 4px;
       }
       .kpi-val {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 28px;
         color: var(--accent);
         line-height: 1;
@@ -877,7 +901,7 @@
         border-bottom: 1px solid var(--border);
       }
       .section-title {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 18px;
         letter-spacing: 1px;
         color: var(--accent);
@@ -914,7 +938,7 @@
         padding: 16px 18px;
       }
       .sw-title {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -972,7 +996,7 @@
         border-right: none;
       }
       .panel-title {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 16px;
         letter-spacing: 1px;
         color: var(--accent);
@@ -998,7 +1022,7 @@
       .training-list li::before {
         content: "→";
         color: var(--accent2);
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         flex-shrink: 0;
         margin-top: 1px;
       }
@@ -1015,7 +1039,7 @@
         font-weight: 500;
       }
       .dist-bar-val {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         color: var(--muted);
       }
       .dist-track {
@@ -1048,7 +1072,7 @@
         margin-top: 10px;
       }
       .boxer-chip {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -1077,7 +1101,7 @@
         border-bottom: 1px solid var(--border);
       }
       .ans-key {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 10px;
         letter-spacing: 1px;
         color: var(--muted);
@@ -1088,7 +1112,7 @@
         margin-top: 1px;
       }
       .ans-result-badge {
-        font-family: "DM Mono", monospace;
+        font-family: var(--font-mono);
         font-size: 9px;
         letter-spacing: 1.5px;
         text-transform: uppercase;
@@ -1113,7 +1137,7 @@
         border-bottom: none;
       }
       .ans-q-label {
-        font-family: "Bebas Neue", sans-serif;
+        font-family: var(--font-display);
         font-size: 17px;
         color: var(--accent);
         line-height: 1.2;
@@ -1185,6 +1209,200 @@
           padding: 16px 20px;
         }
       }
+
+      /* ── ARCHETYPE IMAGES ─────────────────────── */
+      /* Results page: hero image */
+      .result-img-wrap {
+        position: relative;
+        width: 100%;
+        max-width: 460px;
+        margin-bottom: 24px;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .result-img {
+        width: 100%;
+        height: 260px;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+        border-radius: 6px;
+      }
+      .result-img-placeholder {
+        width: 100%;
+        height: 180px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Library card: thumbnail */
+      .lib-img-wrap {
+        width: 100%;
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+      .lib-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
+      }
+      .lib-img-placeholder {
+        width: 100%;
+        height: 140px;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ── LEGAL PAGES ─────────────────────────── */
+      .legal-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 48px 40px 80px;
+      }
+      .legal-header {
+        margin-bottom: 40px;
+        padding-bottom: 24px;
+        border-bottom: 2px solid var(--border);
+      }
+      .legal-header h2 {
+        font-family: var(--font-display);
+        font-size: clamp(32px, 5vw, 52px);
+        letter-spacing: 2px;
+        color: var(--text);
+        line-height: 1;
+        margin-top: 8px;
+      }
+      .legal-body {
+        font-size: 14px;
+        line-height: 1.8;
+        color: var(--text);
+      }
+      .legal-section {
+        margin-bottom: 36px;
+        padding-bottom: 36px;
+        border-bottom: 1px solid var(--border);
+      }
+      .legal-section:last-child {
+        border-bottom: none;
+      }
+      .legal-section h3 {
+        font-family: var(--font-display);
+        font-size: 18px;
+        letter-spacing: 1px;
+        color: var(--accent);
+        margin-bottom: 12px;
+      }
+      .legal-section p {
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .legal-section ul {
+        color: var(--muted);
+      }
+      .legal-section a {
+        color: var(--accent2);
+        text-decoration: none;
+        border-bottom: 1px solid var(--accent2);
+      }
+      .legal-section a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .legal-notice {
+        background: rgba(181, 137, 30, 0.08);
+        border-left: 3px solid var(--accent2);
+        border-radius: 0 4px 4px 0;
+        padding: 14px 18px;
+        margin-bottom: 36px;
+        font-size: 13px;
+        color: var(--accent);
+      }
+      .legal-notice code {
+        background: rgba(181, 137, 30, 0.15);
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+      @media (max-width: 600px) {
+        .legal-page {
+          padding: 32px 20px 60px;
+        }
+      }
+
+      /* ── FOOTER ──────────────────────────────── */
+      #site-footer {
+        background: var(--surface2);
+        border-top: 1px solid var(--border);
+        padding: 24px 40px;
+      }
+      .footer-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .footer-logo {
+        font-family: var(--font-display);
+        font-size: 14px;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-right: 8px;
+      }
+      .footer-links {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-links span {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+        padding-bottom: 1px;
+        transition:
+          color 0.18s,
+          border-color 0.18s;
+      }
+      .footer-links span:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      .footer-links span:active {
+        opacity: 0.7;
+      }
+      .footer-note {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--border);
+      }
+      @media (max-width: 600px) {
+        #site-footer {
+          padding: 20px;
+        }
+        .footer-note {
+          margin-left: 0;
+        }
+      }
+      @media print {
+        #site-footer {
+          display: none !important;
+        }
+      }
       @media print {
         nav,
         .progress-bar-wrap,
@@ -1219,6 +1437,23 @@
       <div class="nav-tab" id="nav-muaythai" onclick="showPage('muaythai')">
         Muay Thai
       </div>
+      <div style="flex: 1"></div>
+      <div
+        class="nav-tab"
+        id="nav-impressum"
+        onclick="showPage('impressum')"
+        style="font-size: 9px"
+      >
+        Impressum
+      </div>
+      <div
+        class="nav-tab"
+        id="nav-datenschutz"
+        onclick="showPage('datenschutz')"
+        style="font-size: 9px"
+      >
+        Datenschutz
+      </div>
     </nav>
 
     <!-- ── HOME ─────────────────────────────── -->
@@ -1239,7 +1474,7 @@
         </div>
         <h1
           style="
-            font-family: &quot;Bebas Neue&quot;, sans-serif;
+            font-family: var(--font-display);
             font-size: clamp(44px, 7vw, 86px);
             letter-spacing: 3px;
             line-height: 0.92;
@@ -1640,6 +1875,78 @@
       // ════════════════════════════════════════════
       // SPORT DATA
       // ════════════════════════════════════════════
+
+      // ── Bildkonfiguration ─────────────────────────────────────
+      // Passe IMAGE_BASE an, wenn du die Bilder woanders ablegst
+      const IMAGE_BASE = "images/";
+      const IMAGE_EXT = ".jpg";
+
+      // Slug-Map: Archetyp-Name → Dateiname
+      const ARCH_SLUGS = {
+        Outboxer: "outboxer",
+        "Counter Puncher": "counter_puncher",
+        "Boxer-Puncher": "boxer_puncher",
+        Swarmer: "swarmer",
+        Slugger: "slugger",
+        "Guard Player": "guard_player",
+        "Takedown Wrestler": "takedown_wrestler",
+        "Back Taker": "back_taker",
+        "Leg Lock Specialist": "leg_lock_specialist",
+        "Submission Hunter": "submission_hunter",
+        "Wrestle-Pressure Controller": "wrestle_pressure_controller",
+        "Elite Counter-Striker": "elite_counter_striker",
+        "Pressure Striker": "pressure_striker",
+        "Submission Opportunist": "submission_opportunist",
+        "Hybrid Tactical Fighter": "hybrid_tactical_fighter",
+        "Muay Femur": "muay_femur",
+        "Muay Mat": "muay_mat",
+        "Muay Khao": "muay_khao",
+        "Muay Tae": "muay_tae",
+        "Hybrid Stadium Fighter": "hybrid_stadium_fighter",
+      };
+
+      function archImagePath(name) {
+        const slug = ARCH_SLUGS[name];
+        return slug ? IMAGE_BASE + slug + IMAGE_EXT : null;
+      }
+
+      // Rendert ein Archetyp-Bild mit farbigem Fallback-Placeholder
+      function renderArchImage(name, color, cssClass) {
+        var src = archImagePath(name);
+        if (!src) return "";
+        var slug = ARCH_SLUGS[name] || name;
+        var phStyle =
+          "display:none;background:" +
+          color +
+          "22;border:2px dashed " +
+          color +
+          "44;";
+        var phInner =
+          '<div style="color:' +
+          color +
+          ';font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:var(--font-mono);text-align:center;padding:16px;">' +
+          name +
+          '<br><span style="opacity:0.55;font-size:9px;">images/' +
+          slug +
+          ".jpg</span></div>";
+        var ph =
+          '<div class="' +
+          cssClass +
+          '-img-placeholder" style="' +
+          phStyle +
+          '">' +
+          phInner +
+          "</div>";
+        var img =
+          '<img src="' +
+          src +
+          '" alt="' +
+          name +
+          '" class="' +
+          cssClass +
+          '-img" onerror="this.style.display=&quot;none&quot;;this.nextElementSibling.style.display=&quot;flex&quot;;">';
+        return '<div class="' + cssClass + '-img-wrap">' + img + ph + "</div>";
+      }
 
       const SPORTS = {};
 
@@ -3689,9 +3996,15 @@
         document
           .querySelectorAll(".nav-tab")
           .forEach((t) => t.classList.remove("active"));
-        document.getElementById("page-" + page).classList.add("active");
-        document.getElementById("nav-" + page).classList.add("active");
-        window.scrollTo({ top: 0, behavior: "instant" });
+        const targetPage = document.getElementById("page-" + page);
+        if (!targetPage) return;
+        targetPage.classList.add("active");
+        const navEl = document.getElementById("nav-" + page);
+        if (navEl) navEl.classList.add("active");
+        // Force reflow then scroll to top of new page
+        requestAnimationFrame(function () {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        });
       }
 
       function showLibSport(sport) {
@@ -3724,7 +4037,7 @@
 
           // Archetype cards
           let html = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--accent);">${emoji} ${sportLabel.toUpperCase()} – ARCHETYPEN</div>
+      <div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">${emoji} ${sportLabel.toUpperCase()} – ARCHETYPEN</div>
       <button class="lib-start-btn" onclick="showPage('${sport}')">TEST STARTEN</button>
     </div>
     <div class="lib-archetypes-grid">`;
@@ -3740,6 +4053,7 @@
           <div class="lib-card-chevron">▼</div>
         </div>
         <div class="lib-card-body">
+          ${renderArchImage(name, arch.color, "lib")}
           ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
           <div class="lib-sw-row">
             <div class="lib-sw-box">
@@ -4000,6 +4314,7 @@
         const rh = document.getElementById("rh-" + sport);
         rh.setAttribute("data-style", best.name.toUpperCase());
         rh.innerHTML = `
+    ${renderArchImage(best.name, arch.color, "result")}
     <div class="result-label">Dein Kampfstil-Profil</div>
     <div class="result-name">${best.name}</div>
     <div class="result-desc">${arch.classic}</div>
@@ -4090,5 +4405,288 @@
       });
       buildLibrary();
     </script>
+
+    <!-- ── IMPRESSUM ──────────────────────────── -->
+    <div id="page-impressum" class="page">
+      <div class="legal-page">
+        <div class="legal-header">
+          <div class="header-label">Pflichtangaben nach §5 TMG</div>
+          <h2>IMPRESSUM</h2>
+        </div>
+        <div class="legal-body">
+          <div class="legal-section">
+            <h3>Angaben gemäß §5 TMG</h3>
+            <p>
+              <strong>Lom-Ali Imadaev</strong><br />
+              Kreuzstraße 1<br />
+              82276 Adelshofen<br />
+              Deutschland
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>Kontakt</h3>
+            <p>
+              E-Mail: <a href="mailto:lomaliimadaev@gmail.com">lomaliimadaev@gmail.com</a
+              ><br />
+              <!-- Telefon ist freiwillig, aber empfohlen: -->
+              <!-- Telefon: +49 [NUMMER] -->
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>Verantwortlich für den Inhalt nach §55 Abs. 2 RStV</h3>
+            <p>
+              Lom-Ali Imadaev<br />
+              Kreuzstraße 1<br />
+              82276 Adelshofen
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>Haftung für Inhalte</h3>
+            <p>
+              Als Diensteanbieter sind wir gemäß §7 Abs. 1 TMG für eigene
+              Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
+              verantwortlich. Nach §§8 bis 10 TMG sind wir als Diensteanbieter
+              jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
+              Informationen zu überwachen oder nach Umständen zu forschen, die
+              auf eine rechtswidrige Tätigkeit hinweisen.
+            </p>
+            <p style="margin-top: 10px">
+              Die Inhalte dieser Seite dienen ausschließlich der allgemeinen
+              Information und ersetzen keine professionelle sportliche oder
+              medizinische Beratung. Alle Tests und Analysen sind
+              selbsteinschätzungsbasiert und haben keinen wissenschaftlichen
+              Anspruch.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>Haftung für Links</h3>
+            <p>
+              Diese Website enthält keine externen Links zu Drittseiten. Sollten
+              dennoch Links vorhanden sein, haben wir auf deren Inhalte keinen
+              Einfluss und übernehmen hierfür keine Haftung.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>Urheberrecht</h3>
+            <p>
+              Die durch den Seitenbetreiber erstellten Inhalte und Werke auf
+              diesen Seiten unterliegen dem deutschen Urheberrecht. Die
+              Vervielfältigung, Bearbeitung, Verbreitung und jede Art der
+              Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der
+              schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>Streitschlichtung</h3>
+            <p>
+              Die Europäische Kommission stellt eine Plattform zur
+              Online-Streitbeilegung (OS) bereit:
+              <a
+                href="https://ec.europa.eu/consumers/odr/"
+                target="_blank"
+                rel="noopener"
+                >https://ec.europa.eu/consumers/odr/</a
+              >. Wir sind nicht bereit oder verpflichtet, an
+              Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+              teilzunehmen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DATENSCHUTZ ─────────────────────────── -->
+    <div id="page-datenschutz" class="page">
+      <div class="legal-page">
+        <div class="legal-header">
+          <div class="header-label">
+            DSGVO-konform · Stand: [DATUM EINTRAGEN, z.B. Januar 2025]
+          </div>
+          <h2>DATENSCHUTZ&shy;ERKLÄRUNG</h2>
+        </div>
+        <div class="legal-body">
+
+          <div class="legal-section">
+            <h3>1. Verantwortlicher</h3>
+            <p>
+              Verantwortlicher im Sinne der DSGVO ist:<br /><br />
+              <strong>Lom-Ali Imadaev</strong><br />
+              Kreuzstraße 1<br />
+              82276 Adelshofen<br />
+              Deutschland<br />
+              E-Mail: <a href="mailto:lomaliimadaev@gmail.com">lomaliimadaev@gmail.com</a>
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>2. Allgemeines zur Datenverarbeitung</h3>
+            <p>
+              Diese Website ist eine vollständig clientseitige
+              Single-Page-Application.
+              <strong
+                >Wir erheben, speichern und verarbeiten keine personenbezogenen
+                Daten aktiv.</strong
+              >
+              Es gibt kein Nutzer-Tracking, keine Cookies, keine Analysetools,
+              keine Kommentarfunktion und keine Nutzerdatenbank.
+            </p>
+            <p style="margin-top: 10px">
+              Alle Testergebnisse werden ausschließlich lokal im Arbeitsspeicher
+              deines Browsers berechnet und nicht übertragen. Es werden
+              keinerlei Antworten, Profile oder Ergebnisse gespeichert oder an
+              Server übermittelt.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>3. Hosting über GitHub Pages</h3>
+            <p>
+              Diese Website wird über <strong>GitHub Pages</strong> (GitHub,
+              Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA)
+              gehostet. Beim Aufruf dieser Website werden durch GitHub
+              automatisch folgende Daten in Server-Logfiles gespeichert:
+            </p>
+            <ul style="margin: 10px 0 10px 20px; line-height: 1.8">
+              <li>IP-Adresse des anfragenden Geräts</li>
+              <li>Datum und Uhrzeit des Zugriffs</li>
+              <li>Name und URL der abgerufenen Datei</li>
+              <li>Übertragene Datenmenge</li>
+              <li>Browser-Typ und -Version</li>
+              <li>Betriebssystem</li>
+              <li>Referrer-URL (zuvor besuchte Seite)</li>
+            </ul>
+            <p>
+              Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6
+              Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren und
+              stabilen Bereitstellung der Website). Die Daten werden von GitHub
+              gemäß deren Datenschutzrichtlinie verarbeitet.
+            </p>
+            <p style="margin-top: 10px">
+              Weitere Informationen:
+              <a
+                href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement"
+                target="_blank"
+                rel="noopener"
+                >GitHub Privacy Statement</a
+              >
+            </p>
+            <p style="margin-top: 10px">
+              <strong>Hinweis zur Datenübertragung in Drittländer:</strong>
+              GitHub ist ein US-amerikanisches Unternehmen. Die
+              Datenverarbeitung kann daher in den USA stattfinden. GitHub ist
+              nach dem EU-U.S. Data Privacy Framework zertifiziert, das einen
+              angemessenen Schutz personenbezogener Daten gewährleistet.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>4. Keine Cookies</h3>
+            <p>
+              Diese Website verwendet <strong>keine Cookies</strong> – weder
+              eigene noch von Dritten. Es werden keine Informationen in deinem
+              Browser dauerhaft gespeichert.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>5. Keine Analyse- oder Tracking-Tools</h3>
+            <p>
+              Diese Website verwendet
+              <strong
+                >kein Google Analytics, kein Matomo, kein Facebook Pixel</strong
+              >
+              oder sonstige Tracking- oder Analysewerkzeuge. Es findet keinerlei
+              Verhaltens- oder Nutzungsverfolgung statt.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>6. Schriften (Fonts)</h3>
+            <p>
+              Diese Website verwendet ausschließlich
+              <strong>System-Schriftarten</strong>, die bereits auf deinem
+              Endgerät installiert sind (z.B. Impact, Arial, system-ui). Es
+              werden keine Schriftarten von externen Servern wie Google Fonts
+              oder Adobe Fonts geladen. Es findet daher keine Datenübertragung
+              an Schriftarten-Anbieter statt.
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>7. Deine Rechte als betroffene Person</h3>
+            <p>
+              Da wir keine personenbezogenen Daten aktiv erheben oder speichern,
+              ist die praktische Relevanz der folgenden Rechte eingeschränkt.
+              Sie stehen dir dennoch gegenüber dem Hosting-Anbieter GitHub zu:
+            </p>
+            <ul style="margin: 10px 0 10px 20px; line-height: 1.8">
+              <li><strong>Auskunftsrecht</strong> (Art. 15 DSGVO)</li>
+              <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO)</li>
+              <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO)</li>
+              <li>
+                <strong>Recht auf Einschränkung der Verarbeitung</strong> (Art.
+                18 DSGVO)
+              </li>
+              <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO)</li>
+              <li>
+                <strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO)
+              </li>
+            </ul>
+            <p>
+              Bei Fragen wende dich an:
+              <a href="mailto:lomaliimadaev@gmail.com">lomaliimadaev@gmail.com</a>
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>8. Beschwerderecht bei der Aufsichtsbehörde</h3>
+            <p>
+              Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde
+              über die Verarbeitung deiner personenbezogenen Daten zu
+              beschweren. Die zuständige Behörde für Bayern ist:
+            </p>
+            <p style="margin-top: 10px">
+              <strong
+                >Bayerisches Landesamt für Datenschutzaufsicht (BayLDA)</strong
+              ><br />
+              Promenade 18<br />
+              91522 Ansbach<br />
+              <a href="https://www.lda.bayern.de" target="_blank" rel="noopener"
+                >www.lda.bayern.de</a
+              >
+            </p>
+          </div>
+
+          <div class="legal-section">
+            <h3>9. Aktualität dieser Datenschutzerklärung</h3>
+            <p>
+              Diese Datenschutzerklärung hat den Stand [DATUM]. Wir behalten uns
+              vor, diese bei Bedarf anzupassen, um sie stets den aktuellen
+              rechtlichen Anforderungen zu entsprechen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SITE FOOTER ─────────────────────────── -->
+    <footer id="site-footer">
+      <div class="footer-inner">
+        <div class="footer-logo">KAMPFSTIL ANALYSE</div>
+        <div class="footer-links">
+          <span onclick="showPage('impressum')">Impressum</span>
+          <span onclick="showPage('datenschutz')">Datenschutz</span>
+        </div>
+        <div class="footer-note">
+          Keine Cookies · Kein Tracking · Kein externer Datenfluss
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

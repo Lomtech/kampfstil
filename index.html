@@ -34,46 +34,114 @@
         overflow-x: hidden;
       }
 
-      /* ── SPORT SELECTOR ─────────────────────── */
-      #sport-select {
-        min-height: 100vh;
+      /* ── NAV ─────────────────────────────────── */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0;
+        height: 48px;
+        padding: 0 20px;
+      }
+      .nav-logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-right: 24px;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .nav-tab {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 0 16px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        color: var(--muted);
+        border-bottom: 2px solid transparent;
+        transition: all 0.2s;
+        white-space: nowrap;
+      }
+      .nav-tab:hover {
+        color: var(--accent);
+      }
+      .nav-tab.active {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+      @media (max-width: 600px) {
+        nav {
+          padding: 0 12px;
+          gap: 0;
+          overflow-x: auto;
+        }
+        .nav-logo {
+          font-size: 16px;
+          margin-right: 16px;
+        }
+        .nav-tab {
+          padding: 0 10px;
+          font-size: 9px;
+        }
+      }
+
+      /* ── PAGES ───────────────────────────────── */
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
+
+      /* ── HOME ───────────────────────────────── */
+      #page-home {
+        min-height: calc(100vh - 48px);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 60px 40px;
+        padding: 60px 24px;
         text-align: center;
       }
-      #sport-select h1 {
+      #page-home h1 {
         font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(48px, 7vw, 88px);
+        font-size: clamp(44px, 7vw, 86px);
         letter-spacing: 3px;
-        line-height: 0.9;
+        line-height: 0.92;
         color: var(--text);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
-      #sport-select h1 span {
+      #page-home h1 span {
         color: var(--accent);
       }
-      #sport-select p {
+      #page-home p {
         color: var(--muted);
         font-size: 14px;
-        max-width: 460px;
-        margin: 16px auto 48px;
+        max-width: 440px;
+        margin: 14px auto 44px;
         line-height: 1.7;
       }
       .sport-cards {
         display: flex;
-        gap: 20px;
+        gap: 16px;
         flex-wrap: wrap;
         justify-content: center;
       }
       .sport-card {
-        width: 240px;
+        width: 220px;
         border: 1px solid var(--border);
         border-radius: 6px;
         background: var(--surface);
-        padding: 32px 24px 28px;
+        padding: 28px 22px 24px;
         cursor: pointer;
         transition: all 0.2s;
         position: relative;
@@ -83,46 +151,46 @@
       .sport-card:hover {
         border-color: var(--accent2);
         transform: translateY(-3px);
-        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
       }
       .sport-card::before {
         content: attr(data-emoji);
         position: absolute;
-        font-size: 120px;
-        right: -16px;
-        bottom: -20px;
+        font-size: 110px;
+        right: -14px;
+        bottom: -18px;
         opacity: 0.07;
         pointer-events: none;
       }
       .sport-card-tag {
         font-family: "DM Mono", monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--accent2);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       .sport-card h2 {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 32px;
+        font-size: 28px;
         letter-spacing: 1px;
         color: var(--text);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       .sport-card p {
-        font-size: 12.5px;
+        font-size: 12px;
         color: var(--muted);
         line-height: 1.65;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
       }
       .sport-card-btn {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 15px;
+        font-size: 13px;
         letter-spacing: 2px;
         background: var(--accent);
         color: var(--bg);
         border: none;
-        padding: 10px 22px;
+        padding: 9px 18px;
         border-radius: 2px;
         cursor: pointer;
         pointer-events: none;
@@ -131,39 +199,360 @@
         background: var(--text);
       }
 
-      /* ── HEADER ─────────────────────────────── */
-      header {
+      /* ── LIBRARY ─────────────────────────────── */
+      #page-library {
+        padding-bottom: 60px;
+      }
+      .library-hero {
+        padding: 48px 40px 36px;
+        border-bottom: 1px solid var(--border);
+        background: var(--surface2);
         position: relative;
-        padding: 56px 40px 46px;
+        overflow: hidden;
+      }
+      .library-hero::before {
+        content: "📚";
+        position: absolute;
+        font-size: 220px;
+        right: -20px;
+        top: -40px;
+        opacity: 0.06;
+        pointer-events: none;
+      }
+      .library-hero .header-label {
+        font-family: "DM Mono", monospace;
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent2);
+        margin-bottom: 10px;
+      }
+      .library-hero h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(36px, 5vw, 60px);
+        letter-spacing: 2px;
+        color: var(--text);
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      .library-hero p {
+        color: var(--muted);
+        font-size: 14px;
+        max-width: 560px;
+        line-height: 1.7;
+      }
+
+      .lib-sport-tabs {
+        padding: 16px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        background: var(--surface);
+        position: sticky;
+        top: 48px;
+        z-index: 50;
+      }
+      .lib-sport-tab {
+        font-family: "DM Mono", monospace;
+        font-size: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        cursor: pointer;
+        color: var(--muted);
+        background: transparent;
+        transition: all 0.18s;
+      }
+      .lib-sport-tab:hover {
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+      .lib-sport-tab.active {
+        background: var(--accent);
+        color: var(--bg);
+        border-color: var(--accent);
+      }
+
+      .lib-content {
+        padding: 36px 40px;
+      }
+      .lib-sport-section {
+        display: none;
+      }
+      .lib-sport-section.active {
+        display: block;
+      }
+
+      .lib-archetypes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 16px;
+        margin-bottom: 48px;
+      }
+      .lib-archetype-card {
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--surface);
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .lib-archetype-card:hover {
+        border-color: var(--accent2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      }
+      .lib-archetype-card.expanded {
+        border-color: var(--accent);
+      }
+      .lib-card-header {
+        padding: 18px 20px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-bottom: 1px solid transparent;
+        transition: border-color 0.2s;
+      }
+      .lib-archetype-card.expanded .lib-card-header {
+        border-bottom-color: var(--border);
+      }
+      .lib-card-color {
+        width: 8px;
+        height: 44px;
+        border-radius: 4px;
+        flex-shrink: 0;
+      }
+      .lib-card-titles {
+        flex: 1;
+      }
+      .lib-card-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20px;
+        letter-spacing: 1px;
+        color: var(--text);
+      }
+      .lib-card-sub {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 2px;
+      }
+      .lib-card-chevron {
+        font-size: 16px;
+        color: var(--muted);
+        transition: transform 0.2s;
+      }
+      .lib-archetype-card.expanded .lib-card-chevron {
+        transform: rotate(180deg);
+      }
+
+      .lib-card-body {
+        display: none;
+        padding: 20px;
+      }
+      .lib-archetype-card.expanded .lib-card-body {
+        display: block;
+      }
+      .lib-body-desc {
+        font-size: 14px;
+        color: var(--text);
+        line-height: 1.85;
+        margin-bottom: 16px;
+      }
+      .lib-body-desc.muted {
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+      .lib-sw-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      @media (max-width: 500px) {
+        .lib-sw-row {
+          grid-template-columns: 1fr;
+        }
+      }
+      .lib-sw-box {
+        background: var(--surface2);
+        border-radius: 4px;
+        padding: 14px 16px;
+      }
+      .lib-sw-title {
+        font-family: "DM Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .lib-sw-title.pos {
+        color: #4a7c4e;
+      }
+      .lib-sw-title.neg {
+        color: #9b3a2f;
+      }
+      .lib-sw-list {
+        list-style: none;
+      }
+      .lib-sw-list li {
+        font-size: 12.5px;
+        padding: 5px 0;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 8px;
+      }
+      .lib-sw-list li:last-child {
+        border-bottom: none;
+      }
+      .lib-sw-list li.pos::before {
+        content: "+";
+        color: #4a7c4e;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .lib-sw-list li.neg::before {
+        content: "-";
+        color: #9b3a2f;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .lib-boxers {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .lib-boxer-chip {
+        font-family: "DM Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        color: var(--muted);
+      }
+      .lib-matchup-box {
+        background: var(--surface2);
+        border-radius: 4px;
+        padding: 12px 14px;
+        font-size: 13px;
+        line-height: 1.7;
+        color: var(--muted);
+      }
+      .lib-matchup-box strong {
+        color: var(--accent2);
+      }
+      .lib-start-btn {
+        margin-top: 16px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 14px;
+        letter-spacing: 2px;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        padding: 10px 22px;
+        border-radius: 2px;
+        cursor: pointer;
+      }
+      .lib-start-btn:hover {
+        background: var(--text);
+      }
+
+      .lib-compare-section {
+        margin-top: 0;
+      }
+      .lib-compare-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 22px;
+        letter-spacing: 1px;
+        color: var(--accent);
+        margin-bottom: 20px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .lib-compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12.5px;
+      }
+      .lib-compare-table th {
+        font-family: "DM Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 10px 14px;
+        text-align: left;
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        color: var(--muted);
+      }
+      .lib-compare-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+        line-height: 1.6;
+      }
+      .lib-compare-table tr:last-child td {
+        border-bottom: none;
+      }
+      .lib-compare-table tr:hover td {
+        background: rgba(200, 180, 130, 0.04);
+      }
+      .lib-compare-name {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 16px;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .lib-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      @media (max-width: 600px) {
+        .lib-sport-tabs {
+          padding: 12px 16px;
+        }
+        .lib-content {
+          padding: 24px 16px;
+        }
+        .lib-archetypes-grid {
+          grid-template-columns: 1fr;
+        }
+        .library-hero {
+          padding: 36px 20px 28px;
+        }
+      }
+
+      /* ── TEST PAGES ──────────────────────────── */
+      .test-page-inner {
+        display: none;
+      }
+      .test-page-inner.active {
+        display: block;
+      }
+
+      .test-header {
+        position: relative;
+        padding: 48px 40px 40px;
         border-bottom: 1px solid var(--border);
         overflow: hidden;
       }
-      header::before {
+      .test-header::before {
         content: attr(data-emoji);
         position: absolute;
-        font-size: 260px;
+        font-size: 240px;
         right: -20px;
         top: -40px;
         opacity: 0.07;
         pointer-events: none;
-      }
-      .header-back {
-        font-family: "DM Mono", monospace;
-        font-size: 11px;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        color: var(--muted);
-        cursor: pointer;
-        margin-bottom: 18px;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        border: none;
-        background: none;
-        padding: 0;
-      }
-      .header-back:hover {
-        color: var(--accent);
       }
       .header-label {
         font-family: "DM Mono", monospace;
@@ -171,34 +560,34 @@
         letter-spacing: 3px;
         text-transform: uppercase;
         color: var(--accent2);
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
-      header h1 {
+      .test-header h1 {
         font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(52px, 7vw, 88px);
+        font-size: clamp(48px, 6vw, 80px);
         letter-spacing: 2px;
-        line-height: 0.9;
+        line-height: 0.92;
         color: var(--text);
       }
-      header h1 span {
+      .test-header h1 span {
         color: var(--accent);
       }
-      header p {
-        margin-top: 16px;
+      .test-header p {
+        margin-top: 14px;
         color: var(--muted);
         font-size: 14px;
-        max-width: 520px;
+        max-width: 500px;
         line-height: 1.7;
       }
 
-      /* ── PROGRESS ────────────────────────────── */
+      /* progress */
       .progress-bar-wrap {
         position: sticky;
-        top: 0;
+        top: 48px;
         z-index: 100;
         background: var(--bg);
         border-bottom: 1px solid var(--border);
-        padding: 12px 40px;
+        padding: 11px 40px;
         display: flex;
         align-items: center;
         gap: 16px;
@@ -222,12 +611,12 @@
         white-space: nowrap;
       }
 
-      /* ── QUESTIONS ───────────────────────────── */
+      /* questions */
       .questions-section {
-        padding: 20px 0 60px;
+        padding: 16px 0 60px;
       }
       .attr-section-header {
-        padding: 14px 40px 10px;
+        padding: 13px 40px 9px;
         font-family: "Bebas Neue", sans-serif;
         font-size: 16px;
         letter-spacing: 2px;
@@ -238,93 +627,73 @@
         align-items: center;
         gap: 12px;
         position: sticky;
-        top: 46px;
+        top: 92px;
         z-index: 10;
       }
       .attr-key-badge {
         font-family: "DM Mono", monospace;
-        font-size: 10px;
+        font-size: 9px;
         background: var(--accent2);
         color: var(--bg);
-        padding: 3px 8px;
+        padding: 3px 7px;
         border-radius: 3px;
         letter-spacing: 1px;
       }
       .q-block {
-        padding: 32px 40px;
+        padding: 28px 40px;
         border-bottom: 1px solid var(--border);
         transition: background 0.2s;
       }
       .q-block.answered {
-        background: rgba(200, 180, 130, 0.04);
+        background: rgba(200, 180, 130, 0.03);
       }
       .q-header {
         display: flex;
         align-items: flex-start;
-        gap: 20px;
-        margin-bottom: 18px;
+        gap: 18px;
+        margin-bottom: 16px;
       }
       .q-num {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 38px;
+        font-size: 34px;
         color: var(--border);
         line-height: 1;
-        min-width: 46px;
+        min-width: 42px;
         transition: color 0.3s;
       }
       .q-block.answered .q-num {
         color: var(--accent2);
       }
       .q-situation {
-        font-size: 13px;
+        font-size: 12.5px;
         color: var(--accent2);
         font-style: italic;
-        margin-bottom: 4px;
+        margin-bottom: 3px;
         font-family: "DM Mono", monospace;
-        letter-spacing: 0.3px;
       }
       .q-title {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 20px;
+        font-size: 19px;
         letter-spacing: 1px;
         color: var(--text);
       }
-
       .options-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        padding-left: 66px;
-      }
-      @media (max-width: 700px) {
-        .options-grid {
-          grid-template-columns: 1fr;
-          padding-left: 0;
-        }
-        header {
-          padding: 36px 20px 32px;
-        }
-        .progress-bar-wrap {
-          padding: 12px 20px;
-        }
-        .q-block {
-          padding: 24px 20px;
-        }
-        .attr-section-header {
-          padding: 12px 20px 8px;
-        }
+        gap: 10px;
+        padding-left: 60px;
       }
       .opt-card {
         border: 1px solid var(--border);
         border-radius: 4px;
-        padding: 14px 16px;
+        padding: 12px 14px;
         cursor: pointer;
         transition: all 0.18s;
         background: var(--surface);
         position: relative;
         display: flex;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
       }
       .opt-card:hover {
         border-color: var(--accent2);
@@ -346,10 +715,10 @@
       }
       .opt-letter {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 24px;
+        font-size: 22px;
         color: var(--border);
         line-height: 1;
-        min-width: 20px;
+        min-width: 18px;
         transition: color 0.2s;
       }
       .opt-card.selected .opt-letter,
@@ -357,22 +726,23 @@
         color: var(--accent);
       }
       .opt-text {
-        font-size: 13px;
+        font-size: 12.5px;
         color: var(--text);
-        line-height: 1.6;
+        line-height: 1.55;
         padding-top: 2px;
       }
 
-      /* ── CTA ────────────────────────────────── */
+      /* CTA */
       .cta-bar {
-        padding: 28px 40px;
+        padding: 24px 40px;
         border-top: 1px solid var(--border);
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 18px;
         background: var(--surface);
         position: sticky;
         bottom: 0;
+        z-index: 50;
       }
       .cta-info {
         font-size: 13px;
@@ -381,12 +751,12 @@
       }
       .btn-primary {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 17px;
+        font-size: 16px;
         letter-spacing: 2px;
         background: var(--accent);
         color: var(--bg);
         border: none;
-        padding: 13px 38px;
+        padding: 12px 34px;
         cursor: pointer;
         border-radius: 2px;
         transition: all 0.2s;
@@ -403,12 +773,12 @@
       }
       .btn-secondary {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 15px;
+        font-size: 14px;
         letter-spacing: 2px;
         background: transparent;
         color: var(--accent);
         border: 1px solid var(--accent);
-        padding: 12px 26px;
+        padding: 11px 22px;
         cursor: pointer;
         border-radius: 2px;
         transition: all 0.2s;
@@ -418,15 +788,15 @@
         background: rgba(200, 180, 130, 0.1);
       }
 
-      /* ── RESULTS ────────────────────────────── */
-      #results {
+      /* Results */
+      #results-area {
         display: none;
       }
-      #results.visible {
+      #results-area.visible {
         display: block;
       }
       .results-hero {
-        padding: 56px 40px;
+        padding: 52px 40px;
         border-bottom: 1px solid var(--border);
         position: relative;
         overflow: hidden;
@@ -435,104 +805,102 @@
         content: attr(data-style);
         position: absolute;
         right: -10px;
-        bottom: -24px;
+        bottom: -22px;
         font-family: "Bebas Neue", sans-serif;
-        font-size: 140px;
-        color: rgba(180, 155, 100, 0.06);
+        font-size: 130px;
+        color: rgba(180, 155, 100, 0.05);
         letter-spacing: 4px;
         pointer-events: none;
         white-space: nowrap;
       }
       .result-label {
         font-family: "DM Mono", monospace;
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 3px;
         text-transform: uppercase;
         color: var(--accent2);
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       .result-name {
         font-family: "Bebas Neue", sans-serif;
-        font-size: clamp(44px, 6vw, 72px);
+        font-size: clamp(40px, 6vw, 68px);
         letter-spacing: 2px;
         color: var(--text);
         line-height: 1;
-        margin-bottom: 18px;
+        margin-bottom: 16px;
       }
       .result-desc {
         font-size: 15px;
         color: var(--muted);
-        max-width: 580px;
+        max-width: 560px;
         line-height: 1.8;
-        margin-bottom: 28px;
+        margin-bottom: 26px;
       }
       .kpi-row {
         display: flex;
-        gap: 20px;
+        gap: 16px;
         flex-wrap: wrap;
       }
       .kpi {
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 4px;
-        padding: 14px 22px;
-        min-width: 130px;
+        padding: 12px 20px;
+        min-width: 120px;
       }
       .kpi-label {
         font-family: "DM Mono", monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
         color: var(--muted);
-        margin-bottom: 5px;
+        margin-bottom: 4px;
       }
       .kpi-val {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 30px;
+        font-size: 28px;
         color: var(--accent);
         line-height: 1;
       }
       .hybrid-notice {
-        margin-top: 18px;
-        padding: 13px 17px;
+        margin-top: 16px;
+        padding: 12px 16px;
         background: rgba(181, 137, 30, 0.08);
         border-left: 3px solid var(--accent2);
         border-radius: 0 4px 4px 0;
         font-size: 13px;
         color: var(--accent);
-        max-width: 540px;
+        max-width: 520px;
       }
-
-      /* ── DEEP DIVE ─────────────────────────── */
       .style-deepdive {
-        padding: 40px;
+        padding: 36px 40px;
         border-bottom: 1px solid var(--border);
       }
       .section-title {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 19px;
+        font-size: 18px;
         letter-spacing: 1px;
         color: var(--accent);
-        margin-bottom: 18px;
-        padding-bottom: 11px;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
         border-bottom: 1px solid var(--border);
       }
       .deepdive-intro {
-        font-size: 14.5px;
+        font-size: 14px;
         line-height: 1.85;
         color: var(--text);
-        margin-bottom: 14px;
+        margin-bottom: 13px;
         max-width: 820px;
       }
       .deepdive-body {
         color: var(--muted);
-        font-size: 14px;
+        font-size: 13.5px;
       }
       .sw-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 18px;
-        margin-top: 26px;
+        gap: 16px;
+        margin-top: 22px;
       }
       @media (max-width: 700px) {
         .sw-grid {
@@ -543,14 +911,14 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 4px;
-        padding: 18px 20px;
+        padding: 16px 18px;
       }
       .sw-title {
         font-family: "DM Mono", monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 2px;
         text-transform: uppercase;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
       .sw-title.pos {
         color: #4a7c4e;
@@ -562,12 +930,12 @@
         list-style: none;
       }
       .sw-list li {
-        font-size: 13px;
+        font-size: 12.5px;
         line-height: 1.6;
-        padding: 7px 0;
+        padding: 6px 0;
         border-bottom: 1px solid var(--border);
         display: flex;
-        gap: 10px;
+        gap: 9px;
         color: var(--text);
       }
       .sw-list li:last-child {
@@ -585,8 +953,6 @@
         font-weight: 700;
         flex-shrink: 0;
       }
-
-      /* ── RESULT GRID ────────────────────────── */
       .results-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -599,7 +965,7 @@
         }
       }
       .result-panel {
-        padding: 36px 40px;
+        padding: 32px 40px;
         border-right: 1px solid var(--border);
       }
       .result-panel:last-child {
@@ -607,11 +973,11 @@
       }
       .panel-title {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 17px;
+        font-size: 16px;
         letter-spacing: 1px;
         color: var(--accent);
-        margin-bottom: 18px;
-        padding-bottom: 10px;
+        margin-bottom: 16px;
+        padding-bottom: 9px;
         border-bottom: 1px solid var(--border);
       }
       canvas#radar {
@@ -622,12 +988,12 @@
         list-style: none;
       }
       .training-list li {
-        padding: 11px 0;
+        padding: 10px 0;
         border-bottom: 1px solid var(--border);
-        font-size: 13.5px;
+        font-size: 13px;
         line-height: 1.7;
         display: flex;
-        gap: 12px;
+        gap: 10px;
       }
       .training-list li::before {
         content: "→";
@@ -637,13 +1003,13 @@
         margin-top: 1px;
       }
       .dist-bar-row {
-        margin-bottom: 14px;
+        margin-bottom: 12px;
       }
       .dist-bar-header {
         display: flex;
         justify-content: space-between;
-        font-size: 12px;
-        margin-bottom: 5px;
+        font-size: 11.5px;
+        margin-bottom: 4px;
       }
       .dist-bar-name {
         font-weight: 500;
@@ -667,82 +1033,80 @@
         background: var(--surface);
         border: 1px solid var(--border);
         border-radius: 4px;
-        padding: 18px;
+        padding: 16px;
         font-size: 13px;
         line-height: 1.8;
-        margin-top: 18px;
+        margin-top: 16px;
       }
       .matchup-box strong {
         color: var(--accent2);
       }
       .boxers-row {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         flex-wrap: wrap;
-        margin-top: 12px;
+        margin-top: 10px;
       }
       .boxer-chip {
         font-family: "DM Mono", monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 1px;
         text-transform: uppercase;
-        padding: 5px 12px;
+        padding: 4px 10px;
         border: 1px solid var(--border);
         border-radius: 20px;
         color: var(--muted);
         background: var(--surface);
       }
-
-      /* ── ANSWERS ────────────────────────────── */
       .answers-section {
-        padding: 36px 40px;
+        padding: 32px 40px;
         border-bottom: 1px solid var(--border);
       }
       .answer-group {
         border: 1px solid var(--border);
         border-radius: 4px;
-        margin-bottom: 14px;
+        margin-bottom: 12px;
         overflow: hidden;
       }
       .answer-group-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 11px 16px;
+        padding: 10px 14px;
         background: var(--surface2);
         border-bottom: 1px solid var(--border);
       }
       .ans-key {
         font-family: "DM Mono", monospace;
-        font-size: 11px;
+        font-size: 10px;
         letter-spacing: 1px;
         color: var(--muted);
       }
       .ans-attr-label {
         font-size: 11px;
         color: var(--muted);
-        margin-top: 2px;
+        margin-top: 1px;
       }
       .ans-result-badge {
         font-family: "DM Mono", monospace;
-        font-size: 10px;
+        font-size: 9px;
         letter-spacing: 1.5px;
         text-transform: uppercase;
         background: var(--accent);
         color: var(--bg);
-        padding: 4px 12px;
+        padding: 3px 10px;
         border-radius: 20px;
       }
       .ans-q-rows {
-        padding: 0 16px;
+        padding: 0 14px;
       }
       .ans-q-row {
         display: grid;
-        grid-template-columns: 26px 1fr 1fr;
-        gap: 12px;
-        padding: 9px 0;
+        grid-template-columns: 22px 1fr 1fr;
+        gap: 10px;
+        padding: 8px 0;
         border-bottom: 1px solid var(--border);
-        font-size: 13px;
+        font-size: 12.5px;
         align-items: start;
       }
       .ans-q-row:last-child {
@@ -750,7 +1114,7 @@
       }
       .ans-q-label {
         font-family: "Bebas Neue", sans-serif;
-        font-size: 19px;
+        font-size: 17px;
         color: var(--accent);
         line-height: 1.2;
       }
@@ -760,211 +1124,527 @@
       }
       .ans-q-situation {
         color: var(--muted);
-        font-size: 12px;
+        font-size: 11.5px;
         line-height: 1.5;
         font-style: italic;
       }
       @media (max-width: 600px) {
         .ans-q-row {
-          grid-template-columns: 22px 1fr;
+          grid-template-columns: 20px 1fr;
         }
         .ans-q-situation {
           display: none;
         }
       }
-
-      /* ── PRINT BAR ───────────────────────────── */
       .print-bar {
-        padding: 22px 40px;
+        padding: 20px 40px;
         border-top: 1px solid var(--border);
         display: flex;
-        gap: 14px;
+        gap: 12px;
         align-items: center;
+        flex-wrap: wrap;
       }
       .print-note {
-        font-size: 12px;
+        font-size: 11.5px;
         color: var(--muted);
       }
+
+      @media (max-width: 700px) {
+        .test-header {
+          padding: 36px 20px 30px;
+        }
+        .progress-bar-wrap {
+          padding: 11px 20px;
+        }
+        .q-block {
+          padding: 22px 20px;
+        }
+        .attr-section-header {
+          padding: 11px 20px 8px;
+        }
+        .options-grid {
+          grid-template-columns: 1fr;
+          padding-left: 0;
+        }
+        .cta-bar {
+          padding: 18px 20px;
+        }
+        .results-hero {
+          padding: 36px 20px;
+        }
+        .style-deepdive {
+          padding: 28px 20px;
+        }
+        .result-panel {
+          padding: 24px 20px;
+        }
+        .answers-section {
+          padding: 24px 20px;
+        }
+        .print-bar {
+          padding: 16px 20px;
+        }
+      }
       @media print {
+        nav,
         .progress-bar-wrap,
         .cta-bar,
-        .print-bar,
-        #sport-select {
+        .print-bar {
           display: none !important;
         }
-        #quiz {
+        .questions-section {
           display: none !important;
         }
-        #results {
+        #results-area {
           display: block !important;
-        }
-        body {
-          background: white;
-          color: black;
         }
       }
     </style>
   </head>
   <body>
-    <!-- ── SPORT SELECTION ───────────────────── -->
-    <div id="sport-select">
-      <div class="header-label">Kampfstil Analyse · 3 Sportarten</div>
-      <h1>WÄHL<br /><span>DEINEN</span><br />SPORT</h1>
-      <p>
-        Situationsbasierte Selbsttests mit 14 Fragen. Stabil, dispositionell –
-        kein Stimmungstest.
-      </p>
-      <div class="sport-cards">
-        <div class="sport-card" data-emoji="🥊" onclick="startSport('boxing')">
-          <div class="sport-card-tag">7 Attribute · 14 Fragen</div>
-          <h2>BOXEN</h2>
-          <p>
-            Distanz, Initiative, Offensivstruktur, Kraftprofil, Defensivprinzip,
-            Bewegung, Energie.
-          </p>
-          <div class="sport-card-btn">TEST STARTEN</div>
+    <!-- ── NAV ─────────────────────────────── -->
+    <nav>
+      <div class="nav-logo" onclick="showPage('home')">KAMPFSTIL</div>
+      <div class="nav-tab active" id="nav-home" onclick="showPage('home')">
+        Start
+      </div>
+      <div class="nav-tab" id="nav-library" onclick="showPage('library')">
+        Archetypen
+      </div>
+      <div class="nav-tab" id="nav-boxing" onclick="showPage('boxing')">
+        Boxen
+      </div>
+      <div class="nav-tab" id="nav-bjj" onclick="showPage('bjj')">BJJ</div>
+      <div class="nav-tab" id="nav-mma" onclick="showPage('mma')">MMA</div>
+      <div class="nav-tab" id="nav-muaythai" onclick="showPage('muaythai')">
+        Muay Thai
+      </div>
+    </nav>
+
+    <!-- ── HOME ─────────────────────────────── -->
+    <div id="page-home" class="page active">
+      <div
+        style="
+          min-height: calc(100vh - 48px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 60px 24px;
+          text-align: center;
+        "
+      >
+        <div class="header-label" style="margin-bottom: 10px">
+          4 Sportarten · Situationsbasiert · Detaillierte Analyse
         </div>
-        <div class="sport-card" data-emoji="🥋" onclick="startSport('bjj')">
-          <div class="sport-card-tag">7 Attribute · 14 Fragen</div>
-          <h2>BJJ</h2>
-          <p>
-            Guard-Präferenz, Entry-Struktur, Submission-Typ, Kontrolle,
-            Scramble, Angriffssystem, Energie.
-          </p>
-          <div class="sport-card-btn">TEST STARTEN</div>
+        <h1
+          style="
+            font-family: &quot;Bebas Neue&quot;, sans-serif;
+            font-size: clamp(44px, 7vw, 86px);
+            letter-spacing: 3px;
+            line-height: 0.92;
+            margin-bottom: 8px;
+          "
+        >
+          KAMPF<span style="color: var(--accent)">STIL</span><br />ANALYSE
+        </h1>
+        <p
+          style="
+            color: var(--muted);
+            font-size: 14px;
+            max-width: 440px;
+            margin: 14px auto 44px;
+            line-height: 1.7;
+          "
+        >
+          14 Situationsfragen pro Sportart. Stabile, dispositionelle Profile.
+          Radar, Stärken/Schwächen und ausführliche Stilanalyse.
+        </p>
+        <div class="sport-cards">
+          <div class="sport-card" data-emoji="🥊" onclick="showPage('boxing')">
+            <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
+            <h2>BOXEN</h2>
+            <p>
+              Distanz, Initiative, Offensivstruktur, Kraftprofil,
+              Defensivprinzip, Bewegung, Energie.
+            </p>
+            <div class="sport-card-btn">TEST STARTEN</div>
+          </div>
+          <div class="sport-card" data-emoji="🥋" onclick="showPage('bjj')">
+            <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
+            <h2>BJJ</h2>
+            <p>
+              Guard-Präferenz, Entry, Submission-Typ, Kontrolle, Scramble,
+              Angriffssystem, Energie.
+            </p>
+            <div class="sport-card-btn">TEST STARTEN</div>
+          </div>
+          <div class="sport-card" data-emoji="🏆" onclick="showPage('mma')">
+            <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
+            <h2>MMA</h2>
+            <p>
+              Kampffeld, Entry, Striking, Cage-Intelligenz, Boden, Risikoprofil,
+              Energie.
+            </p>
+            <div class="sport-card-btn">TEST STARTEN</div>
+          </div>
+          <div
+            class="sport-card"
+            data-emoji="🥊"
+            onclick="showPage('muaythai')"
+            style="border-color: var(--accent2)"
+          >
+            <div class="sport-card-tag" style="color: #c0392b">
+              5 Archetypen · 14 Fragen
+            </div>
+            <h2>MUAY THAI</h2>
+            <p>
+              Distanz, Offensivarchitektur, Kick-Philosophie, Clinch, Defensive,
+              Pressure, Energie.
+            </p>
+            <div class="sport-card-btn">TEST STARTEN</div>
+          </div>
         </div>
-        <div class="sport-card" data-emoji="🏆" onclick="startSport('mma')">
-          <div class="sport-card-tag">7 Attribute · 14 Fragen</div>
-          <h2>MMA</h2>
-          <p>
-            Kampffeld-Dominanz, Entry-Strategie, Striking-Architektur,
-            Cage-Intelligenz, Bodenkontrolle, Risikoprofil, Energie.
-          </p>
-          <div class="sport-card-btn">TEST STARTEN</div>
+        <div style="margin-top: 32px">
+          <button class="btn-secondary" onclick="showPage('library')">
+            📚 Alle Archetypen erkunden
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- ── TEST APP ───────────────────────────── -->
-    <div id="test-app" style="display: none">
-      <header id="app-header" data-emoji="">
-        <button class="header-back" onclick="goHome()">
-          ← Zurück zur Auswahl
-        </button>
-        <div class="header-label" id="header-label"></div>
-        <h1 id="header-title"></h1>
-        <p id="header-desc"></p>
-      </header>
-
-      <div class="progress-bar-wrap">
-        <div class="progress-track">
-          <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-        </div>
-        <div class="progress-text" id="progress-text">0 / 14 beantwortet</div>
+    <!-- ── LIBRARY ─────────────────────────── -->
+    <div id="page-library" class="page">
+      <div class="library-hero">
+        <div class="header-label">Archetypen-Bibliothek</div>
+        <h2>
+          ALLE STILE<br /><span style="color: var(--accent)">IM VERGLEICH</span>
+        </h2>
+        <p>
+          Detaillierte Beschreibungen, Stärken, Schwächen und Matchup-Hinweise
+          für alle 20 Archetypen über 4 Sportarten.
+        </p>
       </div>
-
-      <div id="quiz">
-        <div class="questions-section">
-          <div id="questions-container"></div>
+      <div class="lib-sport-tabs">
+        <div class="lib-sport-tab active" onclick="showLibSport('boxing')">
+          🥊 Boxen
         </div>
-        <div class="cta-bar">
-          <div class="cta-info" id="cta-info">
-            Beantworte alle 14 Fragen um dein Ergebnis zu sehen.
-          </div>
-          <button
-            class="btn-primary"
-            id="btn-submit"
-            disabled
-            onclick="showResults()"
-          >
-            ERGEBNIS ANZEIGEN
-          </button>
+        <div class="lib-sport-tab" onclick="showLibSport('bjj')">🥋 BJJ</div>
+        <div class="lib-sport-tab" onclick="showLibSport('mma')">🏆 MMA</div>
+        <div class="lib-sport-tab" onclick="showLibSport('muaythai')">
+          🥊 Muay Thai
         </div>
       </div>
+      <div class="lib-content">
+        <div id="lib-boxing" class="lib-sport-section active"></div>
+        <div id="lib-bjj" class="lib-sport-section"></div>
+        <div id="lib-mma" class="lib-sport-section"></div>
+        <div id="lib-muaythai" class="lib-sport-section"></div>
+      </div>
+    </div>
 
-      <div id="results">
-        <div class="results-hero" id="results-hero" data-style="">
-          <div class="result-label">Dein Kampfstil-Profil</div>
-          <div class="result-name" id="res-name">–</div>
-          <div class="result-desc" id="res-desc">–</div>
-          <div class="kpi-row">
-            <div class="kpi">
-              <div class="kpi-label">Stiltyp</div>
-              <div class="kpi-val" id="kpi-style">–</div>
-            </div>
-            <div class="kpi">
-              <div class="kpi-label">Abstand</div>
-              <div class="kpi-val" id="kpi-dist">–</div>
-            </div>
-            <div class="kpi">
-              <div class="kpi-label">Sicherheit</div>
-              <div class="kpi-val" id="kpi-conf">–</div>
-            </div>
-          </div>
-          <div
-            class="hybrid-notice"
-            id="hybrid-notice"
-            style="display: none"
-          ></div>
+    <!-- ── TEST PAGES ─────────────────────── -->
+    <div id="page-boxing" class="page">
+      <div id="test-boxing" class="test-page-inner active">
+        <div class="test-header" data-emoji="🥊">
+          <div class="header-label">Boxen · 7 Attribute · 14 Fragen</div>
+          <h1>BOX<span>STIL</span></h1>
+          <p>
+            14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse
+            deines Kampfmusters.
+          </p>
         </div>
-
-        <div class="style-deepdive">
-          <div class="section-title">STILANALYSE</div>
-          <div id="deepdive-text"></div>
-          <div class="sw-grid" id="sw-grid"></div>
-        </div>
-
-        <div class="results-grid">
-          <div class="result-panel">
-            <div class="panel-title">PROFIL-RADAR</div>
-            <canvas id="radar" width="400" height="380"></canvas>
-            <div style="margin-top: 22px">
-              <div class="panel-title">BEKANNTE VERTRETER</div>
-              <div class="boxers-row" id="boxers-row"></div>
-            </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="pf-boxing" style="width: 0%"></div>
           </div>
-          <div class="result-panel">
-            <div class="panel-title">TRAINING (3 LEITPLANKEN)</div>
-            <ul class="training-list" id="training-list"></ul>
-            <div class="matchup-box" id="matchup-box"></div>
-            <div style="margin-top: 28px">
-              <div class="panel-title">STIL-VERGLEICH</div>
-              <div id="dist-bars"></div>
+          <div class="progress-text" id="pt-boxing">0 / 14</div>
+        </div>
+        <div id="quiz-boxing">
+          <div class="questions-section"><div id="qc-boxing"></div></div>
+          <div class="cta-bar">
+            <div class="cta-info" id="ci-boxing">
+              Beantworte alle 14 Fragen.
             </div>
+            <button
+              class="btn-primary"
+              id="bs-boxing"
+              disabled
+              onclick="showResults('boxing')"
+            >
+              ERGEBNIS
+            </button>
           </div>
         </div>
-
-        <div class="answers-section">
-          <div class="section-title">DEINE ANTWORTEN</div>
-          <div id="answers-table"></div>
+        <div id="results-area" class="results-area-boxing">
+          <div class="results-hero" id="rh-boxing" data-style=""></div>
+          <div class="style-deepdive">
+            <div class="section-title">STILANALYSE</div>
+            <div id="dd-boxing"></div>
+            <div class="sw-grid" id="sw-boxing"></div>
+          </div>
+          <div class="results-grid">
+            <div class="result-panel">
+              <div class="panel-title">PROFIL-RADAR</div>
+              <canvas id="radar-boxing" width="380" height="360"></canvas>
+              <div style="margin-top: 18px">
+                <div class="panel-title">VERTRETER</div>
+                <div class="boxers-row" id="br-boxing"></div>
+              </div>
+            </div>
+            <div class="result-panel">
+              <div class="panel-title">TRAINING</div>
+              <ul class="training-list" id="tl-boxing"></ul>
+              <div class="matchup-box" id="mb-boxing"></div>
+              <div style="margin-top: 24px">
+                <div class="panel-title">STILVERGLEICH</div>
+                <div id="db-boxing"></div>
+              </div>
+            </div>
+          </div>
+          <div class="answers-section">
+            <div class="section-title">DEINE ANTWORTEN</div>
+            <div id="at-boxing"></div>
+          </div>
+          <div class="print-bar">
+            <button class="btn-secondary" onclick="window.print()">
+              DRUCKEN</button
+            ><button class="btn-secondary" onclick="resetTest('boxing')">
+              WIEDERHOLEN
+            </button>
+            <div class="print-note">Strg+P → PDF</div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="print-bar">
-          <button class="btn-secondary" onclick="window.print()">
-            DRUCKEN / PDF
-          </button>
-          <button class="btn-secondary" onclick="resetTest()">
-            TEST WIEDERHOLEN
-          </button>
-          <button class="btn-secondary" onclick="goHome()">
-            ANDERE SPORTART
-          </button>
-          <div class="print-note">PDF via Browser-Druck (Strg+P)</div>
+    <div id="page-bjj" class="page">
+      <div id="test-bjj" class="test-page-inner active">
+        <div class="test-header" data-emoji="🥋">
+          <div class="header-label">BJJ · 7 Attribute · 14 Fragen</div>
+          <h1>BJJ<span>STIL</span></h1>
+          <p>
+            14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse
+            deines Grappling-Musters.
+          </p>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="pf-bjj" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="pt-bjj">0 / 14</div>
+        </div>
+        <div id="quiz-bjj">
+          <div class="questions-section"><div id="qc-bjj"></div></div>
+          <div class="cta-bar">
+            <div class="cta-info" id="ci-bjj">Beantworte alle 14 Fragen.</div>
+            <button
+              class="btn-primary"
+              id="bs-bjj"
+              disabled
+              onclick="showResults('bjj')"
+            >
+              ERGEBNIS
+            </button>
+          </div>
+        </div>
+        <div id="results-area" class="results-area-bjj">
+          <div class="results-hero" id="rh-bjj" data-style=""></div>
+          <div class="style-deepdive">
+            <div class="section-title">STILANALYSE</div>
+            <div id="dd-bjj"></div>
+            <div class="sw-grid" id="sw-bjj"></div>
+          </div>
+          <div class="results-grid">
+            <div class="result-panel">
+              <div class="panel-title">PROFIL-RADAR</div>
+              <canvas id="radar-bjj" width="380" height="360"></canvas>
+              <div style="margin-top: 18px">
+                <div class="panel-title">VERTRETER</div>
+                <div class="boxers-row" id="br-bjj"></div>
+              </div>
+            </div>
+            <div class="result-panel">
+              <div class="panel-title">TRAINING</div>
+              <ul class="training-list" id="tl-bjj"></ul>
+              <div class="matchup-box" id="mb-bjj"></div>
+              <div style="margin-top: 24px">
+                <div class="panel-title">STILVERGLEICH</div>
+                <div id="db-bjj"></div>
+              </div>
+            </div>
+          </div>
+          <div class="answers-section">
+            <div class="section-title">DEINE ANTWORTEN</div>
+            <div id="at-bjj"></div>
+          </div>
+          <div class="print-bar">
+            <button class="btn-secondary" onclick="window.print()">
+              DRUCKEN</button
+            ><button class="btn-secondary" onclick="resetTest('bjj')">
+              WIEDERHOLEN
+            </button>
+            <div class="print-note">Strg+P → PDF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-mma" class="page">
+      <div id="test-mma" class="test-page-inner active">
+        <div class="test-header" data-emoji="🏆">
+          <div class="header-label">MMA · 7 Attribute · 14 Fragen</div>
+          <h1>MMA<span>STIL</span></h1>
+          <p>
+            14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse
+            deines MMA-Musters.
+          </p>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="pf-mma" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="pt-mma">0 / 14</div>
+        </div>
+        <div id="quiz-mma">
+          <div class="questions-section"><div id="qc-mma"></div></div>
+          <div class="cta-bar">
+            <div class="cta-info" id="ci-mma">Beantworte alle 14 Fragen.</div>
+            <button
+              class="btn-primary"
+              id="bs-mma"
+              disabled
+              onclick="showResults('mma')"
+            >
+              ERGEBNIS
+            </button>
+          </div>
+        </div>
+        <div id="results-area" class="results-area-mma">
+          <div class="results-hero" id="rh-mma" data-style=""></div>
+          <div class="style-deepdive">
+            <div class="section-title">STILANALYSE</div>
+            <div id="dd-mma"></div>
+            <div class="sw-grid" id="sw-mma"></div>
+          </div>
+          <div class="results-grid">
+            <div class="result-panel">
+              <div class="panel-title">PROFIL-RADAR</div>
+              <canvas id="radar-mma" width="380" height="360"></canvas>
+              <div style="margin-top: 18px">
+                <div class="panel-title">VERTRETER</div>
+                <div class="boxers-row" id="br-mma"></div>
+              </div>
+            </div>
+            <div class="result-panel">
+              <div class="panel-title">TRAINING</div>
+              <ul class="training-list" id="tl-mma"></ul>
+              <div class="matchup-box" id="mb-mma"></div>
+              <div style="margin-top: 24px">
+                <div class="panel-title">STILVERGLEICH</div>
+                <div id="db-mma"></div>
+              </div>
+            </div>
+          </div>
+          <div class="answers-section">
+            <div class="section-title">DEINE ANTWORTEN</div>
+            <div id="at-mma"></div>
+          </div>
+          <div class="print-bar">
+            <button class="btn-secondary" onclick="window.print()">
+              DRUCKEN</button
+            ><button class="btn-secondary" onclick="resetTest('mma')">
+              WIEDERHOLEN
+            </button>
+            <div class="print-note">Strg+P → PDF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="page-muaythai" class="page">
+      <div id="test-muaythai" class="test-page-inner active">
+        <div class="test-header" data-emoji="🥊">
+          <div class="header-label">Muay Thai · 7 Attribute · 14 Fragen</div>
+          <h1>MUAY<span>THAI</span></h1>
+          <p>
+            14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse
+            deines Thai-Kampfmusters.
+          </p>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="pf-muaythai" style="width: 0%"></div>
+          </div>
+          <div class="progress-text" id="pt-muaythai">0 / 14</div>
+        </div>
+        <div id="quiz-muaythai">
+          <div class="questions-section"><div id="qc-muaythai"></div></div>
+          <div class="cta-bar">
+            <div class="cta-info" id="ci-muaythai">
+              Beantworte alle 14 Fragen.
+            </div>
+            <button
+              class="btn-primary"
+              id="bs-muaythai"
+              disabled
+              onclick="showResults('muaythai')"
+            >
+              ERGEBNIS
+            </button>
+          </div>
+        </div>
+        <div id="results-area" class="results-area-muaythai">
+          <div class="results-hero" id="rh-muaythai" data-style=""></div>
+          <div class="style-deepdive">
+            <div class="section-title">STILANALYSE</div>
+            <div id="dd-muaythai"></div>
+            <div class="sw-grid" id="sw-muaythai"></div>
+          </div>
+          <div class="results-grid">
+            <div class="result-panel">
+              <div class="panel-title">PROFIL-RADAR</div>
+              <canvas id="radar-muaythai" width="380" height="360"></canvas>
+              <div style="margin-top: 18px">
+                <div class="panel-title">VERTRETER</div>
+                <div class="boxers-row" id="br-muaythai"></div>
+              </div>
+            </div>
+            <div class="result-panel">
+              <div class="panel-title">TRAINING</div>
+              <ul class="training-list" id="tl-muaythai"></ul>
+              <div class="matchup-box" id="mb-muaythai"></div>
+              <div style="margin-top: 24px">
+                <div class="panel-title">STILVERGLEICH</div>
+                <div id="db-muaythai"></div>
+              </div>
+            </div>
+          </div>
+          <div class="answers-section">
+            <div class="section-title">DEINE ANTWORTEN</div>
+            <div id="at-muaythai"></div>
+          </div>
+          <div class="print-bar">
+            <button class="btn-secondary" onclick="window.print()">
+              DRUCKEN</button
+            ><button class="btn-secondary" onclick="resetTest('muaythai')">
+              WIEDERHOLEN
+            </button>
+            <div class="print-note">Strg+P → PDF</div>
+          </div>
         </div>
       </div>
     </div>
 
     <script>
-      // ════════════════════════════════════════════════════════════
-      // BOXING DATA
-      // ════════════════════════════════════════════════════════════
-      const BOXING = {
-        sport: "boxing",
-        emoji: "🥊",
-        headerLabel: "Boxen · 7 Attribute · 14 Fragen",
-        headerTitle: "BOX<span>STIL</span>",
-        headerDesc:
-          "14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse deines Kampfmusters.",
+      // ════════════════════════════════════════════
+      // SPORT DATA
+      // ════════════════════════════════════════════
+
+      const SPORTS = {};
+
+      // ── BOXING ──────────────────────────────────
+      SPORTS.boxing = {
         attrs: [
           { key: "D", label: "Distanzpräferenz" },
           { key: "I", label: "Initiativstruktur" },
@@ -980,7 +1660,7 @@
           O: ["Einzelpräzision", "Kombinationen", "Serien/Volumen"],
           K: ["Präzisionsdominant", "Ausgewogen", "Power-dominant"],
           Def: ["Vermeidung", "Kontaktakzeptanz", "Slip & Konter"],
-          B: ["Zirkulär/Winkel", "Linear rein/raus", "Druckschiebend"],
+          B: ["Zirkulär/Winkel", "Linear", "Druckschiebend"],
           E: ["Rhythmisch", "Hybrid", "Explosiv"],
         },
         questions: [
@@ -1237,7 +1917,7 @@
             id: 13,
             attr: "E",
             situation: "Mitte der Runde.",
-            question: "Wie ist dein Energiemuster gerade?",
+            question: "Wie ist dein Energiemuster?",
             options: [
               { val: 1, label: "A", text: "Dein Tempo bleibt konstant." },
               { val: 2, label: "B", text: "Du wechselst Phasen bewusst." },
@@ -1263,64 +1943,68 @@
         archetypes: {
           Outboxer: {
             center: [1, 2, 2, 1, 1, 1, 1],
-            color: "#7EB8D4",
+            color: "#5B99C2",
             classic:
-              "Kontrolliert Distanz und Tempo von außen: Jab, Winkel, klare Exits. Dominanz über Reichweite und Trefferqualität.",
+              "Kontrolliert Distanz und Tempo von außen: Jab, Winkel, klare Exits.",
             longdesc: [
-              "Der Outboxer ist der klassische technische Boxer – sein Ziel ist es, den Kampf aus einer Distanz zu kontrollieren, in der er treffbar ist, aber der Gegner es nicht ist. Der Jab ist sein wichtigstes Werkzeug: er misst Distanz, setzt Rhythmus, erzeugt Sicherheitsabstand und leitet Power-Aktionen ein.",
-              "Nach jeder Aktion verlässt er sofort die Linie – Pivots und seitliche Schritte sind kein Luxus, sondern Pflicht. Gegen Gegner, die Druck machen, nutzt er Ring-Geometrie: er lässt den Raum für sich arbeiten, anstatt direkt zu kontern.",
-              "Die Schwäche liegt in der Abhängigkeit von Distanz. Sobald ein Pressure Fighter die Distanz schließt und ihn im Infight feststellt, verliert er seinen strukturellen Vorteil. Gegen Boxer mit gutem Ring-Cutting muss er aktiv Winkel suchen.",
-              "Trainingstaktisch: viel Arbeit am Jab (Variationen, Doubles), konsequentes Exit-Training nach jeder Kombination, und Entwicklung eines Gefühls für den Ring-Center als strategische Position.",
+              "Der Outboxer ist der klassische technische Boxer. Sein Ziel ist es, den Kampf aus einer Distanz zu kontrollieren, in der er treffbar ist – der Gegner aber nicht. Der Jab ist sein wichtigstes Werkzeug: er misst Distanz, setzt Rhythmus und leitet Power-Aktionen ein. Das Fundament ist Beinarbeit und räumliches Bewusstsein.",
+              "Nach jeder Aktion verlässt er sofort die Linie – Pivots und seitliche Schritte sind keine Kür, sondern Pflicht. Gegen Druck-Gegner nutzt er Ring-Geometrie: er lässt den Raum für sich arbeiten, statt direkt zu kontern.",
+              "Die Schwäche liegt in der Abhängigkeit von Distanz. Sobald ein Pressure Fighter die Distanz schließt und ihn feststellt, verliert er seinen strukturellen Vorteil. Gegen gutes Ring-Cutting muss er aktiv Winkel suchen und darf nicht passiv rückwärts laufen.",
+              "Trainingstaktisch: viel Arbeit am Jab (Variationen, Doubles, staggered Timing), konsequentes Exit-Training nach jeder Kombination und das Entwickeln eines Gefühls für den Ring-Center als strategische Position.",
             ],
             strengths: [
               "Hohes Treffer/Kassierten-Verhältnis",
               "Wenig unnötiger Schaden",
               "Langzeit-Kampfkontrolle",
               "Punkte über technische Überlegenheit",
+              "Schwer zu treffen und festzustellen",
             ],
             weaknesses: [
               "Anfällig bei geschlossener Distanz",
               "Benötigt gute Ausdauer und Beinarbeit",
               "Schwierig gegen Ring-Cutting",
+              "Kann passiv wirken und Punktenachteile riskieren",
             ],
             training: [
-              "Jab-Varianten + Exit nach jeder Aktion – nicht stehen bleiben.",
-              "Pivot/Angle nach dem Cross – nicht nur rückwärts.",
-              "Ringgefühl: Center halten ohne flat-footed zu werden.",
+              "Jab-Varianten + Exit nach jeder Aktion – niemals stehen bleiben.",
+              "Pivot/Angle nach dem Cross – nicht nur rückwärts ausweichen.",
+              "Ring-Center-Kontrolle: Winkelerzeugung und Distanzmanagement täglich.",
             ],
             matchup:
-              "Stark vs. Slugger, wenn Distanz gehalten wird. Vorsicht vs. Pressure Fighter mit Ring-Cutting.",
+              "Stark vs. Slugger bei konsequenter Distanzkontrolle. Schwierig gegen Pressure Fighter mit gutem Ring-Cutting und gegen Counter Puncher, die Fehler bestrafen.",
             boxers: ["Muhammad Ali", "Larry Holmes", "Wladimir Klitschko"],
           },
           "Counter Puncher": {
             center: [2, 1, 1, 1, 3, 2, 1],
             color: "#D4A574",
             classic:
-              "Lädt Aktionen ein, liest Muster, bestraft Fehler. Stark über Timing und präzise Gegenschläge.",
+              "Lädt Aktionen ein, liest Muster, bestraft Fehler über Timing und präzise Gegenschläge.",
             longdesc: [
-              "Der Counter Puncher ist oft missverstanden – er wirkt passiv, ist aber ein hochaktives, reaktives System. Er lässt Aktionen kommen, weil er gelernt hat, in der Reaktion schneller, präziser und sicherer zu sein als in der Eröffnung.",
-              "Sein Kernwerkzeug ist das Timing. Er liest das Muster des Gegners und antwortet im Moment maximaler Verwundbarkeit – direkt aus einer Defensivbewegung heraus (Slip + Counter, Roll + Uppercut, Parry + Cross).",
-              "Das größte Risiko: gegen einen geduldigen Gegner, der kaum Fehler macht, verliert er Initiative und kommt zu wenig Output. Er ist strukturell davon abhängig, dass der Gegner aktiv wird.",
-              "Trainierbar über Trigger-Drills, Feints als aktives Einladen von Aktionen, und konsequente Output-Disziplin: der Counter Puncher wartet nicht passiv – er provoziert die Fehler, auf die er reagiert.",
+              "Der Counter Puncher wirkt oft passiv – ist aber ein hochaktives, reaktives System. Er lässt Aktionen kommen, weil er in der Reaktion schneller, präziser und sicherer ist als in der Eröffnung. Sein Kernwerkzeug ist Timing: er liest das Muster und antwortet im Moment maximaler Verwundbarkeit des Gegners.",
+              "Direkt aus der Defensivbewegung heraus – Slip + Counter, Roll + Uppercut, Parry + Cross – kommen seine besten Schläge. Die Antwort ist fast immer kürzer als die Eröffnung: ein präziser Treffer statt einer langen Kombination. Er wartet nicht passiv – er provoziert die Fehler, auf die er reagiert.",
+              "Das größte Risiko: gegen einen geduldigen Gegner, der kaum Fehler macht, verliert er Initiative und kommt zu wenig Output. Gegen Outboxer, die nie overreachen, ist er strukturell im Nachteil. Geduld und mentale Stärke sind entscheidend.",
+              "Training: Trigger-Drills auf spezifische Muster, Feints als aktives Einladen von Aktionen, und Output-Disziplin – der Counter Puncher muss lernen, auch aus eigener Initiative heraus Punkte zu machen.",
             ],
             strengths: [
               "Sehr hohe Trefferqualität",
-              "Niedriges Risikoprofil",
+              "Niedriges eigenes Verletzungsrisiko",
               "Defensiv kaum fassbar",
               "Bestraft Ungeduld konsequent",
+              "Energieeffizient",
             ],
             weaknesses: [
               "Geringer Output gegen vorsichtige Gegner",
               "Braucht Geduld und mentale Stärke",
               "Schwierig gegen disziplinierte Outboxer",
+              "Kann passiv bewertet werden",
             ],
             training: [
-              "Trigger-Drills (Overreach/Rhythmusbruch) → sofortige Antwort.",
-              "Feints, um Reaktionen zu provozieren – nicht nur passiv warten.",
-              "Output-Disziplin: Punkte sichern ohne Struktur zu verlieren.",
+              "Trigger-Drills: Overreach des Gegners → sofortige präzise Antwort.",
+              "Feints als aktives Werkzeug – Lücken provozieren, nicht nur warten.",
+              "Output-Disziplin: auch aus eigener Initiative Punkte sichern.",
             ],
             matchup:
-              "Stark gegen ungeduldigen Pressure Fighter. Vorsicht vs. geduldigem Outboxer, der kaum Fehler anbietet.",
+              "Stark gegen ungeduldige Pressure Fighter und Slugger. Schwierig gegen geduldige Outboxer und Boxer die kaum Fehler anbieten. Verliert Initiative gegen sehr defensive Stile.",
             boxers: [
               "Floyd Mayweather Jr.",
               "Juan Manuel Márquez",
@@ -1331,108 +2015,106 @@
             center: [2, 2, 2, 2, 2, 2, 2],
             color: "#C9A84C",
             classic:
-              "Allrounder aus der Mitteldistanz: technisch boxen und Schaden setzen. Kombiniert Kombis mit Power und passt sich breit an.",
+              "Allrounder aus der Mitteldistanz: technisch boxen und Schaden setzen, flexibel anpassbar.",
             longdesc: [
-              "Der Boxer-Puncher ist der vielseitigste Archetypus – und gleichzeitig der schwierigste, weil er keine extreme Spezialisierung besitzt, sondern mehrere Qualitäten gleichzeitig auf hohem Niveau halten muss.",
-              "Sein Offensivspiel basiert auf strukturierten Kombinationen, die er mit Power-Elementen abschließt. Die letzten Schläge einer Kombi sind keine Punktesammler, sondern echte Statements. Er kann herausboxen, aber auch Infight annehmen.",
-              "Defensiv arbeitet er mit einer Mischung aus Block, Parieren, Slip und situativem Konter. Sein Hauptrisiko: ein hochspezialisierter Gegner kann ihn strukturell herausfordern.",
-              "Das Training erfordert bewusste Arbeit an beiden Qualitäten: Technik und Timing einerseits, Schlagkraft und Kombinations-Endung andererseits. Der Distanzwechsel muss ohne Chaos beherrscht werden.",
+              "Der Boxer-Puncher ist der vielseitigste Archetypus – und gleichzeitig der anspruchsvollste, weil er keine extreme Spezialisierung besitzt, sondern mehrere Qualitäten gleichzeitig auf hohem Niveau halten muss. Er arbeitet aus der Mitteldistanz, wo er sowohl technisch boxen als auch ernsthaften Schaden setzen kann.",
+              "Sein Offensivspiel basiert auf strukturierten Kombinationen mit Power-Abschlüssen – die letzten Schläge einer Kombi sind keine Punktesammler, sondern echte Statements. Er kann herausboxen, aber auch Infight annehmen. Diese Flexibilität erlaubt taktische Anpassung, wenn Plan A nicht funktioniert.",
+              "Defensiv arbeitet er mit einer Mischung aus Block, Parieren, Slip und situativem Konter. Sein Hauptrisiko: ein hochspezialisierter Gegner, der sein Spiel konsequent durchsetzt, kann ihn in einem Feld strukturell herausfordern.",
+              "Training erfordert bewusste Arbeit an beiden Qualitäten parallel: Technik und Timing einerseits, Schlagkraft und Kombinations-Endung andererseits. Der Distanzwechsel muss ohne Lücken in der Abwehr beherrscht werden.",
             ],
             strengths: [
               "Hohe taktische Flexibilität",
               "Kann technisch boxen und Schaden setzen",
               "Anpassbar an viele Gegnertypen",
               "Gefährlich in mehreren Distanzen",
+              "Schwer zu scouten",
             ],
             weaknesses: [
               "Kein extremer Spezialist",
               "Hochspezialisierte Gegner können Vorteil erzwingen",
-              "Erfordert sehr breite technische Basis",
+              "Erfordert breite technische Basis",
+              "Größerer Trainingsaufwand",
             ],
             training: [
-              "Kombi → Power: letzte Aktion als Statement (z.B. 1–2–3 + harte 2).",
-              "Distanzwechsel trainieren (lang / mittel / kurz) ohne Chaos.",
-              "Defensive Responsibility nach Kombis (Block/Roll + Angle-Exit).",
+              "Kombi → Power-Finish: letzte Aktion als Statement (1–2–3 + harte 2).",
+              "Distanzwechsel (lang/mittel/kurz) ohne Lücke in der Abwehr.",
+              "Defensive Responsibility nach Kombis: Block/Roll + Angle-Exit.",
             ],
             matchup:
-              "Gut vs. viele Stile. Vorsicht vs. stark spezialisierten Gegnern.",
+              "Breit aufgestellt gegen die meisten Stile. Schwierig gegen absolute Elite-Spezialisten die ihr Feld erzwingen. Stärker als der reine Techniker gegen Power Fighter.",
             boxers: ["Canelo Álvarez", "Terence Crawford", "Sugar Ray Leonard"],
           },
           Swarmer: {
             center: [3, 3, 3, 2, 2, 3, 2],
             color: "#C0392B",
             classic:
-              "Erzwingt Kurzdistanz und Exchanges: Ring-Cutting, Volumen, Body Work, Zermürbung.",
+              "Erzwingt Kurzdistanz, Volumen und Body Work – gewinnt über Druck, Output und Zermürbung.",
             longdesc: [
-              "Der Swarmer gewinnt Kämpfe durch Präsenz, Willen und systematische Zermürbung. Sein zentrales Werkzeug ist nicht ein einzelner Schlag, sondern der kontinuierliche Druck – der Gegner kommt nie zur Ruhe.",
-              "Technisch lebt er vom Ring-Cutting: er schließt Fluchtwege, treibt den Gegner in Ecken, und nutzt dort Body Work und Volumen. Im Infight ist er in seinem Element: Haken, Uppercuts, Smothering, Kopfpositionen.",
-              "Was diesen Stil so fordernd macht: er verlangt Ausdauer, Physis und den Willen, auch Treffer einzustecken, um dichtzubleiben. Der Gegner hat keine Ruhe, keine Zeit zum Atmen.",
-              "Strukturelle Schwäche: ein Counter Puncher mit exzellenten Exit-Winkeln kann ihn teuer bezahlen lassen. Training fokussiert auf Ring-Geometrie (Korridore schließen) und Body-Work-Systeme.",
+              "Der Swarmer gewinnt Kämpfe durch Präsenz, Willen und systematische Zermürbung. Sein zentrales Werkzeug ist nicht ein einzelner Schlag, sondern der kontinuierliche Druck: der Gegner findet keine Ruhe, keine Zeit zum Resetten, keine freie Phase.",
+              "Technisch lebt er vom Ring-Cutting: er schließt Fluchtwege, treibt den Gegner in Ecken, und nutzt dort Body Work und Volumen. Body Work ist keine Nebenaktivität, sondern eine strategische Waffe – Körpertreffer machen den Gegner im Verlauf des Kampfes langsamer und erzwingen Guard-Senkung.",
+              "Was ihn so fordernd macht: er verlangt Ausdauer, Physis und den Willen, auch Treffer zu absorbieren um dichtzubleiben. Gegen Counter Puncher mit exzellenten Exit-Winkeln und sauberen Gegenschlägen kann er teuer bezahlen – jedes Hereinkommen ist ein Risiko.",
+              "Training fokussiert auf Ring-Geometrie (Korridore schließen, nicht hinterherlaufen), Body-Work-Systeme als strukturierte Angriffsstrategie, und Kopfpositions-Arbeit im Infight.",
             ],
             strengths: [
               "Physisch dominanter Kampfstil",
               "Hoher Output und Zermürbungseffekt",
-              "Gefährliches Body-Work-Spiel",
-              "Psychologischer Druck",
+              "Gefährliches Body-Work-System",
+              "Psychologischer Druck und mentale Belastung",
+              "Stark in späten Runden",
             ],
             weaknesses: [
-              "Höhere eigene Trefferquote",
-              "Anfällig gegen saubere Konter",
-              "Erfordert sehr gute Kondition",
+              "Höhere eigene Trefferquote durch Aggression",
+              "Anfällig gegen saubere Konter beim Einsteigen",
+              "Erfordert exzellente Kondition",
+              "Kann gegen mobile Outboxer Punkte verlieren",
             ],
             training: [
-              "Ring-Cutting: Korridore schließen – nicht hinterherlaufen.",
-              "Body Work als System trainieren, nicht als Zufall.",
-              "Im Infight: Kopfposition & Smothering sauber setzen.",
+              "Ring-Cutting: Fluchtwege schließen – nicht hinterherlaufen.",
+              "Body Work als System: Körper-Kopf-Muster strukturieren.",
+              "Im Infight: Kopfposition und Smothering als Schutz.",
             ],
             matchup:
-              "Stark vs. stationären Slugger. Vorsicht vs. Counter Puncher mit Exit-Winkeln.",
+              "Stark gegen stationäre Slugger und langsame Outboxer. Schwierig gegen Counter Puncher mit präzisen Exit-Winkeln und gegen mobile Outboxer mit guter Beinarbeit.",
             boxers: ["Roberto Durán", "Joe Frazier", "Gennadiy Golovkin"],
           },
           Slugger: {
             center: [3, 3, 1, 3, 2, 3, 3],
             color: "#8B5E3C",
             classic:
-              "Power-orientiert: wenige Aktionen, hohe Wirkung. Sucht klare, harte Einzelaktionen.",
+              "Power-orientiert: wenige Aktionen, maximale Wirkung – sucht den Fight-Ending-Treffer.",
             longdesc: [
-              "Der Slugger ist der archetypisch gefährlichste Boxer – nicht wegen seiner Technik, sondern wegen dessen, was passiert, wenn sein Schlag sitzt. Er baut sein gesamtes Spielsystem um diese eine Qualität.",
-              "Die besten Slugger haben subtile Setups: einen Jab, der Distanz schließt; einen Feint, der den Guard öffnet. Was dann kommt, ist eine klare, harte Aktion mit maximalem Commitment – keine Kombi, sondern ein Statement.",
-              "Hauptschwachpunkt: die Trefferquote und die Exposition zwischen den Aktionen. Ein Outboxer kann ihn kontrollieren; ein Counter Puncher kann seinen Overreach teuer bestrafen.",
-              "Training erfordert Setup-Arbeit: ohne Feints und Aufbauaktionen wird er berechenbar. Mini-Kombinationen, Guard-Reset nach jeder Aktion und Geduld beim Warten auf die richtige Gelegenheit sind zentral.",
+              "Der Slugger ist der archetypisch gefährlichste Boxer – nicht wegen seiner Technik, sondern wegen dessen, was passiert, wenn sein Schlag sitzt. Er baut sein gesamtes System um diese eine Qualität: er sucht den Treffer, der Kämpfe beendet. Jede Aktion hat dieses Ziel.",
+              "Die besten Slugger haben subtile Setups: ein Jab, der Distanz schließt; ein Feint, der den Guard öffnet; eine kurze Körperaktion, die den Kopf freigibt. Was dann kommt, ist keine klassische Kombination, sondern eine harte Aktion mit maximalem Commitment. Die Körpersprache ändert sich in diesem Moment.",
+              "Hauptschwachpunkt: die Trefferquote und die Exposition zwischen den Aktionen. Wer mit harten Einzelaktionen boxen will, ist in den Momenten dazwischen angreifbar. Ein Outboxer, der konsequent Distanz hält, kann ihn kontrollieren. Ein Counter Puncher kann seinen Overreach teuer bestrafen.",
+              "Training erfordert Setup-Arbeit: ohne Feints und Aufbauaktionen wird er berechenbar. Mini-Kombinationen, Guard-Reset nach jeder Aktion und Geduld beim Warten auf die richtige Gelegenheit sind zentrale Bausteine.",
             ],
             strengths: [
               "Extremes Knockout-Potential",
               "Psychologischer Druck durch Power-Reputation",
-              "Klares, einfaches System",
               "Ein Treffer kann alles verändern",
+              "Einfaches, klares Spielsystem",
+              "Gefährlich in jedem Kampfmoment",
             ],
             weaknesses: [
-              "Niedrigere Trefferquote",
-              "Anfällig gegen mobile Boxer",
-              "Berechenbar ohne gute Setups",
+              "Niedrigere Trefferquote durch Einzelaktionen",
+              "Anfällig gegen mobile technische Boxer",
+              "Berechenbar ohne subtile Setups",
+              "Gegen Outboxer mit Distanz strukturell im Nachteil",
             ],
             training: [
-              "Setup vor Power: Feints + Jab – nicht nackt schwingen.",
-              "Mini-Kombis (2er) statt Solo-Power.",
-              "Nach dem Schlag: Schritt nach außen + Guard-Reset.",
+              "Setup vor Power: Feints + Jab als Standard – niemals nackt schwingen.",
+              "Mini-Kombis (2er) statt Solo-Power – letzter Schlag als Statement.",
+              "Nach dem Schlag: Schritt nach außen + Guard-Reset sofort.",
             ],
             matchup:
-              "Stark gegen Gegner, die stehen bleiben. Vorsicht vs. Outboxer mit Disziplin.",
+              "Stark gegen Gegner die stehen bleiben oder selbst Kurzdistanz suchen. Schwierig gegen mobile Outboxer mit Distanzdisziplin und gegen Counter Puncher mit gutem Timing.",
             boxers: ["George Foreman", "Deontay Wilder", "Sonny Liston"],
           },
         },
       };
 
-      // ════════════════════════════════════════════════════════════
-      // BJJ DATA
-      // ════════════════════════════════════════════════════════════
-      const BJJ = {
-        sport: "bjj",
-        emoji: "🥋",
-        headerLabel: "BJJ · 7 Attribute · 14 Fragen",
-        headerTitle: "BJJ<span>STIL</span>",
-        headerDesc:
-          "14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse deines Grappling-Musters.",
+      // ── BJJ ─────────────────────────────────────
+      SPORTS.bjj = {
         attrs: [
           { key: "G", label: "Guard-Präferenz" },
           { key: "En", label: "Entry-Struktur" },
@@ -1444,9 +2126,9 @@
         ],
         attrLabels: {
           G: ["Offener Guard", "Halbguard", "Closed/Back"],
-          En: ["Pull & Sweep", "Takedown/Level Change", "Clinch & Trip"],
+          En: ["Pull & Sweep", "Takedown", "Clinch & Trip"],
           S: ["Arm/Schulter", "Choke/Würger", "Bein/Fuß"],
-          Ko: ["Top Pressure", "Side Control/Mount", "Back Control"],
+          Ko: ["Top Pressure", "Side/Mount", "Back Control"],
           Sc: ["Scramble suchen", "Position halten", "Reset & neu"],
           A: ["Sweep-Fokus", "Submission-Chain", "Positionsdominanz"],
           E: ["Konstant ruhig", "Phasenweise", "Explosive Bursts"],
@@ -1462,7 +2144,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du öffnest den Guard und arbeitest mit Beinen/Frames (Spider, DLR).",
+                text: "Du öffnest den Guard und arbeitest mit Beinwork/Frames (Spider, DLR).",
               },
               {
                 val: 2,
@@ -1472,7 +2154,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du hältst Closed Guard und arbeitest Sweeps/Submissions aus der engen Kontrolle.",
+                text: "Du hältst Closed Guard und arbeitest Sweeps aus enger Kontrolle.",
               },
             ],
           },
@@ -1485,7 +2167,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du bewegst dich aktiv und nutzt Beinwork/Frames zum Stören der Passierversuche.",
+                text: "Du bewegst dich aktiv mit Beinwork/Frames zum Stören der Passierversuche.",
               },
               {
                 val: 2,
@@ -1495,7 +2177,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du haltest engen Kontakt, suchst Rücken oder Closed-Guard-Retention.",
+                text: "Du hältst engen Kontakt und suchst Rücken oder Closed-Guard-Retention.",
               },
             ],
           },
@@ -1508,7 +2190,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du pullst Guard aktiv oder initiierst Collar Tie → Sweep-Versuch.",
+                text: "Du pullst Guard aktiv oder initiierst Collar Tie Sweep-Versuch.",
               },
               {
                 val: 2,
@@ -1525,13 +2207,13 @@
           {
             id: 4,
             attr: "En",
-            situation: "Du bist im Stand und dein erster Versuch schlägt fehl.",
+            situation: "Dein erster Versuch schlägt fehl.",
             question: "Was folgt?",
             options: [
               {
                 val: 1,
                 label: "A",
-                text: "Du wechselst direkt in Guard Pull / Sitdown.",
+                text: "Du wechselst direkt in Guard Pull/Sitdown.",
               },
               {
                 val: 2,
@@ -1541,7 +2223,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du nutzt den Clinch weiter und suchst Wurfchancen.",
+                text: "Du nutzt Clinch weiter und suchst Wurfchancen.",
               },
             ],
           },
@@ -1560,7 +2242,7 @@
               {
                 val: 2,
                 label: "B",
-                text: "Rear Naked Choke, Triangle oder Guillotine (Würger/Choke).",
+                text: "Rear Naked Choke, Triangle oder Guillotine (Würger).",
               },
               {
                 val: 3,
@@ -1595,7 +2277,7 @@
           {
             id: 7,
             attr: "Ko",
-            situation: "Du hast den Gegner geworfen oder gesweept.",
+            situation: "Du hast den Gegner gesweept oder geworfen.",
             question: "Was ist dein Fokus danach?",
             options: [
               {
@@ -1630,12 +2312,12 @@
               {
                 val: 2,
                 label: "B",
-                text: "Du switch in bessere Kontrolle (Mount → S-Mount oder umgekehrt).",
+                text: "Du wechselst in bessere Kontrolle (Mount → S-Mount).",
               },
               {
                 val: 3,
                 label: "C",
-                text: "Du sicherst Rücken oder nutzt Hals-Kontrolle, wenn er dreht.",
+                text: "Du sicherst Rücken oder nutzt Hals-Kontrolle wenn er dreht.",
               },
             ],
           },
@@ -1648,12 +2330,12 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du machst aktiv Chaos und suchst Angriff aus dem Scramble heraus.",
+                text: "Du machst aktiv Chaos und suchst Angriff aus dem Scramble.",
               },
               {
                 val: 2,
                 label: "B",
-                text: "Du versuchst, Position zu stabilisieren und Kontrolle zurückzugewinnen.",
+                text: "Du versuchst Position zu stabilisieren und Kontrolle zurückzugewinnen.",
               },
               {
                 val: 3,
@@ -1699,7 +2381,7 @@
               {
                 val: 2,
                 label: "B",
-                text: "Du gibst ihm Submission-Köder und baust Submission-Chains auf.",
+                text: "Du gibst Submission-Köder und baust Submission-Chains auf.",
               },
               {
                 val: 3,
@@ -1717,7 +2399,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du variierst Sweep-Richtung und Timing, bis eine Lücke entsteht.",
+                text: "Du variierst Sweep-Richtung und Timing bis eine Lücke entsteht.",
               },
               {
                 val: 2,
@@ -1740,7 +2422,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du arbeitest ruhig und konstant – kein Hektik, nur sauber.",
+                text: "Du arbeitest ruhig und konstant – keine Hektik, nur sauber.",
               },
               {
                 val: 2,
@@ -1750,14 +2432,14 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du machst einen harten Burst, um das Momentum zu brechen.",
+                text: "Du machst einen harten Burst um das Momentum zu brechen.",
               },
             ],
           },
           {
             id: 14,
             attr: "E",
-            situation: "Letzten 30 Sekunden des Matches.",
+            situation: "Letzte 30 Sekunden des Matches.",
             question: "Was tust du?",
             options: [
               {
@@ -1781,69 +2463,69 @@
         archetypes: {
           "Guard Player": {
             center: [1, 1, 2, 1, 1, 1, 1],
-            color: "#7EB8D4",
+            color: "#5B99C2",
             classic:
               "Dominiert vom Rücken mit aktivem Beinwork, Sweeps und Submission-Drohungen aus dem offenen Guard.",
             longdesc: [
-              "Der Guard Player ist der Techniker von unten – er nutzt den Boden nicht als Nachteil, sondern als Plattform für Kontrolle und Angriff. Sein offener Guard (Spider, DLR, Lasso) ist kein passives Verteidigungssystem, sondern ein aktives Werkzeug: er destabilisiert den Gegner und erzeugt Sweep- und Submission-Möglichkeiten.",
-              "Sein Entry-Muster ist häufig der Guard Pull – bewusst, nicht aus Schwäche. Er will auf dem Rücken arbeiten, weil dort seine Stärke liegt. Sweeps und Hip Escapes sind sein primäres Mittel, um Positionswechsel zu erzwingen.",
-              "Schwäche: gegen starke Passer mit Pressure wird der Guard Player getestet. Wer gut schultert und Kniedruck aufbaut, kann seinen Beinwork neutralisieren. Auch gegen Wrestler, die den Guard Pull bestrafen, braucht er ein solides Standup-Spiel.",
-              "Training: Beinwork-Variationen, Sweep-zu-Submission-Kombinationen und aktive Re-Guard-Drills. Der Guard Player muss lernen, Scrambles aus dem Guard heraus zu initiieren, nicht nur zu reagieren.",
+              "Der Guard Player nutzt den Boden nicht als Nachteil, sondern als Plattform für Kontrolle und Angriff. Sein offener Guard (Spider, DLR, Lasso) ist kein passives Verteidigungssystem, sondern ein aktives Werkzeug: er destabilisiert den Gegner und erzeugt Sweep- und Submission-Möglichkeiten systematisch.",
+              "Sein Entry-Muster ist häufig der Guard Pull – bewusst, nicht aus Schwäche. Er will auf dem Rücken arbeiten, weil dort seine Stärke liegt. Sweeps und Hip Escapes sind sein primäres Mittel, um Positionswechsel zu erzwingen und Punkte zu machen.",
+              "Schwäche: gegen starke Passer mit schwerem Pressure wird er getestet. Wer gut schultert und Kniedruck aufbaut, kann seinen Beinwork neutralisieren. Gegen Wrestler die den Guard Pull bestrafen, braucht er ein solides Stand-up-Spiel.",
+              "Training: Beinwork-Variationen, Sweep-zu-Submission-Kombinationen und aktive Re-Guard-Drills. Der Guard Player muss lernen Scrambles aus dem Guard zu initiieren, nicht nur zu reagieren.",
             ],
             strengths: [
               "Sehr aktiv von unten",
               "Sweep-und-Submission-Kombinationen",
-              "Schwer zu passieren",
-              "Technisch reich",
+              "Schwer vollständig zu passieren",
+              "Technisch reich und variabel",
+              "Energieeffizient von unten",
             ],
             weaknesses: [
-              "Pressure-Passer sind gefährlich",
+              "Pressure-Passer sind strukturell gefährlich",
               "Stand-up oft vernachlässigt",
-              "Abhängig von Guard Retention",
+              "Abhängig von Guard Retention unter Druck",
+              "Gegen Leg Lockers exponiert",
             ],
             training: [
-              "Beinwork-Variationen (Spider → DLR → X-Guard Übergänge) täglich repetieren.",
-              "Sweep-zu-Submission-Chains: wenn der Sweep kommt, sofort Arm angreifen.",
-              "Guard Retention unter Druck: Knieschild + Hüftarbeit systematisch trainieren.",
+              "Beinwork-Variationen (Spider → DLR → X-Guard Übergänge) täglich.",
+              "Sweep-zu-Submission-Chains: wenn Sweep kommt, sofort Arm angreifen.",
+              "Guard Retention: Knieschild + Hüftarbeit unter Druck systematisch.",
             ],
             matchup:
-              "Stark gegen Top-Spieler ohne Submission-Sensibilität. Vorsicht vs. Pressure Passer mit schwerem Schulterdruck.",
+              "Stark gegen Top-Spieler ohne Submission-Sensibilität. Schwierig gegen Pressure Passer mit schwerem Schulterdruck und gegen Wrestler die den Guard Pull einplanen.",
             boxers: ["Marcelo Garcia", "Bernardo Faria", "Romulo Barral"],
           },
           "Takedown Wrestler": {
             center: [2, 2, 1, 2, 2, 2, 2],
             color: "#D4A574",
             classic:
-              "Dominiert über Takedowns, Top Control und Pressure – bringt Kämpfe dorthin wo er sie will.",
+              "Dominiert über Takedowns, Top Control und Pressure – kontrolliert wo und wie Kämpfe stattfinden.",
             longdesc: [
-              "Der Takedown Wrestler macht seinen Kampfstil über Kontrolle der Situation – er entscheidet, wo der Kampf stattfindet. Im Stand sucht er Level Changes, Double und Single Legs. Am Boden etabliert er Pressure und Positionskontrolle, bevor er Submissions aufbaut.",
-              "Sein Kontrollprinzip ist Top-Down: er bevorzugt Knee on Belly, Side Control und Mount und baut von dort systematisch Druck auf. Submissions sind meist Folge seiner Positionskontrolle, nicht sein primäres Werkzeug.",
-              "Schwäche: gegen Guard Player mit exzellentem Beinwork kann sein Passieren blockiert werden. Auch gegen gute Leg Lockers ist Vorsicht geboten.",
-              "Training fokussiert auf Takedown-Chains (Fake Double → Single → Fireman's Carry), Pass-Kombinationen und das Halten von Positions-Druck unter Gegendruck.",
+              "Der Takedown Wrestler macht seinen Kampfstil über Situationskontrolle. Im Stand sucht er Level Changes, Double und Single Legs. Am Boden etabliert er Pressure und Positionskontrolle, bevor er Submissions als Folge aufbaut.",
+              "Sein Kontrollprinzip ist Top-Down: er bevorzugt Knee on Belly, Side Control und Mount und baut von dort systematisch Druck auf. Submissions entstehen aus seiner Positional Dominance, sind selten sein primäres Werkzeug.",
+              "Schwäche: gegen Guard Player mit exzellentem Beinwork kann sein Passieren blockiert werden. Leg Lock Spezialisten, die seine Einsteige als Angriffsgelegenheit nutzen, sind besonders gefährlich.",
+              "Training fokussiert auf Takedown-Chains, Pass-Kombinationen und das Halten von Positions-Pressure unter aktivem Gegendruck von unten.",
             ],
             strengths: [
               "Kontrolliert wo Kämpfe stattfinden",
               "Systematische Positionskontrolle",
               "Schwer aus Top-Position zu sweepen",
               "Ausdauernd und strukturell stark",
+              "Submission-Möglichkeiten aus Druck",
             ],
             weaknesses: [
               "Leg Lock Exposure beim Einsteigen",
-              "Guard Player mit aktivem Beinwork testen ihn",
-              "Submissions oft limitierter",
+              "Aktives Beinwork testet seinen Guard Pass",
+              "Submissions oft limitierter als Spezialisten",
+              "Stand-up kann eindimensional wirken",
             ],
             training: [
-              "Takedown-Chains: Double → Single → Leg Trip automatisieren.",
-              "Top Pressure: Schulter + Hüftgewicht unter echtem Widerstand.",
+              "Takedown-Chains: Double → Single → Leg Trip als Fluss.",
+              "Top Pressure: Schulter + Hüftgewicht unter echtem Gegendruck.",
               "Guard Passing: Toreando + Leg Weave kombinieren.",
             ],
             matchup:
-              "Stark gegen Submission-Jäger ohne Standup. Vorsicht vs. aktivem Beinwork und Leg Locks.",
-            boxers: [
-              "Khabib Nurmagomedov (MMA-Transfer)",
-              "Xande Ribeiro",
-              "Marcus Almeida",
-            ],
+              "Stark gegen Submission Hunter ohne Takedown Defense. Schwierig gegen aktives Beinwork und erfahrene Leg Lock Spezialisten die seine Einsteige nutzen.",
+            boxers: ["Xande Ribeiro", "Marcus Almeida", "Rodolfo Vieira"],
           },
           "Back Taker": {
             center: [3, 3, 1, 3, 1, 3, 1],
@@ -1851,29 +2533,31 @@
             classic:
               "Sucht immer den Rücken – aus jedem Scramble, jeder Position, jeder Situation.",
             longdesc: [
-              "Der Back Taker hat eine einfache Agenda: er will den Rücken des Gegners. Egal aus welcher Position – Guard, Scramble, Turtle, Leg Entanglement – er sieht immer den Weg zum Rücken. Seat Belt und Body Triangle sind seine Kontrollmechanismen; der Rear Naked Choke oder Choke-Varianten sein Finish.",
-              "Sein Kampfgefühl ist permanent auf Drehbewegungen des Gegners ausgerichtet. Wenn der Gegner dreht, um zu entkommen oder anzugreifen, ist das sein Trigger. Er folgt der Bewegung und nimmt die Rückenposition.",
-              "Schwäche: wer nie dreht und konsequent Guard-up bleibt, kann seinen Backtake-Rhythmus brechen. Auch Scramble-Spezialisten, die sehr unpredictable sind, können ihn aus seinem Muster bringen.",
-              "Training: Turtle-Angriffe, Leg Drag → Backtake, und Mattenarbeit mit Drehbewegungen – immer mit dem Fokus, die Drehung des Gegners zu nutzen.",
+              "Der Back Taker hat eine einfache Agenda: er will den Rücken des Gegners. Egal aus welcher Position – Guard, Scramble, Turtle, Leg Entanglement – er sieht immer den Weg zum Rücken. Seat Belt und Body Triangle sind seine Kontrollmechanismen.",
+              "Sein Kampfgefühl ist permanent auf Drehbewegungen des Gegners ausgerichtet. Wenn der Gegner dreht, um zu entkommen oder anzugreifen, ist das sein Trigger. Er folgt der Bewegung und nimmt die Rückenposition. Reaktionsschnelligkeit auf Drehbewegungen ist sein wichtigstes Werkzeug.",
+              "Schwäche: wer nie dreht und konsequent Guard-up bleibt, kann seinen Backtake-Rhythmus brechen. Scramble-Spezialisten die sehr unpredictable sind, können ihn aus seinem Muster bringen.",
+              "Training: Turtle-Angriffe, Leg Drag → Backtake, und intensive Mattenarbeit mit Drehbewegungen – immer mit dem Fokus, die Drehung des Gegners sofort zu nutzen.",
             ],
             strengths: [
-              "Rücken = höchste Position im BJJ",
+              "Rücken = höchste Kontrollposition im BJJ",
               "Extremes Finishing-Potential",
               "Nutzt gegnerische Bewegung aus",
-              "Einfaches, klares System",
+              "Klares, einfaches System",
+              "Psychologisch zermürbend",
             ],
             weaknesses: [
               "Gegen defensive, statuarische Gegner",
               "Overhead-Sweeps entziehen sich der Strategie",
               "Braucht guten Scramble-Instinkt",
+              "Guard-Arbeit oft sekundär entwickelt",
             ],
             training: [
-              "Turtle-Angriffe: Seatbelt → Body Triangle Mechanik täglich.",
-              "Leg Drag → Backtake als standard Kombination einbauen.",
-              "Scramble-Drills: Gegner dreht → du folgst sofort.",
+              "Turtle-Angriffe: Seatbelt → Body Triangle Mechanik täglich repetieren.",
+              "Leg Drag → Backtake als Standardkombination einbauen.",
+              "Scramble-Drills: Gegner dreht → du folgst sofort ohne Zögern.",
             ],
             matchup:
-              "Stark gegen aktive Scrambler. Vorsicht vs. sehr defensiven Top-Spielern ohne Drehung.",
+              "Stark gegen aktive Scrambler und Kämpfer die sich viel drehen. Schwierig gegen sehr defensive Top-Spieler ohne Drehbewegung und gegen erfahrene Turtle Defense.",
             boxers: ["Rafael Mendes", "Miyao Brothers", "Caio Terra"],
           },
           "Leg Lock Specialist": {
@@ -1882,29 +2566,31 @@
             classic:
               "Sucht Leg Entanglements, Heel Hooks und Kneebars – gefährlich aus fast jeder Bodenposition.",
             longdesc: [
-              "Der Leg Lock Specialist hat das Spiel vertikal gemacht: er ist gefährlich aus Positionen, die andere für sicher halten. Kein Side Control, kein Guard – er will Beinverschlängelung, und dann ist er in seinem Element: Heel Hook, Kneebar, Ankle Lock und deren Chains.",
-              "Sein Entry-Muster zielt auf Leg Entanglements ab – er pulled Guard auf Leg Lock Positionen (Single Leg X, Ashi Garami) oder nutzt Scrambles, um Beinkontakt zu erzeugen. Gegen starke Takedown-Wrestler nutzt er den Leg Lock als Takedown-Konter.",
-              "Schwäche: gegen erfahrene Leg Lock-Verteidiger, die Heel Hook-Exposition vermeiden und konsequent entschlüpfen, kann er wenig erreichen. Sein Top Game und seine klassische Guard-Arbeit sind oft weniger entwickelt.",
-              "Training: Ashi Garami-Positionen, Outside und Inside Heel Hook-Mechanics, und das Verständnis von Leg Lock-Chains (Heel Hook → Kneebar → Ankle Lock).",
+              "Der Leg Lock Specialist hat das Spiel vertikal gemacht: er ist gefährlich aus Positionen, die andere für sicher halten. Kein Side Control nötig – er will Beinverschlängelung, und dann kommt Heel Hook, Kneebar, Ankle Lock und ihre Chains.",
+              "Sein Entry-Muster zielt auf Leg Entanglements ab – er pulled Guard auf Leg Lock Positionen (Single Leg X, Ashi Garami) oder nutzt Scrambles, um Beinkontakt zu erzeugen. Gegen Takedown-Wrestler nutzt er den Leg Lock als direkten Konter.",
+              "Schwäche: gegen erfahrene Leg Lock-Verteidiger die Heel Hook-Exposition konsequent vermeiden und entschlüpfen, kommt er weniger Chancen. Sein Top Game und klassische Guard-Arbeit sind oft weniger entwickelt.",
+              "Training: Ashi Garami-Positionen und ihre Variationen, Outside und Inside Heel Hook-Mechanik, und das Verstehen von Leg Lock-Chains als System.",
             ],
             strengths: [
-              "Gefährlich aus vielen Positionen",
-              "Leg Locks sind unterschätzt",
-              "Scramble = Chance",
+              "Gefährlich aus vielen unerwarteten Positionen",
+              "Leg Locks werden unterschätzt",
+              "Scramble = Angriffschance",
               "Schnelle Finishing-Möglichkeiten",
+              "Psychologisch schwer zu bekämpfen",
             ],
             weaknesses: [
-              "Erfahrene Gegner entziehen Beine",
+              "Erfahrene Gegner entziehen Beine systematisch",
               "Top Game oft limitiert",
               "Guard-Arbeit manchmal vernachlässigt",
+              "Regelabhängig (No-Gi vs. Gi)",
             ],
             training: [
-              "Ashi Garami-Basis: Position, Griffe, Gewicht täglich.",
+              "Ashi Garami-Basis: Position, Griffe, Gewicht täglich trainieren.",
               "Heel Hook-Mechanik: Kniedrehung + Hüftdruck präzise koordinieren.",
-              "Leg Lock Chains: wenn einer entkommt, sofort nächster.",
+              "Leg Lock Chains: wenn einer entkommt, sofort nächster im System.",
             ],
             matchup:
-              "Stark gegen Wrestler, die Beinexposition haben. Vorsicht vs. Grappler mit exzellenter Leg Lock Defense.",
+              "Stark gegen Wrestler mit Beinexposition und gegen Kämpfer die Leg Locks nicht kennen. Schwierig gegen erfahrene Leg Lock Defense und gegen sehr flexible Grappler.",
             boxers: ["Gordon Ryan", "Craig Jones", "Garry Tonon"],
           },
           "Submission Hunter": {
@@ -1913,44 +2599,38 @@
             classic:
               "Sucht Submission-Chains aus jeder Position – angreifend, kreativ, schwer defensiv zu lesen.",
             longdesc: [
-              "Der Submission Hunter hat eine gefährliche Eigenschaft: er ist überall angreifend. Er baut keine Submission für sich allein auf – er baut Chains. Wenn der Gegner den Armbar verteidigt, ist schon der Triangle bereit. Wenn der Triangle geblockt wird, kommt der Omoplata.",
-              "Was ihn von anderen Submission-Spielern unterscheidet: er nutzt Submissions nicht nur als Finish, sondern als taktisches Mittel – ein Submission-Angriff erzwingt Reaktion, und diese Reaktion öffnet die nächste Chance.",
-              "Schwäche: gegen extrem defensive Gegner, die keine Fehler machen und alle Submissions gut kennen, kommt er zu wenig Output. Auch Positional Control-Spieler, die einfach Pressure aufbauen ohne sich zu exponieren, testen ihn.",
-              "Training: Submission-Kombinationen aus dem Guard (Triangle → Armbar → Omoplata), aus der Sidemount (Kimura → Brabo → Darce), und constant flow drilling.",
+              "Der Submission Hunter hat eine gefährliche Eigenschaft: er ist überall angreifend. Er baut keine Submission isoliert auf – er baut Chains. Wenn der Gegner den Armbar verteidigt, ist schon der Triangle bereit. Wenn der Triangle geblockt wird, kommt der Omoplata. Die Kette hört nicht auf.",
+              "Was ihn auszeichnet: er nutzt Submissions nicht nur als Finish, sondern als taktisches Mittel. Ein Submission-Angriff erzwingt Reaktion, und diese Reaktion öffnet die nächste Chance. Er kämpft vorwärts, auch aus dem Nachteil heraus – Positionen sind für ihn Ausgangspunkte, nicht Endstationen.",
+              "Schwäche: gegen extrem defensive Gegner die alle Submissions kennen und keine Fehler machen, kommt er zu wenig Output. Positional Control-Spieler die einfach Pressure aufbauen ohne sich zu exponieren, testen sein System.",
+              "Training: Submission-Kombinationen als Systeme (Triangle → Armbar → Omoplata), Kimura → Brabo → Darce, und constant flow drilling. Der Hunter muss lernen, Submissions auch zu benutzen wenn er sie nicht finishen kann.",
             ],
             strengths: [
-              "Überall angreifend",
+              "Überall angreifend und gefährlich",
               "Submissions als taktisches Werkzeug",
-              "Schwer defensiv zu lesen",
-              "Kreatives, variables Spiel",
+              "Schwer defensiv zu lesen und vorzubereiten",
+              "Kreatives variables Spiel",
+              "Angreifend auch aus dem Nachteil",
             ],
             weaknesses: [
-              "Gegen sehr defensiv-erfahrene Gegner",
+              "Gegen sehr erfahrene Submission Defense",
               "Positional Control manchmal sekundär",
-              "Energie-intensiv",
+              "Energie-intensiv durch permanente Angriffe",
+              "Positionsverluste aus Submission-Versuchen",
             ],
             training: [
-              "Submission-Chains aus dem Guard (Triangle → Armbar → Omoplata) als Einheit.",
+              "Submission-Chains aus dem Guard als Einheit (Triangle → Armbar → Omoplata).",
               "Kimura → Brabo → Darce aus der Sidemount kombinieren.",
-              "Reaction Drilling: Gegner verteidigt A → sofort B.",
+              "Reaction Drilling: Gegner verteidigt A → sofort B ohne Pause.",
             ],
             matchup:
-              "Stark gegen Positional Player ohne Submission-Sensibilität. Vorsicht vs. erfahrene Submission Defense.",
+              "Stark gegen Positional Player ohne Submission-Sensibilität. Schwierig gegen erfahrene Submission-Verteidiger und gegen defensive Kämpfer die kaum Angriffsfläche bieten.",
             boxers: ["Marcelo Garcia", "Dean Lister", "Eddie Bravo"],
           },
         },
       };
 
-      // ════════════════════════════════════════════════════════════
-      // MMA DATA
-      // ════════════════════════════════════════════════════════════
-      const MMA = {
-        sport: "mma",
-        emoji: "🏆",
-        headerLabel: "MMA · 7 Attribute · 14 Fragen",
-        headerTitle: "MMA<span>STIL</span>",
-        headerDesc:
-          "14 Situationsfragen. 7 stabile Dispositionen. Strukturelle Analyse deines MMA-Kampfmusters.",
+      // ── MMA ─────────────────────────────────────
+      SPORTS.mma = {
         attrs: [
           { key: "Fd", label: "Kampffeld-Dominanz" },
           { key: "En", label: "Entry-Strategie" },
@@ -1961,41 +2641,13 @@
           { key: "E", label: "Energiemodell" },
         ],
         attrLabels: {
-          Fd: [
-            "Striking-dominant",
-            "Wrestling/Clinch-dominant",
-            "Submission/Ground-dominant",
-          ],
-          En: [
-            "Striking-Setup / Level Change",
-            "Clinch & Bodylock",
-            "Direktes Shooting",
-          ],
-          St: [
-            "Range-Control / Distance Game",
-            "Pressure / Forward March",
-            "Counter / Timing",
-          ],
-          Ca: [
-            "Raum & Winkel (Open Space)",
-            "Cage Pressure & Wall Work",
-            "Cage Escape & Reset",
-          ],
-          Gd: [
-            "Position → Damage → Finish",
-            "Scramble & Back Takes",
-            "Submission Chain Hunting",
-          ],
-          Ri: [
-            "Strukturell & geduldig",
-            "Adaptiv & rhythmusbrechend",
-            "High-Risk / Opportunistisch",
-          ],
-          E: [
-            "Kontrolliert & konstant",
-            "Phasenweise Druck",
-            "Explosive Peaks",
-          ],
+          Fd: ["Striking-dominant", "Wrestling/Clinch", "Submission/Ground"],
+          En: ["Striking-Setup", "Clinch & Bodylock", "Direktes Shooting"],
+          St: ["Range-Control", "Pressure / Forward", "Counter / Timing"],
+          Ca: ["Raum & Winkel", "Cage Pressure", "Cage Escape"],
+          Gd: ["Position→Damage", "Scramble & Back", "Submission Chain"],
+          Ri: ["Strukturell geduldig", "Adaptiv", "High-Risk"],
+          E: ["Konstant", "Phasenweise", "Explosive Peaks"],
         },
         questions: [
           {
@@ -2017,7 +2669,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Am Boden mit Submission-Möglichkeiten – Ground Game ist dein Feld.",
+                text: "Am Boden mit Submission-Möglichkeiten.",
               },
             ],
           },
@@ -2095,12 +2747,12 @@
             id: 5,
             attr: "St",
             situation: "Du bist im Stand – der Gegner ist auf Distanz.",
-            question: "Wie arbeitest du im Standup?",
+            question: "Wie arbeitest du?",
             options: [
               {
                 val: 1,
                 label: "A",
-                text: "Du kontrollierst Range mit Jab, Kicks und Footwork – Distance Game.",
+                text: "Range-Control mit Jab, Kicks und Footwork.",
               },
               {
                 val: 2,
@@ -2146,7 +2798,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du vermeidest die Cage und hältst Open Space für Bewegung.",
+                text: "Du vermeidest die Cage und hältst Open Space.",
               },
               {
                 val: 2,
@@ -2163,7 +2815,7 @@
           {
             id: 8,
             attr: "Ca",
-            situation: "Der Gegner hat dich an der Cage – Clinch.",
+            situation: "Der Gegner hat dich an der Cage im Clinch.",
             question: "Was tust du?",
             options: [
               {
@@ -2202,7 +2854,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du setzt sofort Submission-Chains und jagst die Tapline.",
+                text: "Du setzt sofort Submission-Chains und jagst den Tap.",
               },
             ],
           },
@@ -2215,7 +2867,7 @@
               {
                 val: 1,
                 label: "A",
-                text: "Du arbeitest systematisch auf Stand Up – Cage nutzen, aufstehen.",
+                text: "Du arbeitest systematisch auf Stand Up.",
               },
               {
                 val: 2,
@@ -2225,7 +2877,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du suchst Submission direkt aus dem Guard oder Half Guard.",
+                text: "Du suchst Submission direkt aus dem Guard.",
               },
             ],
           },
@@ -2249,7 +2901,7 @@
               {
                 val: 3,
                 label: "C",
-                text: "Du gehst aufs Ganze – riskanter Angriff, alles oder nichts.",
+                text: "Du gehst aufs Ganze – riskanter Angriff.",
               },
             ],
           },
@@ -2279,7 +2931,7 @@
           {
             id: 13,
             attr: "E",
-            situation: "Mitte des Kampfes – beide Seiten haben gearbeitet.",
+            situation: "Mitte des Kampfes – beide haben gearbeitet.",
             question: "Wie ist dein Energiemuster?",
             options: [
               {
@@ -2326,95 +2978,101 @@
         archetypes: {
           "Wrestle-Pressure Controller": {
             center: [2, 2, 1, 2, 1, 1, 1],
-            color: "#7EB8D4",
+            color: "#5B99C2",
             classic:
-              "Clinch-dominant, Cage Work, Position-first, systematischer Grind. Kontrolliert Kämpfe von vorne.",
+              "Clinch-dominant, Cage Work, Position-first, systematischer Grind – kontrolliert Kämpfe vollständig.",
             longdesc: [
-              "Der Wrestle-Pressure Controller ist der vielleicht strukturell dominanteste Kämpfer im MMA – er gewinnt, weil er den Kampf dorthin bringt, wo er unbequem wird: gegen die Cage, am Boden, unter konstantem Druck. Der Gegner hat keine Ruhe, keine klare Position, kein Resetten.",
-              "Technisch besteht sein System aus mehreren Schichten: Clinch-Entry über Striking-Setups oder direktes Shooting, Wall Work und Bodykontrolle an der Cage, und dann Takedown zu Top Control. Am Boden spielt er positionsdominant: Ground-and-Pound, Positional Advancement, kontrollierte Submission-Möglichkeiten.",
-              "Schwäche: gegen einen Counter-Striker, der seinen Eingang sauber bestraft, kann er teuer bezahlen. Auch gegen exzellente Guard Player, die aus der Bottom Position angreifen, muss er vorsichtig sein.",
-              "Training fokussiert auf Clinch-Mechanik, Cage-Positioning und die Fähigkeit, nach einem Sprawl sofort zurück in den Clinch zu kommen.",
+              "Der Wrestle-Pressure Controller dominiert, weil er den Kampf dorthin bringt, wo er unbequem wird: gegen die Cage, am Boden, unter konstantem Druck. Der Gegner findet keine Ruhe, keine klare Position, kein Resetten. Das Kampffeld gehört ihm.",
+              "Technisch besteht sein System aus Schichten: Clinch-Entry über Striking-Setups oder direktes Shooting, Wall Work und Bodykontrolle an der Cage, dann Takedown zu Top Control. Am Boden spielt er positionsdominant: Ground-and-Pound, kontrollierte Positional Advancement, situative Submissions.",
+              "Schwäche: gegen einen Counter-Striker mit präzisem Entry-Konter und exzellentem Sprawl kann er teuer bezahlen. Gegen Guard Player die unten gefährlich sind, muss er seinen Ground-and-Pound sehr präzise einsetzen.",
+              "Training: Clinch-Mechanik, Cage-Positioning und die Fähigkeit nach einem Sprawl sofort zurück in den Clinch zu kommen ohne Rhythmusverlust.",
             ],
             strengths: [
-              "Kontrolliert Kampffeldwahl",
-              "Physisch dominant",
+              "Kontrolliert Kampffeldwahl komplett",
+              "Physisch dominant und ermüdend",
               "Systematischer Grind",
-              "Niedrige Knockout-Gefahr",
+              "Niedrige Knockout-Gefahr durch Klinch-Safety",
+              "Stark in späten Runden",
             ],
             weaknesses: [
-              "Anfällig gegen saubere Counter beim Entry",
+              "Anfällig gegen präzise Counter beim Entry",
               "Guard Player können unten gefährlich werden",
-              "Braucht sehr gute Kondition",
+              "Erfordert exzellente Kondition",
+              "Kann sterile Kämpfe produzieren",
             ],
             training: [
-              "Clinch-Entry: Striking-Fake → Level Change → Takedown als Einheit trainieren.",
-              "Cage Work: Underhook-Kampf und Bodylock-Mechanics.",
-              "Top Control: Ground-and-Pound-Struktur mit positionaler Awareness.",
+              "Clinch-Entry: Strike-Fake → Level Change → Takedown als automatischen Fluss.",
+              "Cage Work: Underhook-Kampf und Bodylock-Positionen.",
+              "Top Control: GnP-Struktur mit positionaler Awareness kombinieren.",
             ],
             matchup:
-              "Stark vs. Submission Hunter ohne Takedown Defense. Vorsicht vs. Elite Counter-Striker mit starkem Sprawl.",
+              "Stark gegen Submission Hunter ohne Takedown Defense und gegen Pressure Striker ohne Sprawl. Schwierig gegen Elite Counter-Striker mit starkem Sprawl und gegen aktive Guard Player.",
             boxers: ["Khabib Nurmagomedov", "Kamaru Usman", "Belal Muhammad"],
           },
           "Elite Counter-Striker": {
             center: [1, 1, 3, 3, 1, 1, 1],
             color: "#D4A574",
             classic:
-              "Range-Control, Timing, Cage Escape und Geduld. Lässt Fehler kommen und bestraft präzise.",
+              "Range-Control, Timing, Cage Escape und Geduld – lässt Fehler kommen und bestraft präzise.",
             longdesc: [
-              "Der Elite Counter-Striker ist der technischste Kämpfer im MMA-Spektrum – er gewinnt nicht durch Aggression, sondern durch Überlegenheit in Timing, Distanz und Kühle. Er lässt den Gegner kommen, liest das Muster und antwortet präzise.",
-              "Sein Standup-Spiel basiert auf Range-Control: Southpaw-Winkel, Jab-und-Bein-Kontrolle, Off-Line-Bewegung. Er arbeitet nicht nach vorne – er arbeitet, dass der Gegner nach vorne kommt und sich dadurch exponiert.",
-              "Weakness: gegen Wrestler mit exzellentem Takedown-Spiel ist er exponiert. Seine Defense gegen Double Legs muss sehr gut sein, sonst verliert er das Kampffeld. Auch gegen Pressure Striker, die sein Range-Game überwältigen, kann er Schwierigkeiten haben.",
-              "Training: Precision-Striking-Drills, Cage-Escape-Mechanics und Anti-Takedown-Fundamentals (Sprawl, Hip-Escape, Whizzer).",
+              "Der Elite Counter-Striker gewinnt nicht durch Aggression, sondern durch Überlegenheit in Timing, Distanz und Kühle. Er lässt den Gegner kommen, liest das Muster und antwortet präzise. Sein Standup-Spiel basiert auf Off-Line-Bewegung, Jab-und-Bein-Kontrolle.",
+              "Er arbeitet nicht nach vorne – er arbeitet, dass der Gegner nach vorne kommt und sich exponiert. Footwork und Winkel sind seine primären Werkzeuge. Cage Escape ist für ihn keine Defensive, sondern eine offensiv genutzte Fähigkeit.",
+              "Schwäche: gegen Wrestler mit exzellentem Takedown-Spiel ist er exponiert. Seine Takedown Defense muss sehr gut sein, sonst verliert er das Kampffeld komplett. Gegen Pressure Striker die seinen Range-Plan überwältigen, kann er Schwierigkeiten haben.",
+              "Training: Precision Counter-Striking aus Slips und Rolls, Cage-Escape-Mechanics als offensive Bewegung, und Anti-Takedown als erster Reflex.",
             ],
             strengths: [
               "Sehr geringe eigene Trefferquote",
-              "Präzise, effektive Strikes",
+              "Präzise effektive Strikes",
               "Gut gegen vorwärts kämpfende Gegner",
               "Langzeit-Kampfkontrolle",
+              "Technisch schwer zu scouten",
             ],
             weaknesses: [
-              "Exposed gegen Top-Tier Wrestling",
+              "Exponiert gegen Top-Tier Wrestling",
               "Benötigt sehr gute Takedown Defense",
-              "Kann gegen Druck seinen Rhythmus verlieren",
+              "Kann gegen Druck den Rhythmus verlieren",
+              "Schwierig gegen Wrestler mit Geduld",
             ],
             training: [
-              "Precision Counter-Striking aus Slips und Rolls.",
-              "Cage Escape: Drehung, Winkelerzeugung, Distanz re-establish.",
-              "Sprawl-und-Brawl: Anti-Takedown als erster Reflex.",
+              "Precision Counter-Striking aus defensiven Bewegungen (Slip → Cross).",
+              "Cage Escape: Drehung, Winkelerzeugung, Distanz re-establish als Reflex.",
+              "Sprawl-und-Brawl: Anti-Takedown als erster automatischer Reflex.",
             ],
             matchup:
-              "Stark vs. Pressure Fighter ohne subtile Setups. Vorsicht vs. Elite Wrestlers mit sauberem Entry.",
+              "Stark gegen Pressure Fighter ohne Setups und gegen Submission Hunter im Stand. Schwierig gegen Elite-Wrestler mit sauberem Entry und gegen Pressure Striker mit hohem Output.",
             boxers: ["Israel Adesanya", "Leon Edwards", "Valentina Shevchenko"],
           },
           "Pressure Striker": {
             center: [1, 1, 2, 2, 1, 3, 3],
             color: "#C0392B",
             classic:
-              "Vorwärtsbewegung, Schaden-first, hohes Volumen und explosive Phasen – bricht den Gegner physisch.",
+              "Vorwärtsbewegung, Schaden-first, hohes Volumen – bricht den Gegner physisch und mental.",
             longdesc: [
-              "Der Pressure Striker geht nach vorne und macht den Gegner dafür bezahlen, dass er im Weg steht. Er kombiniert physischen Druck mit Striking-Output – nicht die eleganteste Methode, aber eine der effektivsten gegen Boxer, die nicht mit permanentem Vorwärtsdruck umgehen können.",
-              "Sein Kampfmuster ist einfach und wirkungsvoll: Vorwärtsbewegung, hoher Schlagoutput, Bereitschaft Treffer zu absorbieren um den Gegner zu treffen. Er liebt Infight und Mittelstrecke. Kicks zum Körper, überhand Rechte und Left Hooks sind typische Waffen.",
-              "Schwäche: seine Aggressivität macht ihn anfällig für gut gesetzte Counter. Ein Counter-Striker, der seine Linie verlässt und ihn dann trifft, kann ihn teuer bezahlen lassen.",
-              "Training: Pressure-Entry-Mechanics, Über-Unter-Arbeit, Überhand-Aufbau und Kondition für hohes Rundenvolumen.",
+              "Der Pressure Striker geht nach vorne und macht den Gegner dafür bezahlen, dass er im Weg steht. Er kombiniert physischen Druck mit hohem Striking-Output – er liebt Infight und Mittelstrecke, wo sein Volumen und seine Bereitschaft Treffer zu absorbieren zum Vorteil werden.",
+              "Sein Kampfmuster ist klar: Vorwärtsbewegung, permanenter Output, Risikobereitschaft im Exchange. Overhand Rechte, Körper-Kicks und Left Hooks in Combination sind typische Waffen. Er will den Gegner an die Cage bringen und dort zermürben.",
+              "Schwäche: seine Aggression macht ihn anfällig für gut gesetzte Counter. Ein Counter-Striker der seine Linie verlässt und dann trifft, kann ihn teuer bezahlen lassen. Gegen Wrestler die seinen Vorwärtsdruck für Takedowns nutzen, kann er Schwierigkeiten haben.",
+              "Training: Pressure-Entry-Mechanik ohne Stopp, Über-Unter-Arbeit für Clinch, und die Kondition für hohes Rundenvolumen über mehrere Runden.",
             ],
             strengths: [
-              "Physisch bricht er Gegner",
+              "Physisch bricht er Gegner im Verlauf",
               "Sehr hoher Output",
-              "Psychologischer Druck",
+              "Psychologischer Druck durch Aggression",
               "Gefährlich auf mittlerer Distanz",
+              "Stark im Infight",
             ],
             weaknesses: [
               "Anfällig gegen präzise Counter",
-              "Taktisch begrenzt",
-              "Hohe eigene Trefferquote",
+              "Taktisch kann er vorhersagbar werden",
+              "Hohe eigene Trefferquote durch Aggression",
+              "Wrestler können seinen Druck als Entry nutzen",
             ],
             training: [
-              "Pressure Entry: Vorwärtsbewegung ohne Stopp.",
-              "Überhand Rechte und Left Hook als Power-Kombination.",
-              "Konditions-Runden mit hohem Output.",
+              "Pressure Entry: Vorwärtsbewegung ohne Stopp als Habit.",
+              "Overhand Rechte und Left Hook als Power-Kombination trainieren.",
+              "Konditions-Runden mit konstantem Output über 5 Runden.",
             ],
             matchup:
-              "Stark vs. Counter-Striker ohne starke Beinarbeit. Vorsicht vs. Elite Takedown-Wrestler.",
+              "Stark gegen Counter-Striker ohne starke Beinarbeit und gegen Submission Hunter im Stand. Schwierig gegen Elite-Wrestler und gegen saubere Counter-Striker mit gutem Footwork.",
             boxers: ["Justin Gaethje", "Dustin Poirier", "Nate Diaz"],
           },
           "Submission Opportunist": {
@@ -2423,60 +3081,64 @@
             classic:
               "Scramble-heavy, Submission-Chains, risikobereit – gefährlich in jedem Ground Exchange.",
             longdesc: [
-              "Der Submission Opportunist ist der chaotischste und kreativste Kämpfer im MMA – und für viele der schwierigste, weil seine Gefährlichkeit nicht an klare Positionen gebunden ist. Er ist überall angreifend: aus dem Guard, aus dem Scramble, aus dem Turtle, aus dem Stand.",
-              "Sein System basiert auf Submission-Chains: er zwingt den Gegner durch kontinuierliche Angriffe zu Reaktionen und nutzt diese Reaktionen für den nächsten Angriff. Triangle → Armbar → Omoplata. Anaconda → D'Arce → Guillotine. Er kämpft vorwärts, auch aus dem Nachteil heraus.",
-              "Schwäche: seine Risikobereitschaft kann teuer werden. Gegen einen methodischen Gegner, der Positionen hält und keine Scramble-Situationen zulässt, hat er weniger Möglichkeiten. Auch sein Standup kann limitiert sein.",
-              "Training: Scramble-Drills aus allen Positionen, Submission-Chain-Mechanik und das Entwickeln eines Instinkts für Opportunismus aus ungünstigen Lagen.",
+              "Der Submission Opportunist ist der kreativste Kämpfer im MMA – und für viele der schwierigste, weil seine Gefährlichkeit nicht an klare Positionen gebunden ist. Er ist überall angreifend: aus dem Guard, Scramble, Turtle, Leg Entanglement, Stand.",
+              "Sein System basiert auf Submission-Chains die nicht aufhören: er zwingt den Gegner durch kontinuierliche Angriffe zu Reaktionen und nutzt diese Reaktionen für den nächsten Angriff. Er kämpft vorwärts auch aus dem Nachteil. Triangle → Armbar → Omoplata, Anaconda → D'Arce – die Chain läuft weiter.",
+              "Schwäche: gegen einen methodischen Gegner der Positionen hält und keine Scramble-Situationen zulässt, hat er weniger Möglichkeiten. Sein Standup kann limitiert sein, und seine Risikobereitschaft im Ground Game kann ihn teuer bezahlen lassen.",
+              "Training: Scramble-Drills aus allen Positionen, Submission-Chain-Mechanik als System, und das Entwickeln eines Instinkts für Opportunismus aus ungünstigen Lagen heraus.",
             ],
             strengths: [
-              "Überall gefährlich",
-              "Submission-Chains",
-              "Schwer zu lesen",
-              "Opportunistisch aus jeder Lage",
+              "Überall gefährlich – auch aus dem Nachteil",
+              "Submission-Chains die nicht aufhören",
+              "Schwer zu lesen und zu planen",
+              "Scramble = Angriffschance",
+              "Psychologisch zermürbend",
             ],
             weaknesses: [
-              "Risikobereit = exponiert",
-              "Methodische Gegner testen ihn",
-              "Standup kann limitiert sein",
+              "Risikobereitschaft kann teuer werden",
+              "Methodische Gegner testen sein System",
+              "Standup oft limitiert",
+              "Kann KO-Exposition haben durch Scramble-Suche",
             ],
             training: [
               "Scramble-Drills: aus Turtle, Half Guard, Sprawl – immer Submission suchen.",
-              "Submission-Chains: wenn der Gegner A verteidigt, sofort B.",
-              "Cage-Scrambles: Wand nutzen für Elevation und Positionswechsel.",
+              "Submission-Chains: wenn Gegner A verteidigt, sofort B – keine Pause.",
+              "Cage-Scrambles: Wand für Elevation und Positionswechsel nutzen.",
             ],
             matchup:
-              "Stark vs. Pressure Wrestler ohne Submission-Sensibilität. Vorsicht vs. methodischen Positionskontroller.",
+              "Stark gegen Pressure Wrestler ohne Submission-Sensibilität. Schwierig gegen methodische Positionskontroller und gegen Counter-Striker die seine Scramble-Suche mit Strikes bestrafen.",
             boxers: ["Charles Oliveira", "Tony Ferguson", "Frank Mir"],
           },
           "Hybrid Tactical Fighter": {
             center: [2, 2, 2, 2, 2, 2, 2],
             color: "#8B5E3C",
             classic:
-              "Kein klares Dominanzfeld – sondern Kontrolle über Übergänge. Anpassungsfähig, übergangsdominant.",
+              "Kontrolle über Übergänge statt Dominanz in einem Feld – anpassungsfähig und übergangsdominant.",
             longdesc: [
-              "Der Hybrid Tactical Fighter ist der vollständigste Kämpfer im MMA – und das ist kein Zufall, sondern das Ergebnis jahrelanger Arbeit an mehreren Disziplinen gleichzeitig. Er ist nirgends der absolute Spezialist, aber überall kompetent genug, und das macht ihn für fast jeden Gegner unbequem.",
-              "Sein wichtigstes Merkmal ist die Übergangskontrolle: er entscheidet, wann der Kampf ins Stehen geht, wann in den Clinch, wann an den Boden. Gegen Striker nimmt er es runter; gegen Wrestler hält er es oben. Er kämpft nicht in seinem Feld – er kämpft im richtigen Feld für den Moment.",
-              "Schwäche: gegen absolute Elite-Spezialisten kann sein breites Spiel weniger scharf wirken als ein fokussierter Angriff. Wenn er gegen einen Top-Wrestler oder einen Elite-Striker angreift, kann der Spezialist dominieren.",
-              "Training: keine Vernachlässigung einer Disziplin, aber besonders intensive Arbeit an Übergängen – Clinch-to-Ground, Stand-to-Clinch, Guard Recovery.",
+              "Der Hybrid Tactical Fighter ist der vollständigste Kämpfer im MMA. Er ist nirgends der absolute Spezialist, aber überall kompetent genug – und das macht ihn für fast jeden Gegner unbequem. Sein wichtigstes Merkmal ist die Übergangskontrolle.",
+              "Er entscheidet, wann der Kampf ins Stehen geht, wann in den Clinch, wann an den Boden. Gegen Striker nimmt er es runter; gegen Wrestler hält er es oben. Er kämpft nicht in seinem Feld – er kämpft im richtigen Feld für diesen Moment.",
+              "Schwäche: gegen absolute Elite-Spezialisten in einem Feld kann sein breites Spiel weniger scharf wirken als ein fokussierter Angriff. Wenn er gegen einen Top-Wrestler oder einen Elite-Striker antritt, kann der Spezialist phasenweise dominieren.",
+              "Training: keine Vernachlässigung einer Disziplin, aber besonders intensive Arbeit an Übergängen – Strike-to-Clinch, Clinch-to-Ground, Guard Recovery zum Stand Up.",
             ],
             strengths: [
-              "Höchste taktische Flexibilität",
-              "Kein vorhersagbares Muster",
-              "Kontrolle über Kampffeldwahl",
-              "Gut gegen Spezialisten",
+              "Höchste taktische Flexibilität im MMA",
+              "Kontrolliert Kampffeldwahl aktiv",
+              "Schwer zu scouten und vorzubereiten",
+              "Gefährlich in allen Transitionen",
+              "Gut gegen einseitige Spezialisten",
             ],
             weaknesses: [
-              "Kein Feld absolute Elite-Niveau",
-              "Spezialisierte Gegner können punktuell dominieren",
-              "Trainingsaufwand sehr hoch",
+              "Kein Feld auf absolutem Elite-Niveau",
+              "Elite-Spezialisten können punktuell dominieren",
+              "Sehr hoher Trainingsaufwand",
+              "Kann in Matchups gegen Spezialisten überrascht werden",
             ],
             training: [
-              "Übergangsdrill: Strike → Clinch → Takedown → Back to feet als Fluss.",
-              "Anti-Spezialisten: gegen Wrestler ohne Takedown verlieren, gegen Striker ohne KO verlieren.",
+              "Übergangsdrill: Strike → Clinch → Takedown → Back to feet als kontinuierlichen Fluss.",
+              "Anti-Spezialisten-Sparring: gegen Wrestler ohne Takedown verlieren üben.",
               "Situational Sparring: zufällige Starts in verschiedenen Kampffeldern.",
             ],
             matchup:
-              "Gut vs. fast alle Stile. Vorsicht vs. absolute Elite-Spezialisten in einem Feld.",
+              "Gut gegen fast alle Stile durch Anpassungsfähigkeit. Schwierig gegen absolute Elite-Spezialisten die ihr Feld vollständig erzwingen.",
             boxers: [
               "Alexander Volkanovski",
               "Georges St-Pierre",
@@ -2486,153 +3148,767 @@
         },
       };
 
-      // ════════════════════════════════════════════════════════════
-      // STATE & ENGINE
-      // ════════════════════════════════════════════════════════════
-      let currentData = null;
-      let answers = {};
+      // ── MUAY THAI ────────────────────────────────
+      SPORTS.muaythai = {
+        attrs: [
+          { key: "Di", label: "Distanzstruktur" },
+          { key: "Of", label: "Offensivarchitektur" },
+          { key: "Ki", label: "Kick-Philosophie" },
+          { key: "Cl", label: "Clinch-Prinzip" },
+          { key: "Df", label: "Defensives Prinzip" },
+          { key: "Pr", label: "Pressure-Profil" },
+          { key: "E", label: "Energiemodell" },
+        ],
+        attrLabels: {
+          Di: [
+            "Long Range / Teep",
+            "Mid Range / Kick-Exchange",
+            "Close Range / Clinch",
+          ],
+          Of: [
+            "Einzeltechniken",
+            "Strukturierte Kombis",
+            "Rhythmus & Täuschung",
+          ],
+          Ki: ["Damage-first", "Scoring-first", "Balance-breaking"],
+          Cl: [
+            "Kontrolle & Knie",
+            "Sweeps & Off-Balancing",
+            "Kurzer Clinch / Exit",
+          ],
+          Df: ["Distanz herstellen", "Block & Return", "Slip & Counter"],
+          Pr: ["Control-Fighter", "Rhythmuswechsler", "Vorwärtsdruck"],
+          E: ["Konstant", "Phasenweise", "Explosive Starts"],
+        },
+        questions: [
+          {
+            id: 1,
+            attr: "Di",
+            situation: "Du kannst den Austausch frei initiieren.",
+            question: "Wo fühlst du dich strukturell am stabilsten?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Lang – du kontrollierst mit Teep, Jab und Distanzkicks.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Mittel – du arbeitest im klassischen Thai-Kick-Exchange.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Nah – du willst Klinch, Knie und Off-Balancing.",
+              },
+            ],
+          },
+          {
+            id: 2,
+            attr: "Di",
+            situation:
+              "Der Gegner versucht deine bevorzugte Distanz zu nehmen.",
+            question: "Was passiert?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du nutzt Teep und seitliche Bewegung um Distanz wiederherzustellen.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du akzeptierst den Exchange und arbeitest aus der Mitte heraus.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du gehst tiefer rein und suchst Clinch oder Knie.",
+              },
+            ],
+          },
+          {
+            id: 3,
+            attr: "Of",
+            situation: "Du hast die Initiative und siehst eine Möglichkeit.",
+            question: "Wie greifst du an?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du setzt eine dominante Einzeltechnik (Lowkick-System oder harter Körperkick).",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du bringst eine strukturierte Kombination (Punch → Kick → Knie).",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du arbeitest mit Täuschung und Rhythmuswechsel um Lücken zu erzeugen.",
+              },
+            ],
+          },
+          {
+            id: 4,
+            attr: "Of",
+            situation: "Deine erste Aktion trifft nicht sauber.",
+            question: "Was kommt danach?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du resettest und stellst deine dominante Einzeltechnik neu auf.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du kombinierst auf die nächste Aktion in der Sequenz.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du wechselst Rhythmus und suchst einen anderen Winkel.",
+              },
+            ],
+          },
+          {
+            id: 5,
+            attr: "Ki",
+            situation: "Du hast eine klare Kick-Möglichkeit.",
+            question: "Wie nutzt du sie primär?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du willst Schaden setzen – harter Low- oder Oberkörperkick.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du willst sauber scoren – präziser Körper- oder Headkick.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du willst Balance brechen – Sweep-Kick oder Off-Balancing-Technik.",
+              },
+            ],
+          },
+          {
+            id: 6,
+            attr: "Ki",
+            situation: "Der Gegner blockt deinen Kick.",
+            question: "Was machst du?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du variierst Ziel oder Bein und suchst erneut Damage.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du wechselst auf Punch-Kombi um Scoring zu sichern.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du nutzt seinen Block für eine Sweep- oder Clinch-Möglichkeit.",
+              },
+            ],
+          },
+          {
+            id: 7,
+            attr: "Cl",
+            situation: "Du bist im Clinch.",
+            question: "Was ist deine primäre Priorität?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du kontrollierst Neck-Tie und setzt Knie zum Körper/Kopf.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du suchst Sweeps und Off-Balancing – den Gegner stören.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du verlässt den Clinch schnell und resettst in Striking-Distanz.",
+              },
+            ],
+          },
+          {
+            id: 8,
+            attr: "Cl",
+            situation: "Der Gegner greift Clinch mit Dir.",
+            question: "Wie antwortest du?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du nimmst Clinch an und arbeitest Knie und Kontrolle.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du kämpfst den Clinch und versuchst Balance-Vorteil zu gewinnen.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du brichst den Clinch sofort und geht zurück auf Distanz.",
+              },
+            ],
+          },
+          {
+            id: 9,
+            attr: "Df",
+            situation: "Der Gegner initiiert eine Angriffsserie.",
+            question: "Was passiert instinktiv?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du verwendest Teep oder Schritt zurück – Distanz herstellen.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du deckst und blockst ab, dann antwortest du direkt.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du weichst aus (Slip/Step) und konterst im selben Moment.",
+              },
+            ],
+          },
+          {
+            id: 10,
+            attr: "Df",
+            situation: "Der Gegner wirft einen harten Roundhouse.",
+            question: "Deine Reaktion?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du gehst aus der Reichweite oder steppst in die leere Seite.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du blockst mit dem Schienenbein und antwortest sofort.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du catchst oder deflektierst und nutzt die Möglichkeit für Counter.",
+              },
+            ],
+          },
+          {
+            id: 11,
+            attr: "Pr",
+            situation: "Mitte des Kampfes – ausgeglichene Situation.",
+            question: "Wie positionierst du dich taktisch?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du hältst Scoring-Disziplin und kontrollierst geduldig.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du wechselst Tempo und Distanz, brichst das Rhythm des Gegners.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du erhöhst Vorwärtsdruck und erzwingst Exchanges.",
+              },
+            ],
+          },
+          {
+            id: 12,
+            attr: "Pr",
+            situation: "Du hast Punkte-Vorsprung.",
+            question: "Wie verhältst du dich?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du verwaltest geduldig und hältst Scoring-Sicherheit.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du bleibst adaptiv und passt dich an gegnerische Änderungen an.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du suchst den Finish – Führung reicht dir nicht.",
+              },
+            ],
+          },
+          {
+            id: 13,
+            attr: "E",
+            situation: "Mitte der Runde – beide haben Tempo gemacht.",
+            question: "Wie ist dein Energiemuster?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Konstant und kontrolliert – du verlierst kein Tempo.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du wechselst bewusst zwischen Aktivität und Pausen.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du wartest auf explosive Aktionsmomente.",
+              },
+            ],
+          },
+          {
+            id: 14,
+            attr: "E",
+            situation: "Letzte 30 Sekunden der Runde.",
+            question: "Was tust du?",
+            options: [
+              {
+                val: 1,
+                label: "A",
+                text: "Du kontrollierst ruhig und sicherst Scoring.",
+              },
+              {
+                val: 2,
+                label: "B",
+                text: "Du erhöhst Output dosiert – bewusste Schlussoffensive.",
+              },
+              {
+                val: 3,
+                label: "C",
+                text: "Du explodierst maximal – alles auf die letzten Sekunden.",
+              },
+            ],
+          },
+        ],
+        archetypes: {
+          "Muay Femur": {
+            center: [1, 3, 2, 3, 1, 1, 1],
+            color: "#5B99C2",
+            classic:
+              "Technisch, intelligent, kontrollierend – dominiert über Präzision, Timing und Lesbarkeit des Gegners.",
+            longdesc: [
+              "Der Muay Femur ist der technisch vollständigste Kämpfer im Muay Thai. Femur bedeutet auf Thai so viel wie Meister der Technik – und das ist keine Übertreibung. Er gewinnt nicht durch schiere Kraft oder Volumen, sondern durch Überlegenheit in Timing, Lesen des Gegners und Ausführungsqualität.",
+              "Sein Spielsystem ist multi-dimensional: er kann auf allen Distanzen arbeiten, Clinch nutzen oder vermeiden, und er passt seine Taktik dem Gegner an. Rythmische Täuschungsarbeit, präzise platzierte Techniken und Off-Balancing-Kicks sind seine Spezialitäten. Der Teep ist sein Reset-Werkzeug und sein Score-Werkzeug gleichzeitig.",
+              "Schwäche: gegen Gegner mit extremem physischen Druck (Muay Mat oder Muay Khao) kann er unter Druck geraten, wenn sein Distanz-Management gestört wird. Er braucht Raum um sein technisches Spiel zu entfalten.",
+              "Training: Technikpräzision über alle Distanzen, Rhythmuswechsel als aktives Werkzeug, und das Lesen von gegnerischen Patterns durch extensive Sparring-Erfahrung.",
+            ],
+            strengths: [
+              "Technisch variabelster Stil",
+              "Liest Gegner schneller als andere",
+              "Präzise mit minimalem Energieaufwand",
+              "Adaptiv gegen alle Stile",
+              "Schwer zu scouten und vorherzusagen",
+            ],
+            weaknesses: [
+              "Gegen extremen physischen Druck",
+              "Braucht Raum für technisches Spiel",
+              "Weniger gefährlich als Power-Stile im KO-Bereich",
+              "Kann bei Müdigkeit technische Präzision verlieren",
+            ],
+            training: [
+              "Tecnikpräzision: jede Bewegung sauber ausführen bevor sie unter Druck geht.",
+              "Rhythmuswechsel: bewusst Tempo variieren in jedem Sparring.",
+              "Gegner lesen: nach jedem Sparring Muster des Gegners analysieren.",
+            ],
+            matchup:
+              "Stark gegen alle Stile durch Anpassungsfähigkeit. Schwierig gegen extrem aggressiven Muay Mat und gegen Muay Khao mit exzellenter Clinch-Kontrolle.",
+            boxers: ["Saenchai", "Lerdsila", "Kongsak"],
+          },
+          "Muay Mat": {
+            center: [2, 1, 3, 3, 2, 3, 3],
+            color: "#C0392B",
+            classic:
+              "Punch-heavy, Druck, Power – dominant über Vorwärtsbewegung, harte Schläge und Zermürbung.",
+            longdesc: [
+              "Der Muay Mat ist der Power-Fighter des Muay Thai. Sein Name kommt vom Thai-Wort für Faust – und seine Identität ist genau das: er drückt vorwärts, er schlägt hart, und er macht den Gegner mit Volumen und Kraft kaputt. Er ist der Boxer unter den Thai-Stilen.",
+              "Technisch priorisiert er Punch-Kombinationen über Kicks, arbeitet mit Körpertreffer-Systemen und sucht den Clinch für kurze Knie-Aktionen bevor er wieder Abstand nimmt. Sein Lowkick ist ein Werkzeug, aber sein Herz hängt an der Überhand-Rechten und dem Left Hook.",
+              "Schwäche: gegen den Muay Femur, der seine Linie verlässt und ihn präzise bestraft, kann er Schwierigkeiten haben. Gegen den Muay Tae, der ihn aus der Distanz mit Kicks scored, muss er Distanz schließen – was gegen guten Teep schwierig ist.",
+              "Training: Punch-Kombinationen unter Fatigue, Footwork für Distanzschließung und Ring-Cutting, und die Bereitschaft auch Treffer zu kassieren um in die Power-Zone zu kommen.",
+            ],
+            strengths: [
+              "Extremes KO-Potential",
+              "Psychologischer Druck durch Power",
+              "Hoher Punch-Output",
+              "Stark im Infight und kurzen Clinch",
+              "Physisch zermürbend",
+            ],
+            weaknesses: [
+              "Kick-Arsenal oft weniger entwickelt",
+              "Gegen präzise lange Distanz-Fighter",
+              "Clinch-Kontrolle weniger dominant",
+              "Taktisch kann er vorhersagbar werden",
+            ],
+            training: [
+              "Punch-Kombinationen: 1–2–Body-Hook als Standardmuster.",
+              "Ring-Cutting: Distanz schließen gegen Teep-Orientierte.",
+              "Körperarbeit: Leber-Haken und Body Jab als System.",
+            ],
+            matchup:
+              "Stark gegen stationäre Fighter und gegen Muay Khao ohne Distanz-Management. Schwierig gegen Muay Femur mit guter Distanz und gegen Muay Tae mit exzellenter Teep-Kontrolle.",
+            boxers: ["Rodtang Jitmuangnon", "Muangthai", "Nieky Holzken"],
+          },
+          "Muay Khao": {
+            center: [3, 2, 3, 1, 2, 2, 2],
+            color: "#C9A84C",
+            classic:
+              "Clinch & Knie dominierend – gewinnt über Nähe, Kontrolle, Knie-Output und Off-Balancing.",
+            longdesc: [
+              "Der Muay Khao (Khao = Knie) ist der Clinch-Spezialist des Muay Thai – und im Thai-Scoring-System ist ein gutes Clinch-Spiel oft der Unterschied zwischen Sieg und Niederlage. Er sucht Nähe, um dort zu dominieren, wo andere nicht arbeiten können.",
+              "Technisch lebt er vom Neck-Tie: er kontrolliert den Kopf des Gegners, positioniert sich für maximale Knie-Wirkung und nutzt Sweeps um Balance zu stören und Punkte zu sammeln. Sein Knie-Volumen im Clinch ist sein primäres Scoring-System.",
+              "Schwäche: gegen Kämpfer mit exzellentem Clinch-Break und schnellem Teep-Reset (Muay Femur) kann er schwer an seine Stärke kommen. Gegen sehr mobile Gegner die den Clinch konsequent vermeiden und aus der Distanz scoren, muss er Ring-Cutting einsetzen.",
+              "Training: Neck-Tie-Mechanik, Knie-Positionen und -Variationen, und Sweep-Systeme als strukturierter Teil des Clinch-Spiels.",
+            ],
+            strengths: [
+              "Dominant im Clinch",
+              "Knie-Volumen und Kontrolle",
+              "Sweeps als Scoring-Werkzeug",
+              "Physisch zermürbend auf Nähe",
+              "Stark in Thai-Stadium-Scoring",
+            ],
+            weaknesses: [
+              "Gegen exzellenten Clinch-Break",
+              "Distanzarbeit oft weniger entwickelt",
+              "Gegen sehr mobile Gegner",
+              "Braucht physischen Vorteil im Clinch",
+            ],
+            training: [
+              "Neck-Tie-Kontrolle: Griffpositionen und Knie-Mechanik täglich.",
+              "Sweep-System: Off-Balancing als strukturierte Strategie.",
+              "Ring-Cutting: Clinch-Reichweite erzwingen gegen Distanz-Fighter.",
+            ],
+            matchup:
+              "Stark gegen Muay Mat und gegen Fighter ohne Clinch-Erfahrung. Schwierig gegen Muay Femur mit gutem Clinch-Break und gegen sehr mobile Muay Tae Kämpfer.",
+            boxers: ["Dieselnoi", "Petchboonchu", "Jongsanan"],
+          },
+          "Muay Tae": {
+            center: [1, 1, 1, 3, 1, 1, 1],
+            color: "#7EB8D4",
+            classic:
+              "Kick-dominant, Distanzarbeit, Teep-Intelligenz – dominiert über Reichweite und Kick-Qualität.",
+            longdesc: [
+              "Der Muay Tae (Tae = Kick) ist der Kick-Spezialist – er nutzt seine Beine als primäre Waffe und kontrolliert über Distanz und Kick-Qualität. Headkicks, Körperkicks und Teeps sind seine Sprache. Er will außerhalb der Punch-Reichweite des Gegners bleiben und trotzdem Schaden setzen.",
+              "Sein Teep ist sein wichtigstes Werkzeug: er misst Distanz, bestraft Vorwärtsbewegung, und gibt ihm Zeit für Kick-Setups. Roundhouse-Kicks zum Körper und Kopf sind seine primären Scoring-Techniken – präzise platziert mit maximaler Hüftrotation.",
+              "Schwäche: gegen Muay Khao der Distanz überwindet und in den Clinch kommt, verliert er seine primäre Waffe. Gegen sehr gute Kick-Catcher oder gegen Kämpfer die seinen Kick-Rhythmus lesen können, wird er taktisch herausgefordert.",
+              "Training: Kick-Variationen und Setups, Teep als multi-funktionelles Werkzeug, und Distanzmanagement unter Pressure.",
+            ],
+            strengths: [
+              "Kick-Qualität und Reichweite",
+              "Teep als Distanz-Kontrolle",
+              "Schaden aus der Sicherheit heraus",
+              "Scoring über Technik",
+              "Schwer zu treffen im Kick-Game",
+            ],
+            weaknesses: [
+              "Gegen Clinch-Spezialisten",
+              "Anfällig wenn Distanz gebrochen wird",
+              "Braucht Raum für Kick-Entfaltung",
+              "Punch-Game oft sekundär",
+            ],
+            training: [
+              "Teep-Variationen: Körper, Kopf, Push, Score als System.",
+              "Roundhouse-Setup: Jab → Körperkick als Standardmuster.",
+              "Distanzmanagement unter Pressure: Teep und seitliche Bewegung kombinieren.",
+            ],
+            matchup:
+              "Stark gegen Muay Mat ohne Distanz-Management und gegen Fighter die keine Teep-Defense haben. Schwierig gegen Muay Khao mit gutem Ring-Cutting und gegen Muay Femur der seinen Rhythmus liest.",
+            boxers: ["Yodsanklai", "Superlek", "Sitthichai"],
+          },
+          "Hybrid Stadium Fighter": {
+            center: [2, 2, 2, 2, 2, 2, 2],
+            color: "#8B5E3C",
+            classic:
+              "Adaptiv, rhythmus-basiert – kein Extremspezialist, sondern Kontrolleur des taktischen Moments.",
+            longdesc: [
+              "Der Hybrid Stadium Fighter ist der taktisch intelligenteste Muay Thai Kämpfer – er hat kein einzelnes dominantes Muster, sondern die Fähigkeit, sein Spiel dem Gegner anzupassen. Er ist Scoring-intelligent, versteht die Logik des Thai-Scorings und nutzt alle acht Gliedmaßen situativ.",
+              "Sein Kampfmuster wechselt: gegen einen Muay Mat nutzt er Distanz und Kicks; gegen einen Muay Tae geht er in den Clinch; gegen einen Muay Khao nutzt er Break-and-Strike. Er ist schwer zu scouten, weil er kein klares dominantes Werkzeug hat das man abschalten kann.",
+              "Schwäche: gegen Extremspezialisten in einem Feld kann er punktuell unter Druck geraten. Wer absoluter Elite-Level im Clinch (Muay Khao) oder bei Kicks (Muay Tae) ist, kann ihn in seinem Feld herausfordern.",
+              "Training: alle Bereiche auf kompetentes Niveau bringen, und besonders die Fähigkeit zu entwickeln, das eigene Spiel während des Kampfes anzupassen.",
+            ],
+            strengths: [
+              "Höchste taktische Flexibilität",
+              "Schwer zu scouten",
+              "Nutzt alle acht Gliedmaßen",
+              "Scoring-intelligent",
+              "Adaptiv gegen alle Stile",
+            ],
+            weaknesses: [
+              "Kein Feld auf Elite-Niveau",
+              "Absolute Spezialisten können punktuell dominieren",
+              "Braucht sehr viel Trainingsbreite",
+              "Kann kein klares Statement machen",
+            ],
+            training: [
+              "Alle Distanzen kompetent halten: Stand, Clinch, Kick-Exchange.",
+              "Taktische Anpassung trainieren: Sparring mit bewusstem Stil-Wechsel.",
+              "Scoring-Logik verstehen: Thai-Stadium-Scoring aktiv lernen.",
+            ],
+            matchup:
+              "Gut gegen alle Stile durch Anpassung. Schwierig gegen absolute Elite-Spezialisten die ihr Feld vollständig erzwingen und die Anpassungszeit nicht geben.",
+            boxers: ["Buakaw", "Yodsanklai (Mid-Career)", "Petchtanong"],
+          },
+        },
+      };
 
-      function startSport(sport) {
-        currentData = sport === "boxing" ? BOXING : sport === "bjj" ? BJJ : MMA;
-        answers = {};
-        document.getElementById("sport-select").style.display = "none";
-        document.getElementById("test-app").style.display = "block";
+      // ════════════════════════════════════════════
+      // STATE
+      // ════════════════════════════════════════════
+      const answers = { boxing: {}, bjj: {}, mma: {}, muaythai: {} };
 
-        // Set header
-        const h = document.getElementById("app-header");
-        h.setAttribute("data-emoji", currentData.emoji);
-        document.getElementById("header-label").textContent =
-          currentData.headerLabel;
-        document.getElementById("header-title").innerHTML =
-          currentData.headerTitle;
-        document.getElementById("header-desc").textContent =
-          currentData.headerDesc;
-
-        // Hide results
-        document.getElementById("results").classList.remove("visible");
-        document.getElementById("results").style.display = "none";
-        document.getElementById("quiz").style.display = "block";
-
-        buildQuiz();
-        updateProgress();
+      // ════════════════════════════════════════════
+      // PAGE NAVIGATION
+      // ════════════════════════════════════════════
+      function showPage(page) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        document
+          .querySelectorAll(".nav-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document.getElementById("page-" + page).classList.add("active");
+        document.getElementById("nav-" + page).classList.add("active");
         window.scrollTo({ top: 0, behavior: "instant" });
       }
 
-      function goHome() {
-        document.getElementById("test-app").style.display = "none";
-        document.getElementById("sport-select").style.display = "flex";
-        window.scrollTo({ top: 0, behavior: "instant" });
+      function showLibSport(sport) {
+        document
+          .querySelectorAll(".lib-sport-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document
+          .querySelectorAll(".lib-sport-section")
+          .forEach((s) => s.classList.remove("active"));
+        event.target.classList.add("active");
+        document.getElementById("lib-" + sport).classList.add("active");
       }
 
-      function buildQuiz() {
-        const container = document.getElementById("questions-container");
+      // ════════════════════════════════════════════
+      // LIBRARY BUILD
+      // ════════════════════════════════════════════
+      function buildLibrary() {
+        ["boxing", "bjj", "mma", "muaythai"].forEach((sport) => {
+          const data = SPORTS[sport];
+          const container = document.getElementById("lib-" + sport);
+          const sportLabel = {
+            boxing: "Boxen",
+            bjj: "BJJ",
+            mma: "MMA",
+            muaythai: "Muay Thai",
+          }[sport];
+          const emoji = { boxing: "🥊", bjj: "🥋", mma: "🏆", muaythai: "🥊" }[
+            sport
+          ];
+
+          // Archetype cards
+          let html = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--accent);">${emoji} ${sportLabel.toUpperCase()} – ARCHETYPEN</div>
+      <button class="lib-start-btn" onclick="showPage('${sport}')">TEST STARTEN</button>
+    </div>
+    <div class="lib-archetypes-grid">`;
+
+          Object.entries(data.archetypes).forEach(([name, arch]) => {
+            html += `<div class="lib-archetype-card" id="lib-card-${sport}-${name.replace(/[^a-z]/gi, "")}" onclick="toggleLibCard('${sport}','${name.replace(/[^a-z]/gi, "")}')">
+        <div class="lib-card-header">
+          <div class="lib-card-color" style="background:${arch.color}"></div>
+          <div class="lib-card-titles">
+            <div class="lib-card-name">${name}</div>
+            <div class="lib-card-sub">${arch.classic.substring(0, 60)}...</div>
+          </div>
+          <div class="lib-card-chevron">▼</div>
+        </div>
+        <div class="lib-card-body">
+          ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
+          <div class="lib-sw-row">
+            <div class="lib-sw-box">
+              <div class="lib-sw-title pos">Stärken</div>
+              <ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul>
+            </div>
+            <div class="lib-sw-box">
+              <div class="lib-sw-title neg">Schwächen</div>
+              <ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul>
+            </div>
+          </div>
+          <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
+          <div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div>
+        </div>
+      </div>`;
+          });
+
+          html += `</div>`;
+
+          // Comparison table
+          html += `<div class="lib-compare-section">
+      <div class="lib-compare-title">STILVERGLEICH: ${sportLabel.toUpperCase()}</div>
+      <div style="overflow-x:auto;">
+      <table class="lib-compare-table">
+        <thead><tr>
+          <th>Stil</th><th>Stärkstes Feld</th><th>Schwächstes Feld</th><th>Vs. wem stark</th><th>Vs. wem schwierig</th>
+        </tr></thead>
+        <tbody>`;
+
+          Object.entries(data.archetypes).forEach(([name, arch]) => {
+            html += `<tr>
+        <td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${name}</div></td>
+        <td style="color:#4a7c4e;font-size:12px;">${arch.strengths[0]}</td>
+        <td style="color:#9b3a2f;font-size:12px;">${arch.weaknesses[0]}</td>
+        <td style="font-size:12px;">${arch.matchup.split(".")[0]}.</td>
+        <td style="font-size:12px;">${arch.matchup.split(".")[1] || "-"}.</td>
+      </tr>`;
+          });
+
+          html += `</tbody></table></div></div>`;
+          container.innerHTML = html;
+        });
+      }
+
+      function toggleLibCard(sport, nameKey) {
+        const card = document.getElementById(`lib-card-${sport}-${nameKey}`);
+        card.classList.toggle("expanded");
+      }
+
+      // ════════════════════════════════════════════
+      // QUIZ BUILD
+      // ════════════════════════════════════════════
+      function buildQuiz(sport) {
+        const data = SPORTS[sport];
+        const container = document.getElementById("qc-" + sport);
         container.innerHTML = "";
         let lastAttr = null;
-        currentData.questions.forEach((q) => {
+        data.questions.forEach((q, idx) => {
           if (q.attr !== lastAttr) {
             lastAttr = q.attr;
-            const attr = currentData.attrs.find((a) => a.key === q.attr);
-            const header = document.createElement("div");
-            header.className = "attr-section-header";
-            header.innerHTML = `<span class="attr-key-badge">${q.attr}</span>${attr.label}`;
-            container.appendChild(header);
+            const attr = data.attrs.find((a) => a.key === q.attr);
+            const h = document.createElement("div");
+            h.className = "attr-section-header";
+            h.innerHTML = `<span class="attr-key-badge">${q.attr}</span>${attr.label}`;
+            container.appendChild(h);
           }
           const block = document.createElement("div");
           block.className = "q-block";
-          block.id = `qblock-${q.id}`;
-          const opts = q.options
-            .map(
-              (o) => `
-      <div class="opt-card" id="opt-${q.id}-${o.val}" onclick="selectOption(${q.id},${o.val})">
-        <div class="opt-letter">${o.label}</div>
-        <div class="opt-text">${o.text}</div>
-      </div>`,
-            )
-            .join("");
-          const idx = currentData.questions.indexOf(q);
+          block.id = `qblock-${sport}-${q.id}`;
           block.innerHTML = `
       <div class="q-header">
-        <div class="q-num">${String(idx + 1).padStart(2, "0")}</div>
+        <div class="q-num" id="qnum-${sport}-${q.id}">${String(idx + 1).padStart(2, "0")}</div>
         <div style="flex:1">
           <div class="q-situation">${q.situation}</div>
           <div class="q-title">${q.question}</div>
         </div>
       </div>
-      <div class="options-grid">${opts}</div>`;
+      <div class="options-grid">${q.options
+        .map(
+          (o) => `
+        <div class="opt-card" id="opt-${sport}-${q.id}-${o.val}" onclick="selectOption('${sport}',${q.id},${o.val})">
+          <div class="opt-letter">${o.label}</div>
+          <div class="opt-text">${o.text}</div>
+        </div>`,
+        )
+        .join("")}
+      </div>`;
           container.appendChild(block);
         });
+        updateProgress(sport);
       }
 
-      function selectOption(qid, val) {
-        answers[qid] = val;
-        const q = currentData.questions.find((q) => q.id === qid);
+      function selectOption(sport, qid, val) {
+        answers[sport][qid] = val;
+        const q = SPORTS[sport].questions.find((q) => q.id === qid);
         q.options.forEach((o) => {
-          const el = document.getElementById(`opt-${qid}-${o.val}`);
+          const el = document.getElementById(`opt-${sport}-${qid}-${o.val}`);
           if (el) el.classList.toggle("selected", o.val === val);
         });
-        document.getElementById(`qblock-${qid}`).classList.add("answered");
-        updateProgress();
+        document
+          .getElementById(`qblock-${sport}-${qid}`)
+          .classList.add("answered");
+        document.getElementById(`qnum-${sport}-${qid}`).style.color =
+          "var(--accent2)";
+        updateProgress(sport);
       }
 
-      function updateProgress() {
-        const count = Object.keys(answers).length;
-        const total = currentData.questions.length;
-        const pct = (count / total) * 100;
-        document.getElementById("progress-fill").style.width = pct + "%";
-        document.getElementById("progress-text").textContent =
-          `${count} / ${total} beantwortet`;
-        const btn = document.getElementById("btn-submit");
+      function updateProgress(sport) {
+        const count = Object.keys(answers[sport]).length;
+        const total = SPORTS[sport].questions.length;
+        document.getElementById("pf-" + sport).style.width =
+          (count / total) * 100 + "%";
+        document.getElementById("pt-" + sport).textContent =
+          `${count} / ${total}`;
+        const btn = document.getElementById("bs-" + sport);
         btn.disabled = count < total;
-        document.getElementById("cta-info").textContent =
+        document.getElementById("ci-" + sport).textContent =
           count < total
             ? `Noch ${total - count} Frage(n) offen.`
-            : "Alle Antworten vollständig – bereit für die Analyse.";
+            : "Alle Antworten vollständig – bereit.";
       }
 
-      function computeResults() {
-        const vec = currentData.attrs.map((attr) => {
-          const qs = currentData.questions.filter((q) => q.attr === attr.key);
-          const avg =
-            qs.reduce((s, q) => s + (answers[q.id] || 2), 0) / qs.length;
+      // ════════════════════════════════════════════
+      // COMPUTE
+      // ════════════════════════════════════════════
+      function computeResults(sport) {
+        const data = SPORTS[sport];
+        const ans = answers[sport];
+        const vec = data.attrs.map((attr) => {
+          const qs = data.questions.filter((q) => q.attr === attr.key);
+          const avg = qs.reduce((s, q) => s + (ans[q.id] || 2), 0) / qs.length;
           return Math.min(3, Math.max(1, Math.round(avg)));
         });
-        const scores = Object.entries(currentData.archetypes).map(
-          ([name, arch]) => {
-            const dist = arch.center.reduce(
-              (s, c, i) => s + Math.abs(c - vec[i]),
-              0,
-            );
-            return { name, dist };
-          },
-        );
-        scores.sort((a, b) => a.dist - b.dist);
+        const scores = Object.entries(data.archetypes)
+          .map(([name, arch]) => ({
+            name,
+            dist: arch.center.reduce((s, c, i) => s + Math.abs(c - vec[i]), 0),
+          }))
+          .sort((a, b) => a.dist - b.dist);
         const best = scores[0],
           second = scores[1];
-        const maxDist = 14;
-        const confidence = Math.round(100 * (1 - best.dist / maxDist));
+        const confidence = Math.round(100 * (1 - best.dist / 14));
         return { vec, scores, best, second, confidence };
       }
 
-      function drawRadar(vec, center, color) {
-        const canvas = document.getElementById("radar");
+      // ════════════════════════════════════════════
+      // RADAR
+      // ════════════════════════════════════════════
+      function drawRadar(sport, vec, center, color) {
+        const canvas = document.getElementById("radar-" + sport);
+        if (!canvas) return;
         const ctx = canvas.getContext("2d");
         const W = canvas.width,
           H = canvas.height;
         const cx = W / 2,
-          cy = H / 2 + 10;
-        const R = Math.min(W, H) * 0.36;
+          cy = H / 2 + 8,
+          R = Math.min(W, H) * 0.34;
         const N = vec.length;
-        const labels = currentData.attrs.map((a) => a.key);
+        const labels = SPORTS[sport].attrs.map((a) => a.key);
         const angles = Array.from(
           { length: N },
           (_, i) => (i / N) * 2 * Math.PI - Math.PI / 2,
         );
         ctx.clearRect(0, 0, W, H);
         [1, 2, 3].forEach((level) => {
-          const r = (level / 3) * R;
           ctx.beginPath();
           angles.forEach((a, i) => {
-            const x = cx + r * Math.cos(a),
+            const r = (level / 3) * R,
+              x = cx + r * Math.cos(a),
               y = cy + r * Math.sin(a);
             i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
           });
@@ -2649,10 +3925,10 @@
           ctx.lineWidth = 1;
           ctx.stroke();
         });
-        function poly(data, fill, stroke, dashArr) {
+        function poly(data, fill, stroke, dash) {
           ctx.beginPath();
           data.forEach((v, i) => {
-            const r = ((v - 1) / 2) * R + R * 0.12,
+            const r = ((v - 1) / 2) * R + R * 0.1,
               x = cx + r * Math.cos(angles[i]),
               y = cy + r * Math.sin(angles[i]);
             i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
@@ -2662,14 +3938,14 @@
           ctx.fill();
           ctx.strokeStyle = stroke;
           ctx.lineWidth = 2;
-          if (dashArr) ctx.setLineDash(dashArr);
+          if (dash) ctx.setLineDash(dash);
           ctx.stroke();
           ctx.setLineDash([]);
         }
-        poly(center, color + "14", color + "55", [4, 4]);
-        poly(vec, "rgba(138,106,31,0.08)", "#8a6a1f", []);
+        poly(center, color + "12", color + "44", [4, 4]);
+        poly(vec, "rgba(138,106,31,0.07)", "#8a6a1f", []);
         vec.forEach((v, i) => {
-          const r = ((v - 1) / 2) * R + R * 0.12,
+          const r = ((v - 1) / 2) * R + R * 0.1,
             x = cx + r * Math.cos(angles[i]),
             y = cy + r * Math.sin(angles[i]);
           ctx.beginPath();
@@ -2677,133 +3953,142 @@
           ctx.fillStyle = "#8a6a1f";
           ctx.fill();
         });
-        ctx.font = "500 11px DM Mono,monospace";
+        ctx.font = "bold 10px DM Mono,monospace";
         ctx.fillStyle = "#8a8278";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        angles.forEach((a, i) => {
+        angles.forEach((a, i) =>
           ctx.fillText(
             labels[i],
-            cx + (R + 22) * Math.cos(a),
-            cy + (R + 22) * Math.sin(a),
-          );
-        });
-        ctx.font = "400 11px DM Sans,sans-serif";
+            cx + (R + 20) * Math.cos(a),
+            cy + (R + 20) * Math.sin(a),
+          ),
+        );
+        ctx.font = "400 10px DM Sans,sans-serif";
         ctx.textAlign = "left";
         ctx.fillStyle = "#8a6a1f";
         ctx.beginPath();
-        ctx.arc(20, H - 28, 4, 0, Math.PI * 2);
+        ctx.arc(18, H - 24, 3.5, 0, Math.PI * 2);
         ctx.fill();
         ctx.fillStyle = "#5a4a30";
-        ctx.fillText("Du", 30, H - 28);
-        ctx.fillStyle = color + "aa";
+        ctx.fillText("Du", 27, H - 24);
+        ctx.fillStyle = color + "99";
         ctx.beginPath();
         ctx.setLineDash([3, 3]);
-        ctx.moveTo(50, H - 28);
-        ctx.lineTo(66, H - 28);
+        ctx.moveTo(48, H - 24);
+        ctx.lineTo(63, H - 24);
         ctx.stroke();
         ctx.setLineDash([]);
         ctx.fillStyle = "#8a8278";
-        ctx.fillText("Archetyp", 70, H - 28);
+        ctx.fillText("Archetyp", 67, H - 24);
       }
 
-      function showResults() {
-        const { vec, scores, best, second, confidence } = computeResults();
-        const arch = currentData.archetypes[best.name];
-        document.getElementById("quiz").style.display = "none";
-        const res = document.getElementById("results");
-        res.style.display = "block";
-        res.classList.add("visible");
-        res.scrollIntoView({ behavior: "smooth" });
+      // ════════════════════════════════════════════
+      // SHOW RESULTS
+      // ════════════════════════════════════════════
+      function showResults(sport) {
+        const { vec, scores, best, second, confidence } = computeResults(sport);
+        const data = SPORTS[sport];
+        const arch = data.archetypes[best.name];
 
-        document
-          .getElementById("results-hero")
-          .setAttribute("data-style", best.name.toUpperCase());
-        document.getElementById("res-name").textContent = best.name;
-        document.getElementById("res-desc").textContent = arch.classic;
-        document.getElementById("kpi-style").textContent =
-          best.name.split(" ")[0];
-        document.getElementById("kpi-dist").textContent = best.dist;
-        document.getElementById("kpi-conf").textContent = confidence + "%";
+        document.getElementById("quiz-" + sport).style.display = "none";
+        const ra = document.querySelector(".results-area-" + sport);
+        ra.style.display = "block";
+        ra.scrollIntoView({ behavior: "smooth" });
 
-        const hybrid = document.getElementById("hybrid-notice");
-        if (second.dist - best.dist <= 1) {
-          hybrid.style.display = "block";
-          hybrid.textContent = `Sehr nah an "${second.name}" (Abstand ${second.dist}) – plausibles Hybrid-Profil.`;
-        } else {
-          hybrid.style.display = "none";
-        }
+        // Hero
+        const rh = document.getElementById("rh-" + sport);
+        rh.setAttribute("data-style", best.name.toUpperCase());
+        rh.innerHTML = `
+    <div class="result-label">Dein Kampfstil-Profil</div>
+    <div class="result-name">${best.name}</div>
+    <div class="result-desc">${arch.classic}</div>
+    <div class="kpi-row">
+      <div class="kpi"><div class="kpi-label">Stiltyp</div><div class="kpi-val">${best.name.split(" ")[0]}</div></div>
+      <div class="kpi"><div class="kpi-label">Abstand</div><div class="kpi-val">${best.dist}</div></div>
+      <div class="kpi"><div class="kpi-label">Sicherheit</div><div class="kpi-val">${confidence}%</div></div>
+    </div>
+    ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${second.name}" (Abstand ${second.dist}) – plausibles Hybrid-Profil.</div>` : ""}`;
 
-        setTimeout(() => drawRadar(vec, arch.center, arch.color), 100);
-
-        document.getElementById("boxers-row").innerHTML = arch.boxers
-          .map((b) => `<div class="boxer-chip">${b}</div>`)
-          .join("");
-
-        document.getElementById("deepdive-text").innerHTML = arch.longdesc
+        // Deep dive
+        document.getElementById("dd-" + sport).innerHTML = arch.longdesc
           .map(
             (p, i) =>
-              `<p class="${i === 0 ? "deepdive-intro" : "deepdive-intro deepdive-body"}">${p}</p>`,
+              `<p class="deepdive-intro${i > 0 ? " deepdive-body" : ""}">${p}</p>`,
           )
           .join("");
-
-        document.getElementById("sw-grid").innerHTML = `
+        document.getElementById("sw-" + sport).innerHTML = `
     <div class="sw-box"><div class="sw-title pos">Stärken</div><ul class="sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
     <div class="sw-box"><div class="sw-title neg">Schwächen</div><ul class="sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>`;
 
-        document.getElementById("training-list").innerHTML = arch.training
+        // Radar
+        setTimeout(() => drawRadar(sport, vec, arch.center, arch.color), 80);
+
+        // Boxers
+        document.getElementById("br-" + sport).innerHTML = arch.boxers
+          .map((b) => `<div class="boxer-chip">${b}</div>`)
+          .join("");
+
+        // Training & matchup
+        document.getElementById("tl-" + sport).innerHTML = arch.training
           .map((t) => `<li>${t}</li>`)
           .join("");
-        document.getElementById("matchup-box").innerHTML =
+        document.getElementById("mb-" + sport).innerHTML =
           `<strong>MATCHUP-HINWEIS</strong><br><br>${arch.matchup}`;
 
+        // Dist bars
         const maxD = Math.max(...scores.map((s) => s.dist)) || 1;
-        document.getElementById("dist-bars").innerHTML = scores
+        document.getElementById("db-" + sport).innerHTML = scores
           .map(
             (s) => `
     <div class="dist-bar-row">
-      <div class="dist-bar-header"><span class="dist-bar-name">${s.name}</span><span class="dist-bar-val">Abstand ${s.dist}</span></div>
+      <div class="dist-bar-header"><span class="dist-bar-name">${s.name}</span><span class="dist-bar-val">${s.dist}</span></div>
       <div class="dist-track"><div class="dist-fill" style="width:${((maxD - s.dist) / maxD) * 100 || 4}%;background:${s.name === best.name ? arch.color : "#d8d2c8"}"></div></div>
     </div>`,
           )
           .join("");
 
-        document.getElementById("answers-table").innerHTML = currentData.attrs
+        // Answers
+        document.getElementById("at-" + sport).innerHTML = data.attrs
           .map((attr) => {
-            const attrVecIdx = currentData.attrs.indexOf(attr);
-            const attrVal = vec[attrVecIdx];
-            const attrLabel = currentData.attrLabels[attr.key][attrVal - 1];
-            const qs = currentData.questions.filter((q) => q.attr === attr.key);
-            const qRows = qs
-              .map((q) => {
-                const opt = q.options.find((o) => o.val === answers[q.id]);
-                return `<div class="ans-q-row">
-        <span class="ans-q-label">${opt.label}</span>
-        <span class="ans-q-text">${opt.text}</span>
-        <span class="ans-q-situation">${q.situation}</span>
-      </div>`;
-              })
-              .join("");
+            const idx = data.attrs.indexOf(attr);
+            const label = data.attrLabels[attr.key][vec[idx] - 1];
+            const qs = data.questions.filter((q) => q.attr === attr.key);
             return `<div class="answer-group">
       <div class="answer-group-header">
         <div><div class="ans-key">${attr.key}</div><div class="ans-attr-label">${attr.label}</div></div>
-        <div class="ans-result-badge">${attrLabel}</div>
+        <div class="ans-result-badge">${label}</div>
       </div>
-      <div class="ans-q-rows">${qRows}</div>
+      <div class="ans-q-rows">${qs
+        .map((q) => {
+          const opt = q.options.find((o) => o.val === answers[sport][q.id]);
+          return `<div class="ans-q-row">
+          <span class="ans-q-label">${opt.label}</span>
+          <span class="ans-q-text">${opt.text}</span>
+          <span class="ans-q-situation">${q.situation}</span>
+        </div>`;
+        })
+        .join("")}</div>
     </div>`;
           })
           .join("");
       }
 
-      function resetTest() {
-        answers = {};
-        document.getElementById("results").classList.remove("visible");
-        document.getElementById("results").style.display = "none";
-        document.getElementById("quiz").style.display = "block";
-        buildQuiz();
-        updateProgress();
+      function resetTest(sport) {
+        answers[sport] = {};
+        document.querySelector(".results-area-" + sport).style.display = "none";
+        document.getElementById("quiz-" + sport).style.display = "block";
+        buildQuiz(sport);
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
+
+      // ════════════════════════════════════════════
+      // INIT
+      // ════════════════════════════════════════════
+      ["boxing", "bjj", "mma", "muaythai"].forEach((sport) => {
+        buildQuiz(sport);
+      });
+      buildLibrary();
     </script>
   </body>
 </html>

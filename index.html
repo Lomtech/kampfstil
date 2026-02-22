@@ -5549,8 +5549,36 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
       // ═══════════════════════════════════════════════════════════
       // INIT
       // ═══════════════════════════════════════════════════════════
-      ["boxing", "mma", "muaythai"].forEach((sport) => buildQuiz(sport));
+      ["boxing", "mma", "muaythai"].forEach((sport) => {
+        buildQuiz(sport);
+        Object.entries(answers[sport]).forEach(([qid, val]) => {
+          const q = SPORTS[sport].questions.find((q) => q.id === parseInt(qid));
+          if (!q) return;
+          q.options.forEach((o) => {
+            const el = document.getElementById(
+              "opt-" + sport + "-" + qid + "-" + o.val,
+            );
+            if (el) el.classList.toggle("selected", o.val === val);
+          });
+          const block = document.getElementById("qblock-" + sport + "-" + qid);
+          if (block) block.classList.add("answered");
+          const num = document.getElementById("qnum-" + sport + "-" + qid);
+          if (num) num.style.color = "var(--accent2)";
+        });
+      });
+
       buildBJJQuiz();
+      Object.entries(bjjAnswers).forEach(([qid, choice]) => {
+        ["A", "B", "C"].forEach((c) => {
+          const el = document.getElementById("opt-bjj-" + qid + "-" + c);
+          if (el) el.classList.toggle("selected", c === choice);
+        });
+        const block = document.getElementById("qblock-bjj-" + qid);
+        if (block) block.classList.add("answered");
+        const num = document.getElementById("qnum-bjj-" + qid);
+        if (num) num.style.color = "var(--accent2)";
+      });
+
       buildLibrary();
     </script>
 

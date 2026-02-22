@@ -3352,6 +3352,8 @@
 
       function selectBJJOption(qid, choice) {
         bjjAnswers[qid] = choice;
+        localStorage.setItem("bjj_answers", JSON.stringify(bjjAnswers));
+        localStorage.setItem("last_page", "bjj");
         ["A", "B", "C"].forEach((c) => {
           const el = document.getElementById("opt-bjj-" + qid + "-" + c);
           if (el) el.classList.toggle("selected", c === choice);
@@ -3511,6 +3513,7 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
 
       function resetBJJTest() {
         Object.keys(bjjAnswers).forEach((k) => delete bjjAnswers[k]);
+        localStorage.removeItem("bjj_answers");
         document.getElementById("bjj-results-area").style.display = "none";
         document.getElementById("quiz-bjj").style.display = "block";
         buildBJJQuiz();
@@ -5249,6 +5252,16 @@ ${ids
       // ═══════════════════════════════════════════════════════════
       const answers = { boxing: {}, mma: {}, muaythai: {} };
 
+      // Restore state
+      ["boxing", "mma", "muaythai"].forEach((sport) => {
+        const saved = localStorage.getItem(sport + "_answers");
+        if (saved) answers[sport] = JSON.parse(saved);
+      });
+      const savedBJJ = localStorage.getItem("bjj_answers");
+      if (savedBJJ) Object.assign(bjjAnswers, JSON.parse(savedBJJ));
+      const lastPage = localStorage.getItem("last_page");
+      if (lastPage) showPage(lastPage);
+
       function buildQuiz(sport) {
         const data = SPORTS[sport];
         const container = document.getElementById("qc-" + sport);
@@ -5275,6 +5288,11 @@ ${ids
 
       function selectOption(sport, qid, val) {
         answers[sport][qid] = val;
+        localStorage.setItem(
+          sport + "_answers",
+          JSON.stringify(answers[sport]),
+        );
+        localStorage.setItem("last_page", sport);
         const q = SPORTS[sport].questions.find((q) => q.id === qid);
         q.options.forEach((o) => {
           const el = document.getElementById(
@@ -5476,6 +5494,7 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
 
       function resetTest(sport) {
         answers[sport] = {};
+        localStorage.removeItem(sport + "_answers");
         document.querySelector(".results-area-" + sport).style.display = "none";
         document.getElementById("quiz-" + sport).style.display = "block";
         buildQuiz(sport);

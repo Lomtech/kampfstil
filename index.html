@@ -73,14 +73,10 @@
           background 0.18s;
         white-space: nowrap;
         user-select: none;
-        position: relative;
       }
       .nav-tab:hover {
         color: var(--accent);
         background: rgba(138, 106, 31, 0.05);
-      }
-      .nav-tab:active {
-        transform: translateY(1px);
       }
       .nav-tab.active {
         color: var(--accent);
@@ -107,27 +103,14 @@
       .page.active {
         display: block;
       }
-      #page-home {
-        min-height: calc(100vh - 48px);
-      }
       #page-home.active {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        min-height: calc(100vh - 48px);
         padding: 60px 24px;
         text-align: center;
-      }
-      #page-home h1 {
-        font-family: var(--font-display);
-        font-size: clamp(44px, 7vw, 86px);
-        letter-spacing: 3px;
-        line-height: 0.92;
-        color: var(--text);
-        margin-bottom: 8px;
-      }
-      #page-home h1 span {
-        color: var(--accent);
       }
       .sport-cards {
         display: flex;
@@ -151,11 +134,6 @@
         border-color: var(--accent2);
         transform: translateY(-3px);
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
-      }
-      .sport-card:active {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
-        transition: transform 0.08s;
       }
       .sport-card::before {
         content: attr(data-emoji);
@@ -202,6 +180,15 @@
       .sport-card:hover .sport-card-btn {
         background: var(--text);
       }
+      .header-label {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent2);
+        margin-bottom: 10px;
+      }
+      /* LIBRARY */
       #page-library {
         padding-bottom: 60px;
       }
@@ -222,11 +209,6 @@
         pointer-events: none;
       }
       .library-hero .header-label {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--accent2);
         margin-bottom: 10px;
       }
       .library-hero h2 {
@@ -506,6 +488,201 @@
         border-radius: 50%;
         flex-shrink: 0;
       }
+      /* MATRIX */
+      .matrix-section {
+        margin-top: 40px;
+        padding-top: 32px;
+        border-top: 1px solid var(--border);
+      }
+      .matrix-title {
+        font-family: var(--font-display);
+        font-size: 22px;
+        letter-spacing: 1px;
+        color: var(--accent);
+        margin-bottom: 8px;
+      }
+      .matrix-subtitle {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 20px;
+        line-height: 1.7;
+        max-width: 680px;
+      }
+      .matrix-wrap {
+        overflow-x: auto;
+        margin-bottom: 20px;
+      }
+      .matrix-table {
+        border-collapse: collapse;
+        font-size: 11px;
+        min-width: 600px;
+      }
+      .matrix-table th,
+      .matrix-table td {
+        padding: 8px 10px;
+        border: 1px solid var(--border);
+        text-align: center;
+      }
+      .matrix-table th {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: var(--surface2);
+        color: var(--muted);
+      }
+      .matrix-table th.row-label {
+        text-align: left;
+        min-width: 80px;
+      }
+      .matrix-table td.self {
+        background: rgba(138, 106, 31, 0.08);
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .matrix-table td.adv {
+        color: #4a7c4e;
+        font-weight: 700;
+        font-size: 13px;
+      }
+      .matrix-table td.dis {
+        color: #9b3a2f;
+        font-size: 13px;
+      }
+      .matrix-table td.even {
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .matrix-table tr:hover td {
+        background: rgba(200, 180, 130, 0.04);
+      }
+      .matrix-table tr:hover td.self {
+        background: rgba(138, 106, 31, 0.1);
+      }
+      .matrix-table tr:hover td.adv {
+        background: rgba(74, 124, 78, 0.07);
+      }
+      .matrix-table tr:hover td.dis {
+        background: rgba(155, 58, 47, 0.07);
+      }
+      .matrix-legend {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+        background: var(--surface2);
+        border-radius: 4px;
+        padding: 12px 16px;
+        font-size: 12px;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .legend-sym {
+        font-size: 14px;
+        font-weight: 700;
+        width: 20px;
+        text-align: center;
+      }
+      .legend-sym.adv {
+        color: #4a7c4e;
+      }
+      .legend-sym.dis {
+        color: #9b3a2f;
+      }
+      .legend-sym.even {
+        color: var(--muted);
+      }
+      .legend-sym.self {
+        color: var(--border);
+      }
+      .legend-text {
+        color: var(--muted);
+        font-family: var(--font-mono);
+        font-size: 10px;
+        letter-spacing: 1px;
+      }
+      .matrix-note {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 12px;
+        line-height: 1.7;
+        font-style: italic;
+      }
+      /* CENTROID TABLE */
+      .centroid-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12px;
+        margin-bottom: 32px;
+      }
+      .centroid-table th {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 8px 12px;
+        background: var(--surface2);
+        border-bottom: 1px solid var(--border);
+        color: var(--muted);
+        text-align: left;
+      }
+      .centroid-table td {
+        padding: 8px 12px;
+        border-bottom: 1px solid var(--border);
+      }
+      .centroid-table tr:last-child td {
+        border-bottom: none;
+      }
+      .centroid-bar {
+        height: 6px;
+        border-radius: 3px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 6px;
+      }
+      /* ARCHETYPE THEORY BLOCK */
+      .arch-theory {
+        background: rgba(138, 106, 31, 0.04);
+        border-left: 3px solid var(--accent2);
+        border-radius: 0 4px 4px 0;
+        padding: 16px 18px;
+        margin-bottom: 16px;
+      }
+      .arch-theory-title {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accent2);
+        margin-bottom: 8px;
+      }
+      .arch-theory-text {
+        font-size: 13px;
+        color: var(--text);
+        line-height: 1.75;
+      }
+      /* SUB-ARCH chips */
+      .sub-arch-chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+      .sub-arch-chip {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 4px 10px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+      /* TEST PAGES */
       .test-page-inner {
         display: none;
       }
@@ -526,14 +703,6 @@
         top: -40px;
         opacity: 0.07;
         pointer-events: none;
-      }
-      .header-label {
-        font-family: var(--font-mono);
-        font-size: 11px;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        color: var(--accent2);
-        margin-bottom: 10px;
       }
       .test-header h1 {
         font-family: var(--font-display);
@@ -754,12 +923,7 @@
       .btn-secondary:hover {
         background: rgba(200, 180, 130, 0.1);
       }
-      #results-area {
-        display: none;
-      }
-      #results-area.visible {
-        display: block;
-      }
+      /* RESULTS */
       .results-hero {
         padding: 52px 40px;
         border-bottom: 1px solid var(--border);
@@ -835,6 +999,16 @@
         border-radius: 0 4px 4px 0;
         font-size: 13px;
         color: var(--accent);
+        max-width: 520px;
+      }
+      .conflict-notice {
+        margin-top: 10px;
+        padding: 12px 16px;
+        background: rgba(155, 58, 47, 0.07);
+        border-left: 3px solid #9b3a2f;
+        border-radius: 0 4px 4px 0;
+        font-size: 13px;
+        color: #9b3a2f;
         max-width: 520px;
       }
       .style-deepdive {
@@ -1096,7 +1270,6 @@
         font-size: 11.5px;
         color: var(--muted);
       }
-      /* BJJ Signature boxes */
       .sig-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -1138,7 +1311,6 @@
         font-size: 11px;
         color: var(--accent);
       }
-      /* BJJ Matchup matrix */
       .matchup-matrix-wrap {
         overflow-x: auto;
         margin-top: 12px;
@@ -1174,7 +1346,6 @@
       .matchup-matrix td.even {
         color: var(--muted);
       }
-      /* Distribution bar for archetypes */
       .arch-dist-wrap {
         margin-top: 16px;
       }
@@ -1212,7 +1383,6 @@
         width: 34px;
         text-align: right;
       }
-      /* Notes */
       .note-item {
         font-size: 12.5px;
         color: var(--muted);
@@ -1221,7 +1391,6 @@
         margin-bottom: 8px;
         line-height: 1.6;
       }
-      /* Legal */
       .legal-page {
         max-width: 800px;
         margin: 0 auto;
@@ -1390,7 +1559,7 @@
         .questions-section {
           display: none !important;
         }
-        #results-area {
+        #bjj-results-area {
           display: block !important;
         }
         #site-footer {
@@ -1400,7 +1569,6 @@
     </style>
   </head>
   <body>
-    <!-- NAV -->
     <nav>
       <div class="nav-logo" onclick="showPage('home')">KAMPFSTIL</div>
       <div class="nav-tab active" id="nav-home" onclick="showPage('home')">
@@ -1438,93 +1606,82 @@
 
     <!-- HOME -->
     <div id="page-home" class="page active">
-      <div
+      <div class="header-label">
+        4 Sportarten · Situationsbasiert · Detaillierte Analyse
+      </div>
+      <h1
         style="
-          min-height: calc(100vh - 48px);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          padding: 60px 24px;
-          text-align: center;
+          font-family: var(--font-display);
+          font-size: clamp(44px, 7vw, 86px);
+          letter-spacing: 3px;
+          line-height: 0.92;
+          margin-bottom: 8px;
         "
       >
-        <div class="header-label" style="margin-bottom: 10px">
-          4 Sportarten · Situationsbasiert · Detaillierte Analyse
+        KAMPF<span style="color: var(--accent)">STIL</span><br />ANALYSE
+      </h1>
+      <p
+        style="
+          color: var(--muted);
+          font-size: 14px;
+          max-width: 440px;
+          margin: 14px auto 44px;
+          line-height: 1.7;
+        "
+      >
+        Wähle deine Kampfsportart und beantworte situationsbasierte Fragen.
+        Erfahre welcher Kämpfer-Typ Du bist.
+      </p>
+      <div class="sport-cards">
+        <div class="sport-card" data-emoji="🥊" onclick="showPage('boxing')">
+          <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
+          <h2>BOXEN</h2>
+          <p>
+            Distanz, Initiative, Offensivstruktur, Kraftprofil, Defensivprinzip,
+            Bewegung, Energie.
+          </p>
+          <div class="sport-card-btn">TEST STARTEN</div>
         </div>
-        <h1
-          style="
-            font-family: var(--font-display);
-            font-size: clamp(44px, 7vw, 86px);
-            letter-spacing: 3px;
-            line-height: 0.92;
-            margin-bottom: 8px;
-          "
+        <div class="sport-card" data-emoji="🥋" onclick="showPage('bjj')">
+          <div class="sport-card-tag">
+            8 Archetypen · 17 Fragen · No-Gi Elite
+          </div>
+          <h2>BJJ</h2>
+          <p>
+            5 Achsen · 4 Meta-Signaturen · strukturelle Entscheidungsanalyse.
+          </p>
+          <div class="sport-card-btn">TEST STARTEN</div>
+        </div>
+        <div class="sport-card" data-emoji="🏆" onclick="showPage('mma')">
+          <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
+          <h2>MMA</h2>
+          <p>
+            Kampffeld, Entry, Striking, Cage-Intelligenz, Boden, Risikoprofil,
+            Energie.
+          </p>
+          <div class="sport-card-btn">TEST STARTEN</div>
+        </div>
+        <div
+          class="sport-card"
+          data-emoji="🥊"
+          onclick="showPage('muaythai')"
+          style="border-color: var(--accent2)"
         >
-          KAMPF<span style="color: var(--accent)">STIL</span><br />ANALYSE
-        </h1>
-        <p
-          style="
-            color: var(--muted);
-            font-size: 14px;
-            max-width: 440px;
-            margin: 14px auto 44px;
-            line-height: 1.7;
-          "
-        >
-          Wähle deine Kampfsportart, beantworte 14 Situationsfragen. Erfahre
-          welcher Kämpfer-Typ Du bist.
-        </p>
-        <div class="sport-cards">
-          <div class="sport-card" data-emoji="🥊" onclick="showPage('boxing')">
-            <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
-            <h2>BOXEN</h2>
-            <p>
-              Distanz, Initiative, Offensivstruktur, Kraftprofil,
-              Defensivprinzip, Bewegung, Energie.
-            </p>
-            <div class="sport-card-btn">TEST STARTEN</div>
+          <div class="sport-card-tag" style="color: #c0392b">
+            5 Archetypen · 14 Fragen
           </div>
-          <div class="sport-card" data-emoji="🥋" onclick="showPage('bjj')">
-            <div class="sport-card-tag">8 Archetypen · 14 Fragen · No-Gi</div>
-            <h2>BJJ</h2>
-            <p>
-              Top-Orientierung, Pressure, Submission-Initiative, Distal-Fokus,
-              Rotation/Backline.
-            </p>
-            <div class="sport-card-btn">TEST STARTEN</div>
-          </div>
-          <div class="sport-card" data-emoji="🏆" onclick="showPage('mma')">
-            <div class="sport-card-tag">5 Archetypen · 14 Fragen</div>
-            <h2>MMA</h2>
-            <p>
-              Kampffeld, Entry, Striking, Cage-Intelligenz, Boden, Risikoprofil,
-              Energie.
-            </p>
-            <div class="sport-card-btn">TEST STARTEN</div>
-          </div>
-          <div
-            class="sport-card"
-            data-emoji="🥊"
-            onclick="showPage('muaythai')"
-            style="border-color: var(--accent2)"
-          >
-            <div class="sport-card-tag" style="color: #c0392b">
-              5 Archetypen · 14 Fragen
-            </div>
-            <h2>MUAY THAI</h2>
-            <p>
-              Distanz, Offensivarchitektur, Kick-Philosophie, Clinch, Defensive,
-              Pressure, Energie.
-            </p>
-            <div class="sport-card-btn">TEST STARTEN</div>
-          </div>
+          <h2>MUAY THAI</h2>
+          <p>
+            Distanz, Offensivarchitektur, Kick-Philosophie, Clinch, Defensive,
+            Pressure, Energie.
+          </p>
+          <div class="sport-card-btn">TEST STARTEN</div>
         </div>
-        <div style="margin-top: 32px">
-          <button class="btn-secondary" onclick="showPage('library')">
-            📚 Alle Archetypen erkunden
-          </button>
-        </div>
+      </div>
+      <div style="margin-top: 32px">
+        <button class="btn-secondary" onclick="showPage('library')">
+          📚 Alle Archetypen erkunden
+        </button>
       </div>
     </div>
 
@@ -1536,8 +1693,8 @@
           ALLE STILE<br /><span style="color: var(--accent)">IM VERGLEICH</span>
         </h2>
         <p>
-          Detaillierte Beschreibungen, Stärken, Schwächen und Matchup-Hinweise
-          für alle Archetypen über 4 Sportarten.
+          Vollständige Theorie, Stärken, Schwächen, Matchup-Matrix und
+          Stildiagnostik für alle Archetypen über 4 Sportarten.
         </p>
       </div>
       <div class="lib-sport-tabs">
@@ -1645,24 +1802,24 @@
       <div id="test-bjj" class="test-page-inner active">
         <div class="test-header" data-emoji="🥋">
           <div class="header-label">
-            No-Gi BJJ · 5 Achsen · 14 Fragen · 8 Archetypen
+            No-Gi BJJ Elite · 5 Achsen · 17 Fragen · 8 Archetypen
           </div>
           <h1>BJJ<span>STIL</span></h1>
           <p>
-            14 Situationsfragen. 5 Achsen. 8 No-Gi-Archetypen. Strukturelle
-            Analyse deines Grappling-Musters.
+            17 Situationsfragen. 5 Achsen + 4 Meta-Signaturen. 8
+            No-Gi-Archetypen. Jede Frage zwingt zu einem echten Opfer.
           </p>
         </div>
         <div class="progress-bar-wrap">
           <div class="progress-track">
             <div class="progress-fill" id="pf-bjj" style="width: 0%"></div>
           </div>
-          <div class="progress-text" id="pt-bjj">0 / 14</div>
+          <div class="progress-text" id="pt-bjj">0 / 17</div>
         </div>
         <div id="quiz-bjj">
           <div class="questions-section"><div id="qc-bjj"></div></div>
           <div class="cta-bar">
-            <div class="cta-info" id="ci-bjj">Beantworte alle 14 Fragen.</div>
+            <div class="cta-info" id="ci-bjj">Beantworte alle 17 Fragen.</div>
             <button
               class="btn-primary"
               id="bs-bjj"
@@ -1875,9 +2032,9 @@
     </div>
 
     <script>
-      // ════════════════════════════════════════════════════════
-      // IMAGE CONFIG (unchanged from original)
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // IMAGE CONFIG
+      // ═══════════════════════════════════════════════════════════
       const IMAGE_BASE = "images/";
       const IMAGE_EXT = ".jpg";
       const ARCH_SLUGS = {
@@ -1905,42 +2062,22 @@
         "Muay Tae": "muay_tae",
         "Hybrid Stadium Fighter": "hybrid_stadium_fighter",
       };
-      function archImagePath(name) {
-        const slug = ARCH_SLUGS[name];
-        return slug ? IMAGE_BASE + slug + IMAGE_EXT : null;
+      function archImagePath(n) {
+        const s = ARCH_SLUGS[n];
+        return s ? IMAGE_BASE + s + IMAGE_EXT : null;
       }
       function renderArchImage(name, color, cssClass) {
-        var src = archImagePath(name);
+        const src = archImagePath(name);
         if (!src) return "";
-        var slug = ARCH_SLUGS[name] || name;
-        var ph =
-          '<div class="' +
-          cssClass +
-          '-img-placeholder" style="display:none;background:' +
-          color +
-          "22;border:2px dashed " +
-          color +
-          '44;"><div style="color:' +
-          color +
-          ';font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:var(--font-mono);text-align:center;padding:16px;">' +
-          name +
-          '<br><span style="opacity:0.55;font-size:9px;">images/' +
-          slug +
-          ".jpg</span></div></div>";
-        var img =
-          '<img src="' +
-          src +
-          '" alt="' +
-          name +
-          '" class="' +
-          cssClass +
-          "-img\" onerror=\"this.style.display='none';this.nextElementSibling.style.display='flex';\">";
-        return '<div class="' + cssClass + '-img-wrap">' + img + ph + "</div>";
+        const slug = ARCH_SLUGS[name] || name;
+        const ph = `<div class="${cssClass}-img-placeholder" style="display:none;background:${color}22;border:2px dashed ${color}44;"><div style="color:${color};font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:var(--font-mono);text-align:center;padding:16px;">${name}<br><span style="opacity:.55;font-size:9px;">images/${slug}.jpg</span></div></div>`;
+        const img = `<img src="${src}" alt="${name}" class="${cssClass}-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">`;
+        return `<div class="${cssClass}-img-wrap">${img}${ph}</div>`;
       }
 
-      // ════════════════════════════════════════════════════════
-      // PAGE NAVIGATION
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // NAVIGATION
+      // ═══════════════════════════════════════════════════════════
       function showPage(page) {
         document
           .querySelectorAll(".page")
@@ -1948,10 +2085,10 @@
         document
           .querySelectorAll(".nav-tab")
           .forEach((t) => t.classList.remove("active"));
-        var tp = document.getElementById("page-" + page);
+        const tp = document.getElementById("page-" + page);
         if (!tp) return;
         tp.classList.add("active");
-        var ne = document.getElementById("nav-" + page);
+        const ne = document.getElementById("nav-" + page);
         if (ne) ne.classList.add("active");
         requestAnimationFrame(() =>
           window.scrollTo({ top: 0, behavior: "instant" }),
@@ -1968,16 +2105,16 @@
         document.getElementById("lib-" + sport).classList.add("active");
       }
 
-      // ════════════════════════════════════════════════════════
-      // ████████████████  BJJ ENGINE  ████████████████████████
-      // (Ported from kampfstil-engine.ts – pure JS, no deps)
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // ████  BJJ ENGINE – ELITE 17-FRAGEN VERSION  ████
+      // ═══════════════════════════════════════════════════════════
 
       // --- Archetypes ---
       const BJJ_ARCHETYPES = {
         OCTOPUS: {
           id: "OCTOPUS",
           label: "Octopus",
+          emoji: "🐙",
           archetypeName: "Dynamic Outside Guard Player / Guard Pull Strategist",
           oneLiner:
             "Bottom-Kontrolle über Distanz, Frames und Winkel – Sweep-First statt 'Guard halten'.",
@@ -1993,12 +2130,19 @@
             distal: 70,
             rotation: 48,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 20,
+            legEntanglementAffinity: 75,
+            pinAffinity: 15,
+            resetAffinity: 40,
+          },
           color: "#5B99C2",
+          theory:
+            "Der Octopus ist kein defensiver Guard-Spieler – er ist ein Bottom-Offensiv-System. Sein Guard ist eine Waffe, keine Schutzposition. Jede Situation am Boden wird durch die Frage gerahmt: Wo ist der Sweep? DLR, X-Guard, K-Guard sind Hebel, keine Positionen. Der Octopus verliert nicht, wenn der Gegner seinen Guard passiert – er verliert nur, wenn er aufhört, Sweep-Einladungen zu sehen.",
           longdesc: [
             "Der Octopus gewinnt nicht dadurch, dass er seinen Guard hält – er gewinnt, weil sein Guard selbst eine Waffe ist. DLR, X-Guard, K-Guard: jede Position ist ein Hebel, um den Gegner zu destabilisieren und zu sweepen, bevor er passieren kann.",
             "Im No-Gi-Kontext ohne Griffe ist sein Spiel besonders auf Kniescheibenkontrolle und Beinlinien aufgebaut. Ein verlorener Außenwinkel ist nicht ein Setback – er ist der Beginn der nächsten Sweep-Sequenz.",
             "Seine größte Gefahr kommt von Pressure Passern (Crocodile), die seinen Aktionsradius durch Schultergewicht und Flattening systematisch reduzieren. Gegen Leg-Lock-Spieler (Viper) muss er besonders auf Knee-Line-Exposition achten.",
-            "Trainingstipp: Beinwork als Offensivwerkzeug denken. Jedes Frame ist eine Sweep-Einladung, nicht nur Defense.",
           ],
           strengths: [
             "Bottom-Kontrolle über Distanz und Winkel",
@@ -2026,10 +2170,20 @@
           boxers: ["Mikey Musumeci", "Ryan Hall", "Keenan Cornelius"],
           matchup:
             "Stark gegen Top-Spieler ohne Submission-Sensibilität. Schwierig gegen Crocodile (Pressure/Flattening) und Viper (Leg-Entanglement wenn Knee-Line verloren).",
+          matchupVs: {
+            GORILLA: "adv",
+            SPIDER: "even",
+            CROCODILE: "dis",
+            PANTHER: "even",
+            VIPER: "dis",
+            ANACONDA: "even",
+            MANTIS: "even",
+          },
         },
         GORILLA: {
           id: "GORILLA",
           label: "Gorilla",
+          emoji: "🦍",
           archetypeName: "Wrestle-to-Top Controller / Positional Dominator",
           oneLiner:
             "Takedowns → Top → Tempo runter. Gewinnt über Kontrolle, nicht über Chaos.",
@@ -2045,12 +2199,19 @@
             distal: 22,
             rotation: 35,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 15,
+            legEntanglementAffinity: 10,
+            pinAffinity: 85,
+            resetAffinity: 20,
+          },
           color: "#8B5E3C",
+          theory:
+            "Der Gorilla macht seinen Kampfstil über Situationskontrolle. Er bringt den Kampf genau dort hin, wo er arbeiten will – oben. Takedown-Chains (Single↔Double), Bodylock und Hip-Control sind seine Einstiegswerkzeuge. Am Boden ist sein Mantra: Pin → Pass → Positionsdominanz. Er senkt das Tempo, erhöht Druck und lässt den Gegner sich selbst erschöpfen. Submissions sind Folge der Kontrolle, nicht ihr Ziel.",
           longdesc: [
             "Der Gorilla macht seinen Kampfstil über Situationskontrolle: er bringt den Kampf genau dort hin, wo er arbeiten will – oben. Takedown-Chains (Single↔Double), Bodylock und Hip-Control sind seine Einstiegswerkzeuge.",
             "Am Boden ist sein Mantra: Pin → Pass → Positionsdominanz. Er senkt das Tempo, erhöht Druck und lässt den Gegner sich selbst erschöpfen. Submissions sind Folge der Kontrolle, nicht ihr Ziel.",
             "Schwachpunkt: Leg-Systeme (Viper) können seine Beinexposition bei Takedown-Einsteigen direkt bestrafen. Front-Headlock-Spezialisten (Anaconda) warten auf seinen linearen Entry.",
-            "Training: Takedown-Chains als automatischen Fluss, Pass-Kombinationen unter echtem Druck und Guard-Pass-Awareness bzgl. Leg-Exposure.",
           ],
           strengths: [
             "Kontrolliert wo Kämpfe stattfinden",
@@ -2082,10 +2243,20 @@
           ],
           matchup:
             "Stark gegen Spider und Octopus ohne Takedown Defense. Schwierig gegen Viper (Leg-Exposure bei Entries) und Anaconda (Front-Headlock auf lineare Entries).",
+          matchupVs: {
+            OCTOPUS: "adv",
+            SPIDER: "adv",
+            CROCODILE: "even",
+            PANTHER: "dis",
+            VIPER: "dis",
+            ANACONDA: "dis",
+            MANTIS: "even",
+          },
         },
         CROCODILE: {
           id: "CROCODILE",
           label: "Crocodile",
+          emoji: "🐊",
           archetypeName: "Pressure Guard Passer / Pin Specialist",
           oneLiner:
             "Passing-Chain + Pins (Flattening) – erstickt Guard & Chains durch Struktur.",
@@ -2101,12 +2272,19 @@
             distal: 18,
             rotation: 25,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 10,
+            legEntanglementAffinity: 8,
+            pinAffinity: 95,
+            resetAffinity: 15,
+          },
           color: "#4A4A4A",
+          theory:
+            "Der Crocodile gewinnt durch Struktur und Gewicht. Sein Passing-System ist nicht über Geschwindigkeit, sondern über sequentielle Überlastung: jeder Pass-Versuch baut Druck auf, der nächste nutzt die entstandene Erschöpfung aus. Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen, keine Guards spielen, keine Chains aufbauen. HQ-Pass, Knee-Cut, Bodylock – alles zielt auf den gleichen Endpunkt: Schulterkontrolle, Crossface, Kontrolle.",
           longdesc: [
             "Der Crocodile gewinnt durch Struktur und Gewicht. Sein Passing-System ist nicht über Geschwindigkeit, sondern über sequentielle Überlastung: jeder Pass-Versuch baut Druck auf, der nächste nutzt die entstandene Erschöpfung aus.",
             "Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen, keine Guards spielen, keine Chains aufbauen. HQ-Pass, Knee-Cut, Bodylock – alles zielt auf den gleichen Endpunkt: Schulterkontrolle, Crossface, Kontrolle.",
-            "Schwachpunkt: Leg-Systeme wie Viper können seine Passing-Schritte direkt angreifen. Back-Taker (Panther) nutzen jede Rotation beim Pass. Gegen dynamische Guards wie Octopus braucht er früh Flattening, sonst verliert er Positionsinitiative.",
-            "Training: Passing-Chains ohne Leg-Exposure, Crossface/Underhook-Mechanik täglich, Flattening bevor der Guard aktiv wird.",
+            "Schwachpunkt: Leg-Systeme wie Viper können seine Passing-Schritte direkt angreifen. Back-Taker (Panther) nutzen jede Rotation beim Pass.",
           ],
           strengths: [
             "Passing-Chain systematisch und sequentiell",
@@ -2134,10 +2312,20 @@
           boxers: ["Bernardo Faria", "Marcus Almeida", "Buchecha"],
           matchup:
             "Stark gegen Spider und Octopus (Pressure stoppt Chains/Beinwork). Schwierig gegen Viper (Leg-Exposure) und Panther (Back-Takes aus Rotationen).",
+          matchupVs: {
+            OCTOPUS: "adv",
+            GORILLA: "even",
+            PANTHER: "dis",
+            VIPER: "dis",
+            SPIDER: "adv",
+            ANACONDA: "even",
+            MANTIS: "even",
+          },
         },
         PANTHER: {
           id: "PANTHER",
           label: "Black Panther",
+          emoji: "🐆",
           archetypeName: "Back-Take Specialist / Rotational Opportunist",
           oneLiner:
             "Lebt von Rotationen: Turtle/Backline – sobald du drehst, bist du verloren.",
@@ -2153,12 +2341,19 @@
             distal: 35,
             rotation: 92,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 55,
+            legEntanglementAffinity: 25,
+            pinAffinity: 20,
+            resetAffinity: 35,
+          },
           color: "#1A1714",
+          theory:
+            "Der Black Panther hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger. Seatbelt-Kontrolle und Body Triangle sind seine Machtposition. Von dort baut er Rear Naked Choke, Rear Triangle oder nutzt die Kontrolle für gezielte Arbeit.",
           longdesc: [
             "Der Black Panther hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger.",
             "Seatbelt-Kontrolle und Body Triangle sind seine Machtposition. Von dort baut er Rear Naked Choke, Rear Triangle oder nutzt die Kontrolle für Punishment-GnP-Muster im Submission-Kontext.",
             "Schwachpunkt: gegen Gegner die konsequent Guard-up bleiben und nie drehen, hat er weniger organische Möglichkeiten. Mantis (Scrambler) kann ihm im Chaos entwischen.",
-            "Training: Turtle-Angriffe, Leg-Drag→Backline als automatische Kette, und intensive Mattenarbeit mit Rotations-Triggern – die Drehung des Gegners sofort erkennen.",
           ],
           strengths: [
             "Rücken = höchste Kontrollposition im BJJ",
@@ -2186,10 +2381,20 @@
           boxers: ["Rafael Mendes", "Garry Tonon (Back-Phase)", "Craig Jones"],
           matchup:
             "Stark gegen Gorilla und Crocodile (Back-Exposure bei Rotationen). Schwierig gegen Mantis (unpredictable Scrambles) und gegen defensive Octopus-Spieler ohne Drehbewegung.",
+          matchupVs: {
+            OCTOPUS: "even",
+            GORILLA: "adv",
+            CROCODILE: "adv",
+            VIPER: "even",
+            SPIDER: "even",
+            ANACONDA: "even",
+            MANTIS: "dis",
+          },
         },
         VIPER: {
           id: "VIPER",
           label: "Viper",
+          emoji: "🐍",
           archetypeName:
             "Leg Entanglement System Player / Distal Submission Attacker",
           oneLiner:
@@ -2206,12 +2411,19 @@
             distal: 96,
             rotation: 72,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 15,
+            legEntanglementAffinity: 98,
+            pinAffinity: 10,
+            resetAffinity: 20,
+          },
           color: "#2E7D32",
+          theory:
+            "Der Viper macht das Spiel vertikal: er ist gefährlich aus Positionen, die andere für sicher halten. Ashi Garami, 50/50, Outside Heel – sein Einstieg ist jede Situation mit Beinkontakt. Sein System ist nicht chaotisch, sondern linear: Knee-Line gewinnen → halten → Mechanik anwenden. Heel Hook, Kneebar, Ankle Lock – und wenn der Gegner entkommt, folgt die nächste Position in der Kette.",
           longdesc: [
             "Der Viper macht das Spiel vertikal: er ist gefährlich aus Positionen, die andere für sicher halten. Ashi Garami, 50/50, Outside Heel – sein Einstieg ist jede Situation mit Beinkontakt.",
             "Sein System ist nicht chaotisch, sondern linear: Knee-Line gewinnen → halten → Mechanik anwenden. Heel Hook, Kneebar, Ankle Lock – und wenn der Gegner entkommt, folgt die nächste Position in der Kette.",
-            "Schwachpunkt: sehr erfahrene Leg-Lock-Verteidiger die Heel-Exposition konsequent minimieren und gut entschlüpfen. Head-Position-Fehler öffnen Guillotinen (Anaconda).",
-            "Training: Ashi-Positionen täglich, Heel-Hook-Mechanik präzise (Knie-Rotation + Hüftdruck), Leg-Lock-Chains als System.",
+            "Schwachpunkt: sehr erfahrene Leg-Lock-Verteidiger die Heel-Exposition konsequent minimieren. Head-Position-Fehler öffnen Guillotinen (Anaconda).",
           ],
           strengths: [
             "Gefährlich aus unerwarteten Positionen",
@@ -2239,10 +2451,20 @@
           boxers: ["Gordon Ryan", "Nicky Ryan", "Lachlan Giles"],
           matchup:
             "Stark gegen Gorilla und Crocodile (Bein-Exposure bei Entries/Passing). Schwierig gegen erfahrene Leg-Lock-Verteidiger und gegen Anaconda (Head-Position-Guillotinen).",
+          matchupVs: {
+            OCTOPUS: "adv",
+            GORILLA: "adv",
+            CROCODILE: "adv",
+            PANTHER: "even",
+            SPIDER: "even",
+            ANACONDA: "dis",
+            MANTIS: "even",
+          },
         },
         SPIDER: {
           id: "SPIDER",
           label: "Spider",
+          emoji: "🕷",
           archetypeName: "Submission Chain Attacker / Flow Grappler",
           oneLiner:
             "Submissions sind Hebel zum Öffnen – Chains erzwingen Reaktionen, nicht nur Finishes.",
@@ -2258,12 +2480,19 @@
             distal: 55,
             rotation: 60,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 60,
+            legEntanglementAffinity: 30,
+            pinAffinity: 15,
+            resetAffinity: 30,
+          },
           color: "#7B2D8B",
+          theory:
+            "Der Spider ist überall angreifend. Er baut keine Submission isoliert auf – er baut Chains. Wenn der Gegner den Armbar verteidigt, ist der Triangle schon bereit. Wenn der Triangle geblockt wird, kommt der Omoplata. Die Kette hört nicht auf. Was ihn auszeichnet: Submissions sind nicht sein Ziel, sondern sein Werkzeug. Ein Submission-Angriff erzwingt Reaktion, und diese Reaktion öffnet die nächste Möglichkeit.",
           longdesc: [
             "Der Spider ist überall angreifend. Er baut keine Submission isoliert auf – er baut Chains. Wenn der Gegner den Armbar verteidigt, ist der Triangle schon bereit. Wenn der Triangle geblockt wird, kommt der Omoplata. Die Kette hört nicht auf.",
             "Was ihn auszeichnet: Submissions sind nicht sein Ziel, sondern sein Werkzeug. Ein Submission-Angriff erzwingt Reaktion, und diese Reaktion öffnet die nächste Möglichkeit. Er kämpft vorwärts, auch aus dem Nachteil.",
-            "Schwachpunkt: gegen Pressure-Passer (Crocodile) wird sein Chain-Volumen durch Flattening systematisch reduziert. Gegen sehr defensive Gegner die alle Submissions kennen und nie reagieren, kommt er zu wenig Output.",
-            "Training: Triangle→Armbar→Omoplata als Unit, Kimura→Brabo→Darce aus Sidemount, erzwungene Reaktionen statt Finish-Fixierung.",
+            "Schwachpunkt: gegen Pressure-Passer (Crocodile) wird sein Chain-Volumen durch Flattening systematisch reduziert.",
           ],
           strengths: [
             "Überall angreifend und gefährlich",
@@ -2290,11 +2519,21 @@
           ],
           boxers: ["Marcelo Garcia", "Dean Lister", "Eddie Bravo"],
           matchup:
-            "Stark gegen Gorilla ohne Submission-Sensibilität. Schwierig gegen Crocodile (Flattening stoppt Chains) und gegen sehr defensive Kämpfer die kaum Angriffsfläche bieten.",
+            "Stark gegen Gorilla ohne Submission-Sensibilität. Schwierig gegen Crocodile (Flattening stoppt Chains).",
+          matchupVs: {
+            OCTOPUS: "even",
+            GORILLA: "dis",
+            CROCODILE: "dis",
+            PANTHER: "even",
+            VIPER: "even",
+            ANACONDA: "even",
+            MANTIS: "dis",
+          },
         },
         ANACONDA: {
           id: "ANACONDA",
           label: "Anaconda",
+          emoji: "🐍",
           archetypeName: "Front Headlock Hunter (Guillotine/D'arce/Anaconda)",
           oneLiner:
             "No-Gi Meta-Säule: Sprawl → Head/Arm → finish oder pass/back.",
@@ -2310,12 +2549,19 @@
             distal: 35,
             rotation: 55,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 98,
+            legEntanglementAffinity: 10,
+            pinAffinity: 30,
+            resetAffinity: 25,
+          },
           color: "#C0392B",
+          theory:
+            "Der Anaconda ist eine der gefährlichsten No-Gi-Waffen: der Front Headlock als Meta-System. Jeder Takedown-Versuch, jeder Forward-Lean, jeder Kopf-Fehler – er wartet auf genau diesen Moment. Snapdown, Sprawl, underhookte Wurfversuche: alles ist ein Eingang. High-Wrist Guillotine, D'arce, Anaconda Choke – die Submission-Optionen sind spezifisch für No-Gi und extrem schwer zu verteidigen wenn das Head/Arm-Kontrolle erstmal sitzt.",
           longdesc: [
             "Der Anaconda ist eine der gefährlichsten No-Gi-Waffen: der Front Headlock als Meta-System. Jeder Takedown-Versuch, jeder Forward-Lean, jeder Kopf-Fehler – er wartet auf genau diesen Moment. Snapdown, Sprawl, underhookte Wurfversuche: alles ist ein Eingang.",
             "High-Wrist Guillotine, D'arce, Anaconda Choke – die Submission-Optionen sind spezifisch für No-Gi und extrem schwer zu verteidigen wenn das Head/Arm-Kontrolle erstmal sitzt.",
             "Schwachpunkt: wer sein Head-Position-Management kennt und konsequent Innengriffe hält, gibt ihm wenig Möglichkeiten. Gegen Viper braucht er besonders auf Leg-Exposure bei seinen eigenen Forward-Entries achten.",
-            "Training: Sprawl-zu-Front-Headlock als automatischen Reflex, Head-Arm-Kontrolle zuerst (bevor Choke angesetzt wird), Finish-oder-Pass-Entscheidung sauber trainieren.",
           ],
           strengths: [
             "No-Gi-Meta-Waffe mit hohem Finish-Potential",
@@ -2342,11 +2588,21 @@
           ],
           boxers: ["Dillon Danis", "Garry Tonon", "Neil Melanson (Coach)"],
           matchup:
-            "Stark gegen Gorilla und Crocodile (lineare Entries sind Einladungen). Schwierig gegen Viper (Leg-Exposure bei Forward-Entries) und gegen Kämpfer mit exzellentem Head-Position-Management.",
+            "Stark gegen Gorilla und Crocodile (lineare Entries sind Einladungen). Schwierig gegen Viper (Leg-Exposure bei Forward-Entries).",
+          matchupVs: {
+            OCTOPUS: "even",
+            GORILLA: "adv",
+            CROCODILE: "adv",
+            PANTHER: "even",
+            VIPER: "adv",
+            SPIDER: "even",
+            MANTIS: "even",
+          },
         },
         MANTIS: {
           id: "MANTIS",
           label: "Mantis",
+          emoji: "🦗",
           archetypeName: "Transitional Scrambler / Chaos-to-Control",
           oneLiner:
             "Erzeugt Chaos, aber nicht planlos: Scramble-Gewinner, der in Kontrolle überführt.",
@@ -2362,12 +2618,19 @@
             distal: 55,
             rotation: 80,
           },
+          sigTarget: {
+            frontHeadlockAffinity: 30,
+            legEntanglementAffinity: 40,
+            pinAffinity: 20,
+            resetAffinity: 90,
+          },
           color: "#D4A574",
+          theory:
+            "Der Mantis ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte. Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment. Scramble gewinnen bedeutet für ihn: hips frei, Stand-up als Druckmittel, oder Position sichern wenn das Chaos günstig endet.",
           longdesc: [
             "Der Mantis ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte.",
             "Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment. Scramble gewinnen bedeutet für ihn: hips frei, Stand-up als Druckmittel, oder Position sichern wenn das Chaos günstig endet.",
             "Schwachpunkt: Chaos ohne Exit-Plan ist kein Stil, sondern ein Fehler. Gegen sehr systematische Passer (Crocodile) oder Position-Dominator (Gorilla) muss er seinen Scramble früher triggern bevor Kontrolle etabliert ist.",
-            "Training: Granby als automatischen Reflex, Stand-up-Timing als taktisches Werkzeug, und das Entscheidungstraining 'Scramble gewinnen → was jetzt?'",
           ],
           strengths: [
             "Gewinnt in undefinierten Transitionen",
@@ -2398,326 +2661,395 @@
             "Geo Martinez",
           ],
           matchup:
-            "Stark gegen Panther (unpredictable Scrambles entziehen Back-Take-Trigger) und gegen Spider (Chaos bricht Submission-Chains). Schwierig gegen Crocodile (früher Druck) und Gorilla (systematische Kontrolle).",
+            "Stark gegen Panther (unpredictable Scrambles entziehen Back-Take-Trigger) und Spider (Chaos bricht Submission-Chains). Schwierig gegen Crocodile und Gorilla.",
+          matchupVs: {
+            OCTOPUS: "even",
+            GORILLA: "dis",
+            CROCODILE: "dis",
+            PANTHER: "adv",
+            VIPER: "even",
+            SPIDER: "adv",
+            ANACONDA: "even",
+          },
         },
       };
 
-      // --- BJJ Questions (14, mapped to A/B/C → weights) ---
+      // ═══════════════════════════════════════════════════════════
+      // BJJ 17-FRAGEN ELITE SYSTEM
+      // ═══════════════════════════════════════════════════════════
       const BJJ_QUESTIONS = [
+        // I. TOP (1-3)
         {
           id: 1,
-          block: "Einstieg & Guard-Wahl",
-          situation: "Der Kampf beginnt im Stand. Dein Gegner sucht Klinch.",
-          question: "Was passiert als nächstes instinktiv?",
+          block: "I. Top-Orientierung",
+          situation: "Start im Stand. Du bekommst einen mittelguten Einstieg.",
+          question: "Was nimmst du lieber?",
           A: {
-            text: "Du pullst Guard aktiv – du willst Bottom-Arbeit aus dem Stand.",
-            axes: { top: -2, pressure: -1, distal: +2, rotation: +1 },
-            sig: { legEntanglementAffinity: +1 },
+            text: "Einen 'ok' Takedown mit Top-Stabilisierung, auch ohne direkten Angriff.",
+            axes: { top: +3, pressure: +1 },
+            sig: { pinAffinity: +1 },
           },
           B: {
-            text: "Du checkst seinen Entry und schiesst auf Takedown (Double/Single).",
-            axes: { top: +2, pressure: +1 },
-            sig: { frontHeadlockAffinity: +1 },
+            text: "Einen Snapdown/FHL-Kontakt, auch wenn du danach nicht sofort oben bist.",
+            axes: { top: +1, submission: +1 },
+            sig: { frontHeadlockAffinity: +3 },
           },
           C: {
-            text: "Du arbeitest Clinch, versuchst Underhook und Body-Lock.",
-            axes: { top: +1, pressure: +1, rotation: +1 },
-            sig: { pinAffinity: +1 },
+            text: "Einen kontrollierten Sitdown/Guard-Entry, weil dein Bottom-System sofort greift.",
+            axes: { top: -3, distal: +1 },
+            sig: { resetAffinity: +1 },
           },
         },
         {
           id: 2,
-          block: "Einstieg & Guard-Wahl",
-          situation:
-            "Dein erster Versuch (Takedown oder Guard Pull) wird gestoppt.",
-          question: "Was folgt?",
+          block: "I. Top-Orientierung",
+          situation: "Scramble gewonnen – du hast 1 Sekunde.",
+          question: "Was sicherst du zuerst?",
           A: {
-            text: "Du setzt direkt auf Guard Pull oder sitzt ins Open Guard.",
-            axes: { top: -2, pressure: -1, distal: +1, rotation: 0 },
-            sig: { resetAffinity: +1 },
+            text: "Hüfte über Hüfte: Top-Kontrolle (auch Half Guard reicht).",
+            axes: { top: +3, pressure: +1 },
+            sig: { pinAffinity: +1 },
           },
           B: {
-            text: "Du wechselst in eine andere Takedown-Variante oder Leg Entanglement.",
-            axes: {
-              top: +1,
-              pressure: +1,
-              submission: +1,
-              distal: +1,
-              rotation: +1,
-            },
-            sig: { legEntanglementAffinity: +1 },
+            text: "Rückenlinie: Seatbelt/Backline (auch wenn Beine noch nicht perfekt sind).",
+            axes: { rotation: +3, submission: +1 },
+            sig: { frontHeadlockAffinity: +1 },
           },
           C: {
-            text: "Du nutzt Clinch weiter und suchst Wurfchancen oder Scrambles.",
-            axes: { top: +1, pressure: +1, rotation: +1 },
-            sig: { pinAffinity: +1 },
+            text: "Knee-Line: Leg-Kontrolle (auch wenn du unten bleibst).",
+            axes: { distal: +3, submission: +1 },
+            sig: { legEntanglementAffinity: +3 },
           },
         },
         {
           id: 3,
-          block: "Guard-Arbeit & Frames",
+          block: "I. Top-Orientierung",
           situation:
-            "Du bist auf dem Rücken. Der Gegner versucht deinen Guard zu passieren.",
-          question: "Wie reagierst du?",
+            "Du wirst im Stand nach hinten gedrückt (Rand/Wall-Pressure).",
+          question: "Was ist dein Default?",
           A: {
-            text: "Du bewegst dich aktiv mit Beinwork und Frames – Knee-Line ist dein Fokus.",
-            axes: { top: -2, pressure: -1, distal: +2, rotation: +1 },
-            sig: { legEntanglementAffinity: +1 },
-          },
-          B: {
-            text: "Du kämpfst um den Underhook und versuchst Half-Guard Recovery.",
-            axes: { top: -2, pressure: +1 },
+            text: "Ich bleibe im Clinch/Handfight, bis ich Top erzwinge.",
+            axes: { top: +3, pressure: +1 },
             sig: { pinAffinity: +1 },
           },
-          C: {
-            text: "Du drehst hart und suchst Backtake oder Turtle Recovery.",
-            axes: { top: -2, pressure: 0, distal: -1, rotation: +2 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-        },
-        {
-          id: 4,
-          block: "Guard-Arbeit & Frames",
-          situation:
-            "Du bist im Open Guard. Der Gegner steht auf und versucht Distanz zu schaffen.",
-          question: "Was tust du?",
-          A: {
-            text: "Du folgst mit Beinkontrolle (DLR, X-Guard) und bleibst aktiv.",
-            axes: { top: -2, pressure: -1, distal: +2, rotation: +1 },
+          B: {
+            text: "Ich gehe in ein Bottom-Entry, weil ich dort Output habe.",
+            axes: { top: -3, distal: +1 },
             sig: { legEntanglementAffinity: +1 },
           },
+          C: {
+            text: "Ich löse, resette, komme neu rein (Winkel/Timing statt Kraft).",
+            axes: { top: +1, rotation: +1 },
+            sig: { resetAffinity: +3 },
+          },
+        },
+        // II. PRESSURE (4-6)
+        {
+          id: 4,
+          block: "II. Pressure vs. Mobility",
+          situation: "Oben in Half Guard: Du musst wählen.",
+          question: "Was priorisierst du?",
+          A: {
+            text: "Flattening + Frame-Break (langsam, aber 'erstickend').",
+            axes: { pressure: +3, top: +1 },
+            sig: { pinAffinity: +3 },
+          },
           B: {
-            text: "Du stehst auf und resettest den Kampf im Stand.",
-            axes: { top: +1, pressure: +1, distal: 0, rotation: 0 },
+            text: "Mobility-Pass (schneller, aber weniger 'Pin-Sicherheit').",
+            axes: { pressure: -2, rotation: +1 },
             sig: { resetAffinity: +1 },
           },
           C: {
-            text: "Du versuchst Submission aus dem Guard (Triangle, Armbar).",
-            axes: { top: -1, submission: +2, distal: +1, rotation: +1 },
+            text: "Transition-Pass (Rotation/Backline-Öffnung, Risiko inklusive).",
+            axes: { rotation: +3, pressure: 0 },
             sig: { frontHeadlockAffinity: +1 },
           },
         },
         {
           id: 5,
-          block: "Submission-System",
-          situation:
-            "Du hast eine günstige Position und siehst eine Submission-Möglichkeit.",
-          question: "Was machst du?",
+          block: "II. Pressure vs. Mobility",
+          situation: "Gegner framed stark – du spürst Widerstand.",
+          question: "Was tust du?",
           A: {
-            text: "Du baust eine Submission-Chain auf (Armbar→Triangle→Omoplata).",
-            axes: { submission: +2, distal: +1, rotation: +1 },
-            sig: { frontHeadlockAffinity: +1 },
+            text: "Ich investiere in Frame-Zerstörung, bevor ich weitergehe.",
+            axes: { pressure: +3 },
+            sig: { pinAffinity: +2 },
           },
           B: {
-            text: "Du suchst den Front Headlock für Guillotine oder D'arce.",
-            axes: { submission: +2, rotation: +1 },
-            sig: { frontHeadlockAffinity: +2 },
+            text: "Ich verlasse die Linie und gehe um die Struktur herum (Winkel).",
+            axes: { pressure: -2, rotation: +2 },
+            sig: { resetAffinity: +1 },
           },
           C: {
-            text: "Du gehst auf Leg Entanglement und Heel Hook.",
-            axes: { submission: +2, distal: +2, rotation: +1 },
-            sig: { legEntanglementAffinity: +2 },
+            text: "Ich löse und setze neu an, statt im Widerstand zu arbeiten.",
+            axes: { pressure: -1, top: 0 },
+            sig: { resetAffinity: +3 },
           },
         },
         {
           id: 6,
-          block: "Submission-System",
-          situation: "Der Gegner verteidigt deine erste Submission konsequent.",
-          question: "Was kommt danach?",
+          block: "II. Pressure vs. Mobility",
+          situation:
+            "Side Control: Er bridged/turnt. Du darfst nur eine Priorität haben.",
+          question: "Was ist es?",
           A: {
-            text: "Du wechselst in die nächste Submission der Chain ohne Pause.",
-            axes: { submission: +2, distal: +1, rotation: +1 },
-            sig: { frontHeadlockAffinity: +1 },
+            text: "Re-Pin (Kopf/Hüfte schwer) – keine Transition, keine Gier.",
+            axes: { pressure: +3, top: +1 },
+            sig: { pinAffinity: +2 },
           },
           B: {
-            text: "Du nutzt seine Reaktion für einen Back-Take.",
-            axes: { submission: +1, rotation: +2 },
+            text: "Übergang erzwingen (Back exposure), auch wenn es Scramble wird.",
+            axes: { rotation: +3 },
             sig: { frontHeadlockAffinity: +1 },
           },
           C: {
-            text: "Du wechselst auf Leg Entanglement oder Kneebar.",
-            axes: { submission: +2, distal: +2, rotation: +1 },
-            sig: { legEntanglementAffinity: +2 },
+            text: "Attacke starten, obwohl Position noch nicht maximal fest ist.",
+            axes: { submission: +3 },
+            sig: { frontHeadlockAffinity: +1 },
           },
         },
+        // III. SUBMISSION (7-9)
         {
           id: 7,
-          block: "Top-Game & Passing",
-          situation: "Du hast den Gegner geworfen oder gesweept. Du bist oben.",
-          question: "Was ist dein primärer Fokus?",
+          block: "III. Submission-Initiative",
+          situation: "Was ist in deinem Kopf primär?",
+          question: "Wähle dein mentales Modell:",
           A: {
-            text: "Du baust Pressure und passierst methodisch (HQ, Knee-Cut).",
-            axes: { top: +2, pressure: +2, submission: -1 },
-            sig: { pinAffinity: +2 },
+            text: "Kontrolle ist Pflicht, Submission ist Konsequenz.",
+            axes: { submission: -1, top: +2, pressure: +1 },
+            sig: { pinAffinity: +1 },
           },
           B: {
-            text: "Du fixierst Side Control oder Mount und baust Kontrolle auf.",
-            axes: { top: +2, pressure: +2, submission: -1 },
-            sig: { pinAffinity: +2 },
+            text: "Submission ist Werkzeug – ich will Reaktionen erzwingen.",
+            axes: { submission: +3, rotation: +1 },
+            sig: { frontHeadlockAffinity: +1 },
           },
           C: {
-            text: "Du suchst sofort Rotation und Back-Take.",
-            axes: { top: +1, rotation: +2, submission: +1 },
-            sig: { frontHeadlockAffinity: +1 },
+            text: "Leg-Endgame ist mein eigenes Spiel – dort entscheide ich.",
+            axes: { submission: +2, distal: +3 },
+            sig: { legEntanglementAffinity: +3 },
           },
         },
         {
           id: 8,
-          block: "Top-Game & Passing",
-          situation:
-            "Du hast eine dominante Position oben, aber der Gegner macht Druck von unten.",
-          question: "Wie antwortest du?",
+          block: "III. Submission-Initiative",
+          situation: "Du hast Mount ohne klare Isolation.",
+          question: "Was tust du?",
           A: {
-            text: "Du erhöhst Schultergewicht und flattening – er soll nicht atmen.",
-            axes: { top: +1, pressure: +2, submission: -1 },
-            sig: { pinAffinity: +2 },
-          },
-          B: {
-            text: "Du wechselst in eine stabilere Kontrollposition (Mount → S-Mount).",
-            axes: { top: +1, pressure: +2, submission: -1 },
+            text: "Ich bleibe, stabilisiere, arbeite langsam zur Isolation.",
+            axes: { submission: -1, pressure: +2, top: +1 },
             sig: { pinAffinity: +1 },
           },
+          B: {
+            text: "Ich starte sofort Chains, auch wenn ich Mount verliere.",
+            axes: { submission: +3 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
           C: {
-            text: "Du nimmst seine Rotation und geht sofort auf den Rücken.",
-            axes: { top: +1, rotation: +2, submission: +2 },
-            sig: { frontHeadlockAffinity: +2 },
+            text: "Ich provoziere Drehung, um Rücken zu bekommen.",
+            axes: { rotation: +3 },
+            sig: { frontHeadlockAffinity: +1 },
           },
         },
         {
           id: 9,
-          block: "Scramble & Übergänge",
-          situation:
-            "Beide kämpfen um Position – kein klarer Vorteil. Scramble-Situation.",
-          question: "Was tust du?",
+          block: "III. Submission-Initiative",
+          situation: "Du liegst leicht zurück (Punkte/Tempo).",
+          question: "Wie reagierst du?",
           A: {
-            text: "Du machst Chaos bewusst und suchst Angriff aus dem Scramble.",
-            axes: { rotation: +2, submission: +1, pressure: -1 },
-            sig: { resetAffinity: +1 },
-          },
-          B: {
-            text: "Du versuchst Position zu stabilisieren und Kontrolle zurückzugewinnen.",
-            axes: { pressure: +1, top: +1 },
+            text: "Ich erhöhe Kontrolle, senke Risiko, hole Schritt für Schritt auf.",
+            axes: { pressure: +2, top: +1, submission: -1 },
             sig: { pinAffinity: +1 },
           },
+          B: {
+            text: "Ich erhöhe Angriffsdruck über Chains, um das Match zu drehen.",
+            axes: { submission: +3 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
           C: {
-            text: "Du trennst dich, stehst auf und resettst im Stand.",
-            axes: { pressure: -1, top: 0, rotation: 0 },
+            text: "Ich suche bewusst Scrambles/Resets, um ein neues Fenster zu erzeugen.",
+            axes: { rotation: +2 },
             sig: { resetAffinity: +2 },
           },
         },
+        // IV. DISTAL (10-12)
         {
           id: 10,
-          block: "Scramble & Übergänge",
-          situation:
-            "Der Gegner dreht sich und versucht zu entkommen – du bist knapp oben.",
+          block: "IV. Distal-Fokus",
+          situation: "Beim Passing taucht sein Bein frei auf.",
           question: "Was tust du?",
           A: {
-            text: "Du folgst der Rotation sofort und jagst den Back-Take.",
-            axes: { rotation: +2, submission: +1 },
-            sig: { frontHeadlockAffinity: +1 },
+            text: "Ich bleibe bei meinem Pass – Beine sind Nebensache.",
+            axes: { distal: -2, top: +1, pressure: +1 },
+            sig: { pinAffinity: +1 },
           },
           B: {
-            text: "Du nutzt seinen Guard Pull und gehst in Leg Entanglement.",
-            axes: { top: -2, distal: +2, pressure: -1 },
-            sig: { legEntanglementAffinity: +1 },
+            text: "Ich greife Knee-Line, auch wenn das meinen Pass unterbricht.",
+            axes: { distal: +3, submission: +1 },
+            sig: { legEntanglementAffinity: +3 },
           },
           C: {
-            text: "Du re-stabilisierst, nimmst Position und baust neu auf.",
-            axes: { top: +1, pressure: 0, rotation: 0 },
-            sig: { resetAffinity: +2 },
+            text: "Ich nutze das Bein nur, um Back exposure zu erzwingen.",
+            axes: { rotation: +2, distal: +1 },
+            sig: { resetAffinity: +1 },
           },
         },
         {
           id: 11,
-          block: "Kontrolle & Finish",
-          situation: "Du bist auf dem Rücken des Gegners – Seatbelt sitzt.",
-          question: "Was ist dein primäres Ziel?",
+          block: "IV. Distal-Fokus",
+          situation: "Gegner schießt – du sprawlst.",
+          question: "Was ist dein Default-Follow?",
           A: {
-            text: "Du sicherst Hooks und gehst auf Rear Naked Choke.",
-            axes: { top: +2, rotation: +1, submission: 0 },
+            text: "Ich komme oben drauf (Top sichern).",
+            axes: { top: +2, pressure: +1 },
             sig: { pinAffinity: +1 },
           },
           B: {
-            text: "Du jagst Submissions (Rear Triangle, Arm-Trap).",
-            axes: { submission: +2, rotation: +1 },
-            sig: { frontHeadlockAffinity: +1 },
+            text: "Ich clamp FHL (Guillotine/D'arce-Lane).",
+            axes: { submission: +2 },
+            sig: { frontHeadlockAffinity: +3 },
           },
           C: {
-            text: "Du hältst Back Control und erzwingst Fehler durch Geduld.",
-            axes: { top: +2, pressure: +2, submission: -1 },
-            sig: { pinAffinity: +2 },
+            text: "Ich ziehe ihn in ein Leg-Entry (Ashi/SLX).",
+            axes: { distal: +3, submission: +1 },
+            sig: { legEntanglementAffinity: +3 },
           },
         },
         {
           id: 12,
-          block: "Kontrolle & Finish",
-          situation: "Du hast Side Control – der Gegner ist aktiv und kämpft.",
-          question: "Wie finishst du?",
+          block: "IV. Distal-Fokus",
+          situation: "Unten gegen heavy pressure: Was rettet dich zuverlässig?",
+          question: "Dein primäres Bottom-Tool:",
           A: {
-            text: "Du nutzt seine Aktivität für Leg Entanglement von der Seite.",
-            axes: { rotation: +1, distal: +2, submission: +1, top: -1 },
-            sig: { legEntanglementAffinity: +1 },
-          },
-          B: {
-            text: "Du setzt Front Headlock oder Darce aus dem Übergang.",
-            axes: { submission: +2, rotation: +1 },
-            sig: { frontHeadlockAffinity: +2 },
-          },
-          C: {
-            text: "Du erhöhst Pressure, passierst zu Mount und baust Submissions dort auf.",
-            axes: { pressure: +2, top: +1, submission: -1 },
-            sig: { pinAffinity: +2 },
-          },
-        },
-        {
-          id: 13,
-          block: "Energiemodell & Taktik",
-          situation:
-            "Mitten im Match – du bist leicht im Nachteil nach Punkten.",
-          question: "Wie managst du deine Energie und Taktik?",
-          A: {
-            text: "Du bleibst ruhig und konstant – keine Hektik, sauber weiterarbeiten.",
-            axes: { pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Du wartest auf den richtigen Moment und machst dann einen gezielten Burst.",
-            axes: { rotation: +1, submission: +1 },
+            text: "Frames + Winkel (distanzfähig).",
+            axes: { top: -2, distal: +2, rotation: +1 },
             sig: { resetAffinity: +1 },
           },
+          B: {
+            text: "Knee-Line + Entanglement (beinbasiert).",
+            axes: { distal: +3, submission: +1 },
+            sig: { legEntanglementAffinity: +3 },
+          },
           C: {
-            text: "Du erzeugst aktiv ein Scramble um das Momentum zu brechen.",
-            axes: { rotation: +2, submission: +1 },
-            sig: { resetAffinity: +2 },
+            text: "Upper-Body Bindung (head/arm/kimura-Griffe) als Angriff/Reset.",
+            axes: { submission: +3 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
+        },
+        // V. ROTATION (13-15)
+        {
+          id: 13,
+          block: "V. Rotation & Backline",
+          situation: "Gegner dreht explosiv – du musst reagieren.",
+          question: "Was ist dein erster Instinkt?",
+          A: {
+            text: "Ich stoppe Rotation und re-pinne.",
+            axes: { rotation: -2, pressure: +2, top: +1 },
+            sig: { pinAffinity: +2 },
+          },
+          B: {
+            text: "Ich folge der Drehung, um Rücken zu nehmen.",
+            axes: { rotation: +3, submission: +1 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
+          C: {
+            text: "Ich bleibe im Übergang, pummle weiter, bis ich Vorteil sehe.",
+            axes: { rotation: +2 },
+            sig: { resetAffinity: +3 },
           },
         },
         {
           id: 14,
-          block: "Energiemodell & Taktik",
-          situation: "Letzte 30 Sekunden des Matches. Du führst knapp.",
-          question: "Was tust du?",
+          block: "V. Rotation & Backline",
+          situation: "Gegner turtle: Du darfst nur EIN System priorisieren.",
+          question: "Was ist es?",
           A: {
-            text: "Du hältst Position und kontrollierst sauber durch – Finger weg vom Risiko.",
-            axes: { pressure: +2, top: +1, submission: -1 },
-            sig: { pinAffinity: +2 },
+            text: "Breakdown → Pin (keine Rotation schenken).",
+            axes: { pressure: +3, top: +1, rotation: -1 },
+            sig: { pinAffinity: +3 },
           },
           B: {
-            text: "Du gehst auf eine saubere Submission – du willst finishen.",
-            axes: { submission: +2 },
+            text: "Seatbelt/Hooks → Back.",
+            axes: { rotation: +3, submission: +1 },
             sig: { frontHeadlockAffinity: +1 },
           },
           C: {
-            text: "Du erzeugst ein letztes Scramble und jagst Back-Take oder Finish.",
-            axes: { rotation: +2, submission: +2 },
-            sig: { resetAffinity: +1 },
+            text: "FHL clamp → finish oder pass.",
+            axes: { submission: +2 },
+            sig: { frontHeadlockAffinity: +3 },
+          },
+        },
+        {
+          id: 15,
+          block: "V. Rotation & Backline",
+          situation: "Scramble neutral – du spürst, es kippt gleich.",
+          question: "Was tust du?",
+          A: {
+            text: "Ich 'kille' Chaos (head/hips) und mache es statisch.",
+            axes: { pressure: +2, rotation: -1, top: +1 },
+            sig: { pinAffinity: +1 },
+          },
+          B: {
+            text: "Ich suche Backline-Trigger (Turn/Turtle).",
+            axes: { rotation: +3 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
+          C: {
+            text: "Ich nutze Chaos (wrestle-up/peek-out/stand-up), dann Kontrolle.",
+            axes: { rotation: +2, top: +1 },
+            sig: { resetAffinity: +2 },
+          },
+        },
+        // VI. META (16-17)
+        {
+          id: 16,
+          block: "VI. Meta-Signaturen",
+          situation:
+            "Dein realistischster No-Gi Finish-Pfad (nicht Wunsch, sondern Trefferquote):",
+          question: "Was ist er?",
+          A: {
+            text: "Upper-Body Chains (Kimura/Triangle/Armbar-Sequenzen).",
+            axes: { submission: +2 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
+          B: {
+            text: "Leg-Endgames (Ashi → finish / sweep / back).",
+            axes: { distal: +2, submission: +2 },
+            sig: { legEntanglementAffinity: +4 },
+          },
+          C: {
+            text: "Front-Headlock Finishes (Guillotine/D'arce/Anaconda).",
+            axes: { submission: +2 },
+            sig: { frontHeadlockAffinity: +4 },
+          },
+        },
+        {
+          id: 17,
+          block: "VI. Meta-Signaturen",
+          situation: "Du führst knapp – noch 30 Sekunden.",
+          question: "Welche Sicherheitsstrategie gewinnt für dich am ehesten?",
+          A: {
+            text: "Pin/Top-Zeitmanagement.",
+            axes: { top: +2, pressure: +2 },
+            sig: { pinAffinity: +4 },
+          },
+          B: {
+            text: "Rücken fixieren (Kontrolle > alles).",
+            axes: { rotation: +2, submission: +1 },
+            sig: { frontHeadlockAffinity: +1 },
+          },
+          C: {
+            text: "Reset/Neuaufbau, statt im Knoten Risiko zu nehmen.",
+            axes: { rotation: +1 },
+            sig: { resetAffinity: +4 },
           },
         },
       ];
 
-      // Group questions by block for display
       const BJJ_BLOCKS = [...new Set(BJJ_QUESTIONS.map((q) => q.block))];
+      const BJJ_TOTAL = BJJ_QUESTIONS.length; // 17
 
-      // --- BJJ Scoring Engine ---
+      // --- Elite Scoring Engine ---
       function bjjComputeAxisMinMax() {
         const axes = ["top", "pressure", "submission", "distal", "rotation"];
         const mn = {
@@ -2734,15 +3066,14 @@
           distal: 0,
           rotation: 0,
         };
-        for (let q = 1; q <= 14; q++) {
-          const qd = BJJ_QUESTIONS[q - 1];
-          const opts = ["A", "B", "C"].map((c) => qd[c].axes);
+        BJJ_QUESTIONS.forEach((q) => {
+          const opts = ["A", "B", "C"].map((c) => q[c].axes);
           axes.forEach((ax) => {
             const vals = opts.map((o) => o[ax] || 0);
             mn[ax] += Math.min(...vals);
             mx[ax] += Math.max(...vals);
           });
-        }
+        });
         return { min: mn, max: mx };
       }
       const BJJ_AX_MM = bjjComputeAxisMinMax();
@@ -2750,25 +3081,24 @@
       function bjjComputeSigMax() {
         const sigKeys = [
           "frontHeadlockAffinity",
-          "resetAffinity",
-          "pinAffinity",
           "legEntanglementAffinity",
+          "pinAffinity",
+          "resetAffinity",
         ];
         const maxSig = {
           frontHeadlockAffinity: 0,
-          resetAffinity: 0,
-          pinAffinity: 0,
           legEntanglementAffinity: 0,
+          pinAffinity: 0,
+          resetAffinity: 0,
         };
-        for (let q = 1; q <= 14; q++) {
-          const qd = BJJ_QUESTIONS[q - 1];
+        BJJ_QUESTIONS.forEach((q) => {
           sigKeys.forEach((k) => {
             const vals = ["A", "B", "C"].map(
-              (c) => (qd[c].sig && qd[c].sig[k]) || 0,
+              (c) => (q[c].sig && q[c].sig[k]) || 0,
             );
             maxSig[k] += Math.max(...vals);
           });
-        }
+        });
         return maxSig;
       }
       const BJJ_SIG_MAX = bjjComputeSigMax();
@@ -2790,11 +3120,11 @@
         };
         const rawS = {
           frontHeadlockAffinity: 0,
-          resetAffinity: 0,
-          pinAffinity: 0,
           legEntanglementAffinity: 0,
+          pinAffinity: 0,
+          resetAffinity: 0,
         };
-        for (let q = 1; q <= 14; q++) {
+        for (let q = 1; q <= BJJ_TOTAL; q++) {
           const c = answersMap[q];
           if (!c) continue;
           const qd = BJJ_QUESTIONS[q - 1];
@@ -2836,16 +3166,16 @@
               (BJJ_SIG_MAX.frontHeadlockAffinity || 1)) *
               100,
           ),
-          resetAffinity: Math.round(
-            (rawS.resetAffinity / (BJJ_SIG_MAX.resetAffinity || 1)) * 100,
-          ),
-          pinAffinity: Math.round(
-            (rawS.pinAffinity / (BJJ_SIG_MAX.pinAffinity || 1)) * 100,
-          ),
           legEntanglementAffinity: Math.round(
             (rawS.legEntanglementAffinity /
               (BJJ_SIG_MAX.legEntanglementAffinity || 1)) *
               100,
+          ),
+          pinAffinity: Math.round(
+            (rawS.pinAffinity / (BJJ_SIG_MAX.pinAffinity || 1)) * 100,
+          ),
+          resetAffinity: Math.round(
+            (rawS.resetAffinity / (BJJ_SIG_MAX.resetAffinity || 1)) * 100,
           ),
         };
         return { axes, sig };
@@ -2862,28 +3192,29 @@
         const nb = Math.sqrt(ax.reduce((s, k) => s + b[k] * b[k], 0));
         return dot / (na * nb + 1e-9);
       }
-      function bjjSigDist(a, b) {
+      function bjjSigDist(userSig, archSigTarget) {
         return (
-          Math.abs(a.frontHeadlockAffinity - b.frontHeadlockAffinity) +
-          Math.abs(a.resetAffinity - b.resetAffinity) +
-          Math.abs(a.pinAffinity - b.pinAffinity) +
-          Math.abs(a.legEntanglementAffinity - b.legEntanglementAffinity)
+          Math.abs(
+            userSig.frontHeadlockAffinity - archSigTarget.frontHeadlockAffinity,
+          ) +
+          Math.abs(
+            userSig.legEntanglementAffinity -
+              archSigTarget.legEntanglementAffinity,
+          ) +
+          Math.abs(userSig.pinAffinity - archSigTarget.pinAffinity) +
+          Math.abs(userSig.resetAffinity - archSigTarget.resetAffinity)
         );
       }
 
       function bjjClassify(axes, sig) {
+        const LAMBDA = 0.2;
         const list = Object.values(BJJ_ARCHETYPES).map((p) => {
-          const d0 = bjjEuclid(axes, p.centroid);
-          const sigD = bjjSigDist(sig, {
-            frontHeadlockAffinity: p.centroid.submission * 0.5,
-            resetAffinity: 30,
-            pinAffinity: p.centroid.pressure * 0.7,
-            legEntanglementAffinity: p.centroid.distal * 0.8,
-          });
-          const sigFactor = 1 - Math.min(0.2, sigD / 900);
-          const d = d0 * sigFactor;
-          const sim = bjjCosine(axes, p.centroid);
-          const confidence = Math.round(clamp01((sim + 0.15) / 1.15) * 100);
+          const dAxes = bjjEuclid(axes, p.centroid);
+          const sigD = bjjSigDist(sig, p.sigTarget);
+          const fitSig = 1 - Math.min(0.3, sigD / 1200);
+          const d = dAxes * (1 - LAMBDA * fitSig);
+          const cosim = bjjCosine(axes, p.centroid);
+          const confidence = Math.round(clamp01((cosim + 0.15) / 1.15) * 100);
           return { id: p.id, dist: d, confidence };
         });
         list.sort((a, b) => a.dist - b.dist);
@@ -2896,166 +3227,96 @@
         }));
         const total = dist.reduce((a, b) => a + b.share, 0);
         dist[0].share += 100 - total;
+        // Plausibility checks (Elite)
         const notes = [];
         if (dist[0].share - dist[1].share < 10)
           notes.push(
-            "Hybridprofil: Du bist eine stabile Mischung aus zwei Archetypen.",
+            "Stabiler Hybrid: Dein Stil ist eine ausgewogene Mischung aus zwei Archetypen – beide sind aktiv.",
           );
-        if (sig.frontHeadlockAffinity > 70)
+        if (sig.frontHeadlockAffinity > 75)
           notes.push(
-            "Hohe Front-Headlock-Affinität: No-Gi Meta-Hebel für Resets und Finishes.",
+            "Meta-Dominanz Front Headlock: No-Gi-Hebel für Resets und Finishes – konsequent trainieren.",
           );
-        if (sig.legEntanglementAffinity > 70)
+        if (sig.legEntanglementAffinity > 75)
           notes.push(
-            "Hohe Leg-Affinität: Knee-Line Management ist zentral für deine Win-Conditions.",
+            "Meta-Dominanz Leg System: Knee-Line Management ist zentral für deine Win-Conditions.",
           );
-        if (sig.pinAffinity > 70)
+        if (sig.pinAffinity > 75)
           notes.push(
-            "Hohe Pin-Affinität: Flattening/Frames brechen ist ein Kern deiner Kontrolle.",
+            "Meta-Dominanz Pins/Flattening: Frame-Breaks und Kontrolle sind der Kern deines Drucks.",
           );
-        if (sig.resetAffinity > 70)
+        if (sig.resetAffinity > 75)
           notes.push(
-            "Hohe Reset-Affinität: Stand-up/Neuaufbau ist ein zentraler Teil deines Stils.",
+            "Meta-Dominanz Reset/Stand-up: Neuaufbau aus Stand ist ein zentrales strukturelles Element deines Stils.",
+          );
+        // Conflict check
+        const conflicts = [];
+        if (axes.top > 70 && axes.distal > 80)
+          conflicts.push(
+            "Hohe Top-Orientierung + hohes Leg-System: du bist offensiv sehr komplett, aber exponiert wenn Beine beim Einsteigen angegriffen werden.",
+          );
+        if (axes.pressure > 85 && axes.rotation > 80)
+          conflicts.push(
+            "Hohes Pressure + hohe Rotation: Risiko bei Over-Commitment im Übergang – Back-Takes können dich treffen.",
           );
         return {
           primary: dist[0],
           secondary: dist[1],
           distribution: dist,
           notes,
+          conflicts,
         };
       }
 
-      // Matchup matrix
-      function bjjWeightedDelta(aId, bId) {
-        const a = BJJ_ARCHETYPES[aId];
-        const b = BJJ_ARCHETYPES[bId];
-        const ax = ["top", "pressure", "submission", "distal", "rotation"];
-        const imp = {
-          OCTOPUS: {
-            top: 1.0,
-            pressure: 1.2,
-            submission: 1.2,
-            distal: 1.6,
-            rotation: 1.1,
-          },
-          GORILLA: {
-            top: 1.7,
-            pressure: 1.4,
-            submission: 0.9,
-            distal: 0.8,
-            rotation: 0.8,
-          },
-          CROCODILE: {
-            top: 1.5,
-            pressure: 1.8,
-            submission: 0.8,
-            distal: 0.7,
-            rotation: 0.7,
-          },
-          PANTHER: {
-            top: 1.1,
-            pressure: 1.0,
-            submission: 1.2,
-            distal: 0.9,
-            rotation: 1.9,
-          },
-          VIPER: {
-            top: 1.0,
-            pressure: 0.9,
-            submission: 1.7,
-            distal: 2.0,
-            rotation: 1.3,
-          },
-          SPIDER: {
-            top: 1.0,
-            pressure: 1.0,
-            submission: 2.0,
-            distal: 1.1,
-            rotation: 1.2,
-          },
-          ANACONDA: {
-            top: 1.1,
-            pressure: 1.2,
-            submission: 1.9,
-            distal: 0.8,
-            rotation: 1.0,
-          },
-          MANTIS: {
-            top: 1.1,
-            pressure: 1.0,
-            submission: 1.2,
-            distal: 1.2,
-            rotation: 1.6,
-          },
-        };
-        let s = 0;
-        for (const k of ax) {
-          const da = (a.centroid[k] - b.centroid[k]) / 100;
-          s += da * ((imp[aId][k] || 1) + (imp[bId][k] || 1) * 0.65);
-        }
-        let meta = 0;
-        if (a.centroid.pressure > 85 && (bId === "SPIDER" || bId === "OCTOPUS"))
-          meta += 0.18;
-        if (b.centroid.pressure > 85 && (aId === "SPIDER" || aId === "OCTOPUS"))
-          meta -= 0.18;
-        if (aId === "VIPER" && (bId === "GORILLA" || bId === "CROCODILE"))
-          meta += 0.14;
-        if (bId === "VIPER" && (aId === "GORILLA" || aId === "CROCODILE"))
-          meta -= 0.14;
-        if (aId === "ANACONDA" && (bId === "GORILLA" || bId === "CROCODILE"))
-          meta += 0.12;
-        if (bId === "ANACONDA" && (aId === "GORILLA" || aId === "CROCODILE"))
-          meta -= 0.12;
-        if (aId === "PANTHER" && b.centroid.pressure > 80) meta += 0.06;
-        if (bId === "PANTHER" && a.centroid.pressure > 80) meta -= 0.06;
-        if (aId === "MANTIS" || bId === "MANTIS") meta *= 0.85;
-        return s + meta;
-      }
-
+      // Matchup matrix using archetype-defined matchupVs
       function buildBJJMatrix() {
         const ids = Object.keys(BJJ_ARCHETYPES);
         const result = {};
-        ids.forEach((a) => {
-          result[a] = {};
-          ids.forEach((b) => {
-            const s = bjjWeightedDelta(a, b);
-            const adv = s > 0.35 ? "A" : s < -0.35 ? "B" : "EVEN";
-            result[a][b] = { adv, score: Math.round(s * 100) / 100 };
+        ids.forEach((aId) => {
+          result[aId] = {};
+          ids.forEach((bId) => {
+            if (aId === bId) {
+              result[aId][bId] = { adv: "SELF" };
+              return;
+            }
+            const arch = BJJ_ARCHETYPES[aId];
+            const mv = arch.matchupVs || {};
+            result[aId][bId] = { adv: mv[bId] || "even" };
           });
         });
         return { ids, result };
       }
 
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
       // BJJ STATE & UI
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
       const bjjAnswers = {};
 
       function buildBJJQuiz() {
         const container = document.getElementById("qc-bjj");
         container.innerHTML = "";
         let lastBlock = null;
+        let blockStartIdx = {};
+        BJJ_QUESTIONS.forEach((q, idx) => {
+          if (!blockStartIdx[q.block]) blockStartIdx[q.block] = idx + 1;
+        });
         BJJ_QUESTIONS.forEach((q, idx) => {
           if (q.block !== lastBlock) {
             lastBlock = q.block;
+            const blockQs = BJJ_QUESTIONS.filter((bq) => bq.block === q.block);
+            const lastInBlock = blockQs[blockQs.length - 1];
             const h = document.createElement("div");
             h.className = "attr-section-header";
-            h.innerHTML =
-              '<span class="attr-key-badge">' +
-              (idx + 1) +
-              "–" +
-              Math.min(idx + 2, 14) +
-              "</span>" +
-              q.block;
+            h.innerHTML = `<span class="attr-key-badge">${blockStartIdx[q.block]}–${lastInBlock.id}</span>${q.block}`;
             container.appendChild(h);
           }
           const block = document.createElement("div");
           block.className = "q-block";
           block.id = "qblock-bjj-" + q.id;
           block.innerHTML = `<div class="q-header"><div class="q-num" id="qnum-bjj-${q.id}">${String(idx + 1).padStart(2, "0")}</div><div style="flex:1"><div class="q-situation">${q.situation}</div><div class="q-title">${q.question}</div></div></div>
-    <div class="options-grid">
-      ${["A", "B", "C"].map((c) => `<div class="opt-card" id="opt-bjj-${q.id}-${c}" onclick="selectBJJOption(${q.id},'${c}')"><div class="opt-letter">${c}</div><div class="opt-text">${q[c].text}</div></div>`).join("")}
-    </div>`;
+<div class="options-grid">
+  ${["A", "B", "C"].map((c) => `<div class="opt-card" id="opt-bjj-${q.id}-${c}" onclick="selectBJJOption(${q.id},'${c}')"><div class="opt-letter">${c}</div><div class="opt-text">${q[c].text}</div></div>`).join("")}
+</div>`;
           container.appendChild(block);
         });
         updateBJJProgress();
@@ -3074,8 +3335,8 @@
       }
 
       function updateBJJProgress() {
-        const count = Object.keys(bjjAnswers).length;
-        const total = 14;
+        const count = Object.keys(bjjAnswers).length,
+          total = BJJ_TOTAL;
         document.getElementById("pf-bjj").style.width =
           (count / total) * 100 + "%";
         document.getElementById("pt-bjj").textContent = count + " / " + total;
@@ -3092,28 +3353,28 @@
         const classification = bjjClassify(axes, sig);
         const primary = BJJ_ARCHETYPES[classification.primary.id];
         const secondary = BJJ_ARCHETYPES[classification.secondary.id];
-
         document.getElementById("quiz-bjj").style.display = "none";
         const ra = document.getElementById("bjj-results-area");
         ra.style.display = "block";
         ra.scrollIntoView({ behavior: "smooth" });
-
         // Hero
         const rh = document.getElementById("rh-bjj");
         rh.setAttribute("data-style", primary.label.toUpperCase());
         rh.innerHTML = `
-    ${renderArchImage(primary.label, primary.color, "result")}
-    <div class="result-label">Dein No-Gi BJJ Profil</div>
-    <div class="result-name">${primary.label}</div>
-    <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">${primary.archetypeName}</div>
-    <div class="result-desc">${primary.oneLiner}</div>
-    <div class="kpi-row">
-      <div class="kpi"><div class="kpi-label">Primär</div><div class="kpi-val" style="font-size:20px;line-height:1.2">${primary.label}</div></div>
-      <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.primary.share}%</div></div>
-      <div class="kpi"><div class="kpi-label">Sekundär</div><div class="kpi-val" style="font-size:20px;line-height:1.2">${secondary.label}</div></div>
-      <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.secondary.share}%</div></div>
-    </div>
-    ${classification.primary.share - classification.secondary.share < 10 ? `<div class="hybrid-notice">Hybridprofil: "${primary.label}" + "${secondary.label}" – beide Archetypen sind gleichwertig aktiv.</div>` : ""}`;
+${renderArchImage(primary.label, primary.color, "result")}
+<div class="result-label">Dein No-Gi BJJ Profil – Elite 17</div>
+<div class="result-name">${primary.emoji} ${primary.label}</div>
+<div style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">${primary.archetypeName}</div>
+<div class="result-desc">${primary.oneLiner}</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="kpi-label">Primär</div><div class="kpi-val" style="font-size:20px;line-height:1.2">${primary.label}</div></div>
+  <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.primary.share}%</div></div>
+  <div class="kpi"><div class="kpi-label">Sekundär</div><div class="kpi-val" style="font-size:20px;line-height:1.2">${secondary.label}</div></div>
+  <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.secondary.share}%</div></div>
+  <div class="kpi"><div class="kpi-label">Confidence</div><div class="kpi-val">${classification.primary.confidence}%</div></div>
+</div>
+${classification.primary.share - classification.secondary.share < 10 ? `<div class="hybrid-notice">Hybridprofil: "${primary.label}" + "${secondary.label}" – beide Archetypen sind gleichwertig aktiv in deinem System.</div>` : ""}
+${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</div>`).join("")}`;
 
         // Deep dive
         document.getElementById("dd-bjj").innerHTML = primary.longdesc
@@ -3123,46 +3384,44 @@
           )
           .join("");
         document.getElementById("sw-bjj").innerHTML = `
-    <div class="sw-box"><div class="sw-title pos">Stärken</div><ul class="sw-list">${primary.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
-    <div class="sw-box"><div class="sw-title neg">Schwächen</div><ul class="sw-list">${primary.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>`;
+<div class="sw-box"><div class="sw-title pos">Stärken</div><ul class="sw-list">${primary.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
+<div class="sw-box"><div class="sw-title neg">Schwächen</div><ul class="sw-list">${primary.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>`;
 
         // Signatures
         const sigColors = {
           frontHeadlockAffinity: "#C0392B",
-          resetAffinity: "#D4A574",
+          legEntanglementAffinity: "#2E7D32",
           pinAffinity: "#4A7C4E",
-          legEntanglementAffinity: "#5B99C2",
+          resetAffinity: "#D4A574",
         };
         const sigLabels = {
           frontHeadlockAffinity: "Front Headlock",
-          resetAffinity: "Reset / Stand-up",
-          pinAffinity: "Pins / Flattening",
           legEntanglementAffinity: "Leg Entanglement",
+          pinAffinity: "Pins / Flattening",
+          resetAffinity: "Reset / Stand-up",
         };
         document.getElementById("sig-bjj").innerHTML = Object.entries(sigLabels)
           .map(
             ([k, label]) => `
-    <div class="sig-box">
-      <div class="sig-label">${label}</div>
-      <div class="sig-bar-track"><div class="sig-bar-fill" style="width:${sig[k]}%;background:${sigColors[k]}"></div></div>
-      <div class="sig-val">${sig[k]}%</div>
-    </div>`,
+<div class="sig-box">
+  <div class="sig-label">${label}</div>
+  <div class="sig-bar-track"><div class="sig-bar-fill" style="width:${sig[k]}%;background:${sigColors[k]}"></div></div>
+  <div class="sig-val">${sig[k]}%</div>
+</div>`,
           )
           .join("");
 
-        // Radar (5 axes)
         setTimeout(() => drawBJJRadar(axes, primary), 80);
 
-        // Archetype distribution
+        // Distribution
         document.getElementById("arch-dist-bjj").innerHTML =
           classification.distribution
             .map((d) => {
               const arch = BJJ_ARCHETYPES[d.id];
-              return `<div class="arch-dist-row"><div class="arch-dist-label">${arch.label}</div><div class="arch-dist-track"><div class="arch-dist-fill" style="width:${d.share}%;background:${d.id === primary.id ? arch.color : "#d8d2c8"}"></div></div><div class="arch-dist-pct">${d.share}%</div></div>`;
+              return `<div class="arch-dist-row"><div class="arch-dist-label">${arch.emoji} ${arch.label}</div><div class="arch-dist-track"><div class="arch-dist-fill" style="width:${d.share}%;background:${d.id === primary.id ? arch.color : "#d8d2c8"}"></div></div><div class="arch-dist-pct">${d.share}%</div></div>`;
             })
             .join("");
 
-        // Win conditions & anti-patterns
         document.getElementById("wc-bjj").innerHTML = primary.winConditions
           .map((w) => `<li>${w}</li>`)
           .join("");
@@ -3170,29 +3429,27 @@
           .map((a) => `<li>${a}</li>`)
           .join("");
 
-        // Notes
-        document.getElementById("notes-bjj").innerHTML = classification.notes
-          .length
-          ? classification.notes
-              .map((n) => `<div class="note-item">${n}</div>`)
-              .join("")
+        // Notes + conflicts combined
+        const allNotes = [...classification.notes];
+        document.getElementById("notes-bjj").innerHTML = allNotes.length
+          ? allNotes.map((n) => `<div class="note-item">${n}</div>`).join("")
           : '<div style="font-size:13px;color:var(--muted)">Kein besonderer Hinweis – klares Profil.</div>';
 
-        // Matchup matrix
+        // Matchup matrix (results page – compact)
         const { ids, result } = buildBJJMatrix();
-        const labels = {
-          OCTOPUS: "Octopus",
-          GORILLA: "Gorilla",
-          CROCODILE: "Croc",
-          PANTHER: "Panther",
-          VIPER: "Viper",
-          SPIDER: "Spider",
-          ANACONDA: "Anaconda",
-          MANTIS: "Mantis",
+        const labelsM = {
+          OCTOPUS: "🐙 Oct",
+          GORILLA: "🦍 Gor",
+          CROCODILE: "🐊 Croc",
+          PANTHER: "🐆 Pan",
+          VIPER: "🐍 Vip",
+          SPIDER: "🕷 Spi",
+          ANACONDA: "🐍 Ana",
+          MANTIS: "🦗 Man",
         };
-        let mt = `<table class="matchup-matrix"><thead><tr><th></th>${ids.map((id) => `<th>${labels[id]}</th>`).join("")}</tr></thead><tbody>`;
+        let mt = `<table class="matchup-matrix"><thead><tr><th></th>${ids.map((id) => `<th>${labelsM[id]}</th>`).join("")}</tr></thead><tbody>`;
         ids.forEach((rowId) => {
-          mt += `<tr><th>${labels[rowId]}</th>`;
+          mt += `<tr><th style="text-align:left">${labelsM[rowId]}</th>`;
           ids.forEach((colId) => {
             if (rowId === colId) {
               mt += `<td class="self">—</td>`;
@@ -3200,20 +3457,20 @@
             }
             const cell = result[rowId][colId];
             const cssClass =
-              cell.adv === "EVEN"
+              cell.adv === "even"
                 ? "even"
-                : cell.adv === "A"
+                : cell.adv === "adv"
                   ? "adv-a"
                   : "adv-b";
             const txt =
-              cell.adv === "EVEN" ? "~" : cell.adv === "A" ? "✓" : "✗";
+              cell.adv === "even" ? "~" : cell.adv === "adv" ? "✓" : "✗";
             mt += `<td class="${cssClass}">${txt}</td>`;
           });
           mt += "</tr>";
         });
         mt += "</tbody></table>";
         mt +=
-          '<div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono)">✓ = Zeile hat Vorteil · ✗ = Nachteil · ~ = Ausgeglichen</div>';
+          '<div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono)">✓ = Zeile hat strukturellen Vorteil · ✗ = Nachteil · ~ = Ausgeglichen</div>';
         document.getElementById("matrix-bjj").innerHTML = mt;
 
         // Answers
@@ -3232,7 +3489,7 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // BJJ Radar (5 axes)
+      // BJJ Radar
       function drawBJJRadar(axes, arch) {
         const canvas = document.getElementById("radar-bjj");
         if (!canvas) return;
@@ -3277,7 +3534,6 @@
           ctx.lineWidth = 1;
           ctx.stroke();
         });
-        // Archetype centroid
         if (arch && arch.centroid) {
           ctx.beginPath();
           axisKeys.forEach((k, i) => {
@@ -3295,7 +3551,6 @@
           ctx.stroke();
           ctx.setLineDash([]);
         }
-        // User
         ctx.beginPath();
         axisKeys.forEach((k, i) => {
           const r = (axes[k] / 100) * R,
@@ -3329,7 +3584,6 @@
             cy + (R + 22) * Math.sin(a),
           ),
         );
-        // Legend
         ctx.font = "10px sans-serif";
         ctx.textAlign = "left";
         ctx.fillStyle = "#8a6a1f";
@@ -3351,57 +3605,190 @@
         }
       }
 
-      // ════════════════════════════════════════════════════════
-      // BJJ LIBRARY CONTENT
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // BJJ LIBRARY – VOLLSTÄNDIGE THEORIE + MATRIX
+      // ═══════════════════════════════════════════════════════════
       function buildBJJLibrary() {
         const container = document.getElementById("lib-bjj");
         let html = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-    <div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">🥋 No-Gi BJJ – 8 ARCHETYPEN</div>
-    <button class="lib-start-btn" onclick="showPage('bjj')">TEST STARTEN</button>
-  </div>
-  <div style="background:rgba(181,137,30,0.06);border-left:3px solid var(--accent2);border-radius:0 4px 4px 0;padding:12px 16px;margin-bottom:24px;font-size:13px;color:var(--muted);">
-    <strong style="color:var(--accent2)">No-Gi Framework:</strong> 5 Achsen (Top-Orientierung, Pressure, Submission-Initiative, Distal-Fokus, Rotation/Backline) + 4 Meta-Signaturen (Front Headlock, Leg Entanglement, Pins/Flattening, Reset/Stand-up).
-  </div>
-  <div class="lib-archetypes-grid">`;
+<div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">🥋 No-Gi BJJ – 8 ARCHETYPEN</div>
+<button class="lib-start-btn" onclick="showPage('bjj')">TEST STARTEN</button>
+</div>`;
+        // Framework intro
+        html += `<div style="background:rgba(181,137,30,.06);border-left:3px solid var(--accent2);border-radius:0 4px 4px 0;padding:14px 18px;margin-bottom:28px;font-size:13px;color:var(--text);line-height:1.75">
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">No-Gi Framework</div>
+<strong style="color:var(--accent)">5 Achsen:</strong> Top-Orientierung · Pressure · Submission-Initiative · Distal-Fokus · Rotation/Backline<br>
+<strong style="color:var(--accent)">4 Meta-Signaturen:</strong> Front Headlock · Leg Entanglement · Pins/Flattening · Reset/Stand-up<br>
+<strong style="color:var(--accent)">Methodik:</strong> Jede Achse wird 3× geprüft, Meta-Signaturen separat validiert. Ergebnis ist ein Hybridprofil mit Confidence-Score.
+</div>`;
+
+        // Centroid overview table
+        html += `<div style="margin-bottom:32px">
+<div class="lib-compare-title" style="margin-bottom:12px">ARCHETYPEN-ZENTROIDE (5 Achsen, 0–100)</div>
+<div style="overflow-x:auto"><table class="centroid-table">
+<thead><tr><th>Archetyp</th><th>TOP</th><th>PRESSURE</th><th>SUBMISSION</th><th>DISTAL</th><th>ROTATION</th><th>Kern-Signatur</th></tr></thead>
+<tbody>`;
+        const axBarColor = {
+          OCTOPUS: "#5B99C2",
+          GORILLA: "#8B5E3C",
+          CROCODILE: "#4A4A4A",
+          PANTHER: "#1A1714",
+          VIPER: "#2E7D32",
+          SPIDER: "#7B2D8B",
+          ANACONDA: "#C0392B",
+          MANTIS: "#D4A574",
+        };
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
-          const key = arch.id;
-          html += `<div class="lib-archetype-card" id="lib-card-bjj-${key}" onclick="toggleLibCard('bjj','${key}')">
-      <div class="lib-card-header">
-        <div class="lib-card-color" style="background:${arch.color}"></div>
-        <div class="lib-card-titles">
-          <div class="lib-card-name">${arch.label}</div>
-          <div class="lib-card-sub">${arch.oneLiner.substring(0, 62)}...</div>
-        </div>
-        <div class="lib-card-chevron">▼</div>
-      </div>
-      <div class="lib-card-body">
-        ${renderArchImage(arch.label, arch.color, "lib")}
-        ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
-        <div style="margin-bottom:12px">
-          <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px">SUBTYPEN</div>
-          <div class="lib-boxers">${arch.subArchetypes.map((s) => `<div class="lib-boxer-chip">${s}</div>`).join("")}</div>
-        </div>
-        <div class="lib-sw-row">
-          <div class="lib-sw-box"><div class="lib-sw-title pos">Win-Conditions</div><ul class="lib-sw-list">${arch.winConditions.map((w) => `<li class="pos">${w}</li>`).join("")}</ul></div>
-          <div class="lib-sw-box"><div class="lib-sw-title neg">Anti-Patterns</div><ul class="lib-sw-list">${arch.antiPatterns.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
-        </div>
-        <div class="lib-sw-row">
-          <div class="lib-sw-box"><div class="lib-sw-title pos">Stärken</div><ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
-          <div class="lib-sw-box"><div class="lib-sw-title neg">Schwächen</div><ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
-        </div>
-        <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
-        <div class="lib-boxers" style="margin-top:12px">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div>
-      </div>
-    </div>`;
+          const c = arch.centroid;
+          const maxSig = Object.entries(arch.sigTarget).reduce((best, cur) =>
+            cur[1] > best[1] ? cur : best,
+          );
+          const sigLabel = {
+            frontHeadlockAffinity: "Front Headlock",
+            legEntanglementAffinity: "Leg System",
+            pinAffinity: "Pins/Pressure",
+            resetAffinity: "Reset/Scramble",
+          };
+          html += `<tr>
+<td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.emoji} ${arch.label}</div></td>
+${["top", "pressure", "submission", "distal", "rotation"].map((ax) => `<td><span class="centroid-bar" style="width:${c[ax] * 0.55}px;background:${arch.color};opacity:.7"></span> <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">${c[ax]}</span></td>`).join("")}
+<td style="font-size:11px;color:var(--accent2);font-family:var(--font-mono)">${sigLabel[maxSig[0]]}</td>
+</tr>`;
         });
-        html += "</div>";
-        // Comparison table
-        html += `<div class="lib-compare-section">
-  <div class="lib-compare-title">ARCHETYPEN-VERGLEICH: No-Gi BJJ</div>
-  <div style="overflow-x:auto"><table class="lib-compare-table">
-    <thead><tr><th>Archetyp</th><th>Kern-System</th><th>Primäre Achse</th><th>Stark gegen</th><th>Schwierig gegen</th></tr></thead>
-    <tbody>`;
+        html += `</tbody></table></div></div>`;
+
+        // Archetype cards
+        html += `<div class="lib-archetypes-grid">`;
+        Object.values(BJJ_ARCHETYPES).forEach((arch) => {
+          html += `<div class="lib-archetype-card" id="lib-card-bjj-${arch.id}" onclick="toggleLibCard('bjj','${arch.id}')">
+<div class="lib-card-header">
+  <div class="lib-card-color" style="background:${arch.color}"></div>
+  <div class="lib-card-titles">
+    <div class="lib-card-name">${arch.emoji} ${arch.label}</div>
+    <div class="lib-card-sub">${arch.archetypeName}</div>
+  </div>
+  <div class="lib-card-chevron">▼</div>
+</div>
+<div class="lib-card-body">
+  ${renderArchImage(arch.label, arch.color, "lib")}
+  <div class="arch-theory"><div class="arch-theory-title">Kern-Theorie</div><div class="arch-theory-text">${arch.theory}</div></div>
+  <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">ONE-LINER</div><div style="font-size:14px;font-style:italic;color:var(--text)">"${arch.oneLiner}"</div></div>
+  <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">SUBTYPEN</div><div class="sub-arch-chips">${arch.subArchetypes.map((s) => `<div class="sub-arch-chip">${s}</div>`).join("")}</div></div>
+  ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
+  <div class="lib-sw-row">
+    <div class="lib-sw-box"><div class="lib-sw-title pos">Stärken</div><ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
+    <div class="lib-sw-box"><div class="lib-sw-title neg">Schwächen</div><ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
+  </div>
+  <div class="lib-sw-row">
+    <div class="lib-sw-box"><div class="lib-sw-title pos">Win-Conditions</div><ul class="lib-sw-list">${arch.winConditions.map((w) => `<li class="pos">${w}</li>`).join("")}</ul></div>
+    <div class="lib-sw-box"><div class="lib-sw-title neg">Anti-Patterns</div><ul class="lib-sw-list">${arch.antiPatterns.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
+  </div>
+  <div class="lib-matchup-box"><strong>MATCHUP-ANALYSE:</strong> ${arch.matchup}</div>
+  <div style="margin-top:12px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">BEKANNTE VERTRETER</div><div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div></div>
+  <div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">ACHSENPROFIL</div>
+  <div>${["top", "pressure", "submission", "distal", "rotation"]
+    .map((ax) => {
+      const v = arch.centroid[ax];
+      const label = {
+        top: "TOP",
+        pressure: "PRESSURE",
+        submission: "SUB",
+        distal: "DISTAL",
+        rotation: "ROT",
+      };
+      return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><span style="font-family:var(--font-mono);font-size:9px;color:var(--muted);width:60px">${label[ax]}</span><div style="flex:1;height:4px;background:var(--border);border-radius:2px"><div style="width:${v}%;height:100%;background:${arch.color};border-radius:2px"></div></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--accent);width:28px;text-align:right">${v}</span></div>`;
+    })
+    .join("")}</div></div>
+</div>
+</div>`;
+        });
+        html += `</div>`;
+
+        // FULL MATCHUP MATRIX + THEORY
+        html += `<div class="matrix-section">
+<div class="matrix-title">8×8 MATCHUP-MATRIX</div>
+<div class="matrix-subtitle">Strukturelle Vor- und Nachteile zwischen den 8 No-Gi BJJ Archetypen. Basiert auf Achsen-Distanz, Meta-Signaturen und stilspezifischen Interaktionen. Nicht deterministisch – Athletik, Erfahrung und Tagesform bestimmen echte Kämpfe. Dies zeigt systemische Tendenzen.</div>`;
+
+        const { ids, result } = buildBJJMatrix();
+        const fullLabels = {
+          OCTOPUS: "🐙 Octopus",
+          GORILLA: "🦍 Gorilla",
+          CROCODILE: "🐊 Crocodile",
+          PANTHER: "🐆 Panther",
+          VIPER: "🐍 Viper",
+          SPIDER: "🕷 Spider",
+          ANACONDA: "🐍 Anaconda",
+          MANTIS: "🦗 Mantis",
+        };
+
+        html += `<div class="matrix-wrap"><table class="matrix-table">
+<thead><tr><th class="row-label">Zeile ↓ vs Spalte →</th>${ids.map((id) => `<th title="${fullLabels[id]}">${fullLabels[id]}</th>`).join("")}</tr></thead>
+<tbody>`;
+        ids.forEach((rowId) => {
+          html += `<tr><th class="row-label">${fullLabels[rowId]}</th>`;
+          ids.forEach((colId) => {
+            if (rowId === colId) {
+              html += `<td class="self" title="Gleicher Archetyp">—</td>`;
+              return;
+            }
+            const cell = result[rowId][colId];
+            const arch = BJJ_ARCHETYPES[rowId];
+            const cssClass =
+              cell.adv === "even" ? "even" : cell.adv === "adv" ? "adv" : "dis";
+            const sym =
+              cell.adv === "even" ? "~" : cell.adv === "adv" ? "✓" : "✗";
+            const titleTxt =
+              cell.adv === "even"
+                ? "Ausgeglichen"
+                : cell.adv === "adv"
+                  ? `${arch.label} strukturell im Vorteil`
+                  : `${arch.label} strukturell im Nachteil`;
+            html += `<td class="${cssClass}" title="${titleTxt}">${sym}</td>`;
+          });
+          html += "</tr>";
+        });
+        html += `</tbody></table></div>`;
+
+        html += `<div class="matrix-legend">
+<div class="legend-item"><span class="legend-sym adv">✓</span><span class="legend-text">Struktureller Vorteil (Zeilen-Archetyp)</span></div>
+<div class="legend-item"><span class="legend-sym dis">✗</span><span class="legend-text">Struktureller Nachteil</span></div>
+<div class="legend-item"><span class="legend-sym even">~</span><span class="legend-text">Ausgeglichen / stilabhängig</span></div>
+<div class="legend-item"><span class="legend-sym self" style="color:var(--border)">—</span><span class="legend-text">Gleicher Archetyp</span></div>
+</div>
+<div class="matrix-note">Hinweis: "Struktureller Vorteil" bedeutet, dass der Archetyp in der Zeile systemisch günstige Interaktionen mit dem Archetyp in der Spalte hat – nicht dass er immer gewinnt. Jeder echte Kampf hängt von Athletik, Erfahrung und Tagesform ab. Die Matrix zeigt Systemtendenzen, keine Garantien.</div>`;
+
+        // Matchup narratives per archetype
+        html += `<div style="margin-top:32px"><div class="lib-compare-title">MATCHUP-ANALYSEN IM DETAIL</div>`;
+        Object.values(BJJ_ARCHETYPES).forEach((arch) => {
+          html += `<div style="margin-bottom:20px;padding:16px 18px;border:1px solid var(--border);border-radius:4px;background:var(--surface)">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+  <div style="width:10px;height:10px;border-radius:50%;background:${arch.color}"></div>
+  <div style="font-family:var(--font-display);font-size:16px;letter-spacing:1px">${arch.emoji} ${arch.label}</div>
+</div>
+<div style="font-size:13px;color:var(--muted);line-height:1.75">${arch.matchup}</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+${ids
+  .filter((id) => id !== arch.id)
+  .map((id) => {
+    const mv = arch.matchupVs && arch.matchupVs[id];
+    const other = BJJ_ARCHETYPES[id];
+    const color =
+      mv === "adv" ? "#4a7c4e" : mv === "dis" ? "#9b3a2f" : "#8a8278";
+    const sym = mv === "adv" ? "✓" : mv === "dis" ? "✗" : "~";
+    return `<div style="font-family:var(--font-mono);font-size:9px;padding:3px 9px;border:1px solid ${color};border-radius:12px;color:${color}">${sym} ${other.label}</div>`;
+  })
+  .join("")}
+</div>
+</div>`;
+        });
+        html += `</div></div>`;
+
+        // Style comparison table
+        html += `<div class="lib-compare-section" style="margin-top:40px">
+<div class="lib-compare-title">STILVERGLEICH: No-Gi BJJ VOLLSTÄNDIG</div>
+<div style="overflow-x:auto"><table class="lib-compare-table">
+<thead><tr><th>Archetyp</th><th>Primäres System</th><th>Stärkste Achse</th><th>Kern-Signatur</th><th>Größte Stärke</th><th>Größte Schwäche</th></tr></thead>
+<tbody>`;
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
           const axKeys = [
             "top",
@@ -3417,20 +3804,32 @@
             "Distal",
             "Rotation",
           ];
-          const primary = axKeys.reduce(
+          const primaryAx = axKeys.reduce(
             (best, k) => (arch.centroid[k] > arch.centroid[best] ? k : best),
             axKeys[0],
           );
-          const primaryLabel = axLabels[axKeys.indexOf(primary)];
+          const primaryAxLabel = axLabels[axKeys.indexOf(primaryAx)];
+          const sigEntries = Object.entries(arch.sigTarget);
+          const topSig = sigEntries.reduce((best, cur) =>
+            cur[1] > best[1] ? cur : best,
+          );
+          const sigLabel = {
+            frontHeadlockAffinity: "Front Headlock",
+            legEntanglementAffinity: "Leg System",
+            pinAffinity: "Pins",
+            resetAffinity: "Reset",
+          };
           html += `<tr>
-      <td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.label}</div></td>
-      <td style="font-size:12px;color:var(--muted)">${arch.oneLiner.substring(0, 55)}...</td>
-      <td style="color:var(--accent2);font-size:12px;font-family:var(--font-mono)">${primaryLabel} (${arch.centroid[primary]})</td>
-      <td style="color:#4a7c4e;font-size:12px">${arch.matchup.split(".")[0]}.</td>
-      <td style="color:#9b3a2f;font-size:12px">${arch.matchup.split(".")[1] || "–"}.</td>
-    </tr>`;
+<td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.emoji} ${arch.label}</div></td>
+<td style="font-size:12px;color:var(--muted)">${arch.oneLiner.substring(0, 55)}…</td>
+<td style="color:var(--accent2);font-size:12px;font-family:var(--font-mono)">${primaryAxLabel} (${arch.centroid[primaryAx]})</td>
+<td style="font-size:11px;color:var(--accent);font-family:var(--font-mono)">${sigLabel[topSig[0]]}</td>
+<td style="color:#4a7c4e;font-size:12px">${arch.strengths[0]}</td>
+<td style="color:#9b3a2f;font-size:12px">${arch.weaknesses[0]}</td>
+</tr>`;
         });
-        html += "</tbody></table></div></div>";
+        html += `</tbody></table></div></div>`;
+
         container.innerHTML = html;
       }
 
@@ -3441,9 +3840,9 @@
         if (card) card.classList.toggle("expanded");
       }
 
-      // ════════════════════════════════════════════════════════
-      // OTHER SPORTS DATA (Boxing, MMA, Muay Thai – unchanged)
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // OTHER SPORTS (Boxing, MMA, Muay Thai – unchanged)
+      // ═══════════════════════════════════════════════════════════
       const SPORTS = {};
 
       SPORTS.boxing = {
@@ -4793,9 +5192,9 @@
         },
       };
 
-      // ════════════════════════════════════════════════════════
-      // GENERIC SPORTS ENGINE (Boxing, MMA, Muay Thai)
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // GENERIC SPORTS ENGINE
+      // ═══════════════════════════════════════════════════════════
       const answers = { boxing: {}, mma: {}, muaythai: {} };
 
       function buildQuiz(sport) {
@@ -4809,15 +5208,14 @@
             const attr = data.attrs.find((a) => a.key === q.attr);
             const h = document.createElement("div");
             h.className = "attr-section-header";
-            h.innerHTML =
-              '<span class="attr-key-badge">' + q.attr + "</span>" + attr.label;
+            h.innerHTML = `<span class="attr-key-badge">${q.attr}</span>${attr.label}`;
             container.appendChild(h);
           }
           const block = document.createElement("div");
           block.className = "q-block";
           block.id = "qblock-" + sport + "-" + q.id;
           block.innerHTML = `<div class="q-header"><div class="q-num" id="qnum-${sport}-${q.id}">${String(idx + 1).padStart(2, "0")}</div><div style="flex:1"><div class="q-situation">${q.situation}</div><div class="q-title">${q.question}</div></div></div>
-    <div class="options-grid">${q.options.map((o) => `<div class="opt-card" id="opt-${sport}-${q.id}-${o.val}" onclick="selectOption('${sport}',${q.id},${o.val})"><div class="opt-letter">${o.label}</div><div class="opt-text">${o.text}</div></div>`).join("")}</div>`;
+<div class="options-grid">${q.options.map((o) => `<div class="opt-card" id="opt-${sport}-${q.id}-${o.val}" onclick="selectOption('${sport}',${q.id},${o.val})"><div class="opt-letter">${o.label}</div><div class="opt-text">${o.text}</div></div>`).join("")}</div>`;
           container.appendChild(block);
         });
         updateProgress(sport);
@@ -4981,8 +5379,8 @@
         const rh = document.getElementById("rh-" + sport);
         rh.setAttribute("data-style", best.name.toUpperCase());
         rh.innerHTML = `${renderArchImage(best.name, arch.color, "result")}<div class="result-label">Dein Kampfstil-Profil</div><div class="result-name">${best.name}</div><div class="result-desc">${arch.classic}</div>
-  <div class="kpi-row"><div class="kpi"><div class="kpi-label">Stiltyp</div><div class="kpi-val">${best.name.split(" ")[0]}</div></div><div class="kpi"><div class="kpi-label">Abstand</div><div class="kpi-val">${best.dist}</div></div><div class="kpi"><div class="kpi-label">Sicherheit</div><div class="kpi-val">${confidence}%</div></div></div>
-  ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${second.name}" (Abstand ${second.dist}) – plausibles Hybrid-Profil.</div>` : ""}`;
+<div class="kpi-row"><div class="kpi"><div class="kpi-label">Stiltyp</div><div class="kpi-val">${best.name.split(" ")[0]}</div></div><div class="kpi"><div class="kpi-label">Abstand</div><div class="kpi-val">${best.dist}</div></div><div class="kpi"><div class="kpi-label">Sicherheit</div><div class="kpi-val">${confidence}%</div></div></div>
+${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${second.name}" (Abstand ${second.dist}) – plausibles Hybrid-Profil.</div>` : ""}`;
         document.getElementById("dd-" + sport).innerHTML = arch.longdesc
           .map(
             (p, i) =>
@@ -5032,9 +5430,9 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // ════════════════════════════════════════════════════════
-      // LIBRARY (Boxing, MMA, Muay Thai – generic builder)
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
+      // LIBRARY (Boxing, MMA, Muay Thai generic)
+      // ═══════════════════════════════════════════════════════════
       function buildLibrary() {
         ["boxing", "mma", "muaythai"].forEach((sport) => {
           const data = SPORTS[sport];
@@ -5046,40 +5444,40 @@
           }[sport];
           const emoji = { boxing: "🥊", mma: "🏆", muaythai: "🥊" }[sport];
           let html = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-      <div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">${emoji} ${sportLabel.toUpperCase()} – ARCHETYPEN</div>
-      <button class="lib-start-btn" onclick="showPage('${sport}')">TEST STARTEN</button>
-    </div><div class="lib-archetypes-grid">`;
+<div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">${emoji} ${sportLabel.toUpperCase()} – ARCHETYPEN</div>
+<button class="lib-start-btn" onclick="showPage('${sport}')">TEST STARTEN</button>
+</div><div class="lib-archetypes-grid">`;
           Object.entries(data.archetypes).forEach(([name, arch]) => {
             const key = name.replace(/[^a-z]/gi, "");
             html += `<div class="lib-archetype-card" id="lib-card-${sport}-${key}" onclick="toggleLibCard('${sport}','${key}')">
-        <div class="lib-card-header"><div class="lib-card-color" style="background:${arch.color}"></div><div class="lib-card-titles"><div class="lib-card-name">${name}</div><div class="lib-card-sub">${arch.classic.substring(0, 60)}...</div></div><div class="lib-card-chevron">▼</div></div>
-        <div class="lib-card-body">
-          ${renderArchImage(name, arch.color, "lib")}
-          ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
-          <div class="lib-sw-row">
-            <div class="lib-sw-box"><div class="lib-sw-title pos">Stärken</div><ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
-            <div class="lib-sw-box"><div class="lib-sw-title neg">Schwächen</div><ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
-          </div>
-          <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
-          <div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div>
-        </div>
-      </div>`;
+<div class="lib-card-header"><div class="lib-card-color" style="background:${arch.color}"></div><div class="lib-card-titles"><div class="lib-card-name">${name}</div><div class="lib-card-sub">${arch.classic.substring(0, 60)}...</div></div><div class="lib-card-chevron">▼</div></div>
+<div class="lib-card-body">
+  ${renderArchImage(name, arch.color, "lib")}
+  ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
+  <div class="lib-sw-row">
+    <div class="lib-sw-box"><div class="lib-sw-title pos">Stärken</div><ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
+    <div class="lib-sw-box"><div class="lib-sw-title neg">Schwächen</div><ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
+  </div>
+  <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
+  <div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div>
+</div>
+</div>`;
           });
-          html += "</div>";
+          html += `</div>`;
           html += `<div class="lib-compare-section"><div class="lib-compare-title">STILVERGLEICH: ${sportLabel.toUpperCase()}</div><div style="overflow-x:auto"><table class="lib-compare-table">
-      <thead><tr><th>Stil</th><th>Stärkstes Feld</th><th>Schwächstes Feld</th><th>Vs. wem stark</th><th>Vs. wem schwierig</th></tr></thead><tbody>`;
+<thead><tr><th>Stil</th><th>Stärkstes Feld</th><th>Schwächstes Feld</th><th>Vs. wem stark</th><th>Vs. wem schwierig</th></tr></thead><tbody>`;
           Object.entries(data.archetypes).forEach(([name, arch]) => {
             html += `<tr><td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${name}</div></td><td style="color:#4a7c4e;font-size:12px">${arch.strengths[0]}</td><td style="color:#9b3a2f;font-size:12px">${arch.weaknesses[0]}</td><td style="font-size:12px">${arch.matchup.split(".")[0]}.</td><td style="font-size:12px">${arch.matchup.split(".")[1] || "–"}.</td></tr>`;
           });
-          html += "</tbody></table></div></div>";
+          html += `</tbody></table></div></div>`;
           container.innerHTML = html;
         });
         buildBJJLibrary();
       }
 
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
       // INIT
-      // ════════════════════════════════════════════════════════
+      // ═══════════════════════════════════════════════════════════
       ["boxing", "mma", "muaythai"].forEach((sport) => buildQuiz(sport));
       buildBJJQuiz();
       buildLibrary();
@@ -5117,9 +5515,7 @@
             <h3>Haftung für Inhalte</h3>
             <p>
               Als Diensteanbieter sind wir gemäß §7 Abs. 1 TMG für eigene
-              Inhalte verantwortlich. Die Inhalte dieser Seite dienen
-              ausschließlich der allgemeinen Information und ersetzen keine
-              professionelle Beratung.
+              Inhalte verantwortlich.
             </p>
           </div>
           <div class="legal-section">
@@ -5179,7 +5575,7 @@
             <p>
               Diese Website wird über <strong>GitHub Pages</strong> gehostet.
               Beim Aufruf werden durch GitHub automatisch Server-Logfiles
-              gespeichert (IP-Adresse, Datum/Uhrzeit, Browser, Betriebssystem).
+              gespeichert.
             </p>
           </div>
           <div class="legal-section">
@@ -5200,15 +5596,13 @@
             <h3>6. Schriften</h3>
             <p>
               Diese Website verwendet ausschließlich
-              <strong>System-Schriftarten</strong>. Es werden keine Schriftarten
-              von externen Servern geladen.
+              <strong>System-Schriftarten</strong>.
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- FOOTER -->
     <footer id="site-footer">
       <div class="footer-inner">
         <div class="footer-logo">KAMPFSTIL ANALYSE</div>

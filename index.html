@@ -1570,7 +1570,7 @@
       .result-img-wrap {
         width: 100%;
         max-width: 340px;
-        height: 220px;
+        height: 320px;
         margin-bottom: 20px;
         border-radius: 4px;
         overflow: hidden;
@@ -1583,7 +1583,7 @@
       }
       .lib-img-wrap {
         width: 100%;
-        height: 180px;
+        height: 260px;
         margin-bottom: 16px;
         border-radius: 4px;
         overflow: hidden;
@@ -3649,7 +3649,31 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
 <strong style="color:var(--accent)">4 Meta-Signaturen:</strong> Front Headlock · Leg Entanglement · Pins/Flattening · Reset/Stand-up<br>
 <strong style="color:var(--accent)">Methodik:</strong> Jede Achse wird 3× geprüft, Meta-Signaturen separat validiert. Ergebnis ist ein Hybridprofil mit Confidence-Score.
 </div>`;
-
+        html += `<div style="margin-bottom:28px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+  <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">ACHSEN-ERKLÄRUNG (Skala 0–100)</div>
+  <table style="width:100%;border-collapse:collapse;font-size:13px">
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent);width:90px">TOP</td>
+      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Top-Orientierung</strong> — 0 = Guard-Spieler / Bottom-System · 100 = reiner Wrestler / Top-Controller</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">PRESSURE</td>
+      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Pressure</strong> — 0 = mobil / Winkel-orientiert · 100 = Flattening / Pin-System</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">SUB</td>
+      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Submission-Initiative</strong> — 0 = Position first / Kontrolle vor Finish · 100 = permanenter Submission-Angriff</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">DISTAL</td>
+      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Distal-Fokus</strong> — 0 = Upper-Body / Kopf-Arm-Kontrolle · 100 = Leg-System / Knee-Line</td>
+    </tr>
+    <tr>
+      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">ROT</td>
+      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Rotation / Backline</strong> — 0 = statisch / Pin-orientiert · 100 = Back-Hunter / Scrambler</td>
+    </tr>
+  </table>
+</div>`;
         // Centroid overview table
         html += `<div style="margin-bottom:32px">
 <div class="lib-compare-title" style="margin-bottom:12px">ARCHETYPEN-ZENTROIDE (5 Achsen, 0–100)</div>

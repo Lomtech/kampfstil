@@ -208,9 +208,6 @@
         opacity: 0.06;
         pointer-events: none;
       }
-      .library-hero .header-label {
-        margin-bottom: 10px;
-      }
       .library-hero h2 {
         font-family: var(--font-display);
         font-size: clamp(36px, 5vw, 60px);
@@ -556,15 +553,6 @@
       .matrix-table tr:hover td {
         background: rgba(200, 180, 130, 0.04);
       }
-      .matrix-table tr:hover td.self {
-        background: rgba(138, 106, 31, 0.1);
-      }
-      .matrix-table tr:hover td.adv {
-        background: rgba(74, 124, 78, 0.07);
-      }
-      .matrix-table tr:hover td.dis {
-        background: rgba(155, 58, 47, 0.07);
-      }
       .matrix-legend {
         display: flex;
         gap: 24px;
@@ -594,15 +582,6 @@
       }
       .legend-sym.even {
         color: var(--muted);
-      }
-      .legend-sym.self {
-        color: var(--border);
-      }
-      .legend-text {
-        color: var(--muted);
-        font-family: var(--font-mono);
-        font-size: 10px;
-        letter-spacing: 1px;
       }
       .matrix-note {
         font-size: 12px;
@@ -643,7 +622,7 @@
         vertical-align: middle;
         margin-left: 6px;
       }
-      /* ARCHETYPE THEORY BLOCK */
+      /* ARCHETYPE THEORY */
       .arch-theory {
         background: rgba(138, 106, 31, 0.04);
         border-left: 3px solid var(--accent2);
@@ -664,7 +643,6 @@
         color: var(--text);
         line-height: 1.75;
       }
-      /* SUB-ARCH chips */
       .sub-arch-chips {
         display: flex;
         gap: 8px;
@@ -777,8 +755,9 @@
         border-radius: 3px;
         letter-spacing: 1px;
       }
+      /* SGM LIKERT BLOCK */
       .q-block {
-        padding: 28px 40px;
+        padding: 22px 40px;
         border-bottom: 1px solid var(--border);
         transition: background 0.2s;
       }
@@ -789,85 +768,84 @@
         display: flex;
         align-items: flex-start;
         gap: 18px;
-        margin-bottom: 16px;
+        margin-bottom: 14px;
       }
       .q-num {
         font-family: var(--font-display);
-        font-size: 34px;
+        font-size: 30px;
         color: var(--border);
         line-height: 1;
-        min-width: 42px;
+        min-width: 38px;
         transition: color 0.3s;
       }
       .q-block.answered .q-num {
         color: var(--accent2);
       }
-      .q-situation {
-        font-size: 12.5px;
-        color: var(--accent2);
-        font-style: italic;
-        margin-bottom: 3px;
-        font-family: var(--font-mono);
-      }
       .q-title {
-        font-family: var(--font-display);
-        font-size: 19px;
-        letter-spacing: 1px;
-        color: var(--text);
-      }
-      .options-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-        padding-left: 60px;
-      }
-      .opt-card {
-        border: 1px solid var(--border);
-        border-radius: 4px;
-        padding: 12px 14px;
-        cursor: pointer;
-        transition: all 0.18s;
-        background: var(--surface);
-        position: relative;
-        display: flex;
-        align-items: flex-start;
-        gap: 10px;
-      }
-      .opt-card:hover {
-        border-color: var(--accent2);
-        background: var(--surface2);
-      }
-      .opt-card.selected {
-        border-color: var(--accent);
-        background: rgba(200, 180, 130, 0.07);
-      }
-      .opt-card.selected::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--accent);
-        border-radius: 4px 4px 0 0;
-      }
-      .opt-letter {
-        font-family: var(--font-display);
-        font-size: 22px;
-        color: var(--border);
-        line-height: 1;
-        min-width: 18px;
-        transition: color 0.2s;
-      }
-      .opt-card.selected .opt-letter,
-      .opt-card:hover .opt-letter {
-        color: var(--accent);
-      }
-      .opt-text {
-        font-size: 12.5px;
+        font-family: var(--font-body);
+        font-size: 15px;
         color: var(--text);
         line-height: 1.55;
-        padding-top: 2px;
+      }
+      /* LIKERT SCALE */
+      .likert-wrap {
+        padding-left: 56px;
+      }
+      .likert-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 6px;
+      }
+      .likert-label {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 1px;
+        color: var(--muted);
+        text-transform: uppercase;
+        max-width: 90px;
+        text-align: center;
+      }
+      .likert-label:first-child {
+        text-align: left;
+      }
+      .likert-label:last-child {
+        text-align: right;
+      }
+      .likert-options {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+      .likert-btn {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid var(--border);
+        border-radius: 50%;
+        background: var(--surface);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--muted);
+        transition: all 0.18s;
+        flex-shrink: 0;
+      }
+      .likert-btn:hover {
+        border-color: var(--accent2);
+        color: var(--accent2);
+        background: rgba(181, 137, 30, 0.06);
+      }
+      .likert-btn.selected {
+        border-color: var(--accent);
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .likert-divider {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
       }
       .cta-bar {
         padding: 24px 40px;
@@ -1232,12 +1210,12 @@
       }
       .ans-q-row {
         display: grid;
-        grid-template-columns: 22px 1fr 1fr;
+        grid-template-columns: 28px 1fr 60px;
         gap: 10px;
         padding: 8px 0;
         border-bottom: 1px solid var(--border);
         font-size: 12.5px;
-        align-items: start;
+        align-items: center;
       }
       .ans-q-row:last-child {
         border-bottom: none;
@@ -1252,11 +1230,11 @@
         color: var(--text);
         line-height: 1.5;
       }
-      .ans-q-situation {
-        color: var(--muted);
-        font-size: 11.5px;
-        line-height: 1.5;
-        font-style: italic;
+      .ans-q-val {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--accent);
+        text-align: right;
       }
       .print-bar {
         padding: 20px 40px;
@@ -1270,9 +1248,10 @@
         font-size: 11.5px;
         color: var(--muted);
       }
+      /* SGM RADAR HEX */
       .sig-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 10px;
         margin-top: 16px;
       }
@@ -1495,13 +1474,12 @@
           padding: 11px 20px;
         }
         .q-block {
-          padding: 22px 20px;
+          padding: 18px 20px;
         }
         .attr-section-header {
           padding: 11px 20px 8px;
         }
-        .options-grid {
-          grid-template-columns: 1fr;
+        .likert-wrap {
           padding-left: 0;
         }
         .cta-bar {
@@ -1542,11 +1520,11 @@
         .lib-sw-row {
           grid-template-columns: 1fr;
         }
-        .ans-q-row {
-          grid-template-columns: 20px 1fr;
+        .sig-grid {
+          grid-template-columns: repeat(2, 1fr);
         }
-        .ans-q-situation {
-          display: none;
+        .ans-q-row {
+          grid-template-columns: 24px 1fr 40px;
         }
       }
       @media print {
@@ -1566,7 +1544,6 @@
           display: none !important;
         }
       }
-
       .result-img-wrap {
         width: 100%;
         max-width: 340px;
@@ -1593,6 +1570,94 @@
         height: 100%;
         object-fit: cover;
         object-position: top center;
+      }
+      /* SGM axis badge */
+      .sgm-axis-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(138, 106, 31, 0.08);
+        border: 1px solid rgba(181, 137, 30, 0.25);
+        border-radius: 3px;
+        padding: 3px 9px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 2px;
+      }
+      .sgm-frame {
+        background: rgba(138, 106, 31, 0.04);
+        border: 1px solid rgba(181, 137, 30, 0.2);
+        border-radius: 6px;
+        padding: 18px 20px;
+        margin-bottom: 20px;
+      }
+      .sgm-frame-title {
+        font-family: var(--font-mono);
+        font-size: 9px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--accent2);
+        margin-bottom: 10px;
+      }
+      .sgm-consistency {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: var(--muted);
+      }
+
+      /* MC OPTIONS */
+      .mc-options {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-left: 56px;
+        padding-right: 24px;
+      }
+      .mc-option {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+        border: 1.5px solid var(--border);
+        border-radius: 4px;
+        background: var(--surface);
+        cursor: pointer;
+        text-align: left;
+        transition: all 0.18s;
+      }
+      .mc-option:hover {
+        border-color: var(--accent2);
+        background: rgba(181, 137, 30, 0.04);
+      }
+      .mc-option.selected {
+        border-color: var(--accent);
+        background: rgba(138, 106, 31, 0.08);
+      }
+      .mc-label {
+        font-family: var(--font-display);
+        font-size: 18px;
+        color: var(--accent2);
+        line-height: 1;
+        min-width: 22px;
+        flex-shrink: 0;
+        padding-top: 1px;
+      }
+      .mc-option.selected .mc-label {
+        color: var(--accent);
+      }
+      .mc-text {
+        font-size: 13.5px;
+        color: var(--text);
+        line-height: 1.55;
+      }
+      @media (max-width: 700px) {
+        .mc-options {
+          padding-left: 0;
+          padding-right: 0;
+        }
       }
     </style>
   </head>
@@ -1635,7 +1700,7 @@
     <!-- HOME -->
     <div id="page-home" class="page active">
       <div class="header-label">
-        4 Sportarten · Situationsbasiert · Detaillierte Analyse
+        4 Sportarten · SGM-V2 · Detaillierte Analyse
       </div>
       <h1
         style="
@@ -1672,11 +1737,12 @@
         </div>
         <div class="sport-card" data-emoji="🥋" onclick="showPage('bjj')">
           <div class="sport-card-tag">
-            8 Archetypen · 17 Fragen · No-Gi Elite
+            12 Archetypen · 24 Situationsfragen · SGM-V2
           </div>
           <h2>BJJ</h2>
           <p>
-            5 Achsen · 4 Meta-Signaturen · strukturelle Entscheidungsanalyse.
+            6 Achsen (PCO · FAM · INS · ATC · CTV · TRV) · Hexagon-Radar ·
+            Strukturelle Matchup-Analyse.
           </p>
           <div class="sport-card-btn">TEST STARTEN</div>
         </div>
@@ -1830,24 +1896,25 @@
       <div id="test-bjj" class="test-page-inner active">
         <div class="test-header" data-emoji="🥋">
           <div class="header-label">
-            No-Gi BJJ Elite · 5 Achsen · 17 Fragen · 8 Archetypen
+            No-Gi BJJ · SGM-V2 · 6 Achsen · 36 Items · 12 Archetypen
           </div>
           <h1>BJJ<span>STIL</span></h1>
           <p>
-            17 Situationsfragen. 5 Achsen + 4 Meta-Signaturen. 8
-            No-Gi-Archetypen. Jede Frage zwingt zu einem echten Opfer.
+            Structural Grappling Model V2 — sechsdimensionaler Vektorraum. Jede
+            Aussage wähle jeweils die Option die am besten zu deinem Spiel
+            passt.
           </p>
         </div>
         <div class="progress-bar-wrap">
           <div class="progress-track">
             <div class="progress-fill" id="pf-bjj" style="width: 0%"></div>
           </div>
-          <div class="progress-text" id="pt-bjj">0 / 17</div>
+          <div class="progress-text" id="pt-bjj">0 / 24</div>
         </div>
         <div id="quiz-bjj">
           <div class="questions-section"><div id="qc-bjj"></div></div>
           <div class="cta-bar">
-            <div class="cta-info" id="ci-bjj">Beantworte alle 17 Fragen.</div>
+            <div class="cta-info" id="ci-bjj">Beantworte alle 24 Fragen.</div>
             <button
               class="btn-primary"
               id="bs-bjj"
@@ -1865,14 +1932,14 @@
             <div id="dd-bjj"></div>
             <div class="sw-grid" id="sw-bjj"></div>
             <div style="margin-top: 24px">
-              <div class="panel-title">NO-GI META-SIGNATUREN</div>
+              <div class="panel-title">SGM-V2 PROFIL – 6 ACHSEN</div>
               <div class="sig-grid" id="sig-bjj"></div>
             </div>
           </div>
           <div class="results-grid">
             <div class="result-panel">
-              <div class="panel-title">PROFIL-RADAR (5 ACHSEN)</div>
-              <canvas id="radar-bjj" width="380" height="360"></canvas>
+              <div class="panel-title">HEXAGON-RADAR (SGM-V2)</div>
+              <canvas id="radar-bjj" width="380" height="380"></canvas>
               <div style="margin-top: 18px">
                 <div class="panel-title">ARCHETYPEN-VERTEILUNG</div>
                 <div class="arch-dist-wrap" id="arch-dist-bjj"></div>
@@ -1886,7 +1953,7 @@
                 <ul class="training-list" id="ap-bjj"></ul>
               </div>
               <div style="margin-top: 16px">
-                <div class="panel-title">HINWEISE</div>
+                <div class="panel-title">SGM ANALYSE-HINWEISE</div>
                 <div id="notes-bjj"></div>
               </div>
             </div>
@@ -2071,14 +2138,19 @@
         "Boxer-Puncher": "boxer_puncher",
         Swarmer: "swarmer",
         Slugger: "slugger",
-        Octopus: "octopus",
-        Gorilla: "gorilla",
-        Crocodile: "crocodile",
-        "Black Panther": "black_panther",
-        Viper: "viper",
-        Spider: "spider",
-        Anaconda: "anaconda",
-        Mantis: "mantis",
+        "Pressure Bodylock Passer": "pressure_bodylock_passer",
+        "Wrestle-to-Top Controller": "wrestle_top_controller",
+        "Positional Patience Finisher": "positional_patience_finisher",
+        "Defensive Neutralizer": "defensive_neutralizer",
+        "Front Headlock Finisher": "front_headlock_finisher",
+        "Rotational Back-Take Specialist": "rotational_back_take",
+        "Transitional Scramble Opportunist":
+          "transitional_scramble_opportunist",
+        "Dynamic Outside Guard Retainer": "dynamic_outside_guard",
+        "Wrestle-Up Guard Player": "wrestle_up_guard_player",
+        "Leg-Lock Inside-Saddle Hunter": "leg_lock_inside_saddle",
+        "Leg-to-Top Converter": "leg_to_top_converter",
+        "Tempo Controller": "tempo_controller",
         "Wrestle-Pressure Controller": "wrestle_pressure_controller",
         "Elite Counter-Striker": "elite_counter_striker",
         "Pressure Striker": "pressure_striker",
@@ -2134,55 +2206,1259 @@
       }
 
       // ═══════════════════════════════════════════════════════════
-      // ████  BJJ ENGINE – ELITE 17-FRAGEN VERSION  ████
+      // ████  BJJ SGM-V2 ENGINE  ████
+      // Structural Grappling Model – 6D vector space
+      // PCO · FAM · INS · ATC · CTV · TRV
       // ═══════════════════════════════════════════════════════════
 
-      // --- Archetypes ---
+      const SGM_AXES = [
+        {
+          key: "PCO",
+          label: "Positional Control Orientation",
+          desc: "0 = Guard/Bottom-System · 100 = Top-Controller/Wrestler",
+          color: "#5B99C2",
+        },
+        {
+          key: "FAM",
+          label: "Force Application Mode",
+          desc: "0 = Mobil/Winkel-orientiert · 100 = Flattening/Pin-System",
+          color: "#8B5E3C",
+        },
+        {
+          key: "INS",
+          label: "Initiative Structure",
+          desc: "0 = Reaktiv/Counter · 100 = Initiativ/Sequenzen erzwingen",
+          color: "#2E7D32",
+        },
+        {
+          key: "ATC",
+          label: "Attack Commitment",
+          desc: "0 = Position first/Kontrolle · 100 = Permanenter Submission-Angriff",
+          color: "#C0392B",
+        },
+        {
+          key: "CTV",
+          label: "Control Target Vector",
+          desc: "0 = Upper-Body/Kopf-Arm · 100 = Leg-System/Knee-Line",
+          color: "#7B2D8B",
+        },
+        {
+          key: "TRV",
+          label: "Transitional Volatility",
+          desc: "0 = Statisch/Pin-orientiert · 100 = Back-Hunter/Scrambler",
+          color: "#D4A574",
+        },
+      ];
+
+      // SGM-V2: 4 items per axis = 24 items total
+      // Each item is rated 1–5 (Stimme gar nicht zu → Stimme voll zu)
+      // Negative items are marked reversed:true and automatically inverted in scoring
+      const BJJ_SGM_MC_QUESTIONS = [
+        // ─── TEIL I: NEUTRAL / ENTRY ────────────────────────────────────────────
+        {
+          id: 1,
+          section: "NEUTRAL / ENTRY",
+          text: "Neutral im Handfight. Beide stehen. Was ist dein Default?",
+          options: [
+            {
+              label: "A",
+              text: "Ich baue Underhooks/Bodylock auf.",
+              axes: { PCO: +2, FAM: +2, BODYLOCK: +2 },
+            },
+            {
+              label: "B",
+              text: "Ich suche Snapdowns/Head-Control.",
+              axes: { INS: +2, FHL: +2 },
+            },
+            {
+              label: "C",
+              text: "Ich suche direkt Level-Change / Shot.",
+              axes: { INS: +3, WRESTLEUP: +2 },
+            },
+            {
+              label: "D",
+              text: "Ich ziehe Guard in mein System.",
+              axes: { PCO: -2, CTV: +2 },
+            },
+          ],
+        },
+        {
+          id: 2,
+          section: "NEUTRAL / ENTRY",
+          text: "Gegner schießt einen Single Leg auf dich. Dein Reflex?",
+          options: [
+            {
+              label: "A",
+              text: "Sprawl → Front Headlock aufbauen.",
+              axes: { FHL: +3, INS: +1 },
+            },
+            {
+              label: "B",
+              text: "Sprawl → Back Take über Rotation.",
+              axes: { TRV: +3, BACKLINE: +2 },
+            },
+            {
+              label: "C",
+              text: "Scramble und erneuter Entry.",
+              axes: { TRV: +2, INS: +2 },
+            },
+            {
+              label: "D",
+              text: "Sitz-Guard/Leg-Entanglement eingehen.",
+              axes: { CTV: +3, LEG: +2 },
+            },
+          ],
+        },
+        {
+          id: 3,
+          section: "NEUTRAL / ENTRY",
+          text: "Du ziehst Guard. Was ist dein erstes Ziel?",
+          options: [
+            {
+              label: "A",
+              text: "Angle erzeugen + Leg Entry.",
+              axes: { CTV: +3, ATC: +1 },
+            },
+            {
+              label: "B",
+              text: "Wrestle-Up über Underhook aufbauen.",
+              axes: { PCO: +2, WRESTLEUP: +3 },
+            },
+            {
+              label: "C",
+              text: "Arm Drag → Back Exposure erzwingen.",
+              axes: { TRV: +2, BACKLINE: +2 },
+            },
+            {
+              label: "D",
+              text: "Retention + Abwarten.",
+              axes: { TRV: -1, ATC: -2 },
+            },
+          ],
+        },
+        {
+          id: 4,
+          section: "NEUTRAL / ENTRY",
+          text: "Du hast Clinch-Kontakt, beide sind auf Knien. Was priorisierst du?",
+          options: [
+            {
+              label: "A",
+              text: "Bodylock – Hüfte kontrollieren und flachen.",
+              axes: { FAM: +3, BODYLOCK: +3 },
+            },
+            {
+              label: "B",
+              text: "Snapdown → Kopfkontrolle erzwingen.",
+              axes: { INS: +2, FHL: +2 },
+            },
+            {
+              label: "C",
+              text: "Turtle-Trap / Backtake-Sequenz.",
+              axes: { TRV: +2, BACKLINE: +3 },
+            },
+            {
+              label: "D",
+              text: "Guard-Zug in Leg-Entanglement.",
+              axes: { CTV: +3, LEG: +2 },
+            },
+          ],
+        },
+
+        // ─── TEIL II: GUARD VS PASSING ─────────────────────────────────────────
+        {
+          id: 5,
+          section: "GUARD VS PASSING",
+          text: "Du stehst vor einer offenen Guard. Default-Strategie?",
+          options: [
+            {
+              label: "A",
+              text: "Bodylock / Inside Control aufbauen.",
+              axes: { FAM: +3, BODYLOCK: +3 },
+            },
+            {
+              label: "B",
+              text: "Distance Passing / Leg Drag.",
+              axes: { TRV: +1, CTV: -1 },
+            },
+            {
+              label: "C",
+              text: "Leg Pummel → Leg Entry.",
+              axes: { CTV: +3, ATC: +1 },
+            },
+            {
+              label: "D",
+              text: "Force Half Guard + Pressure.",
+              axes: { FAM: +2, PIN: +3 },
+            },
+          ],
+        },
+        {
+          id: 6,
+          section: "GUARD VS PASSING",
+          text: "Du kommst in Half Guard Top. Was priorisierst du?",
+          options: [
+            {
+              label: "A",
+              text: "Crossface + Underhook → flach halten.",
+              axes: { FAM: +3, PIN: +3 },
+            },
+            {
+              label: "B",
+              text: "Backstep → Saddle/Leg-Entanglement.",
+              axes: { CTV: +3, LEG: +3 },
+            },
+            {
+              label: "C",
+              text: "Knee Cut mit Tempo vorantreiben.",
+              axes: { INS: +2, TRV: +1 },
+            },
+            {
+              label: "D",
+              text: "Stehen bleiben + neu öffnen.",
+              axes: { TRV: -1, FAM: -1 },
+            },
+          ],
+        },
+        {
+          id: 7,
+          section: "GUARD VS PASSING",
+          text: "Du wirst gepasst – Gegner ist kurz vor Side Control. Dein Default?",
+          options: [
+            {
+              label: "A",
+              text: "Frame setzen + Retention/Reguard.",
+              axes: { TRV: +1, CTV: +1 },
+            },
+            {
+              label: "B",
+              text: "Leg-Entanglement beim Passversuch anbieten.",
+              axes: { CTV: +3, ATC: +2 },
+            },
+            {
+              label: "C",
+              text: "Turtle → Back Defense → Scramble.",
+              axes: { TRV: +3, BACKLINE: +2 },
+            },
+            {
+              label: "D",
+              text: "Sit-Up → Wrestle-Up aufbauen.",
+              axes: { INS: +2, WRESTLEUP: +3 },
+            },
+          ],
+        },
+        {
+          id: 8,
+          section: "GUARD VS PASSING",
+          text: "Du spielst Guard, Gegner presst schwer. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Frames halten, Distanz wiederherstellen.",
+              axes: { FAM: -2, TRV: -1 },
+            },
+            {
+              label: "B",
+              text: "Leg Entry unter dem Druck heraus erzwingen.",
+              axes: { CTV: +3, ATC: +2 },
+            },
+            {
+              label: "C",
+              text: "Hip Escape + Re-Guard.",
+              axes: { TRV: +1, PCO: -1 },
+            },
+            {
+              label: "D",
+              text: "Wrestle-Up über Underhook / Single.",
+              axes: { PCO: +2, WRESTLEUP: +3 },
+            },
+          ],
+        },
+
+        // ─── TEIL III: SUBMISSION-ENTSCHEIDUNGEN ───────────────────────────────
+        {
+          id: 9,
+          section: "SUBMISSION-ENTSCHEIDUNG",
+          text: "Du hast Mount. Was ist dein Default?",
+          options: [
+            {
+              label: "A",
+              text: "Stabilisieren → isolieren → kontrolliert finishen.",
+              axes: { ATC: -1, FAM: +2 },
+            },
+            {
+              label: "B",
+              text: "Direkt Armbar/Submission-Chain angreifen.",
+              axes: { ATC: +3 },
+            },
+            {
+              label: "C",
+              text: "Back Exposure erzwingen → Backtake.",
+              axes: { TRV: +2, BACKLINE: +2 },
+            },
+            {
+              label: "D",
+              text: "High Mount → maximales Risiko akzeptieren.",
+              axes: { ATC: +3, TRV: +1 },
+            },
+          ],
+        },
+        {
+          id: 10,
+          section: "SUBMISSION-ENTSCHEIDUNG",
+          text: "Du bist in einer Leg-Entanglement-Situation, Gegner verteidigt hart. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Re-Attack auf dieselbe Lane.",
+              axes: { ATC: +3 },
+            },
+            {
+              label: "B",
+              text: "Sweep → oben stabilisieren.",
+              axes: { PCO: +2, FAM: +1 },
+            },
+            {
+              label: "C",
+              text: "Transition zu anderem Leg-Entanglement.",
+              axes: { TRV: +2, CTV: +2 },
+            },
+            {
+              label: "D",
+              text: "Abbrechen, Position neu aufbauen.",
+              axes: { ATC: -2 },
+            },
+          ],
+        },
+        {
+          id: 11,
+          section: "SUBMISSION-ENTSCHEIDUNG",
+          text: "Du bist in Side Control Top. Eine Submission-Chance öffnet sich – aber du riskierst Position. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Ich nehme die Submission-Chance, Risiko egal.",
+              axes: { ATC: +3 },
+            },
+            {
+              label: "B",
+              text: "Ich verbessere erst auf Mount/Back, dann angreifen.",
+              axes: { ATC: -1, PCO: +2 },
+            },
+            {
+              label: "C",
+              text: "Ich attackiere und akzeptiere den möglichen Scramble.",
+              axes: { ATC: +2, TRV: +1 },
+            },
+            {
+              label: "D",
+              text: "Ich halte Position und warte auf bessere Chance.",
+              axes: { ATC: -2, FAM: +1 },
+            },
+          ],
+        },
+        {
+          id: 12,
+          section: "SUBMISSION-ENTSCHEIDUNG",
+          text: "Du hast Front Headlock Kontrolle. Was ist dein Ziel?",
+          options: [
+            {
+              label: "A",
+              text: "Direkt Guillotine/D'Arce/Anaconda finishen.",
+              axes: { FHL: +3, ATC: +2 },
+            },
+            {
+              label: "B",
+              text: "Front Headlock als Pass-Tool nutzen.",
+              axes: { FHL: +2, PCO: +2 },
+            },
+            {
+              label: "C",
+              text: "Back Take über Rotation erzwingen.",
+              axes: { FHL: +2, BACKLINE: +2, TRV: +1 },
+            },
+            {
+              label: "D",
+              text: "Ich halte Kontrolle und warte auf Fehler.",
+              axes: { INS: -1, ATC: -1 },
+            },
+          ],
+        },
+
+        // ─── TEIL IV: TRANSITION & SCRAMBLE ───────────────────────────────────
+        {
+          id: 13,
+          section: "TRANSITION & SCRAMBLE",
+          text: "Eine Position bricht auf – Scramble entsteht. Was machst du?",
+          options: [
+            {
+              label: "A",
+              text: "Sofort stabilisieren, Kontrolle wiederherstellen.",
+              axes: { TRV: -2, FAM: +1 },
+            },
+            {
+              label: "B",
+              text: "Bewusst in die Transition gehen.",
+              axes: { TRV: +3 },
+            },
+            {
+              label: "C",
+              text: "Rücken/Turtle suchen.",
+              axes: { BACKLINE: +3, TRV: +2 },
+            },
+            {
+              label: "D",
+              text: "Komplett resetten, neutral stehen.",
+              axes: { INS: -2 },
+            },
+          ],
+        },
+        {
+          id: 14,
+          section: "TRANSITION & SCRAMBLE",
+          text: "Du verlierst deinen Underhook. Dein Reflex?",
+          options: [
+            {
+              label: "A",
+              text: "Frame setzen + Underhook neu aufbauen.",
+              axes: { TRV: -1, FAM: +1 },
+            },
+            {
+              label: "B",
+              text: "Invertieren / ins Leg-System.",
+              axes: { CTV: +2, TRV: +2 },
+            },
+            {
+              label: "C",
+              text: "Aggressiver Scramble für bessere Position.",
+              axes: { TRV: +3, INS: +1 },
+            },
+            {
+              label: "D",
+              text: "Guard Pull zurück in mein System.",
+              axes: { PCO: -2 },
+            },
+          ],
+        },
+        {
+          id: 15,
+          section: "TRANSITION & SCRAMBLE",
+          text: "Gegner macht dich beim Passversuch locker – du könntest Rücken nehmen oder reinkämpfen. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Rücken nehmen – Back Control ist das Ziel.",
+              axes: { BACKLINE: +3, TRV: +2 },
+            },
+            {
+              label: "B",
+              text: "Wieder in stabile Top-Kontrolle kämpfen.",
+              axes: { PCO: +2, FAM: +1 },
+            },
+            {
+              label: "C",
+              text: "Transition nutzen, Leg-Entanglement eingehen.",
+              axes: { CTV: +3, TRV: +1 },
+            },
+            {
+              label: "D",
+              text: "Neutral resetten, kein unnötiges Risiko.",
+              axes: { TRV: -2, INS: -1 },
+            },
+          ],
+        },
+        {
+          id: 16,
+          section: "TRANSITION & SCRAMBLE",
+          text: "Gegner versucht auf Turtle zu rollen/fliehen. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Direkt Back Control erzwingen (Harness/Hooks).",
+              axes: { BACKLINE: +3, TRV: +1 },
+            },
+            {
+              label: "B",
+              text: "Turtle-Trap: draufsitzen + Unterhaken/D'Arce.",
+              axes: { FHL: +2, PIN: +2 },
+            },
+            {
+              label: "C",
+              text: "Leg Entry beim Turtle-Roll anbieten.",
+              axes: { CTV: +3, LEG: +2 },
+            },
+            {
+              label: "D",
+              text: "Reset – oben bleiben und neu aufbauen.",
+              axes: { PCO: +1, TRV: -1 },
+            },
+          ],
+        },
+
+        // ─── TEIL V: MODUL-SPEZIFISCH ──────────────────────────────────────────
+        {
+          id: 17,
+          section: "LEG-SYSTEM",
+          text: "Du bist in Inside Sankaku (Inside Saddle). Gegner verteidigt die Ferse hart. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Finishing-Mechanik erzwingen – Position halten.",
+              axes: { LEG: +3, ATC: +2 },
+            },
+            {
+              label: "B",
+              text: "Übergang zu außen / 50/50.",
+              axes: { LEG: +2, TRV: +2, CTV: +1 },
+            },
+            {
+              label: "C",
+              text: "Sweep-Mechanik → oben stabilisieren.",
+              axes: { PCO: +2, LEG: +1 },
+            },
+            {
+              label: "D",
+              text: "Abbrechen, Risiko zu hoch.",
+              axes: { ATC: -2, LEG: -1 },
+            },
+          ],
+        },
+        {
+          id: 18,
+          section: "LEG-SYSTEM",
+          text: "Wie oft beendest du Sparrings/Kämpfe über Heel Hooks oder Knee-Line-Mechaniken?",
+          options: [
+            {
+              label: "A",
+              text: "Sehr oft – mein primärer Finish-Pfad.",
+              axes: { CTV: +3, LEG: +3, ATC: +1 },
+            },
+            {
+              label: "B",
+              text: "Manchmal – ich nutze sie aber nicht als primäres System.",
+              axes: { CTV: +1, LEG: +1 },
+            },
+            {
+              label: "C",
+              text: "Selten – eher als Backup.",
+              axes: { CTV: -1 },
+            },
+            {
+              label: "D",
+              text: "Fast nie – ich fokussiere Upper-Body.",
+              axes: { CTV: -2, LEG: -2 },
+            },
+          ],
+        },
+
+        // ─── FHL-MODUL ─────────────────────────────────────────────────────────
+        {
+          id: 19,
+          section: "FRONT HEADLOCK",
+          text: "Dein Gegner kommt auf dich zu, du kriegst kurz seine Kopf-/Nackenkontrolle. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Snapdown erzwingen → Front Headlock Control.",
+              axes: { FHL: +3, INS: +2 },
+            },
+            {
+              label: "B",
+              text: "Direkt D'Arce/Guillotine-Setup einleiten.",
+              axes: { FHL: +3, ATC: +2 },
+            },
+            {
+              label: "C",
+              text: "Back Take über die Schulter initiieren.",
+              axes: { FHL: +1, BACKLINE: +2, TRV: +2 },
+            },
+            {
+              label: "D",
+              text: "Ich nutze die Chance nicht aktiv.",
+              axes: { FHL: -2, INS: -1 },
+            },
+          ],
+        },
+        {
+          id: 20,
+          section: "FRONT HEADLOCK",
+          text: "Wie häufig gewinnst du aus Snapdown/Front-Headlock-Sequenzen?",
+          options: [
+            {
+              label: "A",
+              text: "Sehr oft – mein stärkster Entry.",
+              axes: { FHL: +3, INS: +2 },
+            },
+            {
+              label: "B",
+              text: "Regelmäßig – aber nicht dominant.",
+              axes: { FHL: +1 },
+            },
+            {
+              label: "C",
+              text: "Selten – kein gezieltes System.",
+              axes: { FHL: -1 },
+            },
+            {
+              label: "D",
+              text: "Fast nie – liegt mir nicht.",
+              axes: { FHL: -2, INS: -1 },
+            },
+          ],
+        },
+
+        // ─── PIN-MODUL ─────────────────────────────────────────────────────────
+        {
+          id: 21,
+          section: "PIN & KONTROLLE",
+          text: "Du hast Side Control – Gegner kämpft stark auf Reguard. Was tust du?",
+          options: [
+            {
+              label: "A",
+              text: "Crossface + Underhook – ich habe ihn flach.",
+              axes: { FAM: +3, PIN: +3 },
+            },
+            {
+              label: "B",
+              text: "Ich gebe Reguard frei und passe erneut.",
+              axes: { INS: +1, TRV: +1 },
+            },
+            {
+              label: "C",
+              text: "Submission-Chance nutzen und Position opfern.",
+              axes: { ATC: +2, TRV: +1 },
+            },
+            {
+              label: "D",
+              text: "Knee-on-belly als Drucktool.",
+              axes: { FAM: +2, PIN: +1 },
+            },
+          ],
+        },
+        {
+          id: 22,
+          section: "PIN & KONTROLLE",
+          text: "Wie häufig hältst du Gegner flach und verhinderst Reguards?",
+          options: [
+            {
+              label: "A",
+              text: "Sehr oft – Flattening ist mein primäres Tool.",
+              axes: { FAM: +3, PIN: +3 },
+            },
+            {
+              label: "B",
+              text: "Regelmäßig, aber Gegner entkommen manchmal.",
+              axes: { FAM: +1, PIN: +1 },
+            },
+            {
+              label: "C",
+              text: "Selten – ich priorisiere eher Submissions.",
+              axes: { FAM: -1, ATC: +1 },
+            },
+            {
+              label: "D",
+              text: "Fast nie – ich nutze keinen Flatten-Ansatz.",
+              axes: { FAM: -2, PIN: -2 },
+            },
+          ],
+        },
+
+        // ─── WRESTLE-UP-MODUL ──────────────────────────────────────────────────
+        {
+          id: 23,
+          section: "WRESTLE-UP",
+          text: "Du liegst unten in Side Control. Gegner ist schwer. Was machst du?",
+          options: [
+            {
+              label: "A",
+              text: "Wrestle-Up über Underhook/Single aufbauen.",
+              axes: { WRESTLEUP: +3, PCO: +2 },
+            },
+            {
+              label: "B",
+              text: "Reguard → Leg Entry aufbauen.",
+              axes: { CTV: +2, ATC: +1 },
+            },
+            {
+              label: "C",
+              text: "Back-Defense / Turtle für Scramble.",
+              axes: { TRV: +2, BACKLINE: +1 },
+            },
+            {
+              label: "D",
+              text: "Warten und Frame halten.",
+              axes: { INS: -1, TRV: -1 },
+            },
+          ],
+        },
+        {
+          id: 24,
+          section: "WRESTLE-UP",
+          text: "Wie oft baust du aus Guard heraus erfolgreich Singles/Stand-Ups?",
+          options: [
+            {
+              label: "A",
+              text: "Sehr oft – mein Standard-Escape.",
+              axes: { WRESTLEUP: +3, PCO: +2 },
+            },
+            {
+              label: "B",
+              text: "Manchmal – wenn die Chance da ist.",
+              axes: { WRESTLEUP: +1 },
+            },
+            {
+              label: "C",
+              text: "Selten – liegt mir nicht.",
+              axes: { WRESTLEUP: -1 },
+            },
+            {
+              label: "D",
+              text: "Fast nie – ich priorisiere Guard-Retention.",
+              axes: { WRESTLEUP: -2, PCO: -2 },
+            },
+          ],
+        },
+      ];
+
+      const BJJ_TOTAL_SGM = BJJ_SGM_MC_QUESTIONS.length;
+
+      // ── SGM-V2 Archetypes: centroids in 6D space (PCO, FAM, INS, ATC, CTV, TRV) ──
       const BJJ_ARCHETYPES = {
-        OCTOPUS: {
-          id: "OCTOPUS",
-          label: "Octopus",
-          emoji: "🐙",
-          archetypeName: "Dynamic Outside Guard Player / Guard Pull Strategist",
+        PBP: {
+          id: "PBP",
+          emoji: "💪",
+          label: "Pressure Bodylock Passer",
+          archetypeName: "Bodylock/Inside Passing → Pin-Kontrolle",
           oneLiner:
-            "Bottom-Kontrolle über Distanz, Frames und Winkel – Sweep-First statt 'Guard halten'.",
+            "Systemische Erschöpfung durch Körpergewicht – wer flach liegt, verliert.",
+          subArchetypes: [
+            "Bodylock Clincher",
+            "Half Guard Smasher",
+            "Leg Pummel to Chest",
+          ],
+          centroid: { PCO: 92, FAM: 95, INS: 70, ATC: 40, CTV: 20, TRV: 20 },
+          modules: {
+            FHL: 0.3,
+            LEG: 0.1,
+            BODYLOCK: 1.0,
+            WRESTLEUP: 0.4,
+            BACKLINE: 0.4,
+            PIN: 1.0,
+          },
+          color: "#8B4513",
+          theory:
+            "Der Pressure Bodylock Passer gewinnt durch Struktur und Gewicht. Sein Passing-System läuft über Bodylock-Verbindungen, Leg-Pummel und Inside-Kontrolle zur Chest-to-Chest-Verbindung. Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen. Position First – Submissions entstehen aus der Positionsdominanz heraus.",
+          longdesc: [
+            "Der Pressure Bodylock Passer macht seinen Kampfstil über Nähe und Gewicht. Underhook-Battles, Bodylock-Clinch, Half Guard Smash – jede Phase zielt auf die gleiche Kontrolle: chest-to-chest, Schulter runter, Crossface.",
+            "Sein Passing ist nicht über Speed sondern über sequentielle Überlastung. Jeder Versuch kostet den Gegner Energie. Flattening ist kein Mittel – es ist das Ziel.",
+            "Schwachpunkt: Beinexposition bei frühen Passphasen. Viper-Typen können seine Passschritte direkt angreifen.",
+          ],
+          strengths: [
+            "Zerstört Bewegungsfreiheit systematisch",
+            "Wenig eigene Submission-Exposition",
+            "Strukturell schwer zu sweepen",
+            "Kontrolliert Guard-Spieler durch Druck",
+            "Pins als Fundament für Submissions",
+          ],
+          weaknesses: [
+            "Bein-Exposition bei Pass-Schritten",
+            "Zu viel Rotation öffnet Back-Takes",
+            "Gegen aktive Outside-Guards frustrierend",
+            "Submission-Initiative gering",
+          ],
+          winConditions: [
+            "Bodylock/Inside-Position halten",
+            "Flattening/Crossface erzwingen",
+            "Pass-Chain ohne Leg-Exposition",
+          ],
+          antiPatterns: [
+            "Step-Passing ohne Leg-Awareness",
+            "Pins lösen um 'mehr' zu holen",
+            "Zu viel Rotation beim Pass",
+          ],
+          boxers: [
+            "Bernardo Faria",
+            "Marcus 'Buchecha' Almeida",
+            "Roberto Cyborg",
+          ],
+          matchup:
+            "Stark gegen Guard-Spieler und Submission-Chains (Druck stoppt Frames). Schwierig gegen Leg-Lock-Systeme (Bein-Exposition) und Back-Take-Spezialisten (Rotationen).",
+          matchupVs: {
+            WTC: "adv",
+            PPF: "even",
+            DN: "adv",
+            FHF: "dis",
+            RBTS: "dis",
+            TSO: "even",
+            DOGR: "adv",
+            WUGP: "even",
+            LIH: "dis",
+            LTC: "dis",
+            TC: "even",
+          },
+        },
+        WTC: {
+          id: "WTC",
+          emoji: "🤼",
+          label: "Wrestle-to-Top Controller",
+          archetypeName: "Takedown → Top-Stabilisierung → Ride/Points",
+          oneLiner:
+            "Ort und Tempo dominieren – Takedown-Chain, Ride, langsame Unterwerfung.",
+          subArchetypes: [
+            "Single/Double Chain",
+            "High-Crotch Specialist",
+            "Snap-to-Go-Behind",
+          ],
+          centroid: { PCO: 95, FAM: 75, INS: 92, ATC: 30, CTV: 30, TRV: 35 },
+          modules: {
+            FHL: 0.4,
+            LEG: 0.2,
+            BODYLOCK: 0.7,
+            WRESTLEUP: 1.0,
+            BACKLINE: 0.5,
+            PIN: 0.7,
+          },
+          color: "#5D4037",
+          theory:
+            "Der Wrestle-to-Top Controller entscheidet den Kampf im Stand: wer den Takedown gewinnt, kontrolliert den Ort. Single/Double-Chains, High-Crotch, Snap-to-Go-Behind sind seine Primärwerkzeuge. Am Boden: pin, ride, dominieren – Submissions entstehen wenn der Gegner Fehler macht.",
+          longdesc: [
+            "Der Wrestle-to-Top Controller macht seinen Kampfstil über Situationskontrolle: er bringt den Kampf genau dort hin wo er arbeiten will – oben. Takedown-Chains, Bodylock und Hip-Control sind seine Einstiegswerkzeuge.",
+            "Am Boden gilt: pin → pass → Positionsdominanz. Er senkt das Tempo, erhöht Druck, lässt den Gegner sich selbst erschöpfen. Submissions entstehen aus Kontrolle.",
+            "Schwachpunkt: Leg-Systeme bestrafen seine Beinexposition bei Takedown-Einsteigen direkt.",
+          ],
+          strengths: [
+            "Kontrolliert wo Kämpfe stattfinden",
+            "Systematische Positionsdominanz",
+            "Ausdauernd und strukturell robust",
+            "Submissions aus Positionsdruck",
+            "Hohe Initiative von Beginn",
+          ],
+          weaknesses: [
+            "Leg-Lock-Exposure bei Bein-Einsteigen",
+            "Front-Headlock-Gefahr bei linearen Entries",
+            "Kann gegen sehr aktive Guards frustriert werden",
+            "Submissions weniger als Submission-Spezialisten",
+          ],
+          winConditions: [
+            "Takedown-Chain diszipliniert",
+            "Top stabilisieren, Tempo senken",
+            "Rides/Handfights → Kontrolle",
+          ],
+          antiPatterns: [
+            "Zu tiefe Knie am Boden (Heel-Exposure)",
+            "Übergänge jagen statt re-pin",
+            "Lineare Entries ohne Head-Position",
+          ],
+          boxers: ["Nick Rodriguez", "Kaynan Duarte", "Kyle Dake (Grappling)"],
+          matchup:
+            "Stark gegen Guard-Spieler ohne Takedown-Defense. Schwierig gegen Leg-Lock-Hunter (Bein-Exposure) und Front-Headlock-Finisher (lineare Entries).",
+          matchupVs: {
+            PBP: "even",
+            PPF: "even",
+            DN: "adv",
+            FHF: "dis",
+            RBTS: "dis",
+            TSO: "even",
+            DOGR: "adv",
+            WUGP: "even",
+            LIH: "dis",
+            LTC: "dis",
+            TC: "dis",
+          },
+        },
+        PPF: {
+          id: "PPF",
+          emoji: "🎯",
+          label: "Positional Patience Finisher",
+          archetypeName: "Stabilisieren → Isolieren → Submission ohne Risiko",
+          oneLiner:
+            "Kaum Openings für Konter – kontrolliert arbeiten, sicher finishen.",
+          subArchetypes: [
+            "Mount Isolator",
+            "Side Control Submitter",
+            "Back Take from Top",
+          ],
+          centroid: { PCO: 85, FAM: 75, INS: 60, ATC: 65, CTV: 35, TRV: 30 },
+          modules: {
+            FHL: 0.4,
+            LEG: 0.2,
+            BODYLOCK: 0.7,
+            WRESTLEUP: 0.4,
+            BACKLINE: 0.6,
+            PIN: 1.0,
+          },
+          color: "#4E342E",
+          theory:
+            "Der Positional Patience Finisher kombiniert Positions-First-Denken mit Submission-Bereitschaft. Er wartet nicht auf Fehler – er erzwingt sie durch Kontrolle. Pin, Isolierung, Finishing-Sequenz: alles strukturiert, kaum Exposition.",
+          longdesc: [
+            "Der Positional Patience Finisher ist das strukturell vollständigste Profil im Top-Game. Er stabilisiert, isoliert und finisht – ohne rushing, ohne Exposition.",
+            "Submissions sind nie auf Kosten der Position. Wenn die Kontrolle sitzt, entstehen Finishes wie von selbst: Arm-Isolation, Back-Take aus Top, Choke aus Mount.",
+            "Schwachpunkt: sehr mobile Gegner können sein statisches Spiel neutralisieren. Leg-Lock-Systeme bieten ihm beim Einsteigen Möglichkeiten.",
+          ],
+          strengths: [
+            "Kaum Openings für Konter",
+            "Submissions aus sicherer Kontrolle",
+            "Niedrige Positions-Verlust-Rate",
+            "Strukturell robust unter Druck",
+            "Geduld als Waffe",
+          ],
+          weaknesses: [
+            "Kann von sehr mobilen Gegnern neutralisiert werden",
+            "Leg-Lock-Exposition beim Einsteigen",
+            "Langsam – gegen Zeitdruck problematisch",
+            "Weniger adaptiv bei Scrambles",
+          ],
+          winConditions: [
+            "Position first – Submission second",
+            "Isolierung erzwingen",
+            "Kontrolle halten, Fehler warten",
+          ],
+          antiPatterns: [
+            "Submission jagen auf Kosten der Position",
+            "Zu früh zur nächsten Position wechseln",
+            "Unter Zeitdruck rushing",
+          ],
+          boxers: [
+            "Gordon Ryan (Top-Game-Phase)",
+            "Marcelo Garcia",
+            "Andre Galvao",
+          ],
+          matchup:
+            "Stark gegen Scrambler und aktive Guard-Spieler ohne Submission-Defense. Schwierig gegen Leg-Lock-Hunter.",
+          matchupVs: {
+            PBP: "even",
+            WTC: "even",
+            DN: "adv",
+            FHF: "even",
+            RBTS: "dis",
+            TSO: "adv",
+            DOGR: "adv",
+            WUGP: "adv",
+            LIH: "dis",
+            LTC: "dis",
+            TC: "even",
+          },
+        },
+        DN: {
+          id: "DN",
+          emoji: "🛡",
+          label: "Defensive Neutralizer",
+          archetypeName: "Neutralisieren → Resetten → Fehler abwarten",
+          oneLiner: "Extrem schwer zu submitten – macht den Gegner mürbe.",
+          subArchetypes: [
+            "Frame/Recover Specialist",
+            "Counter-Grappler",
+            "Survival Artist",
+          ],
+          centroid: { PCO: 65, FAM: 60, INS: 30, ATC: 25, CTV: 35, TRV: 15 },
+          modules: {
+            FHL: 0.3,
+            LEG: 0.3,
+            BODYLOCK: 0.6,
+            WRESTLEUP: 0.3,
+            BACKLINE: 0.2,
+            PIN: 0.7,
+          },
+          color: "#546E7A",
+          theory:
+            "Der Defensive Neutralizer ist kein passiver Kämpfer – er ist ein Anti-System. Er macht nichts riskantes, bietet keine Openings, zwingt den Gegner zur Überstrukturierung. Wer gegen ihn angreift, macht Fehler.",
+          longdesc: [
+            "Der Defensive Neutralizer baut seinen Stil auf systematische Risikovermeidung. Frames, Recoveries, Re-Guards – er gibt keine Position kampflos auf.",
+            "Gegen jeden Angriff gibt es eine Antwort: nicht durch Submission-Gefahr sondern durch strukturelle Neutralisation. Der Gegner soll frustriert werden.",
+            "Schwachpunkt: geringe eigene Finish-Gefahr. Gegen Scoring-Systeme verliert er oft auf Punkte.",
+          ],
+          strengths: [
+            "Extrem schwer zu submitten",
+            "Strukturell robust unter jedem Druck",
+            "Baut Gegner mental ab",
+            "Niedrige eigene Exposition",
+            "Ideal als Counter-Grappler",
+          ],
+          weaknesses: [
+            "Geringe Finish-Gefahr",
+            "Verliert auf Punkte gegen aktive Scorer",
+            "Gegen Initiative-starke Gegner passiv",
+            "Submission-Chains wenig vorhanden",
+          ],
+          winConditions: [
+            "Nie exponieren",
+            "Gegner zur Überstrukturierung zwingen",
+            "Konter wenn Fehler entsteht",
+          ],
+          antiPatterns: [
+            "Zu passiv = Punkte-Verlust",
+            "Keine eigene Initiative bei Chancen",
+            "Frames zu früh aufgeben",
+          ],
+          boxers: [
+            "Romulo Barral",
+            "Jacare Souza (Defensive-Phase)",
+            "Rodolfo Vieira (Guard)",
+          ],
+          matchup:
+            "Schwierig gegen jeden der aggressiv scored. Gut gegen überaggressive Submission-Jäger.",
+          matchupVs: {
+            PBP: "dis",
+            WTC: "dis",
+            PPF: "dis",
+            FHF: "dis",
+            RBTS: "even",
+            TSO: "even",
+            DOGR: "even",
+            WUGP: "dis",
+            LIH: "even",
+            LTC: "dis",
+            TC: "dis",
+          },
+        },
+        FHF: {
+          id: "FHF",
+          emoji: "🫴",
+          label: "Front Headlock Finisher",
+          archetypeName: "Snapdown → Guillotine/D'arce → Back oder Finish",
+          oneLiner: "No-Gi Meta-Säule: jeder Entry ist eine Einladung.",
+          subArchetypes: [
+            "High-Wrist Guillotine",
+            "D'arce Chain",
+            "Snapdown Controller",
+          ],
+          centroid: { PCO: 60, FAM: 55, INS: 85, ATC: 85, CTV: 40, TRV: 65 },
+          modules: {
+            FHL: 1.0,
+            LEG: 0.2,
+            BODYLOCK: 0.4,
+            WRESTLEUP: 0.5,
+            BACKLINE: 0.7,
+            PIN: 0.6,
+          },
+          color: "#C62828",
+          theory:
+            "Der Front Headlock Finisher hat das gefährlichste No-Gi-Waffen-System: der Front Headlock als Meta-Trap. Snapdown, Sprawl, Unterhookte Entries – alles wird zu einem Eingang. High-Wrist Guillotine, D'arce, Anaconda – dreifache Submission-Optionen aus einer Kontrolle.",
+          longdesc: [
+            "Der Front Headlock Finisher wartet auf Kopf-Fehler. Takedown-Versuche, Forward-Leans, lineare Entries – er springt auf jeden dieser Momente. Snapdown → Head/Arm Control → Finish oder Back.",
+            "Was ihn auszeichnet: aus dem Front Headlock gibt es keine sichere Verteidigung wenn die Kontrolle sitzt. D'arce und Anaconda ergänzen die Guillotine perfekt.",
+            "Schwachpunkt: wer sein Head-Position-Management kennt und konsequent Innengriffe hält, gibt ihm wenig Möglichkeiten.",
+          ],
+          strengths: [
+            "No-Gi Meta-Waffe mit hohem Finish-Potential",
+            "Bestraft alle Forward-Entries",
+            "Sprawl ist gleichzeitig Defense und Offense",
+            "Psychologisch: jeder Entry ist riskant",
+            "Front Headlock als Pass/Back-Option",
+          ],
+          weaknesses: [
+            "Head-Position-Management neutralisiert ihn",
+            "Leg-Lock-Exposition bei Forward-Entries",
+            "Limitiert wenn kein FHL-Eingang entsteht",
+            "Gegen statische Kämpfer weniger effektiv",
+          ],
+          winConditions: [
+            "Snapdown/Sprawl → Head/Arm",
+            "High-Wrist oder D'arce",
+            "Finish oder Back nach Reaktion",
+          ],
+          antiPatterns: [
+            "Guillotine erzwingen ohne Control",
+            "Head-Arm verlieren und trotzdem bleiben",
+            "FHL jagen statt resetten",
+          ],
+          boxers: ["Dillon Danis", "Garry Tonon", "Neil Melanson (Coach)"],
+          matchup:
+            "Stark gegen Wrestle-to-Top Controller und Bodylock-Passer (lineare Entries). Schwierig gegen Leg-Lock-Hunter.",
+          matchupVs: {
+            PBP: "adv",
+            WTC: "adv",
+            PPF: "even",
+            DN: "adv",
+            RBTS: "even",
+            TSO: "even",
+            DOGR: "even",
+            WUGP: "adv",
+            LIH: "dis",
+            LTC: "even",
+            TC: "even",
+          },
+        },
+        RBTS: {
+          id: "RBTS",
+          emoji: "🔄",
+          label: "Rotational Back-Take Specialist",
+          archetypeName: "Rotation → Turtle-Exposure → Back → RNC",
+          oneLiner: "Sobald du drehst, bist du verloren.",
+          subArchetypes: [
+            "Turtle Attacker",
+            "Leg-Drag to Backline",
+            "Scramble Back-Hunter",
+          ],
+          centroid: { PCO: 60, FAM: 40, INS: 65, ATC: 65, CTV: 45, TRV: 95 },
+          modules: {
+            FHL: 0.6,
+            LEG: 0.2,
+            BODYLOCK: 0.3,
+            WRESTLEUP: 0.5,
+            BACKLINE: 1.0,
+            PIN: 0.3,
+          },
+          color: "#1A237E",
+          theory:
+            "Der Rotational Back-Take Specialist hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger.",
+          longdesc: [
+            "Der Rotational Back-Take Specialist macht Übergänge zu seiner Stärke. Turtle-Exposure, Leg-Drag-Rotationen, Scramble-Situationen – alles mündet in den gleichen Weg: Seatbelt, Hooks, RNC.",
+            "Er braucht keine Positions-First-Struktur. Scrambles sind sein Heimvorteil. Seatbelt-Kontrolle und Body Triangle sind seine finale Machtposition.",
+            "Schwachpunkt: gegen Gegner die konsequent Guard-up bleiben und nie drehen, hat er weniger organische Möglichkeiten.",
+          ],
+          strengths: [
+            "Rücken = höchste Kontrollposition im BJJ",
+            "Extremes Finishing-Potential",
+            "Nutzt gegnerische Bewegung als Trigger",
+            "Klares Ein-Ziel-System",
+            "Psychologisch zermürbend",
+          ],
+          weaknesses: [
+            "Gegen defensive Gegner ohne Drehbewegung",
+            "Guard-Arbeit oft sekundär",
+            "Seatbelt/Hook muss sauber sitzen",
+            "Scramble-Spezialisten können entwischen",
+          ],
+          winConditions: [
+            "Rotation erzwingen (Turtle/Backline)",
+            "Seatbelt früh, Hooks sauber",
+            "Backline > Sub-Trade",
+          ],
+          antiPatterns: [
+            "Back-Chase ohne Base (in Legs fallen)",
+            "Seatbelt/Hook sloppy",
+            "Scramble erzwingen ohne Trigger",
+          ],
+          boxers: ["Rafael Mendes", "Garry Tonon (Back-Phase)", "Craig Jones"],
+          matchup:
+            "Stark gegen Bodylock-Passer und Wrestle-Controller (Back-Exposure bei Rotationen). Schwierig gegen dynamische Scrambler.",
+          matchupVs: {
+            PBP: "adv",
+            WTC: "adv",
+            PPF: "adv",
+            DN: "even",
+            FHF: "even",
+            TSO: "dis",
+            DOGR: "even",
+            WUGP: "even",
+            LIH: "even",
+            LTC: "dis",
+            TC: "even",
+          },
+        },
+        TSO: {
+          id: "TSO",
+          emoji: "⚡",
+          label: "Transitional Scramble Opportunist",
+          archetypeName: "Chaos → Strukturbruch → Opportunistischer Finish",
+          oneLiner:
+            "Unberechenbar in Übergängen – gewinnt was andere verlieren.",
+          subArchetypes: [
+            "Granby/Peek-Out Scrambler",
+            "Leg-Pummel Transitional",
+            "Wrestle-Up Opportunist",
+          ],
+          centroid: { PCO: 50, FAM: 40, INS: 45, ATC: 60, CTV: 50, TRV: 95 },
+          modules: {
+            FHL: 0.5,
+            LEG: 0.5,
+            BODYLOCK: 0.3,
+            WRESTLEUP: 0.7,
+            BACKLINE: 0.8,
+            PIN: 0.3,
+          },
+          color: "#4A148C",
+          theory:
+            "Der Transitional Scramble Opportunist ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte.",
+          longdesc: [
+            "Der Transitional Scramble Opportunist erzeugt Chaos mit Plan. Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment.",
+            "Scramble gewinnen bedeutet: hips frei, Stand-up als Druckmittel, oder Position sichern. Er ist dort stärker wo alle anderen verloren sind.",
+            "Schwachpunkt: gegen systematische Passer mit frühem Control muss er den Scramble früher triggern.",
+          ],
+          strengths: [
+            "Gewinnt in undefinierten Transitionen",
+            "Scramble = Heimvorteil",
+            "Stand-up als taktisches Reset-Werkzeug",
+            "Schwer zu scouten",
+            "Kreativ und unvorhersehbar",
+          ],
+          weaknesses: [
+            "Chaos ohne Exit-Plan",
+            "Gegen systematische Passer mit frühem Control",
+            "Position nicht gesichert nach Scramble-Gewinn",
+            "Weniger klar gegen statische defensive Stile",
+          ],
+          winConditions: [
+            "Scramble gewinnen (hips free)",
+            "Chaos in Kontrolle überführen",
+            "Wrestle-Up/Stand-ups als Reset",
+          ],
+          antiPatterns: [
+            "Chaos ohne Exit-Plan",
+            "Stand-up spammen ohne Timing",
+            "Scramble gewinnen, Position nicht sichern",
+          ],
+          boxers: [
+            "Tony Ferguson (Grappling-Aspekte)",
+            "Eddie Cummings",
+            "Geo Martinez",
+          ],
+          matchup:
+            "Stark gegen Back-Take-Spezialisten und statische Stile. Schwierig gegen Bodylock-Passer und Top-Controller.",
+          matchupVs: {
+            PBP: "dis",
+            WTC: "even",
+            PPF: "dis",
+            DN: "even",
+            FHF: "even",
+            RBTS: "adv",
+            DOGR: "even",
+            WUGP: "even",
+            LIH: "even",
+            LTC: "even",
+            TC: "even",
+          },
+        },
+        DOGR: {
+          id: "DOGR",
+          emoji: "🕸",
+          label: "Dynamic Outside Guard Retainer",
+          archetypeName: "Retention → Angle → Leg Entry oder Wrestle-Up",
+          oneLiner:
+            "Bottom-Kontrolle über Distanz, Frames und Winkel – Sweep-First.",
           subArchetypes: [
             "DLR/X-Guard Driver",
             "K-Guard / Matrix-Entries",
             "Outside-Retention Specialist",
           ],
-          centroid: {
-            top: 18,
-            pressure: 28,
-            submission: 55,
-            distal: 70,
-            rotation: 48,
+          centroid: { PCO: 20, FAM: 25, INS: 55, ATC: 65, CTV: 85, TRV: 65 },
+          modules: {
+            FHL: 0.4,
+            LEG: 0.9,
+            BODYLOCK: 0.2,
+            WRESTLEUP: 0.6,
+            BACKLINE: 0.5,
+            PIN: 0.2,
           },
-          sigTarget: {
-            frontHeadlockAffinity: 20,
-            legEntanglementAffinity: 75,
-            pinAffinity: 15,
-            resetAffinity: 40,
-          },
-          color: "#5B99C2",
+          color: "#1B5E20",
           theory:
-            "Der Octopus ist kein defensiver Guard-Spieler – er ist ein Bottom-Offensiv-System. Sein Guard ist eine Waffe, keine Schutzposition. Jede Situation am Boden wird durch die Frage gerahmt: Wo ist der Sweep? DLR, X-Guard, K-Guard sind Hebel, keine Positionen. Der Octopus verliert nicht, wenn der Gegner seinen Guard passiert – er verliert nur, wenn er aufhört, Sweep-Einladungen zu sehen.",
+            "Der Dynamic Outside Guard Retainer ist kein defensiver Guard-Spieler – er ist ein Bottom-Offensiv-System. Sein Guard ist eine Waffe, keine Schutzposition. DLR, X-Guard, K-Guard sind Hebel, keine Positionen.",
           longdesc: [
-            "Der Octopus gewinnt nicht dadurch, dass er seinen Guard hält – er gewinnt, weil sein Guard selbst eine Waffe ist. DLR, X-Guard, K-Guard: jede Position ist ein Hebel, um den Gegner zu destabilisieren und zu sweepen, bevor er passieren kann.",
-            "Im No-Gi-Kontext ohne Griffe ist sein Spiel besonders auf Kniescheibenkontrolle und Beinlinien aufgebaut. Ein verlorener Außenwinkel ist nicht ein Setback – er ist der Beginn der nächsten Sweep-Sequenz.",
-            "Seine größte Gefahr kommt von Pressure Passern (Crocodile), die seinen Aktionsradius durch Schultergewicht und Flattening systematisch reduzieren. Gegen Leg-Lock-Spieler (Viper) muss er besonders auf Knee-Line-Exposition achten.",
+            "Der Dynamic Outside Guard Retainer gewinnt nicht dadurch, dass er seinen Guard hält – er gewinnt weil sein Guard selbst eine Waffe ist. Knee-Line-Kontrolle, Outside-Retentions, Angle-Building: alles zielt auf den Sweep oder den Leg-Entry.",
+            "Im No-Gi-Kontext ist sein Spiel auf Kniescheibenkontrolle und Beinlinien aufgebaut. Ein verlorener Außenwinkel ist der Beginn der nächsten Sweep-Sequenz.",
+            "Schwachpunkt: Pressure Passer reduzieren seinen Aktionsradius systematisch durch Schultergewicht und Flattening.",
           ],
           strengths: [
             "Bottom-Kontrolle über Distanz und Winkel",
             "Sweep-First System aus dem Guard",
             "Technisch sehr variabel (DLR/X-Guard/K-Guard)",
             "Knee-Line Management als primäres Werkzeug",
-            "Gut gegen Top-Spieler ohne Submission-Sensibilität",
+            "Leg-Entry als direkte Win-Condition",
           ],
           weaknesses: [
-            "Pressure Passer reduzieren Aktionsradius systematisch",
+            "Pressure Passer reduzieren Aktionsradius",
             "Leg-Lock-Exposition wenn Knee-Line verloren geht",
-            "Braucht Aktionsraum – Flattening stoppt das System",
+            "Braucht Aktionsraum – Flattening stoppt System",
             "Top-Game oft weniger entwickelt",
           ],
           winConditions: [
@@ -2197,274 +3473,135 @@
           ],
           boxers: ["Mikey Musumeci", "Ryan Hall", "Keenan Cornelius"],
           matchup:
-            "Stark gegen Top-Spieler ohne Submission-Sensibilität. Schwierig gegen Crocodile (Pressure/Flattening) und Viper (Leg-Entanglement wenn Knee-Line verloren).",
+            "Stark gegen Top-Spieler ohne Submission-Sensibilität. Schwierig gegen Bodylock-Passer (Flattening) und Leg-Lock-Hunter (wenn Knee-Line verloren).",
           matchupVs: {
-            GORILLA: "adv",
-            SPIDER: "even",
-            CROCODILE: "dis",
-            PANTHER: "even",
-            VIPER: "dis",
-            ANACONDA: "even",
-            MANTIS: "even",
+            PBP: "dis",
+            WTC: "dis",
+            PPF: "dis",
+            DN: "even",
+            FHF: "even",
+            RBTS: "even",
+            TSO: "even",
+            WUGP: "adv",
+            LIH: "dis",
+            LTC: "even",
+            TC: "even",
           },
         },
-        GORILLA: {
-          id: "GORILLA",
-          label: "Gorilla",
-          emoji: "🦍",
-          archetypeName: "Wrestle-to-Top Controller / Positional Dominator",
+        WUGP: {
+          id: "WUGP",
+          emoji: "🔝",
+          label: "Wrestle-Up Guard Player",
+          archetypeName: "Guard → Single Build → Top Control",
           oneLiner:
-            "Takedowns → Top → Tempo runter. Gewinnt über Kontrolle, nicht über Chaos.",
+            "Hybrid aus Guard und Wrestling – der gefährlichste Übergangsspieler.",
           subArchetypes: [
-            "Chain-Wrestler (Single↔Double)",
-            "Bodylock-Clincher",
-            "Ride-Controller (wrist/hip)",
+            "Single-Leg Builder from Guard",
+            "K-Guard to Wrestle-Up",
+            "Leg-Pummel Exit",
           ],
-          centroid: {
-            top: 92,
-            pressure: 78,
-            submission: 38,
-            distal: 22,
-            rotation: 35,
+          centroid: { PCO: 60, FAM: 50, INS: 80, ATC: 50, CTV: 65, TRV: 65 },
+          modules: {
+            FHL: 0.4,
+            LEG: 0.7,
+            BODYLOCK: 0.4,
+            WRESTLEUP: 1.0,
+            BACKLINE: 0.4,
+            PIN: 0.5,
           },
-          sigTarget: {
-            frontHeadlockAffinity: 15,
-            legEntanglementAffinity: 10,
-            pinAffinity: 85,
-            resetAffinity: 20,
-          },
-          color: "#8B5E3C",
+          color: "#006064",
           theory:
-            "Der Gorilla macht seinen Kampfstil über Situationskontrolle. Er bringt den Kampf genau dort hin, wo er arbeiten will – oben. Takedown-Chains (Single↔Double), Bodylock und Hip-Control sind seine Einstiegswerkzeuge. Am Boden ist sein Mantra: Pin → Pass → Positionsdominanz. Er senkt das Tempo, erhöht Druck und lässt den Gegner sich selbst erschöpfen. Submissions sind Folge der Kontrolle, nicht ihr Ziel.",
+            "Der Wrestle-Up Guard Player verbindet zwei Welten: Bottom-Arbeit und Wrestling. Er startet im Guard, baut Single-Leg-Angriffe auf und kommt oben raus. Dieser Übergang ist sein stärkstes Werkzeug.",
           longdesc: [
-            "Der Gorilla macht seinen Kampfstil über Situationskontrolle: er bringt den Kampf genau dort hin, wo er arbeiten will – oben. Takedown-Chains (Single↔Double), Bodylock und Hip-Control sind seine Einstiegswerkzeuge.",
-            "Am Boden ist sein Mantra: Pin → Pass → Positionsdominanz. Er senkt das Tempo, erhöht Druck und lässt den Gegner sich selbst erschöpfen. Submissions sind Folge der Kontrolle, nicht ihr Ziel.",
-            "Schwachpunkt: Leg-Systeme (Viper) können seine Beinexposition bei Takedown-Einsteigen direkt bestrafen. Front-Headlock-Spezialisten (Anaconda) warten auf seinen linearen Entry.",
+            "Der Wrestle-Up Guard Player ist das hybrideste Profil im System. Guard ist nicht sein Ziel – er ist sein Ausgangspunkt für Wrestling-Transitions.",
+            "K-Guard, Single-Leg-Build, Leg-Pummel-Exits: alles mündet im Stand oder Top. Er ist weder reiner Guard-Spieler noch reiner Wrestler.",
+            "Schwachpunkt: fehlerhafte Builds öffnen Front-Headlock-Gefahr wenn der Kopf exponiert wird.",
           ],
           strengths: [
-            "Kontrolliert wo Kämpfe stattfinden",
-            "Systematische Positionsdominanz",
-            "Niedrige KO-Gefahr durch Top-Safety",
-            "Ausdauernd und strukturell robust",
-            "Submissions aus Positionsdruck heraus",
+            "Hybrides System schwer zu lesen",
+            "Guard → Top = unerwartete Transitions",
+            "Leg-Entry als Intermediate-Waffe",
+            "High Initiative aus dem Boden",
+            "Schwer zu scouten",
           ],
           weaknesses: [
-            "Leg-Lock-Exposure bei Bein-Einsteigen",
-            "Front-Headlock-Gefahr bei linearen Entries",
-            "Submissions weniger als Spezialisten",
-            "Kann gegen sehr aktive Guards frustriert werden",
+            "Fehlerhafte Builds → Front-Headlock-Gefahr",
+            "Gegen Leg-Lock-Hunter exponiert bei Builds",
+            "Top-Game noch entwicklungsfähig",
+            "Gegen starken Pressure verliert Guard-Phase",
           ],
           winConditions: [
-            "Takedown-Chain diszipliniert",
-            "Top stabilisieren, Tempo senken",
-            "Rides/Handfights → Kontrolle",
+            "Single-Build sauber (Head position!)",
+            "Guard → Top Transition erzwingen",
+            "Leg-Pummel-Exit als Reset",
           ],
           antiPatterns: [
-            "Zu tiefe Knie am Boden (Heel-Exposure)",
-            "Übergänge jagen statt re-pin",
-            "Lineare Entries ohne Head position",
+            "Head exponieren beim Single-Build",
+            "Zu lange im Guard bleiben",
+            "Wrestling-Exit ohne Head-Position",
           ],
           boxers: [
-            "Gordon Ryan (Wrestler-Phase)",
-            "Nick Rodriguez",
-            "Kaynan Duarte",
+            "Garry Tonon",
+            "Eddie Cummings (Wrestle-Phase)",
+            "Tom DeBlass",
           ],
           matchup:
-            "Stark gegen Spider und Octopus ohne Takedown Defense. Schwierig gegen Viper (Leg-Exposure bei Entries) und Anaconda (Front-Headlock auf lineare Entries).",
+            "Stark gegen statische Top-Spieler. Schwierig gegen Front-Headlock-Finisher und Leg-Lock-Hunter.",
           matchupVs: {
-            OCTOPUS: "adv",
-            SPIDER: "adv",
-            CROCODILE: "even",
-            PANTHER: "dis",
-            VIPER: "dis",
-            ANACONDA: "dis",
-            MANTIS: "even",
+            PBP: "dis",
+            WTC: "even",
+            PPF: "dis",
+            DN: "adv",
+            FHF: "dis",
+            RBTS: "even",
+            TSO: "even",
+            DOGR: "dis",
+            LIH: "dis",
+            LTC: "even",
+            TC: "dis",
           },
         },
-        CROCODILE: {
-          id: "CROCODILE",
-          label: "Crocodile",
-          emoji: "🐊",
-          archetypeName: "Pressure Guard Passer / Pin Specialist",
+        LIH: {
+          id: "LIH",
+          emoji: "🦵",
+          label: "Leg-Lock Inside-Saddle Hunter",
+          archetypeName: "Knee-Line → Inside Heel Hook → Finish",
           oneLiner:
-            "Passing-Chain + Pins (Flattening) – erstickt Guard & Chains durch Struktur.",
-          subArchetypes: [
-            "HQ/Knee-Cut Passer",
-            "Bodylock Passer",
-            "Crossface-Underhook Pin Player",
-          ],
-          centroid: {
-            top: 85,
-            pressure: 92,
-            submission: 35,
-            distal: 18,
-            rotation: 25,
-          },
-          sigTarget: {
-            frontHeadlockAffinity: 10,
-            legEntanglementAffinity: 8,
-            pinAffinity: 95,
-            resetAffinity: 15,
-          },
-          color: "#4A4A4A",
-          theory:
-            "Der Crocodile gewinnt durch Struktur und Gewicht. Sein Passing-System ist nicht über Geschwindigkeit, sondern über sequentielle Überlastung: jeder Pass-Versuch baut Druck auf, der nächste nutzt die entstandene Erschöpfung aus. Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen, keine Guards spielen, keine Chains aufbauen. HQ-Pass, Knee-Cut, Bodylock – alles zielt auf den gleichen Endpunkt: Schulterkontrolle, Crossface, Kontrolle.",
-          longdesc: [
-            "Der Crocodile gewinnt durch Struktur und Gewicht. Sein Passing-System ist nicht über Geschwindigkeit, sondern über sequentielle Überlastung: jeder Pass-Versuch baut Druck auf, der nächste nutzt die entstandene Erschöpfung aus.",
-            "Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen, keine Guards spielen, keine Chains aufbauen. HQ-Pass, Knee-Cut, Bodylock – alles zielt auf den gleichen Endpunkt: Schulterkontrolle, Crossface, Kontrolle.",
-            "Schwachpunkt: Leg-Systeme wie Viper können seine Passing-Schritte direkt angreifen. Back-Taker (Panther) nutzen jede Rotation beim Pass.",
-          ],
-          strengths: [
-            "Passing-Chain systematisch und sequentiell",
-            "Flattening/Pins reduzieren gegnerische Werkzeuge",
-            "Wenig eigene Submission-Exposition",
-            "Strukturell schwer zu sweepen",
-            "Kontrolliert Guard-Spieler durch Druck",
-          ],
-          weaknesses: [
-            "Leg-Lock-Exposition bei Pass-Schritten",
-            "Zu viel Rotation öffnet Back-Takes",
-            "Gegen aktive Outside-Guards frustrierend",
-            "Submission-Initiative gering",
-          ],
-          winConditions: [
-            "Passing-Chain ohne Exposure",
-            "Pin/Flattening erzwingen",
-            "Frame-Breaks: crossface/underhook",
-          ],
-          antiPatterns: [
-            "Step-Passing ohne Leg-Awareness",
-            "Pins lösen um 'mehr' zu holen",
-            "Zu viel Rotation beim Pass gegen Back-Hunter",
-          ],
-          boxers: ["Bernardo Faria", "Marcus Almeida", "Buchecha"],
-          matchup:
-            "Stark gegen Spider und Octopus (Pressure stoppt Chains/Beinwork). Schwierig gegen Viper (Leg-Exposure) und Panther (Back-Takes aus Rotationen).",
-          matchupVs: {
-            OCTOPUS: "adv",
-            GORILLA: "even",
-            PANTHER: "dis",
-            VIPER: "dis",
-            SPIDER: "adv",
-            ANACONDA: "even",
-            MANTIS: "even",
-          },
-        },
-        PANTHER: {
-          id: "PANTHER",
-          label: "Black Panther",
-          emoji: "🐆",
-          archetypeName: "Back-Take Specialist / Rotational Opportunist",
-          oneLiner:
-            "Lebt von Rotationen: Turtle/Backline – sobald du drehst, bist du verloren.",
-          subArchetypes: [
-            "Turtle Attacker",
-            "Leg-Drag → Backline",
-            "Scramble Back-Hunter",
-          ],
-          centroid: {
-            top: 62,
-            pressure: 48,
-            submission: 62,
-            distal: 35,
-            rotation: 92,
-          },
-          sigTarget: {
-            frontHeadlockAffinity: 55,
-            legEntanglementAffinity: 25,
-            pinAffinity: 20,
-            resetAffinity: 35,
-          },
-          color: "#1A1714",
-          theory:
-            "Der Black Panther hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger. Seatbelt-Kontrolle und Body Triangle sind seine Machtposition. Von dort baut er Rear Naked Choke, Rear Triangle oder nutzt die Kontrolle für gezielte Arbeit.",
-          longdesc: [
-            "Der Black Panther hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger.",
-            "Seatbelt-Kontrolle und Body Triangle sind seine Machtposition. Von dort baut er Rear Naked Choke, Rear Triangle oder nutzt die Kontrolle für Punishment-GnP-Muster im Submission-Kontext.",
-            "Schwachpunkt: gegen Gegner die konsequent Guard-up bleiben und nie drehen, hat er weniger organische Möglichkeiten. Mantis (Scrambler) kann ihm im Chaos entwischen.",
-          ],
-          strengths: [
-            "Rücken = höchste Kontrollposition im BJJ",
-            "Extremes Finishing-Potential",
-            "Nutzt gegnerische Bewegung als Trigger",
-            "Klares, einzieliges System",
-            "Psychologisch zermürbend",
-          ],
-          weaknesses: [
-            "Gegen defensive Gegner ohne Drehbewegung",
-            "Guard-Arbeit oft sekundär",
-            "Scramble-Spezialisten können entwischen",
-            "Seatbelt/Hook muss sauber sitzen",
-          ],
-          winConditions: [
-            "Rotation erzwingen (turtle/backline)",
-            "Seatbelt früh, Hooks sauber",
-            "Backline > Sub-Trade",
-          ],
-          antiPatterns: [
-            "Back-Chase ohne Base (in Legs fallen)",
-            "Seatbelt/Hook sloppy",
-            "Scramble erzwingen ohne Trigger",
-          ],
-          boxers: ["Rafael Mendes", "Garry Tonon (Back-Phase)", "Craig Jones"],
-          matchup:
-            "Stark gegen Gorilla und Crocodile (Back-Exposure bei Rotationen). Schwierig gegen Mantis (unpredictable Scrambles) und gegen defensive Octopus-Spieler ohne Drehbewegung.",
-          matchupVs: {
-            OCTOPUS: "even",
-            GORILLA: "adv",
-            CROCODILE: "adv",
-            VIPER: "even",
-            SPIDER: "even",
-            ANACONDA: "even",
-            MANTIS: "dis",
-          },
-        },
-        VIPER: {
-          id: "VIPER",
-          label: "Viper",
-          emoji: "🐍",
-          archetypeName:
-            "Leg Entanglement System Player / Distal Submission Attacker",
-          oneLiner:
-            "Knee-Line gewinnen, behalten, finishen – oder Leg→Sweep/Back als Kette.",
+            "Knee-Line gewinnen, behalten, finishen – explosiver Finish-Cluster.",
           subArchetypes: [
             "Ashi-First Finisher",
             "50/50 Strategist",
-            "Leg→Back Transitional",
+            "Inside Heel Hook Specialist",
           ],
-          centroid: {
-            top: 45,
-            pressure: 32,
-            submission: 86,
-            distal: 96,
-            rotation: 72,
+          centroid: { PCO: 45, FAM: 30, INS: 70, ATC: 95, CTV: 100, TRV: 75 },
+          modules: {
+            FHL: 0.3,
+            LEG: 1.0,
+            BODYLOCK: 0.2,
+            WRESTLEUP: 0.5,
+            BACKLINE: 0.6,
+            PIN: 0.2,
           },
-          sigTarget: {
-            frontHeadlockAffinity: 15,
-            legEntanglementAffinity: 98,
-            pinAffinity: 10,
-            resetAffinity: 20,
-          },
-          color: "#2E7D32",
+          color: "#B71C1C",
           theory:
-            "Der Viper macht das Spiel vertikal: er ist gefährlich aus Positionen, die andere für sicher halten. Ashi Garami, 50/50, Outside Heel – sein Einstieg ist jede Situation mit Beinkontakt. Sein System ist nicht chaotisch, sondern linear: Knee-Line gewinnen → halten → Mechanik anwenden. Heel Hook, Kneebar, Ankle Lock – und wenn der Gegner entkommt, folgt die nächste Position in der Kette.",
+            "Der Leg-Lock Inside-Saddle Hunter macht das Spiel vertikal: er ist gefährlich aus Positionen die andere für sicher halten. Ashi Garami, Inside Heel Hook, Saddle – sein Einstieg ist jede Situation mit Beinkontakt.",
           longdesc: [
-            "Der Viper macht das Spiel vertikal: er ist gefährlich aus Positionen, die andere für sicher halten. Ashi Garami, 50/50, Outside Heel – sein Einstieg ist jede Situation mit Beinkontakt.",
-            "Sein System ist nicht chaotisch, sondern linear: Knee-Line gewinnen → halten → Mechanik anwenden. Heel Hook, Kneebar, Ankle Lock – und wenn der Gegner entkommt, folgt die nächste Position in der Kette.",
-            "Schwachpunkt: sehr erfahrene Leg-Lock-Verteidiger die Heel-Exposition konsequent minimieren. Head-Position-Fehler öffnen Guillotinen (Anaconda).",
+            "Der Leg-Lock Inside-Saddle Hunter macht sein System über Knee-Line-Kontrolle. Ashi Garami, 50/50, Inside Heel: sein Einstieg ist jede Beinkontakt-Situation.",
+            "Sein System ist nicht chaotisch, sondern linear: Knee-Line gewinnen → halten → Mechanik anwenden. Heel Hook, Kneebar, Ankle Lock – und wenn der Gegner entkommt, folgt die nächste Position.",
+            "Schwachpunkt: sehr erfahrene Leg-Lock-Verteidiger die Heel-Exposition konsequent minimieren.",
           ],
           strengths: [
             "Gefährlich aus unerwarteten Positionen",
             "Leg-Locks werden oft unterschätzt",
             "Scramble = Angriffschance",
-            "Leg→Sweep/Back als alternative Win-Condition",
             "Schnelle Finishing-Möglichkeiten",
+            "Leg→Sweep/Back als alternative Win-Condition",
           ],
           weaknesses: [
             "Erfahrene Verteidiger entziehen Beine systematisch",
             "Head-Position-Fehler öffnen Guillotinen",
             "Top-Game oft weniger entwickelt",
-            "Regelabhängig (No-Gi-Turniere variieren)",
+            "Regelabhängig (Turniere variieren)",
           ],
           winConditions: [
             "Knee-Line gewinnen & behalten",
@@ -2473,830 +3610,434 @@
           ],
           antiPatterns: [
             "Statische 50/50 ohne Progression",
-            "Head position ignorieren (Guillotine)",
+            "Head-Position ignorieren (Guillotine)",
             "Knee-Line verlieren und 'trotzdem bleiben'",
           ],
           boxers: ["Gordon Ryan", "Nicky Ryan", "Lachlan Giles"],
           matchup:
-            "Stark gegen Gorilla und Crocodile (Bein-Exposure bei Entries/Passing). Schwierig gegen erfahrene Leg-Lock-Verteidiger und gegen Anaconda (Head-Position-Guillotinen).",
+            "Stark gegen alle Top-Spieler (Bein-Exposition bei Entries/Passing). Schwierig gegen erfahrene Leg-Verteidigung.",
           matchupVs: {
-            OCTOPUS: "adv",
-            GORILLA: "adv",
-            CROCODILE: "adv",
-            PANTHER: "even",
-            SPIDER: "even",
-            ANACONDA: "dis",
-            MANTIS: "even",
+            PBP: "adv",
+            WTC: "adv",
+            PPF: "adv",
+            DN: "even",
+            FHF: "adv",
+            RBTS: "even",
+            TSO: "even",
+            DOGR: "adv",
+            WUGP: "adv",
+            LTC: "even",
+            TC: "even",
           },
         },
-        SPIDER: {
-          id: "SPIDER",
-          label: "Spider",
-          emoji: "🕷",
-          archetypeName: "Submission Chain Attacker / Flow Grappler",
+        LTC: {
+          id: "LTC",
+          emoji: "🔀",
+          label: "Leg-to-Top Converter",
+          archetypeName: "Leg Threat → Sweep → Top → Finish",
           oneLiner:
-            "Submissions sind Hebel zum Öffnen – Chains erzwingen Reaktionen, nicht nur Finishes.",
+            "Leg-System + positional security – der vollständigste Stiltyp.",
           subArchetypes: [
-            "Kimura System Player",
-            "Triangle Chain Player",
-            "Front-Headlock-to-Back Chain",
+            "Leg Entry to Pass",
+            "Knee-Line to Top",
+            "Saddle to Ride",
           ],
-          centroid: {
-            top: 48,
-            pressure: 40,
-            submission: 95,
-            distal: 55,
-            rotation: 60,
+          centroid: { PCO: 70, FAM: 55, INS: 65, ATC: 75, CTV: 90, TRV: 65 },
+          modules: {
+            FHL: 0.3,
+            LEG: 0.9,
+            BODYLOCK: 0.5,
+            WRESTLEUP: 0.5,
+            BACKLINE: 0.4,
+            PIN: 0.7,
           },
-          sigTarget: {
-            frontHeadlockAffinity: 60,
-            legEntanglementAffinity: 30,
-            pinAffinity: 15,
-            resetAffinity: 30,
-          },
-          color: "#7B2D8B",
+          color: "#33691E",
           theory:
-            "Der Spider ist überall angreifend. Er baut keine Submission isoliert auf – er baut Chains. Wenn der Gegner den Armbar verteidigt, ist der Triangle schon bereit. Wenn der Triangle geblockt wird, kommt der Omoplata. Die Kette hört nicht auf. Was ihn auszeichnet: Submissions sind nicht sein Ziel, sondern sein Werkzeug. Ein Submission-Angriff erzwingt Reaktion, und diese Reaktion öffnet die nächste Möglichkeit.",
+            "Der Leg-to-Top Converter verbindet das Leg-Lock-System mit Top-Game-Sicherheit. Leg-Threat als primäre Waffe, Sweep zur Top-Kontrolle, dann Finish aus der Position.",
           longdesc: [
-            "Der Spider ist überall angreifend. Er baut keine Submission isoliert auf – er baut Chains. Wenn der Gegner den Armbar verteidigt, ist der Triangle schon bereit. Wenn der Triangle geblockt wird, kommt der Omoplata. Die Kette hört nicht auf.",
-            "Was ihn auszeichnet: Submissions sind nicht sein Ziel, sondern sein Werkzeug. Ein Submission-Angriff erzwingt Reaktion, und diese Reaktion öffnet die nächste Möglichkeit. Er kämpft vorwärts, auch aus dem Nachteil.",
-            "Schwachpunkt: gegen Pressure-Passer (Crocodile) wird sein Chain-Volumen durch Flattening systematisch reduziert.",
+            "Der Leg-to-Top Converter ist strukturell das vollständigste Profil: Leg-System als Angriff UND als Sweep-Mechanismus, dann Top-Game als Finish-Plattform.",
+            "Er bedroht Beine, erzwingt Reaktionen, sweept oder nimmt Top-Kontrolle. Von dort baut er Submissions über klassische Isolierung.",
+            "Schwachpunkt: sehr mobile Opponenten entziehen die Knee-Line systematisch.",
           ],
           strengths: [
-            "Überall angreifend und gefährlich",
-            "Submissions als taktisches Werkzeug",
-            "Schwer defensiv zu lesen",
-            "Kreatives variables Spiel",
-            "Angreifend auch aus dem Nachteil",
+            "Leg-System + Positional Security",
+            "Strukturell sehr vollständig",
+            "Sweeps durch Leg-Threat erzwingen",
+            "Top-Finishing nach Leg-Entry",
+            "Dual-Threat: Leg-Lock oder Top",
           ],
           weaknesses: [
-            "Pressure Passer reduzieren Chain-Frequenz",
-            "Gegen sehr erfahrene Submission-Defense",
-            "Positions-Verluste aus Submission-Versuchen",
-            "Energie-intensiv durch permanente Angriffe",
+            "Sehr mobile Opponenten entziehen Knee-Line",
+            "Leg-Defense neutralisiert halbes System",
+            "Erfordert hohe technische Kompetenz in beiden Bereichen",
+            "Energie-intensiv",
           ],
           winConditions: [
-            "Bindungen erzwingen (inside ties/head)",
-            "Chains: öffnen, nicht nur finishen",
-            "Frequenz hoch – aber nicht reckless",
+            "Leg-Threat erzwingen",
+            "Sweep → Top → Finish",
+            "Knee-Line als ständige Drohung",
           ],
           antiPatterns: [
-            "Chains ohne Bindungen (ins Leere)",
-            "Finish-Fixierung statt Reaktion nutzen",
-            "Flach werden unter Pressure",
-          ],
-          boxers: ["Marcelo Garcia", "Dean Lister", "Eddie Bravo"],
-          matchup:
-            "Stark gegen Gorilla ohne Submission-Sensibilität. Schwierig gegen Crocodile (Flattening stoppt Chains).",
-          matchupVs: {
-            OCTOPUS: "even",
-            GORILLA: "dis",
-            CROCODILE: "dis",
-            PANTHER: "even",
-            VIPER: "even",
-            ANACONDA: "even",
-            MANTIS: "dis",
-          },
-        },
-        ANACONDA: {
-          id: "ANACONDA",
-          label: "Anaconda",
-          emoji: "🐍",
-          archetypeName: "Front Headlock Hunter (Guillotine/D'arce/Anaconda)",
-          oneLiner:
-            "No-Gi Meta-Säule: Sprawl → Head/Arm → finish oder pass/back.",
-          subArchetypes: [
-            "High-Wrist Guillotine",
-            "D'arce Chain",
-            "Snapdown→FHL Controller",
-          ],
-          centroid: {
-            top: 55,
-            pressure: 55,
-            submission: 90,
-            distal: 35,
-            rotation: 55,
-          },
-          sigTarget: {
-            frontHeadlockAffinity: 98,
-            legEntanglementAffinity: 10,
-            pinAffinity: 30,
-            resetAffinity: 25,
-          },
-          color: "#C0392B",
-          theory:
-            "Der Anaconda ist eine der gefährlichsten No-Gi-Waffen: der Front Headlock als Meta-System. Jeder Takedown-Versuch, jeder Forward-Lean, jeder Kopf-Fehler – er wartet auf genau diesen Moment. Snapdown, Sprawl, underhookte Wurfversuche: alles ist ein Eingang. High-Wrist Guillotine, D'arce, Anaconda Choke – die Submission-Optionen sind spezifisch für No-Gi und extrem schwer zu verteidigen wenn das Head/Arm-Kontrolle erstmal sitzt.",
-          longdesc: [
-            "Der Anaconda ist eine der gefährlichsten No-Gi-Waffen: der Front Headlock als Meta-System. Jeder Takedown-Versuch, jeder Forward-Lean, jeder Kopf-Fehler – er wartet auf genau diesen Moment. Snapdown, Sprawl, underhookte Wurfversuche: alles ist ein Eingang.",
-            "High-Wrist Guillotine, D'arce, Anaconda Choke – die Submission-Optionen sind spezifisch für No-Gi und extrem schwer zu verteidigen wenn das Head/Arm-Kontrolle erstmal sitzt.",
-            "Schwachpunkt: wer sein Head-Position-Management kennt und konsequent Innengriffe hält, gibt ihm wenig Möglichkeiten. Gegen Viper braucht er besonders auf Leg-Exposure bei seinen eigenen Forward-Entries achten.",
-          ],
-          strengths: [
-            "No-Gi-Meta-Waffe mit hohem Finish-Potential",
-            "Bestraft alle Forward-Entries und Kopf-Fehler",
-            "Sprawl ist gleichzeitig Defense und Offense",
-            "Front-Headlock als Pass/Back-Option wenn Choke verteidigt",
-            "Psychologisch belasten: jeder Entry ist riskant",
-          ],
-          weaknesses: [
-            "Head-Position-Management des Gegners neutralisiert ihn",
-            "Gegen Viper bei Forward-Entries exponiert",
-            "Guillotine erzwingen ohne Kontrolle führt zu nichts",
-            "Limitiert wenn kein Front-Headlock-Eingang entsteht",
-          ],
-          winConditions: [
-            "Sprawl → Front Headlock",
-            "High-wrist/Head-Arm Kontrolle",
-            "Finish oder pass/back nach Reaktion",
-          ],
-          antiPatterns: [
-            "Guillotine erzwingen ohne Control",
-            "Head-Arm verlieren und trotzdem bleiben",
-            "FHL jagen statt resetten/passen",
-          ],
-          boxers: ["Dillon Danis", "Garry Tonon", "Neil Melanson (Coach)"],
-          matchup:
-            "Stark gegen Gorilla und Crocodile (lineare Entries sind Einladungen). Schwierig gegen Viper (Leg-Exposure bei Forward-Entries).",
-          matchupVs: {
-            OCTOPUS: "even",
-            GORILLA: "adv",
-            CROCODILE: "adv",
-            PANTHER: "even",
-            VIPER: "adv",
-            SPIDER: "even",
-            MANTIS: "even",
-          },
-        },
-        MANTIS: {
-          id: "MANTIS",
-          label: "Mantis",
-          emoji: "🦗",
-          archetypeName: "Transitional Scrambler / Chaos-to-Control",
-          oneLiner:
-            "Erzeugt Chaos, aber nicht planlos: Scramble-Gewinner, der in Kontrolle überführt.",
-          subArchetypes: [
-            "Granby/Peek-Out Scrambler",
-            "Leg-Pummel Transitional",
-            "Wrestle-Up Opportunist",
-          ],
-          centroid: {
-            top: 58,
-            pressure: 45,
-            submission: 60,
-            distal: 55,
-            rotation: 80,
-          },
-          sigTarget: {
-            frontHeadlockAffinity: 30,
-            legEntanglementAffinity: 40,
-            pinAffinity: 20,
-            resetAffinity: 90,
-          },
-          color: "#D4A574",
-          theory:
-            "Der Mantis ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte. Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment. Scramble gewinnen bedeutet für ihn: hips frei, Stand-up als Druckmittel, oder Position sichern wenn das Chaos günstig endet.",
-          longdesc: [
-            "Der Mantis ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte.",
-            "Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment. Scramble gewinnen bedeutet für ihn: hips frei, Stand-up als Druckmittel, oder Position sichern wenn das Chaos günstig endet.",
-            "Schwachpunkt: Chaos ohne Exit-Plan ist kein Stil, sondern ein Fehler. Gegen sehr systematische Passer (Crocodile) oder Position-Dominator (Gorilla) muss er seinen Scramble früher triggern bevor Kontrolle etabliert ist.",
-          ],
-          strengths: [
-            "Gewinnt in undefinierten Transitionen",
-            "Scramble = Heimvorteil",
-            "Stand-up als taktisches Reset-Werkzeug",
-            "Schwer zu scouten und zu planen",
-            "Kreativ und unvorhersehbar",
-          ],
-          weaknesses: [
-            "Chaos ohne Exit-Plan",
-            "Gegen systematische Passer mit frühem Control",
-            "Position nicht gesichert nach Scramble-Gewinn",
-            "Weniger klar gegen statische defensive Stile",
-          ],
-          winConditions: [
-            "Scramble gewinnen (hips free)",
-            "Chaos in Kontrolle überführen",
-            "Wrestle-up/stand-ups als Reset-Waffe",
-          ],
-          antiPatterns: [
-            "Chaos ohne Exit-Plan",
-            "Stand-up spammen ohne Timing",
-            "Scramble gewinnen, aber Position nicht sichern",
+            "Leg-Lock oder Top – nicht beides versuchen",
+            "Knee-Line verlieren ohne Plan B",
+            "Top-Game vernachlässigen wenn Legs funktionieren",
           ],
           boxers: [
-            "Tony Ferguson (Grappling-Aspekte)",
-            "Eddie Cummings",
-            "Geo Martinez",
+            "Gordon Ryan (komplettes Profil)",
+            "Craig Jones",
+            "Nicky Ryan",
           ],
           matchup:
-            "Stark gegen Panther (unpredictable Scrambles entziehen Back-Take-Trigger) und Spider (Chaos bricht Submission-Chains). Schwierig gegen Crocodile und Gorilla.",
+            "Stark gegen alle Top-Spieler ohne Leg-Defense. Strukturell das vielseitigste Matchup-Profil.",
           matchupVs: {
-            OCTOPUS: "even",
-            GORILLA: "dis",
-            CROCODILE: "dis",
-            PANTHER: "adv",
-            VIPER: "even",
-            SPIDER: "adv",
-            ANACONDA: "even",
+            PBP: "adv",
+            WTC: "adv",
+            PPF: "adv",
+            DN: "adv",
+            FHF: "even",
+            RBTS: "adv",
+            TSO: "even",
+            DOGR: "even",
+            WUGP: "adv",
+            LIH: "even",
+            TC: "even",
+          },
+        },
+        TC: {
+          id: "TC",
+          emoji: "⏱",
+          label: "Tempo Controller",
+          archetypeName: "Rhythmus brechen → Entry triggern → Positional Edge",
+          oneLiner:
+            "Mentale + strukturelle Kontrolle – wer das Tempo setzt, setzt die Regeln.",
+          subArchetypes: [
+            "Wrestle-Up Tempo Setter",
+            "FHL Tempo Trap",
+            "Backline Rhythm Hunter",
+          ],
+          centroid: { PCO: 55, FAM: 45, INS: 90, ATC: 55, CTV: 50, TRV: 75 },
+          modules: {
+            FHL: 0.6,
+            LEG: 0.4,
+            BODYLOCK: 0.4,
+            WRESTLEUP: 0.7,
+            BACKLINE: 0.6,
+            PIN: 0.4,
+          },
+          color: "#E65100",
+          theory:
+            "Der Tempo Controller gewinnt nicht über rohe Stärke sondern über Rhythm. Er setzt Tempo, bricht Rhythmus und triggert Entries. Wer gegen ihn kämpft, reagiert immer – und Reaktion kostet Zeit.",
+          longdesc: [
+            "Der Tempo Controller ist der taktisch komplexeste Stil: Initiative ohne reine Aggression. Er setzt Tempo, zwingt den Gegner zur Reaktion, und nutzt die entstehende Struktur.",
+            "Wrestle-Up-Sequenzen, FHL-Traps, Backline-Threats: alles über Timing und Initiative. Er kämpft nicht harder – er kämpft smarter.",
+            "Schwachpunkt: reine Power-Pressure kann Tempo erzwingen und sein Rhythmus-Spiel unterbrechen.",
+          ],
+          strengths: [
+            "Mentale + strukturelle Kontrolle",
+            "Initiative als Primärwaffe",
+            "Vielseitig einsetzbar",
+            "Schwer zu scouten",
+            "Anpassungsfähig gegen alle Stile",
+          ],
+          weaknesses: [
+            "Power-Pressure kann Tempo erzwingen",
+            "Energie-intensiv bei hohem Tempo",
+            "Gegen sehr statische Stile weniger klar",
+            "Kein dominanter Primär-Finish",
+          ],
+          winConditions: [
+            "Rhythmus setzen und brechen",
+            "Entry-Trigger kontrollieren",
+            "Initiative von Beginn",
+          ],
+          antiPatterns: [
+            "Tempo verlieren und nicht zurückgewinnen",
+            "Zu viele Feints ohne Follow-Through",
+            "Gegen Power passiv werden",
+          ],
+          boxers: ["Marcelo Garcia", "Garry Tonon", "JT Torres"],
+          matchup:
+            "Vielseitig einsetzbar – kein klares systemisches Nachteil. Schwierig gegen reine Power-Pressure.",
+          matchupVs: {
+            PBP: "dis",
+            WTC: "adv",
+            PPF: "even",
+            DN: "adv",
+            FHF: "even",
+            RBTS: "even",
+            TSO: "even",
+            DOGR: "even",
+            WUGP: "adv",
+            LIH: "even",
+            LTC: "even",
           },
         },
       };
 
-      // ═══════════════════════════════════════════════════════════
-      // BJJ 17-FRAGEN ELITE SYSTEM
-      // ═══════════════════════════════════════════════════════════
-      const BJJ_QUESTIONS = [
-        // I. TOP (1-3)
-        {
-          id: 1,
-          block: "I. Top-Orientierung",
-          situation: "Start im Stand. Du bekommst einen mittelguten Einstieg.",
-          question: "Was nimmst du lieber?",
-          A: {
-            text: "Einen 'ok' Takedown mit Top-Stabilisierung, auch ohne direkten Angriff.",
-            axes: { top: +3, pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Einen Snapdown/FHL-Kontakt, auch wenn du danach nicht sofort oben bist.",
-            axes: { top: +1, submission: +1 },
-            sig: { frontHeadlockAffinity: +3 },
-          },
-          C: {
-            text: "Einen kontrollierten Sitdown/Guard-Entry, weil dein Bottom-System sofort greift.",
-            axes: { top: -3, distal: +1 },
-            sig: { resetAffinity: +1 },
-          },
-        },
-        {
-          id: 2,
-          block: "I. Top-Orientierung",
-          situation: "Scramble gewonnen – du hast 1 Sekunde.",
-          question: "Was sicherst du zuerst?",
-          A: {
-            text: "Hüfte über Hüfte: Top-Kontrolle (auch Half Guard reicht).",
-            axes: { top: +3, pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Rückenlinie: Seatbelt/Backline (auch wenn Beine noch nicht perfekt sind).",
-            axes: { rotation: +3, submission: +1 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Knee-Line: Leg-Kontrolle (auch wenn du unten bleibst).",
-            axes: { distal: +3, submission: +1 },
-            sig: { legEntanglementAffinity: +3 },
-          },
-        },
-        {
-          id: 3,
-          block: "I. Top-Orientierung",
-          situation:
-            "Du wirst im Stand nach hinten gedrückt (Rand/Wall-Pressure).",
-          question: "Was ist dein Default?",
-          A: {
-            text: "Ich bleibe im Clinch/Handfight, bis ich Top erzwinge.",
-            axes: { top: +3, pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Ich gehe in ein Bottom-Entry, weil ich dort Output habe.",
-            axes: { top: -3, distal: +1 },
-            sig: { legEntanglementAffinity: +1 },
-          },
-          C: {
-            text: "Ich löse, resette, komme neu rein (Winkel/Timing statt Kraft).",
-            axes: { top: +1, rotation: +1 },
-            sig: { resetAffinity: +3 },
-          },
-        },
-        // II. PRESSURE (4-6)
-        {
-          id: 4,
-          block: "II. Pressure vs. Mobility",
-          situation: "Oben in Half Guard: Du musst wählen.",
-          question: "Was priorisierst du?",
-          A: {
-            text: "Flattening + Frame-Break (langsam, aber 'erstickend').",
-            axes: { pressure: +3, top: +1 },
-            sig: { pinAffinity: +3 },
-          },
-          B: {
-            text: "Mobility-Pass (schneller, aber weniger 'Pin-Sicherheit').",
-            axes: { pressure: -2, rotation: +1 },
-            sig: { resetAffinity: +1 },
-          },
-          C: {
-            text: "Transition-Pass (Rotation/Backline-Öffnung, Risiko inklusive).",
-            axes: { rotation: +3, pressure: 0 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-        },
-        {
-          id: 5,
-          block: "II. Pressure vs. Mobility",
-          situation: "Gegner framed stark – du spürst Widerstand.",
-          question: "Was tust du?",
-          A: {
-            text: "Ich investiere in Frame-Zerstörung, bevor ich weitergehe.",
-            axes: { pressure: +3 },
-            sig: { pinAffinity: +2 },
-          },
-          B: {
-            text: "Ich verlasse die Linie und gehe um die Struktur herum (Winkel).",
-            axes: { pressure: -2, rotation: +2 },
-            sig: { resetAffinity: +1 },
-          },
-          C: {
-            text: "Ich löse und setze neu an, statt im Widerstand zu arbeiten.",
-            axes: { pressure: -1, top: 0 },
-            sig: { resetAffinity: +3 },
-          },
-        },
-        {
-          id: 6,
-          block: "II. Pressure vs. Mobility",
-          situation:
-            "Side Control: Er bridged/turnt. Du darfst nur eine Priorität haben.",
-          question: "Was ist es?",
-          A: {
-            text: "Re-Pin (Kopf/Hüfte schwer) – keine Transition, keine Gier.",
-            axes: { pressure: +3, top: +1 },
-            sig: { pinAffinity: +2 },
-          },
-          B: {
-            text: "Übergang erzwingen (Back exposure), auch wenn es Scramble wird.",
-            axes: { rotation: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Attacke starten, obwohl Position noch nicht maximal fest ist.",
-            axes: { submission: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-        },
-        // III. SUBMISSION (7-9)
-        {
-          id: 7,
-          block: "III. Submission-Initiative",
-          situation: "Was ist in deinem Kopf primär?",
-          question: "Wähle dein mentales Modell:",
-          A: {
-            text: "Kontrolle ist Pflicht, Submission ist Konsequenz.",
-            axes: { submission: -1, top: +2, pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Submission ist Werkzeug – ich will Reaktionen erzwingen.",
-            axes: { submission: +3, rotation: +1 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Leg-Endgame ist mein eigenes Spiel – dort entscheide ich.",
-            axes: { submission: +2, distal: +3 },
-            sig: { legEntanglementAffinity: +3 },
-          },
-        },
-        {
-          id: 8,
-          block: "III. Submission-Initiative",
-          situation: "Du hast Mount ohne klare Isolation.",
-          question: "Was tust du?",
-          A: {
-            text: "Ich bleibe, stabilisiere, arbeite langsam zur Isolation.",
-            axes: { submission: -1, pressure: +2, top: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Ich starte sofort Chains, auch wenn ich Mount verliere.",
-            axes: { submission: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Ich provoziere Drehung, um Rücken zu bekommen.",
-            axes: { rotation: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-        },
-        {
-          id: 9,
-          block: "III. Submission-Initiative",
-          situation: "Du liegst leicht zurück (Punkte/Tempo).",
-          question: "Wie reagierst du?",
-          A: {
-            text: "Ich erhöhe Kontrolle, senke Risiko, hole Schritt für Schritt auf.",
-            axes: { pressure: +2, top: +1, submission: -1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Ich erhöhe Angriffsdruck über Chains, um das Match zu drehen.",
-            axes: { submission: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Ich suche bewusst Scrambles/Resets, um ein neues Fenster zu erzeugen.",
-            axes: { rotation: +2 },
-            sig: { resetAffinity: +2 },
-          },
-        },
-        // IV. DISTAL (10-12)
-        {
-          id: 10,
-          block: "IV. Distal-Fokus",
-          situation: "Beim Passing taucht sein Bein frei auf.",
-          question: "Was tust du?",
-          A: {
-            text: "Ich bleibe bei meinem Pass – Beine sind Nebensache.",
-            axes: { distal: -2, top: +1, pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Ich greife Knee-Line, auch wenn das meinen Pass unterbricht.",
-            axes: { distal: +3, submission: +1 },
-            sig: { legEntanglementAffinity: +3 },
-          },
-          C: {
-            text: "Ich nutze das Bein nur, um Back exposure zu erzwingen.",
-            axes: { rotation: +2, distal: +1 },
-            sig: { resetAffinity: +1 },
-          },
-        },
-        {
-          id: 11,
-          block: "IV. Distal-Fokus",
-          situation: "Gegner schießt – du sprawlst.",
-          question: "Was ist dein Default-Follow?",
-          A: {
-            text: "Ich komme oben drauf (Top sichern).",
-            axes: { top: +2, pressure: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Ich clamp FHL (Guillotine/D'arce-Lane).",
-            axes: { submission: +2 },
-            sig: { frontHeadlockAffinity: +3 },
-          },
-          C: {
-            text: "Ich nutze den Stopp, sitze in ein K-Guard/Shin-to-Shin Leg-Entry, sobald er aus dem Shot rauskommt.",
-            axes: { distal: +3, submission: +1 },
-            sig: { legEntanglementAffinity: +3 },
-          },
-        },
-        {
-          id: 12,
-          block: "IV. Distal-Fokus",
-          situation: "Unten gegen heavy pressure: Was rettet dich zuverlässig?",
-          question: "Dein primäres Bottom-Tool:",
-          A: {
-            text: "Frames + Winkel (distanzfähig).",
-            axes: { top: -2, distal: +2, rotation: +1 },
-            sig: { resetAffinity: +1 },
-          },
-          B: {
-            text: "Knee-Line + Entanglement (beinbasiert).",
-            axes: { distal: +3, submission: +1 },
-            sig: { legEntanglementAffinity: +3 },
-          },
-          C: {
-            text: "Upper-Body Bindung (head/arm/kimura-Griffe) als Angriff/Reset.",
-            axes: { submission: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-        },
-        // V. ROTATION (13-15)
-        {
-          id: 13,
-          block: "V. Rotation & Backline",
-          situation: "Gegner dreht explosiv – du musst reagieren.",
-          question: "Was ist dein erster Instinkt?",
-          A: {
-            text: "Ich stoppe Rotation und re-pinne.",
-            axes: { rotation: -2, pressure: +2, top: +1 },
-            sig: { pinAffinity: +2 },
-          },
-          B: {
-            text: "Ich folge der Drehung, um Rücken zu nehmen.",
-            axes: { rotation: +3, submission: +1 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Ich bleibe im Übergang, pummle weiter, bis ich Vorteil sehe.",
-            axes: { rotation: +2 },
-            sig: { resetAffinity: +3 },
-          },
-        },
-        {
-          id: 14,
-          block: "V. Rotation & Backline",
-          situation: "Gegner turtle: Du darfst nur EIN System priorisieren.",
-          question: "Was ist es?",
-          A: {
-            text: "Breakdown → Pin (keine Rotation schenken).",
-            axes: { pressure: +3, top: +1, rotation: -1 },
-            sig: { pinAffinity: +3 },
-          },
-          B: {
-            text: "Seatbelt/Hooks → Back.",
-            axes: { rotation: +3, submission: +1 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "FHL clamp → finish oder pass.",
-            axes: { submission: +2 },
-            sig: { frontHeadlockAffinity: +3 },
-          },
-        },
-        {
-          id: 15,
-          block: "V. Rotation & Backline",
-          situation: "Scramble neutral – du spürst, es kippt gleich.",
-          question: "Was tust du?",
-          A: {
-            text: "Ich 'kille' Chaos (head/hips) und mache es statisch.",
-            axes: { pressure: +2, rotation: -1, top: +1 },
-            sig: { pinAffinity: +1 },
-          },
-          B: {
-            text: "Ich suche Backline-Trigger (Turn/Turtle).",
-            axes: { rotation: +3 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Ich nutze Chaos (wrestle-up/peek-out/stand-up), dann Kontrolle.",
-            axes: { rotation: +2, top: +1 },
-            sig: { resetAffinity: +2 },
-          },
-        },
-        // VI. META (16-17)
-        {
-          id: 16,
-          block: "VI. Meta-Signaturen",
-          situation:
-            "Dein realistischster No-Gi Finish-Pfad (nicht Wunsch, sondern Trefferquote):",
-          question: "Was ist er?",
-          A: {
-            text: "Upper-Body Chains (Kimura/Triangle/Armbar-Sequenzen).",
-            axes: { submission: +2 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          B: {
-            text: "Leg-Endgames (Ashi → finish / sweep / back).",
-            axes: { distal: +2, submission: +2 },
-            sig: { legEntanglementAffinity: +4 },
-          },
-          C: {
-            text: "Front-Headlock Finishes (Guillotine/D'arce/Anaconda).",
-            axes: { submission: +2 },
-            sig: { frontHeadlockAffinity: +4 },
-          },
-        },
-        {
-          id: 17,
-          block: "VI. Meta-Signaturen",
-          situation: "Du führst knapp – noch 30 Sekunden.",
-          question: "Welche Sicherheitsstrategie gewinnt für dich am ehesten?",
-          A: {
-            text: "Pin/Top-Zeitmanagement.",
-            axes: { top: +2, pressure: +2 },
-            sig: { pinAffinity: +4 },
-          },
-          B: {
-            text: "Rücken fixieren (Kontrolle > alles).",
-            axes: { rotation: +2, submission: +1 },
-            sig: { frontHeadlockAffinity: +1 },
-          },
-          C: {
-            text: "Reset/Neuaufbau, statt im Knoten Risiko zu nehmen.",
-            axes: { rotation: +1 },
-            sig: { resetAffinity: +4 },
-          },
-        },
-      ];
+      // ── SGM-V2 Scoring Engine ──
+      const bjjSGMAnswers = {}; // qid → 1-5
 
-      const BJJ_BLOCKS = [...new Set(BJJ_QUESTIONS.map((q) => q.block))];
-      const BJJ_TOTAL = BJJ_QUESTIONS.length; // 17
-
-      // --- Elite Scoring Engine ---
-      function bjjComputeAxisMinMax() {
-        const axes = ["top", "pressure", "submission", "distal", "rotation"];
-        const mn = {
-          top: 0,
-          pressure: 0,
-          submission: 0,
-          distal: 0,
-          rotation: 0,
+      function sgmComputeAxes(answersMap) {
+        // MC-based: accumulate axis deltas from chosen options
+        // Module scores: FHL, LEG, BODYLOCK, WRESTLEUP, BACKLINE, PIN also accumulated
+        const axisAcc = { PCO: 0, FAM: 0, INS: 0, ATC: 0, CTV: 0, TRV: 0 };
+        const axisCount = { PCO: 0, FAM: 0, INS: 0, ATC: 0, CTV: 0, TRV: 0 };
+        const modAcc = {
+          FHL: 0,
+          LEG: 0,
+          BODYLOCK: 0,
+          WRESTLEUP: 0,
+          BACKLINE: 0,
+          PIN: 0,
         };
-        const mx = {
-          top: 0,
-          pressure: 0,
-          submission: 0,
-          distal: 0,
-          rotation: 0,
+        const modCount = {
+          FHL: 0,
+          LEG: 0,
+          BODYLOCK: 0,
+          WRESTLEUP: 0,
+          BACKLINE: 0,
+          PIN: 0,
         };
-        BJJ_QUESTIONS.forEach((q) => {
-          const opts = ["A", "B", "C"].map((c) => q[c].axes);
-          axes.forEach((ax) => {
-            const vals = opts.map((o) => o[ax] || 0);
-            mn[ax] += Math.min(...vals);
-            mx[ax] += Math.max(...vals);
-          });
-        });
-        return { min: mn, max: mx };
-      }
-      const BJJ_AX_MM = bjjComputeAxisMinMax();
 
-      function bjjComputeSigMax() {
-        const sigKeys = [
-          "frontHeadlockAffinity",
-          "legEntanglementAffinity",
-          "pinAffinity",
-          "resetAffinity",
+        const CORE_AXES = ["PCO", "FAM", "INS", "ATC", "CTV", "TRV"];
+        const MODULES = [
+          "FHL",
+          "LEG",
+          "BODYLOCK",
+          "WRESTLEUP",
+          "BACKLINE",
+          "PIN",
         ];
-        const maxSig = {
-          frontHeadlockAffinity: 0,
-          legEntanglementAffinity: 0,
-          pinAffinity: 0,
-          resetAffinity: 0,
-        };
-        BJJ_QUESTIONS.forEach((q) => {
-          sigKeys.forEach((k) => {
-            const vals = ["A", "B", "C"].map(
-              (c) => (q[c].sig && q[c].sig[k]) || 0,
-            );
-            maxSig[k] += Math.max(...vals);
+
+        BJJ_SGM_MC_QUESTIONS.forEach((q) => {
+          const chosen = answersMap[q.id];
+          if (chosen === undefined) return;
+          const opt = q.options.find((o) => o.label === chosen);
+          if (!opt) return;
+          Object.entries(opt.axes).forEach(([key, val]) => {
+            if (CORE_AXES.includes(key)) {
+              axisAcc[key] += val;
+              axisCount[key] += 1;
+            } else if (MODULES.includes(key)) {
+              modAcc[key] += val;
+              modCount[key] += 1;
+            }
           });
         });
-        return maxSig;
-      }
-      const BJJ_SIG_MAX = bjjComputeSigMax();
 
-      function clamp01(x) {
-        return Math.max(0, Math.min(1, x));
-      }
-      function normalize(raw, min, max) {
-        return Math.round(clamp01((raw - min) / (max - min)) * 100);
-      }
-
-      function bjjScore(answersMap) {
-        const rawA = {
-          top: 0,
-          pressure: 0,
-          submission: 0,
-          distal: 0,
-          rotation: 0,
-        };
-        const rawS = {
-          frontHeadlockAffinity: 0,
-          legEntanglementAffinity: 0,
-          pinAffinity: 0,
-          resetAffinity: 0,
-        };
-        for (let q = 1; q <= BJJ_TOTAL; q++) {
-          const c = answersMap[q];
-          if (!c) continue;
-          const qd = BJJ_QUESTIONS[q - 1];
-          const w = qd[c];
-          Object.entries(w.axes || {}).forEach(([ax, v]) => {
-            rawA[ax] = (rawA[ax] || 0) + v;
-          });
-          if (w.sig)
-            Object.entries(w.sig).forEach(([k, v]) => {
-              rawS[k] = (rawS[k] || 0) + v;
-            });
-        }
-        const axes = {
-          top: normalize(rawA.top, BJJ_AX_MM.min.top, BJJ_AX_MM.max.top),
-          pressure: normalize(
-            rawA.pressure,
-            BJJ_AX_MM.min.pressure,
-            BJJ_AX_MM.max.pressure,
-          ),
-          submission: normalize(
-            rawA.submission,
-            BJJ_AX_MM.min.submission,
-            BJJ_AX_MM.max.submission,
-          ),
-          distal: normalize(
-            rawA.distal,
-            BJJ_AX_MM.min.distal,
-            BJJ_AX_MM.max.distal,
-          ),
-          rotation: normalize(
-            rawA.rotation,
-            BJJ_AX_MM.min.rotation,
-            BJJ_AX_MM.max.rotation,
-          ),
-        };
-        const sig = {
-          frontHeadlockAffinity: Math.round(
-            (rawS.frontHeadlockAffinity /
-              (BJJ_SIG_MAX.frontHeadlockAffinity || 1)) *
-              100,
-          ),
-          legEntanglementAffinity: Math.round(
-            (rawS.legEntanglementAffinity /
-              (BJJ_SIG_MAX.legEntanglementAffinity || 1)) *
-              100,
-          ),
-          pinAffinity: Math.round(
-            (rawS.pinAffinity / (BJJ_SIG_MAX.pinAffinity || 1)) * 100,
-          ),
-          resetAffinity: Math.round(
-            (rawS.resetAffinity / (BJJ_SIG_MAX.resetAffinity || 1)) * 100,
-          ),
-        };
-        return { axes, sig };
-      }
-
-      function bjjEuclid(a, b) {
-        const ax = ["top", "pressure", "submission", "distal", "rotation"];
-        return Math.sqrt(ax.reduce((s, k) => s + (a[k] - b[k]) ** 2, 0));
-      }
-      function bjjCosine(a, b) {
-        const ax = ["top", "pressure", "submission", "distal", "rotation"];
-        const dot = ax.reduce((s, k) => s + a[k] * b[k], 0);
-        const na = Math.sqrt(ax.reduce((s, k) => s + a[k] * a[k], 0));
-        const nb = Math.sqrt(ax.reduce((s, k) => s + b[k] * b[k], 0));
-        return dot / (na * nb + 1e-9);
-      }
-      function bjjSigDist(userSig, archSigTarget) {
-        return (
-          Math.abs(
-            userSig.frontHeadlockAffinity - archSigTarget.frontHeadlockAffinity,
-          ) +
-          Math.abs(
-            userSig.legEntanglementAffinity -
-              archSigTarget.legEntanglementAffinity,
-          ) +
-          Math.abs(userSig.pinAffinity - archSigTarget.pinAffinity) +
-          Math.abs(userSig.resetAffinity - archSigTarget.resetAffinity)
-        );
-      }
-
-      function bjjClassify(axes, sig) {
-        const LAMBDA = 0.2;
-        const list = Object.values(BJJ_ARCHETYPES).map((p) => {
-          const dAxes = bjjEuclid(axes, p.centroid);
-          const sigD = bjjSigDist(sig, p.sigTarget);
-          const fitSig = 1 - Math.min(0.3, sigD / 1200);
-          const d = dAxes * (1 - LAMBDA * fitSig);
-          const cosim = bjjCosine(axes, p.centroid);
-          const confidence = Math.round(clamp01((cosim + 0.15) / 1.15) * 100);
-          return { id: p.id, dist: d, confidence };
+        // Normalize axes to [0,100]: each axis delta ranges roughly -3 to +3 per question
+        // We compute a weighted average and map [-maxScore, +maxScore] → [0,100]
+        // Max possible abs delta per axis across all questions ~ 9 (3 questions * 3 max)
+        // Use tanh-like soft clamp: normalized = 50 + 50 * tanh(sum / 6)
+        const result = {};
+        CORE_AXES.forEach((ax) => {
+          const s = axisAcc[ax];
+          const normalized = 50 + 50 * Math.tanh(s / 6);
+          result[ax] = Math.round(Math.max(0, Math.min(100, normalized)));
         });
-        list.sort((a, b) => a.dist - b.dist);
-        const inv = list.map((x) => 1 / (x.dist + 1e-6));
-        const sum = inv.reduce((a, b) => a + b, 0);
-        const dist = list.map((x, i) => ({
-          id: x.id,
-          share: Math.round((inv[i] / sum) * 100),
-          confidence: x.confidence,
+
+        // Store module scores in result for module-fit use
+        MODULES.forEach((m) => {
+          const s = modAcc[m];
+          result["_mod_" + m] = Math.round(
+            Math.max(0, Math.min(100, 50 + 50 * Math.tanh(s / 5))),
+          );
+        });
+
+        return result;
+      }
+
+      function sgmConsistency(answersMap) {
+        // For MC: measure how consistently same-section questions align
+        // Simplified: count answered / total as completeness proxy, return 1.0 always
+        const answered = Object.keys(answersMap).length;
+        const total = BJJ_TOTAL_SGM;
+        return answered >= total ? 1.0 : answered / total;
+      }
+
+      function sgmModuleFit(arch, userAxes) {
+        const beta = {
+          FHL: 1.0,
+          LEG: 1.0,
+          BODYLOCK: 0.9,
+          WRESTLEUP: 0.9,
+          BACKLINE: 0.9,
+          PIN: 0.9,
+        };
+        // Use direct module scores if available (MC answers), else derive from axes
+        const m = {
+          FHL:
+            userAxes._mod_FHL !== undefined
+              ? userAxes._mod_FHL / 100
+              : (userAxes.INS / 100) * 0.5 + (userAxes.ATC / 100) * 0.5,
+          LEG:
+            userAxes._mod_LEG !== undefined
+              ? userAxes._mod_LEG / 100
+              : (userAxes.CTV / 100) * 0.7 + (userAxes.ATC / 100) * 0.3,
+          BODYLOCK:
+            userAxes._mod_BODYLOCK !== undefined
+              ? userAxes._mod_BODYLOCK / 100
+              : (userAxes.FAM / 100) * 0.6 + (userAxes.PCO / 100) * 0.4,
+          WRESTLEUP:
+            userAxes._mod_WRESTLEUP !== undefined
+              ? userAxes._mod_WRESTLEUP / 100
+              : (userAxes.INS / 100) * 0.5 + (userAxes.PCO / 100) * 0.5,
+          BACKLINE:
+            userAxes._mod_BACKLINE !== undefined
+              ? userAxes._mod_BACKLINE / 100
+              : (userAxes.TRV / 100) * 0.7 + (userAxes.INS / 100) * 0.3,
+          PIN:
+            userAxes._mod_PIN !== undefined
+              ? userAxes._mod_PIN / 100
+              : (userAxes.FAM / 100) * 0.6 + (userAxes.TRV < 30 ? 0.4 : 0.2),
+        };
+        let fit = 0;
+        const totalBeta = Object.values(beta).reduce((a, b) => a + b, 0);
+        Object.keys(beta).forEach((k) => {
+          const archMod = arch.modules[k] !== undefined ? arch.modules[k] : 0.5;
+          fit += beta[k] * archMod * m[k];
+        });
+        return fit / totalBeta;
+      }
+
+      function bjjClassifySGM(axes) {
+        // SGM-V2: RBF Kernel + Module Fit + Softmax with Temperature
+        const SIGMA = 0.55;
+        const LAMBDA = 0.6;
+        const TEMP = 0.85;
+        const ALPHA = {
+          PCO: 1.1,
+          FAM: 1.1,
+          INS: 1.0,
+          ATC: 1.0,
+          CTV: 1.0,
+          TRV: 1.0,
+        };
+        const EPS = 1e-9;
+
+        // Weighted euclidean distance (normalized to [0,1])
+        const sgmWeightedDist = (a, b) => {
+          return Math.sqrt(
+            Object.keys(ALPHA).reduce(
+              (s, d) => s + ALPHA[d] * ((a[d] - b[d]) / 100) ** 2,
+              0,
+            ),
+          );
+        };
+
+        const list = Object.values(BJJ_ARCHETYPES).map((arch) => {
+          const D = sgmWeightedDist(axes, arch.centroid);
+          const S_space = Math.exp(-(D * D) / (2 * SIGMA * SIGMA));
+          const F = sgmModuleFit(arch, axes);
+          const S_mod = 1 + LAMBDA * F;
+          const S_total = S_space * S_mod;
+          const z = Math.log(S_total + EPS);
+          return { id: arch.id, D, S_space, S_total, z };
+        });
+
+        // Softmax with temperature
+        const maxZ = Math.max(...list.map((x) => x.z));
+        const expZ = list.map((x) => ({
+          ...x,
+          ez: Math.exp((x.z - maxZ) / TEMP),
         }));
-        const total = dist.reduce((a, b) => a + b.share, 0);
-        dist[0].share += 100 - total;
-        // Plausibility checks (Elite)
+        const sumEZ = expZ.reduce((a, b) => a + b.ez, 0);
+        const distribution = expZ.map((x) => ({
+          id: x.id,
+          share: Math.round((x.ez / sumEZ) * 100),
+          D: x.D,
+        }));
+        // Fix rounding
+        const total = distribution.reduce((a, b) => a + b.share, 0);
+        distribution.sort((a, b) => b.share - a.share);
+        distribution[0].share += 100 - total;
+
+        const p1 = distribution[0].share / 100;
+        const p2 = distribution[1].share / 100;
+        const p3 = distribution[2].share / 100;
+
+        // Entropy-based confidence
+        const H = -distribution.reduce((s, d) => {
+          const p = d.share / 100;
+          return p > 0 ? s + p * Math.log(p) : s;
+        }, 0);
+        const Hnorm = H / Math.log(distribution.length);
+        const C = 1 - Hnorm;
+        const gap12 = p1 - p2;
+        const G = Math.min(1, gap12 / 0.25);
+        const confidence = Math.round(100 * (0.65 * C + 0.35 * G));
+
+        // Specialization index (axis variance)
+        const axVals = Object.keys(ALPHA).map((k) => axes[k] / 100);
+        const mean = axVals.reduce((a, b) => a + b, 0) / axVals.length;
+        const variance =
+          axVals.reduce((s, v) => s + (v - mean) ** 2, 0) / axVals.length;
+        const specIndex = Math.round(
+          Math.min(100, (Math.sqrt(variance) / 0.5) * 100),
+        );
+
+        // Hybrid classification
+        let hybridType = "Generalist";
+        if (p1 >= 0.45 && gap12 >= 0.15) hybridType = "Spezialist";
+        else if (p1 >= 0.25 && p2 >= 0.25 && p1 + p2 >= 0.7)
+          hybridType = "Dual-Hybrid";
+        else if (p1 >= 0.2 && p1 + p2 + p3 >= 0.8) hybridType = "Tri-Hybrid";
+
         const notes = [];
-        if (dist[0].share - dist[1].share < 10)
-          notes.push(
-            "Stabiler Hybrid: Dein Stil ist eine ausgewogene Mischung aus zwei Archetypen – beide sind aktiv.",
-          );
-        if (sig.frontHeadlockAffinity > 75)
-          notes.push(
-            "Meta-Dominanz Front Headlock: No-Gi-Hebel für Resets und Finishes – konsequent trainieren.",
-          );
-        if (sig.legEntanglementAffinity > 75)
-          notes.push(
-            "Meta-Dominanz Leg System: Knee-Line Management ist zentral für deine Win-Conditions.",
-          );
-        if (sig.pinAffinity > 75)
-          notes.push(
-            "Meta-Dominanz Pins/Flattening: Frame-Breaks und Kontrolle sind der Kern deines Drucks.",
-          );
-        if (sig.resetAffinity > 75)
-          notes.push(
-            "Meta-Dominanz Reset/Stand-up: Neuaufbau aus Stand ist ein zentrales strukturelles Element deines Stils.",
-          );
-        // Conflict check
         const conflicts = [];
-        if (axes.top > 70 && axes.distal > 80)
-          conflicts.push(
-            "Hohe Top-Orientierung + hohes Leg-System: du bist offensiv sehr komplett, aber exponiert wenn Beine beim Einsteigen angegriffen werden.",
+        const primary = BJJ_ARCHETYPES[distribution[0].id];
+        const secondary = BJJ_ARCHETYPES[distribution[1].id];
+
+        if (hybridType === "Generalist")
+          notes.push(
+            `Generalist-Profil (Spezialisierungsindex: ${specIndex}%): Breite Kompetenz über alle Achsen – wenig Polarisierung, hohe Adaptivität. Kein erzwungener Haupttyp.`,
           );
-        if (axes.pressure > 85 && axes.rotation > 80)
-          conflicts.push(
-            "Hohes Pressure + hohe Rotation: Risiko bei Over-Commitment im Übergang – Back-Takes können dich treffen.",
+        else if (hybridType === "Dual-Hybrid")
+          notes.push(
+            `Dual-Hybrid: "${primary.label}" + "${secondary.label}" – beide Archetypen gleichwertig aktiv (${distribution[0].share}% + ${distribution[1].share}%).`,
           );
+        else if (hybridType === "Tri-Hybrid")
+          notes.push(
+            `Tri-Hybrid: Drei Archetypen aktiv – "${primary.label}" + "${secondary.label}" + "${BJJ_ARCHETYPES[distribution[2].id].label}".`,
+          );
+        if (axes.PCO > 80 && axes.TRV > 75)
+          notes.push(
+            "Hohe PCO + TRV: Wrestler mit Back-Hunter-Qualitäten – gefährlich von Top in Übergängen.",
+          );
+        if (axes.CTV > 80 && axes.ATC > 80)
+          notes.push(
+            "Hohe CTV + ATC: Leg-System mit extremer Submission-Bereitschaft – starkes No-Gi-Finish-Profil.",
+          );
+        if (axes.FAM > 85 && axes.TRV < 25)
+          notes.push(
+            "Hohe FAM + niedrige TRV: Maximale Pressure-Orientierung – strukturell sehr stabil, wenig Rotationsexposure.",
+          );
+        if (axes.INS > 80 && axes.ATC > 80)
+          notes.push(
+            "Hohe INS + ATC: Initiativ und angriffswillig – hohes Output-Volumen, Expositions-Management wichtig.",
+          );
+        if (axes.PCO > 75 && axes.CTV > 75)
+          notes.push(
+            "Hohe PCO + CTV: Top-Orientierung mit Leg-System – strukturell sehr komplett, Bein-Exposure beim Einsteigen beachten.",
+          );
+        if (axes.FAM > 85 && axes.TRV > 75)
+          conflicts.push(
+            "Hohes FAM + TRV: Pressure + Rotation = Over-Commitment-Risiko. Back-Takes treffen dich in Übergängen.",
+          );
+
         return {
-          primary: dist[0],
-          secondary: dist[1],
-          distribution: dist,
+          primary: distribution[0],
+          secondary: distribution[1],
+          distribution,
           notes,
           conflicts,
+          confidence,
+          hybridType,
+          specIndex,
         };
       }
 
-      // Matchup matrix using archetype-defined matchupVs
+      // Matchup matrix stays archetype-defined
       function buildBJJMatrix() {
         const ids = Object.keys(BJJ_ARCHETYPES);
         const result = {};
@@ -3315,48 +4056,66 @@
         return { ids, result };
       }
 
-      // ═══════════════════════════════════════════════════════════
-      // BJJ STATE & UI
-      // ═══════════════════════════════════════════════════════════
-      const bjjAnswers = {};
-
+      // ── SGM-V2 Quiz Builder ──
       function buildBJJQuiz() {
         const container = document.getElementById("qc-bjj");
         container.innerHTML = "";
-        let lastBlock = null;
-        let blockStartIdx = {};
-        BJJ_QUESTIONS.forEach((q, idx) => {
-          if (!blockStartIdx[q.block]) blockStartIdx[q.block] = idx + 1;
-        });
-        BJJ_QUESTIONS.forEach((q, idx) => {
-          if (q.block !== lastBlock) {
-            lastBlock = q.block;
-            const blockQs = BJJ_QUESTIONS.filter((bq) => bq.block === q.block);
-            const lastInBlock = blockQs[blockQs.length - 1];
+        let lastSection = null;
+        BJJ_SGM_MC_QUESTIONS.forEach((q, idx) => {
+          if (q.section !== lastSection) {
+            lastSection = q.section;
             const h = document.createElement("div");
             h.className = "attr-section-header";
-            h.innerHTML = `<span class="attr-key-badge">${blockStartIdx[q.block]}–${lastInBlock.id}</span>${q.block}`;
+            h.innerHTML = `<span class="attr-key-badge">${String(idx + 1).padStart(2, "0")}</span>${q.section}`;
             container.appendChild(h);
           }
           const block = document.createElement("div");
           block.className = "q-block";
           block.id = "qblock-bjj-" + q.id;
-          block.innerHTML = `<div class="q-header"><div class="q-num" id="qnum-bjj-${q.id}">${String(idx + 1).padStart(2, "0")}</div><div style="flex:1"><div class="q-situation">${q.situation}</div><div class="q-title">${q.question}</div></div></div>
-<div class="options-grid">
-  ${["A", "B", "C"].map((c) => `<div class="opt-card" id="opt-bjj-${q.id}-${c}" onclick="selectBJJOption(${q.id},'${c}')"><div class="opt-letter">${c}</div><div class="opt-text">${q[c].text}</div></div>`).join("")}
-</div>`;
+          const optHTML = q.options
+            .map(
+              (opt) => `
+<button class="mc-option" id="mc-bjj-${q.id}-${opt.label}" onclick="selectBJJMC(${q.id},'${opt.label}')">
+  <span class="mc-label">${opt.label}</span>
+  <span class="mc-text">${opt.text}</span>
+</button>`,
+            )
+            .join("");
+          block.innerHTML = `
+<div class="q-header">
+  <div class="q-num" id="qnum-bjj-${q.id}">${String(idx + 1).padStart(2, "0")}</div>
+  <div style="flex:1"><div class="q-title">${q.text}</div></div>
+</div>
+<div class="mc-options">${optHTML}</div>`;
           container.appendChild(block);
         });
         updateBJJProgress();
       }
 
-      function selectBJJOption(qid, choice) {
-        bjjAnswers[qid] = choice;
-        localStorage.setItem("bjj_answers", JSON.stringify(bjjAnswers));
-        localStorage.setItem("last_page", "bjj");
-        ["A", "B", "C"].forEach((c) => {
-          const el = document.getElementById("opt-bjj-" + qid + "-" + c);
-          if (el) el.classList.toggle("selected", c === choice);
+      function updateBJJProgress() {
+        const count = Object.keys(bjjSGMAnswers).length;
+        const total = BJJ_TOTAL_SGM;
+        const pf = document.getElementById("pf-bjj");
+        if (pf) pf.style.width = (count / total) * 100 + "%";
+        const pt = document.getElementById("pt-bjj");
+        if (pt) pt.textContent = count + " / " + total;
+        const btn = document.getElementById("bs-bjj");
+        if (btn) btn.disabled = count < total;
+        const ci = document.getElementById("ci-bjj");
+        if (ci)
+          ci.textContent =
+            count < total
+              ? total - count + " Fragen noch offen."
+              : "Alle Fragen beantwortet – bereit!";
+      }
+
+      function selectBJJMC(qid, label) {
+        bjjSGMAnswers[qid] = label;
+        localStorage.setItem("bjj_sgm_answers", JSON.stringify(bjjSGMAnswers));
+        const q = BJJ_SGM_MC_QUESTIONS.find((x) => x.id === qid);
+        q.options.forEach((opt) => {
+          const el = document.getElementById("mc-bjj-" + qid + "-" + opt.label);
+          if (el) el.classList.toggle("selected", opt.label === label);
         });
         document.getElementById("qblock-bjj-" + qid).classList.add("answered");
         document.getElementById("qnum-bjj-" + qid).style.color =
@@ -3364,46 +4123,40 @@
         updateBJJProgress();
       }
 
-      function updateBJJProgress() {
-        const count = Object.keys(bjjAnswers).length,
-          total = BJJ_TOTAL;
-        document.getElementById("pf-bjj").style.width =
-          (count / total) * 100 + "%";
-        document.getElementById("pt-bjj").textContent = count + " / " + total;
-        const btn = document.getElementById("bs-bjj");
-        btn.disabled = count < total;
-        document.getElementById("ci-bjj").textContent =
-          count < total
-            ? "Noch " + (total - count) + " Frage(n) offen."
-            : "Alle Antworten vollständig – bereit.";
-      }
-
+      // ── SGM-V2 Results ──
       function showBJJResults() {
-        const { axes, sig } = bjjScore(bjjAnswers);
-        const classification = bjjClassify(axes, sig);
+        const axes = sgmComputeAxes(bjjSGMAnswers);
+        const consistency = sgmConsistency(bjjSGMAnswers);
+        const classification = bjjClassifySGM(axes);
         const primary = BJJ_ARCHETYPES[classification.primary.id];
         const secondary = BJJ_ARCHETYPES[classification.secondary.id];
+
         document.getElementById("quiz-bjj").style.display = "none";
         const ra = document.getElementById("bjj-results-area");
         ra.style.display = "block";
         ra.scrollIntoView({ behavior: "smooth" });
+
         // Hero
         const rh = document.getElementById("rh-bjj");
         rh.setAttribute("data-style", primary.label.toUpperCase());
         rh.innerHTML = `
 ${renderArchImage(primary.label, primary.color, "result")}
-<div class="result-label">Dein No-Gi BJJ Profil – Elite 17</div>
+<div class="result-label">Dein No-Gi BJJ Profil – SGM-V2</div>
 <div class="result-name">${primary.emoji} ${primary.label}</div>
 <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">${primary.archetypeName}</div>
 <div class="result-desc">${primary.oneLiner}</div>
 <div class="kpi-row">
-  <div class="kpi"><div class="kpi-label">Primär</div><div class="kpi-val" style="font-size:20px;line-height:1.2">${primary.label}</div></div>
+  <div class="kpi"><div class="kpi-label">Primär</div><div class="kpi-val" style="font-size:18px;line-height:1.2">${primary.label}</div></div>
   <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.primary.share}%</div></div>
-  <div class="kpi"><div class="kpi-label">Sekundär</div><div class="kpi-val" style="font-size:20px;line-height:1.2">${secondary.label}</div></div>
-  <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.secondary.share}%</div></div>
-  <div class="kpi"><div class="kpi-label">Confidence</div><div class="kpi-val">${classification.primary.confidence}%</div></div>
+  <div class="kpi"><div class="kpi-label">Typ</div><div class="kpi-val" style="font-size:16px;line-height:1.2">${classification.hybridType}</div></div>
+  <div class="kpi"><div class="kpi-label">Confidence</div><div class="kpi-val">${classification.confidence}%</div></div>
+  <div class="kpi"><div class="kpi-label">Spezialisierung</div><div class="kpi-val">${classification.specIndex}%</div></div>
 </div>
-${classification.primary.share - classification.secondary.share < 10 ? `<div class="hybrid-notice">Hybridprofil: "${primary.label}" + "${secondary.label}" – beide Archetypen sind gleichwertig aktiv in deinem System.</div>` : ""}
+${
+  classification.hybridType !== "Spezialist"
+    ? `<div class="hybrid-notice">${classification.hybridType}: "${primary.label}" + "${secondary.label}" – Confidence ${classification.confidence}% · Spezialisierungsindex ${classification.specIndex}%</div>`
+    : ""
+}
 ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</div>`).join("")}`;
 
         // Deep dive
@@ -3417,33 +4170,22 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
 <div class="sw-box"><div class="sw-title pos">Stärken</div><ul class="sw-list">${primary.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
 <div class="sw-box"><div class="sw-title neg">Schwächen</div><ul class="sw-list">${primary.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>`;
 
-        // Signatures
-        const sigColors = {
-          frontHeadlockAffinity: "#C0392B",
-          legEntanglementAffinity: "#2E7D32",
-          pinAffinity: "#4A7C4E",
-          resetAffinity: "#D4A574",
-        };
-        const sigLabels = {
-          frontHeadlockAffinity: "Front Headlock",
-          legEntanglementAffinity: "Leg Entanglement",
-          pinAffinity: "Pins / Flattening",
-          resetAffinity: "Reset / Stand-up",
-        };
-        document.getElementById("sig-bjj").innerHTML = Object.entries(sigLabels)
-          .map(
-            ([k, label]) => `
+        // SGM 6-axis sig boxes
+        document.getElementById("sig-bjj").innerHTML = SGM_AXES.map(
+          (ax) => `
 <div class="sig-box">
-  <div class="sig-label">${label}</div>
-  <div class="sig-bar-track"><div class="sig-bar-fill" style="width:${sig[k]}%;background:${sigColors[k]}"></div></div>
-  <div class="sig-val">${sig[k]}%</div>
+  <div class="sig-label">${ax.key} – ${ax.label.split(" ").slice(0, 2).join(" ")}</div>
+  <div class="sig-bar-track"><div class="sig-bar-fill" style="width:${axes[ax.key]}%;background:${ax.color}"></div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
+    <div class="sig-val">${axes[ax.key]}%</div>
+    <div class="sgm-consistency" title="Interne Konsistenz dieser Achse">⬡ ${consistency[ax.key]}%</div>
+  </div>
 </div>`,
-          )
-          .join("");
+        ).join("");
 
-        setTimeout(() => drawBJJRadar(axes, primary), 80);
+        setTimeout(() => drawBJJHexRadar(axes, primary), 80);
 
-        // Distribution
+        // Arch distribution
         document.getElementById("arch-dist-bjj").innerHTML =
           classification.distribution
             .map((d) => {
@@ -3459,23 +4201,26 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           .map((a) => `<li>${a}</li>`)
           .join("");
 
-        // Notes + conflicts combined
         const allNotes = [...classification.notes];
         document.getElementById("notes-bjj").innerHTML = allNotes.length
           ? allNotes.map((n) => `<div class="note-item">${n}</div>`).join("")
-          : '<div style="font-size:13px;color:var(--muted)">Kein besonderer Hinweis – klares Profil.</div>';
+          : '<div style="font-size:13px;color:var(--muted)">Klares Profil – keine strukturellen Konflikte erkannt.</div>';
 
-        // Matchup matrix (results page – compact)
+        // Matchup matrix
         const { ids, result } = buildBJJMatrix();
         const labelsM = {
-          OCTOPUS: "🐙 Oct",
-          GORILLA: "🦍 Gor",
-          CROCODILE: "🐊 Croc",
-          PANTHER: "🐆 Pan",
-          VIPER: "🐍 Vip",
-          SPIDER: "🕷 Spi",
-          ANACONDA: "🐍 Ana",
-          MANTIS: "🦗 Man",
+          PBP: "PBP",
+          WTC: "WTC",
+          PPF: "PPF",
+          DN: "DN",
+          FHF: "FHF",
+          RBTS: "RBTS",
+          TSO: "TSO",
+          DOGR: "DOGR",
+          WUGP: "WUGP",
+          LIH: "LIH",
+          LTC: "LTC",
+          TC: "TC",
         };
         let mt = `<table class="matchup-matrix"><thead><tr><th></th>${ids.map((id) => `<th>${labelsM[id]}</th>`).join("")}</tr></thead><tbody>`;
         ids.forEach((rowId) => {
@@ -3486,7 +4231,7 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
               return;
             }
             const cell = result[rowId][colId];
-            const cssClass =
+            const css =
               cell.adv === "even"
                 ? "even"
                 : cell.adv === "adv"
@@ -3494,7 +4239,7 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
                   : "adv-b";
             const txt =
               cell.adv === "even" ? "~" : cell.adv === "adv" ? "✓" : "✗";
-            mt += `<td class="${cssClass}">${txt}</td>`;
+            mt += `<td class="${css}">${txt}</td>`;
           });
           mt += "</tr>";
         });
@@ -3503,47 +4248,67 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           '<div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono)">✓ = Zeile hat strukturellen Vorteil · ✗ = Nachteil · ~ = Ausgeglichen</div>';
         document.getElementById("matrix-bjj").innerHTML = mt;
 
-        // Answers
-        document.getElementById("at-bjj").innerHTML = BJJ_QUESTIONS.map((q) => {
-          const c = bjjAnswers[q.id];
-          if (!c) return "";
-          return `<div class="answer-group"><div class="answer-group-header"><div><div class="ans-key">Frage ${q.id}</div><div class="ans-attr-label">${q.block}</div></div><div class="ans-result-badge">${c}</div></div><div class="ans-q-rows"><div class="ans-q-row"><span class="ans-q-label">${c}</span><span class="ans-q-text">${q[c].text}</span><span class="ans-q-situation">${q.situation}</span></div></div></div>`;
-        }).join("");
+        // Answers review
+        const sections = [
+          ...new Set(BJJ_SGM_MC_QUESTIONS.map((q) => q.section)),
+        ];
+        document.getElementById("at-bjj").innerHTML = sections
+          .map((sec) => {
+            const qs = BJJ_SGM_MC_QUESTIONS.filter((q) => q.section === sec);
+            return `<div class="answer-group">
+<div class="answer-group-header">
+  <div><div class="ans-key">${sec}</div></div>
+</div>
+<div class="ans-q-rows">${qs
+              .map((q) => {
+                const chosen = bjjSGMAnswers[q.id];
+                const opt = q.options.find((o) => o.label === chosen);
+                return `<div class="ans-q-row" style="grid-template-columns:28px 1fr 24px">
+    <span class="ans-q-label">${String(q.id).padStart(2, "0")}</span>
+    <span class="ans-q-text">${q.text}<br><span style="color:var(--accent2);font-size:11px">${chosen ? chosen + ") " + opt.text : "–"}</span></span>
+    <span class="ans-q-val" style="color:var(--accent2)">${chosen || "–"}</span>
+  </div>`;
+              })
+              .join("")}</div></div>`;
+          })
+          .join("");
       }
 
       function resetBJJTest() {
-        Object.keys(bjjAnswers).forEach((k) => delete bjjAnswers[k]);
-        localStorage.removeItem("bjj_answers");
+        Object.keys(bjjSGMAnswers).forEach((k) => delete bjjSGMAnswers[k]);
+        localStorage.removeItem("bjj_sgm_answers");
         document.getElementById("bjj-results-area").style.display = "none";
         document.getElementById("quiz-bjj").style.display = "block";
         buildBJJQuiz();
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // BJJ Radar
-      function drawBJJRadar(axes, arch) {
+      // ── SGM-V2 Hexagon Radar ──
+      function drawBJJHexRadar(axes, arch) {
         const canvas = document.getElementById("radar-bjj");
         if (!canvas) return;
         const ctx = canvas.getContext("2d");
         const W = canvas.width,
           H = canvas.height;
         const cx = W / 2,
-          cy = H / 2 + 8,
+          cy = H / 2 + 10,
           R = Math.min(W, H) * 0.34;
-        const axisKeys = [
-          "top",
-          "pressure",
-          "submission",
-          "distal",
-          "rotation",
-        ];
-        const axisLabels = ["TOP", "PRESSURE", "SUB", "DISTAL", "ROT"];
-        const N = 5;
-        const angles = Array.from(
-          { length: N },
+        const N = 6;
+        // Hexagon: PCO(bottom), FAM(bottom-right), INS(top-right), ATC(top), CTV(top-left), TRV(bottom-left)
+        // Start at top (-90°), go clockwise: ATC, INS, FAM, PCO, TRV, CTV...
+        // Per SGM-V2 spec: PCO(bottom)=270°, FAM(bot-right)=330°, INS(top-right)=30°, ATC(top)=90°... wait
+        // Use equal spacing starting at top (-90° = -Math.PI/2), clockwise
+        const axisOrder = ["PCO", "FAM", "INS", "ATC", "CTV", "TRV"];
+        // Position: top=ATC, top-right=INS, bot-right=FAM, bottom=PCO, bot-left=TRV, top-left=CTV
+        // That matches the SGM-V2 spec diagram
+        const displayOrder = ["ATC", "INS", "FAM", "PCO", "TRV", "CTV"];
+        const angles = displayOrder.map(
           (_, i) => (i / N) * 2 * Math.PI - Math.PI / 2,
         );
+
         ctx.clearRect(0, 0, W, H);
+
+        // Grid rings
         [20, 40, 60, 80, 100].forEach((level) => {
           ctx.beginPath();
           angles.forEach((a, i) => {
@@ -3553,10 +4318,17 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
             i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
           });
           ctx.closePath();
-          ctx.strokeStyle = "rgba(0,0,0,0.08)";
+          ctx.strokeStyle = "rgba(0,0,0,0.07)";
           ctx.lineWidth = 1;
           ctx.stroke();
+          // level label
+          ctx.font = "8px monospace";
+          ctx.fillStyle = "rgba(0,0,0,0.25)";
+          ctx.textAlign = "center";
+          ctx.fillText(level, cx, cy - (level / 100) * R + 3);
         });
+
+        // Axis lines
         angles.forEach((a) => {
           ctx.beginPath();
           ctx.moveTo(cx, cy);
@@ -3565,16 +4337,18 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           ctx.lineWidth = 1;
           ctx.stroke();
         });
+
+        // Archetype centroid (reference ghost)
         if (arch && arch.centroid) {
           ctx.beginPath();
-          axisKeys.forEach((k, i) => {
+          displayOrder.forEach((k, i) => {
             const r = (arch.centroid[k] / 100) * R,
               x = cx + r * Math.cos(angles[i]),
               y = cy + r * Math.sin(angles[i]);
             i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
           });
           ctx.closePath();
-          ctx.fillStyle = arch.color + "18";
+          ctx.fillStyle = arch.color + "15";
           ctx.fill();
           ctx.strokeStyle = arch.color + "55";
           ctx.lineWidth = 2;
@@ -3582,39 +4356,46 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           ctx.stroke();
           ctx.setLineDash([]);
         }
+
+        // User profile
         ctx.beginPath();
-        axisKeys.forEach((k, i) => {
+        displayOrder.forEach((k, i) => {
           const r = (axes[k] / 100) * R,
             x = cx + r * Math.cos(angles[i]),
             y = cy + r * Math.sin(angles[i]);
           i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
         });
         ctx.closePath();
-        ctx.fillStyle = "rgba(138,106,31,0.08)";
+        ctx.fillStyle = "rgba(138,106,31,0.10)";
         ctx.fill();
         ctx.strokeStyle = "#8a6a1f";
-        ctx.lineWidth = 2;
+        ctx.lineWidth = 2.5;
         ctx.stroke();
-        axisKeys.forEach((k, i) => {
+
+        // Dots
+        displayOrder.forEach((k, i) => {
           const r = (axes[k] / 100) * R,
             x = cx + r * Math.cos(angles[i]),
             y = cy + r * Math.sin(angles[i]);
           ctx.beginPath();
-          ctx.arc(x, y, 4, 0, Math.PI * 2);
+          ctx.arc(x, y, 4.5, 0, Math.PI * 2);
           ctx.fillStyle = "#8a6a1f";
           ctx.fill();
         });
+
+        // Axis labels
         ctx.font = "bold 9px monospace";
-        ctx.fillStyle = "#8a8278";
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-        angles.forEach((a, i) =>
-          ctx.fillText(
-            axisLabels[i],
-            cx + (R + 22) * Math.cos(a),
-            cy + (R + 22) * Math.sin(a),
-          ),
-        );
+        displayOrder.forEach((k, i) => {
+          const axInfo = SGM_AXES.find((a) => a.key === k);
+          const lx = cx + (R + 26) * Math.cos(angles[i]),
+            ly = cy + (R + 26) * Math.sin(angles[i]);
+          ctx.fillStyle = axInfo.color;
+          ctx.fillText(k, lx, ly);
+        });
+
+        // Legend
         ctx.font = "10px sans-serif";
         ctx.textAlign = "left";
         ctx.fillStyle = "#8a6a1f";
@@ -3636,78 +4417,66 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
         }
       }
 
-      // ═══════════════════════════════════════════════════════════
-      // BJJ LIBRARY – VOLLSTÄNDIGE THEORIE + MATRIX
-      // ═══════════════════════════════════════════════════════════
+      // ── BJJ Library (SGM-V2) ──
       function buildBJJLibrary() {
         const container = document.getElementById("lib-bjj");
+        const axLabels = {
+          PCO: "PCO",
+          FAM: "FAM",
+          INS: "INS",
+          ATC: "ATC",
+          CTV: "CTV",
+          TRV: "TRV",
+        };
+
         let html = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-<div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">🥋 No-Gi BJJ – 8 ARCHETYPEN</div>
+<div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">🥋 No-Gi BJJ – 12 ARCHETYPEN</div>
 <button class="lib-start-btn" onclick="showPage('bjj')">TEST STARTEN</button>
 </div>`;
-        // Framework intro
-        html += `<div style="background:rgba(181,137,30,.06);border-left:3px solid var(--accent2);border-radius:0 4px 4px 0;padding:14px 18px;margin-bottom:28px;font-size:13px;color:var(--text);line-height:1.75">
-<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">No-Gi Framework</div>
-<strong style="color:var(--accent)">5 Achsen:</strong> Top-Orientierung · Pressure · Submission-Initiative · Distal-Fokus · Rotation/Backline<br>
-<strong style="color:var(--accent)">4 Meta-Signaturen:</strong> Front Headlock · Leg Entanglement · Pins/Flattening · Reset/Stand-up<br>
-<strong style="color:var(--accent)">Methodik:</strong> Jede Achse wird 3× geprüft, Meta-Signaturen separat validiert. Ergebnis ist ein Hybridprofil mit Confidence-Score.
+
+        // SGM-V2 Framework intro
+        html += `<div class="sgm-frame" style="margin-bottom:24px">
+<div class="sgm-frame-title">Structural Grappling Model V2 (SGM-V2)</div>
+<div style="font-size:13px;color:var(--text);line-height:1.75">
+Das SGM-V2 ist ein <strong style="color:var(--accent)">sechsdimensionales Vektormodell</strong> zur systematischen Beschreibung individueller No-Gi Stilpräferenzen. Jeder Athlet wird als Punkt im 6D-Raum modelliert. Archetypen stellen Cluster-Zentroide dar. Matchup-Tendenzen ergeben sich aus struktureller Distanz, komplementären Achsenbeziehungen und Risiko-Asymmetrien.
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
+${SGM_AXES.map((ax) => `<span class="sgm-axis-badge" style="border-color:${ax.color}44;color:${ax.color}"><strong>${ax.key}</strong></span>`).join("")}
+</div>
+</div>
 </div>`;
+
+        // Axis descriptions
         html += `<div style="margin-bottom:28px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
-  <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">ACHSEN-ERKLÄRUNG (Skala 0–100)</div>
-  <table style="width:100%;border-collapse:collapse;font-size:13px">
-    <tr style="border-bottom:1px solid var(--border)">
-      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent);width:90px">TOP</td>
-      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Top-Orientierung</strong> — 0 = Guard-Spieler / Bottom-System · 100 = reiner Wrestler / Top-Controller</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border)">
-      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">PRESSURE</td>
-      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Pressure</strong> — 0 = mobil / Winkel-orientiert · 100 = Flattening / Pin-System</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border)">
-      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">SUB</td>
-      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Submission-Initiative</strong> — 0 = Position first / Kontrolle vor Finish · 100 = permanenter Submission-Angriff</td>
-    </tr>
-    <tr style="border-bottom:1px solid var(--border)">
-      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">DISTAL</td>
-      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Distal-Fokus</strong> — 0 = Upper-Body / Kopf-Arm-Kontrolle · 100 = Leg-System / Knee-Line</td>
-    </tr>
-    <tr>
-      <td style="padding:10px 16px;font-family:var(--font-mono);font-size:10px;letter-spacing:1px;color:var(--accent)">ROT</td>
-      <td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">Rotation / Backline</strong> — 0 = statisch / Pin-orientiert · 100 = Back-Hunter / Scrambler</td>
-    </tr>
-  </table>
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">SGM-V2 ACHSEN (Skala 0–100)</div>
+<table style="width:100%;border-collapse:collapse;font-size:13px">
+${SGM_AXES.map(
+  (
+    ax,
+    i,
+  ) => `<tr style="${i < 5 ? "border-bottom:1px solid var(--border)" : ""}">
+<td style="padding:10px 16px;width:100px"><span class="sgm-axis-badge" style="border-color:${ax.color}44;color:${ax.color}">${ax.key}</span></td>
+<td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">${ax.label}</strong> — ${ax.desc}</td>
+</tr>`,
+).join("")}
+</table>
 </div>`;
-        // Centroid overview table
+
+        // Centroid overview
         html += `<div style="margin-bottom:32px">
-<div class="lib-compare-title" style="margin-bottom:12px">ARCHETYPEN-ZENTROIDE (5 Achsen, 0–100)</div>
+<div class="lib-compare-title" style="margin-bottom:12px">ARCHETYPEN-ZENTROIDE (SGM-V2)</div>
 <div style="overflow-x:auto"><table class="centroid-table">
-<thead><tr><th>Archetyp</th><th>TOP</th><th>PRESSURE</th><th>SUBMISSION</th><th>DISTAL</th><th>ROTATION</th><th>Kern-Signatur</th></tr></thead>
+<thead><tr><th>Archetyp</th>${SGM_AXES.map((ax) => `<th style="color:${ax.color}">${ax.key}</th>`).join("")}<th>Dom. Achse</th></tr></thead>
 <tbody>`;
-        const axBarColor = {
-          OCTOPUS: "#5B99C2",
-          GORILLA: "#8B5E3C",
-          CROCODILE: "#4A4A4A",
-          PANTHER: "#1A1714",
-          VIPER: "#2E7D32",
-          SPIDER: "#7B2D8B",
-          ANACONDA: "#C0392B",
-          MANTIS: "#D4A574",
-        };
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
-          const c = arch.centroid;
-          const maxSig = Object.entries(arch.sigTarget).reduce((best, cur) =>
-            cur[1] > best[1] ? cur : best,
+          const domAxis = SGM_AXES.reduce(
+            (best, ax) =>
+              arch.centroid[ax.key] > arch.centroid[best.key] ? ax : best,
+            SGM_AXES[0],
           );
-          const sigLabel = {
-            frontHeadlockAffinity: "Front Headlock",
-            legEntanglementAffinity: "Leg System",
-            pinAffinity: "Pins/Pressure",
-            resetAffinity: "Reset/Scramble",
-          };
           html += `<tr>
 <td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.emoji} ${arch.label}</div></td>
-${["top", "pressure", "submission", "distal", "rotation"].map((ax) => `<td><span class="centroid-bar" style="width:${c[ax] * 0.55}px;background:${arch.color};opacity:.7"></span> <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">${c[ax]}</span></td>`).join("")}
-<td style="font-size:11px;color:var(--accent2);font-family:var(--font-mono)">${sigLabel[maxSig[0]]}</td>
+${SGM_AXES.map((ax) => `<td><span class="centroid-bar" style="width:${arch.centroid[ax.key] * 0.5}px;background:${arch.color};opacity:.7"></span> <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">${arch.centroid[ax.key]}</span></td>`).join("")}
+<td style="font-size:11px;color:${domAxis.color};font-family:var(--font-mono)">${domAxis.key}</td>
 </tr>`;
         });
         html += `</tbody></table></div></div>`;
@@ -3730,6 +4499,11 @@ ${["top", "pressure", "submission", "distal", "rotation"].map((ax) => `<td><span
   <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">ONE-LINER</div><div style="font-size:14px;font-style:italic;color:var(--text)">"${arch.oneLiner}"</div></div>
   <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">SUBTYPEN</div><div class="sub-arch-chips">${arch.subArchetypes.map((s) => `<div class="sub-arch-chip">${s}</div>`).join("")}</div></div>
   ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
+  <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">SGM-V2 PROFIL</div>
+  <div>${SGM_AXES.map((ax) => {
+    const v = arch.centroid[ax.key];
+    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><span style="font-family:var(--font-mono);font-size:9px;color:${ax.color};width:35px">${ax.key}</span><div style="flex:1;height:4px;background:var(--border);border-radius:2px"><div style="width:${v}%;height:100%;background:${ax.color};border-radius:2px"></div></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--accent);width:28px;text-align:right">${v}</span></div>`;
+  }).join("")}</div></div>
   <div class="lib-sw-row">
     <div class="lib-sw-box"><div class="lib-sw-title pos">Stärken</div><ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
     <div class="lib-sw-box"><div class="lib-sw-title neg">Schwächen</div><ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
@@ -3738,90 +4512,68 @@ ${["top", "pressure", "submission", "distal", "rotation"].map((ax) => `<td><span
     <div class="lib-sw-box"><div class="lib-sw-title pos">Win-Conditions</div><ul class="lib-sw-list">${arch.winConditions.map((w) => `<li class="pos">${w}</li>`).join("")}</ul></div>
     <div class="lib-sw-box"><div class="lib-sw-title neg">Anti-Patterns</div><ul class="lib-sw-list">${arch.antiPatterns.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
   </div>
-  <div class="lib-matchup-box"><strong>MATCHUP-ANALYSE:</strong> ${arch.matchup}</div>
+  <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
   <div style="margin-top:12px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">BEKANNTE VERTRETER</div><div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div></div>
-  <div style="margin-top:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">ACHSENPROFIL</div>
-  <div>${["top", "pressure", "submission", "distal", "rotation"]
-    .map((ax) => {
-      const v = arch.centroid[ax];
-      const label = {
-        top: "TOP",
-        pressure: "PRESSURE",
-        submission: "SUB",
-        distal: "DISTAL",
-        rotation: "ROT",
-      };
-      return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><span style="font-family:var(--font-mono);font-size:9px;color:var(--muted);width:60px">${label[ax]}</span><div style="flex:1;height:4px;background:var(--border);border-radius:2px"><div style="width:${v}%;height:100%;background:${arch.color};border-radius:2px"></div></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--accent);width:28px;text-align:right">${v}</span></div>`;
-    })
-    .join("")}</div></div>
-</div>
-</div>`;
+</div></div>`;
         });
         html += `</div>`;
 
-        // FULL MATCHUP MATRIX + THEORY
+        // Full 8×8 matrix
         html += `<div class="matrix-section">
-<div class="matrix-title">8×8 MATCHUP-MATRIX</div>
-<div class="matrix-subtitle">Strukturelle Vor- und Nachteile zwischen den 8 No-Gi BJJ Archetypen. Basiert auf Achsen-Distanz, Meta-Signaturen und stilspezifischen Interaktionen. Nicht deterministisch – Athletik, Erfahrung und Tagesform bestimmen echte Kämpfe. Dies zeigt systemische Tendenzen.</div>`;
-
+<div class="matrix-title">12×12 MATCHUP-MATRIX</div>
+<div class="matrix-subtitle">Strukturelle Vor- und Nachteile zwischen den 12 No-Gi BJJ Archetypen. SGM-V2 Scoring: Weighted Euclidean Distance · RBF-Kernel (σ=0.55) · Modul-Fit-Verstärker (λ=0.6) · Softmax Temperatur T=0.85 · Hybrid-Klassifikation (Spezialist / Dual / Tri / Generalist).</div>`;
         const { ids, result } = buildBJJMatrix();
         const fullLabels = {
-          OCTOPUS: "🐙 Octopus",
-          GORILLA: "🦍 Gorilla",
-          CROCODILE: "🐊 Crocodile",
-          PANTHER: "🐆 Panther",
-          VIPER: "🐍 Viper",
-          SPIDER: "🕷 Spider",
-          ANACONDA: "🐍 Anaconda",
-          MANTIS: "🦗 Mantis",
+          PBP: "Pressure Bodylock Passer",
+          WTC: "Wrestle-to-Top Controller",
+          PPF: "Positional Patience Finisher",
+          DN: "Defensive Neutralizer",
+          FHF: "Front Headlock Finisher",
+          RBTS: "Rotational Back-Take Specialist",
+          TSO: "Transitional Scramble Opportunist",
+          DOGR: "Dynamic Outside Guard Retainer",
+          WUGP: "Wrestle-Up Guard Player",
+          LIH: "Leg-Lock Inside-Saddle Hunter",
+          LTC: "Leg-to-Top Converter",
+          TC: "Tempo Controller",
         };
-
         html += `<div class="matrix-wrap"><table class="matrix-table">
-<thead><tr><th class="row-label">Zeile ↓ vs Spalte →</th>${ids.map((id) => `<th title="${fullLabels[id]}">${fullLabels[id]}</th>`).join("")}</tr></thead>
-<tbody>`;
+<thead><tr><th class="row-label">↓ vs →</th>${ids.map((id) => `<th>${fullLabels[id]}</th>`).join("")}</tr></thead><tbody>`;
         ids.forEach((rowId) => {
           html += `<tr><th class="row-label">${fullLabels[rowId]}</th>`;
           ids.forEach((colId) => {
             if (rowId === colId) {
-              html += `<td class="self" title="Gleicher Archetyp">—</td>`;
+              html += `<td class="self">—</td>`;
               return;
             }
             const cell = result[rowId][colId];
             const arch = BJJ_ARCHETYPES[rowId];
-            const cssClass =
+            const css =
               cell.adv === "even" ? "even" : cell.adv === "adv" ? "adv" : "dis";
             const sym =
               cell.adv === "even" ? "~" : cell.adv === "adv" ? "✓" : "✗";
-            const titleTxt =
-              cell.adv === "even"
-                ? "Ausgeglichen"
-                : cell.adv === "adv"
-                  ? `${arch.label} strukturell im Vorteil`
-                  : `${arch.label} strukturell im Nachteil`;
-            html += `<td class="${cssClass}" title="${titleTxt}">${sym}</td>`;
+            html += `<td class="${css}">${sym}</td>`;
           });
           html += "</tr>";
         });
         html += `</tbody></table></div>`;
-
         html += `<div class="matrix-legend">
-<div class="legend-item"><span class="legend-sym adv">✓</span><span class="legend-text">Struktureller Vorteil (Zeilen-Archetyp)</span></div>
-<div class="legend-item"><span class="legend-sym dis">✗</span><span class="legend-text">Struktureller Nachteil</span></div>
-<div class="legend-item"><span class="legend-sym even">~</span><span class="legend-text">Ausgeglichen / stilabhängig</span></div>
-<div class="legend-item"><span class="legend-sym self" style="color:var(--border)">—</span><span class="legend-text">Gleicher Archetyp</span></div>
+<div class="legend-item"><span class="legend-sym adv">✓</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Struktureller Vorteil</span></div>
+<div class="legend-item"><span class="legend-sym dis">✗</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Struktureller Nachteil</span></div>
+<div class="legend-item"><span class="legend-sym even">~</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Ausgeglichen</span></div>
 </div>
-<div class="matrix-note">Hinweis: "Struktureller Vorteil" bedeutet, dass der Archetyp in der Zeile systemisch günstige Interaktionen mit dem Archetyp in der Spalte hat – nicht dass er immer gewinnt. Jeder echte Kampf hängt von Athletik, Erfahrung und Tagesform ab. Die Matrix zeigt Systemtendenzen, keine Garantien.</div>`;
+<div class="matrix-note">Systemische Tendenzen – kein deterministisches Ergebnis. Athletik, Erfahrung und Tagesform entscheiden echte Kämpfe.</div>`;
 
-        // Matchup narratives per archetype
-        html += `<div style="margin-top:32px"><div class="lib-compare-title">MATCHUP-ANALYSEN IM DETAIL</div>`;
+        // Matchup details
+        html += `<div style="margin-top:32px"><div class="lib-compare-title">MATCHUP-ANALYSEN</div>`;
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
-          html += `<div style="margin-bottom:20px;padding:16px 18px;border:1px solid var(--border);border-radius:4px;background:var(--surface)">
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          html += `<div style="margin-bottom:16px;padding:14px 16px;border:1px solid var(--border);border-radius:4px;background:var(--surface)">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
   <div style="width:10px;height:10px;border-radius:50%;background:${arch.color}"></div>
-  <div style="font-family:var(--font-display);font-size:16px;letter-spacing:1px">${arch.emoji} ${arch.label}</div>
+  <div style="font-family:var(--font-display);font-size:15px;letter-spacing:1px">${arch.emoji} ${arch.label}</div>
 </div>
 <div style="font-size:13px;color:var(--muted);line-height:1.75">${arch.matchup}</div>
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px">
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
 ${ids
   .filter((id) => id !== arch.id)
   .map((id) => {
@@ -3830,55 +4582,28 @@ ${ids
     const color =
       mv === "adv" ? "#4a7c4e" : mv === "dis" ? "#9b3a2f" : "#8a8278";
     const sym = mv === "adv" ? "✓" : mv === "dis" ? "✗" : "~";
-    return `<div style="font-family:var(--font-mono);font-size:9px;padding:3px 9px;border:1px solid ${color};border-radius:12px;color:${color}">${sym} ${other.label}</div>`;
+    return `<div style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:1px solid ${color};border-radius:12px;color:${color}">${sym} ${other.label}</div>`;
   })
   .join("")}
-</div>
-</div>`;
+</div></div>`;
         });
         html += `</div></div>`;
 
         // Style comparison table
         html += `<div class="lib-compare-section" style="margin-top:40px">
-<div class="lib-compare-title">STILVERGLEICH: No-Gi BJJ VOLLSTÄNDIG</div>
+<div class="lib-compare-title">STILVERGLEICH: SGM-V2 VOLLSTÄNDIG</div>
 <div style="overflow-x:auto"><table class="lib-compare-table">
-<thead><tr><th>Archetyp</th><th>Primäres System</th><th>Stärkste Achse</th><th>Kern-Signatur</th><th>Größte Stärke</th><th>Größte Schwäche</th></tr></thead>
-<tbody>`;
+<thead><tr><th>Archetyp</th><th>Dom. Achse</th><th>Kern-Signatur</th><th>Größte Stärke</th><th>Größte Schwäche</th></tr></thead><tbody>`;
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
-          const axKeys = [
-            "top",
-            "pressure",
-            "submission",
-            "distal",
-            "rotation",
-          ];
-          const axLabels = [
-            "Top",
-            "Pressure",
-            "Submission",
-            "Distal",
-            "Rotation",
-          ];
-          const primaryAx = axKeys.reduce(
-            (best, k) => (arch.centroid[k] > arch.centroid[best] ? k : best),
-            axKeys[0],
+          const domAxis = SGM_AXES.reduce(
+            (best, ax) =>
+              arch.centroid[ax.key] > arch.centroid[best.key] ? ax : best,
+            SGM_AXES[0],
           );
-          const primaryAxLabel = axLabels[axKeys.indexOf(primaryAx)];
-          const sigEntries = Object.entries(arch.sigTarget);
-          const topSig = sigEntries.reduce((best, cur) =>
-            cur[1] > best[1] ? cur : best,
-          );
-          const sigLabel = {
-            frontHeadlockAffinity: "Front Headlock",
-            legEntanglementAffinity: "Leg System",
-            pinAffinity: "Pins",
-            resetAffinity: "Reset",
-          };
           html += `<tr>
 <td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.emoji} ${arch.label}</div></td>
-<td style="font-size:12px;color:var(--muted)">${arch.oneLiner.substring(0, 55)}…</td>
-<td style="color:var(--accent2);font-size:12px;font-family:var(--font-mono)">${primaryAxLabel} (${arch.centroid[primaryAx]})</td>
-<td style="font-size:11px;color:var(--accent);font-family:var(--font-mono)">${sigLabel[topSig[0]]}</td>
+<td style="color:${domAxis.color};font-family:var(--font-mono);font-size:11px">${domAxis.key} (${arch.centroid[domAxis.key]})</td>
+<td style="font-size:12px;color:var(--muted);max-width:160px">${arch.oneLiner.substring(0, 60)}…</td>
 <td style="color:#4a7c4e;font-size:12px">${arch.strengths[0]}</td>
 <td style="color:#9b3a2f;font-size:12px">${arch.weaknesses[0]}</td>
 </tr>`;
@@ -3896,10 +4621,9 @@ ${ids
       }
 
       // ═══════════════════════════════════════════════════════════
-      // OTHER SPORTS (Boxing, MMA, Muay Thai – unchanged)
+      // OTHER SPORTS (Boxing, MMA, Muay Thai)
       // ═══════════════════════════════════════════════════════════
       const SPORTS = {};
-
       SPORTS.boxing = {
         attrs: [
           { key: "D", label: "Distanzpräferenz" },
@@ -4206,7 +4930,6 @@ ${ids
               "Der Outboxer ist der klassische technische Boxer. Sein Ziel ist es, den Kampf aus einer Distanz zu kontrollieren, in der er treffbar ist – der Gegner aber nicht.",
               "Nach jeder Aktion verlässt er sofort die Linie – Pivots und seitliche Schritte sind keine Kür, sondern Pflicht.",
               "Die Schwäche liegt in der Abhängigkeit von Distanz. Sobald ein Pressure Fighter die Distanz schließt, verliert er seinen strukturellen Vorteil.",
-              "Trainingstaktisch: viel Arbeit am Jab, konsequentes Exit-Training nach jeder Kombination.",
             ],
             strengths: [
               "Hohes Treffer/Kassierten-Verhältnis",
@@ -4237,7 +4960,6 @@ ${ids
               "Der Counter Puncher wirkt oft passiv – ist aber ein hochaktives, reaktives System.",
               "Direkt aus der Defensivbewegung heraus – Slip + Counter, Roll + Uppercut, Parry + Cross – kommen seine besten Schläge.",
               "Das größte Risiko: gegen einen geduldigen Gegner, der kaum Fehler macht, verliert er Initiative.",
-              "Training: Trigger-Drills auf spezifische Muster, Feints als aktives Einladen von Aktionen.",
             ],
             strengths: [
               "Sehr hohe Trefferqualität",
@@ -4270,7 +4992,6 @@ ${ids
             longdesc: [
               "Der Boxer-Puncher ist der vielseitigste Archetypus.",
               "Er arbeitet aus der Mitteldistanz, wo er sowohl technisch boxen als auch ernsthaften Schaden setzen kann.",
-              "Defensiv arbeitet er mit einer Mischung aus Block, Parieren, Slip und situativem Konter.",
               "Training erfordert bewusste Arbeit an beiden Qualitäten parallel.",
             ],
             strengths: [
@@ -4299,7 +5020,6 @@ ${ids
             longdesc: [
               "Der Swarmer gewinnt Kämpfe durch Präsenz, Willen und systematische Zermürbung.",
               "Body Work ist keine Nebenaktivität, sondern eine strategische Waffe.",
-              "Was ihn so fordernd macht: er verlangt Ausdauer, Physis und den Willen, auch Treffer zu absorbieren.",
               "Training fokussiert auf Ring-Geometrie, Body-Work-Systeme und Kopfpositions-Arbeit.",
             ],
             strengths: [
@@ -4328,7 +5048,6 @@ ${ids
             longdesc: [
               "Der Slugger ist der archetypisch gefährlichste Boxer – nicht wegen seiner Technik, sondern wegen dessen, was passiert, wenn sein Schlag sitzt.",
               "Die besten Slugger haben subtile Setups: ein Jab, ein Feint, eine kurze Körperaktion.",
-              "Hauptschwachpunkt: die Exposition zwischen den Aktionen.",
               "Training erfordert Setup-Arbeit: ohne Feints und Aufbauaktionen wird er berechenbar.",
             ],
             strengths: [
@@ -4665,7 +5384,6 @@ ${ids
               "Der Wrestle-Pressure Controller dominiert, weil er den Kampf dorthin bringt, wo er unbequem wird.",
               "Technisch besteht sein System aus Schichten: Clinch-Entry, Wall Work, Takedown zu Top Control.",
               "Schwäche: gegen einen Counter-Striker mit präzisem Entry-Konter.",
-              "Training: Clinch-Mechanik, Cage-Positioning.",
             ],
             strengths: [
               "Kontrolliert Kampffeldwahl komplett",
@@ -4693,7 +5411,6 @@ ${ids
               "Der Elite Counter-Striker gewinnt nicht durch Aggression, sondern durch Überlegenheit in Timing.",
               "Er arbeitet nicht nach vorne – er arbeitet, dass der Gegner nach vorne kommt.",
               "Schwäche: gegen Wrestler mit exzellentem Takedown-Spiel.",
-              "Training: Precision Counter-Striking aus Slips.",
             ],
             strengths: [
               "Sehr geringe eigene Trefferquote",
@@ -4721,7 +5438,6 @@ ${ids
               "Der Pressure Striker geht nach vorne und macht den Gegner dafür bezahlen.",
               "Sein Kampfmuster ist klar: Vorwärtsbewegung, permanenter Output, Risikobereitschaft.",
               "Schwäche: seine Aggression macht ihn anfällig für gut gesetzte Counter.",
-              "Training: Pressure-Entry-Mechanik ohne Stopp.",
             ],
             strengths: [
               "Physisch bricht er Gegner im Verlauf",
@@ -4749,7 +5465,6 @@ ${ids
               "Der Submission Opportunist ist der kreativste Kämpfer im MMA.",
               "Sein System basiert auf Submission-Chains die nicht aufhören.",
               "Schwäche: gegen einen methodischen Gegner der Positionen hält.",
-              "Training: Scramble-Drills aus allen Positionen.",
             ],
             strengths: [
               "Überall gefährlich – auch aus dem Nachteil",
@@ -4776,7 +5491,6 @@ ${ids
               "Der Hybrid Tactical Fighter ist der vollständigste Kämpfer im MMA.",
               "Er entscheidet, wann der Kampf ins Stehen, Clinch, oder Boden geht.",
               "Schwäche: gegen absolute Elite-Spezialisten.",
-              "Training: keine Vernachlässigung einer Disziplin.",
             ],
             strengths: [
               "Höchste taktische Flexibilität",
@@ -5112,7 +5826,6 @@ ${ids
               "Der Muay Femur ist der technisch vollständigste Kämpfer im Muay Thai.",
               "Sein Spielsystem ist multi-dimensional: er kann auf allen Distanzen arbeiten.",
               "Schwäche: gegen Gegner mit extremem physischen Druck.",
-              "Training: Technikpräzision über alle Distanzen.",
             ],
             strengths: [
               "Technisch variabelster Stil",
@@ -5140,7 +5853,6 @@ ${ids
               "Der Muay Mat ist der Power-Fighter des Muay Thai.",
               "Er priorisiert Punch-Kombinationen über Kicks.",
               "Schwäche: gegen den Muay Femur, der seine Linie verlässt.",
-              "Training: Punch-Kombinationen unter Fatigue.",
             ],
             strengths: [
               "Extremes KO-Potential",
@@ -5168,7 +5880,6 @@ ${ids
               "Der Muay Khao ist der Clinch-Spezialist des Muay Thai.",
               "Er sucht Nähe, um dort zu dominieren.",
               "Schwäche: gegen Kämpfer mit exzellentem Clinch-Break.",
-              "Training: Neck-Tie-Mechanik und Knie-Positionen.",
             ],
             strengths: [
               "Dominant im Clinch",
@@ -5196,7 +5907,6 @@ ${ids
               "Der Muay Tae ist der Kick-Spezialist.",
               "Sein Teep ist sein wichtigstes Werkzeug.",
               "Schwäche: gegen Muay Khao der Distanz überwindet.",
-              "Training: Kick-Variationen und Setups.",
             ],
             strengths: [
               "Kick-Qualität und Reichweite",
@@ -5224,7 +5934,6 @@ ${ids
               "Der Hybrid Stadium Fighter ist der taktisch intelligenteste Muay Thai Kämpfer.",
               "Er hat kein einzelnes dominantes Muster, sondern die Fähigkeit anzupassen.",
               "Schwäche: gegen Extremspezialisten.",
-              "Training: alle Bereiche auf kompetentes Niveau.",
             ],
             strengths: [
               "Höchste taktische Flexibilität",
@@ -5247,20 +5956,8 @@ ${ids
         },
       };
 
-      // ═══════════════════════════════════════════════════════════
-      // GENERIC SPORTS ENGINE
-      // ═══════════════════════════════════════════════════════════
+      // ── Generic Quiz Engine ──
       const answers = { boxing: {}, mma: {}, muaythai: {} };
-
-      // Restore state
-      ["boxing", "mma", "muaythai"].forEach((sport) => {
-        const saved = localStorage.getItem(sport + "_answers");
-        if (saved) answers[sport] = JSON.parse(saved);
-      });
-      const savedBJJ = localStorage.getItem("bjj_answers");
-      if (savedBJJ) Object.assign(bjjAnswers, JSON.parse(savedBJJ));
-      const lastPage = localStorage.getItem("last_page");
-      if (lastPage) showPage(lastPage);
 
       function buildQuiz(sport) {
         const data = SPORTS[sport];
@@ -5343,6 +6040,7 @@ ${ids
         return { vec, scores, best, second, confidence };
       }
 
+      // Generic pentagon radar (for boxing/mma/muaythai)
       function drawRadar(sport, vec, center, color) {
         const canvas = document.getElementById("radar-" + sport);
         if (!canvas) return;
@@ -5490,6 +6188,12 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
               .join("")}</div></div>`;
           })
           .join("");
+        // add options-grid style if missing
+        if (!document.querySelector(".options-grid")) {
+          const style = document.createElement("style");
+          style.textContent = `.options-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-left:60px}.opt-card{border:1px solid var(--border);border-radius:4px;padding:12px 14px;cursor:pointer;transition:all .18s;background:var(--surface);position:relative;display:flex;align-items:flex-start;gap:10px}.opt-card:hover{border-color:var(--accent2);background:var(--surface2)}.opt-card.selected{border-color:var(--accent);background:rgba(200,180,130,.07)}.opt-card.selected::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);border-radius:4px 4px 0 0}.opt-letter{font-family:var(--font-display);font-size:22px;color:var(--border);line-height:1;min-width:18px;transition:color .2s}.opt-card.selected .opt-letter,.opt-card:hover .opt-letter{color:var(--accent)}.opt-text{font-size:12.5px;color:var(--text);line-height:1.55;padding-top:2px}.q-situation{font-size:12.5px;color:var(--accent2);font-style:italic;margin-bottom:3px;font-family:var(--font-mono)}@media(max-width:700px){.options-grid{grid-template-columns:1fr;padding-left:0}}`;
+          document.head.appendChild(style);
+        }
       }
 
       function resetTest(sport) {
@@ -5501,9 +6205,7 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
 
-      // ═══════════════════════════════════════════════════════════
-      // LIBRARY (Boxing, MMA, Muay Thai generic)
-      // ═══════════════════════════════════════════════════════════
+      // ── Generic Library ──
       function buildLibrary() {
         ["boxing", "mma", "muaythai"].forEach((sport) => {
           const data = SPORTS[sport];
@@ -5531,11 +6233,9 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
   </div>
   <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
   <div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div>
-</div>
-</div>`;
+</div></div>`;
           });
-          html += `</div>`;
-          html += `<div class="lib-compare-section"><div class="lib-compare-title">STILVERGLEICH: ${sportLabel.toUpperCase()}</div><div style="overflow-x:auto"><table class="lib-compare-table">
+          html += `</div><div class="lib-compare-section"><div class="lib-compare-title">STILVERGLEICH: ${sportLabel.toUpperCase()}</div><div style="overflow-x:auto"><table class="lib-compare-table">
 <thead><tr><th>Stil</th><th>Stärkstes Feld</th><th>Schwächstes Feld</th><th>Vs. wem stark</th><th>Vs. wem schwierig</th></tr></thead><tbody>`;
           Object.entries(data.archetypes).forEach(([name, arch]) => {
             html += `<tr><td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${name}</div></td><td style="color:#4a7c4e;font-size:12px">${arch.strengths[0]}</td><td style="color:#9b3a2f;font-size:12px">${arch.weaknesses[0]}</td><td style="font-size:12px">${arch.matchup.split(".")[0]}.</td><td style="font-size:12px">${arch.matchup.split(".")[1] || "–"}.</td></tr>`;
@@ -5549,6 +6249,16 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
       // ═══════════════════════════════════════════════════════════
       // INIT
       // ═══════════════════════════════════════════════════════════
+
+      // Restore saved answers
+      ["boxing", "mma", "muaythai"].forEach((sport) => {
+        const saved = localStorage.getItem(sport + "_answers");
+        if (saved) answers[sport] = JSON.parse(saved);
+      });
+      const savedBJJ = localStorage.getItem("bjj_sgm_answers");
+      if (savedBJJ) Object.assign(bjjSGMAnswers, JSON.parse(savedBJJ));
+
+      // Build quizzes
       ["boxing", "mma", "muaythai"].forEach((sport) => {
         buildQuiz(sport);
         Object.entries(answers[sport]).forEach(([qid, val]) => {
@@ -5568,10 +6278,12 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
       });
 
       buildBJJQuiz();
-      Object.entries(bjjAnswers).forEach(([qid, choice]) => {
-        ["A", "B", "C"].forEach((c) => {
-          const el = document.getElementById("opt-bjj-" + qid + "-" + c);
-          if (el) el.classList.toggle("selected", c === choice);
+      Object.entries(bjjSGMAnswers).forEach(([qid, val]) => {
+        const q = BJJ_SGM_MC_QUESTIONS.find((x) => x.id === parseInt(qid));
+        if (!q) return;
+        q.options.forEach((opt) => {
+          const el = document.getElementById("mc-bjj-" + qid + "-" + opt.label);
+          if (el) el.classList.toggle("selected", opt.label === val);
         });
         const block = document.getElementById("qblock-bjj-" + qid);
         if (block) block.classList.add("answered");
@@ -5580,6 +6292,17 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
       });
 
       buildLibrary();
+
+      // Restore last page
+      const lastPage = localStorage.getItem("last_page");
+      if (lastPage) showPage(lastPage);
+
+      // Add missing CSS for boxing/mma/muaythai option cards
+      (function () {
+        const style = document.createElement("style");
+        style.textContent = `.options-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding-left:60px}.opt-card{border:1px solid var(--border);border-radius:4px;padding:12px 14px;cursor:pointer;transition:all .18s;background:var(--surface);position:relative;display:flex;align-items:flex-start;gap:10px}.opt-card:hover{border-color:var(--accent2);background:var(--surface2)}.opt-card.selected{border-color:var(--accent);background:rgba(200,180,130,.07)}.opt-card.selected::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);border-radius:4px 4px 0 0}.opt-letter{font-family:var(--font-display);font-size:22px;color:var(--border);line-height:1;min-width:18px;transition:color .2s}.opt-card.selected .opt-letter,.opt-card:hover .opt-letter{color:var(--accent)}.opt-text{font-size:12.5px;color:var(--text);line-height:1.55;padding-top:2px}.q-situation{font-size:12.5px;color:var(--accent2);font-style:italic;margin-bottom:3px;font-family:var(--font-mono)}@media(max-width:700px){.options-grid{grid-template-columns:1fr;padding-left:0}}`;
+        document.head.appendChild(style);
+      })();
     </script>
 
     <!-- IMPRESSUM -->
@@ -5601,8 +6324,13 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
             <h3>Kontakt</h3>
             <p>
               E-Mail:
-              <a href="mailto:lom.ali.imadaev@gmail.com"
-                >lom.ali.imadaev@gmail.com</a
+              <a
+                href="/cdn-cgi/l/email-protection#14787b793a75787d3a7d797570757162547379757d783a777b79"
+                ><span
+                  class="__cf_email__"
+                  data-cfemail="85e9eae8abe4e9ecabece8e4e1e4e0f3c5e2e8e4ece9abe6eae8"
+                  >[email&#160;protected]</span
+                ></a
               >
             </p>
           </div>
@@ -5651,8 +6379,13 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
             <p>
               <strong>Lom-Ali Imadaev</strong><br />Kreuzstraße 1, 82276
               Adelshofen<br />E-Mail:
-              <a href="mailto:lom.ali.imadaev@gmail.com"
-                >lom.ali.imadaev@gmail.com</a
+              <a
+                href="/cdn-cgi/l/email-protection#e28e8d8fcc838e8bcc8b8f8386838794a2858f838b8ecc818d8f"
+                ><span
+                  class="__cf_email__"
+                  data-cfemail="a5c9cac88bc4c9cc8bccc8c4c1c4c0d3e5c2c8c4ccc98bc6cac8"
+                  >[email&#160;protected]</span
+                ></a
               >
             </p>
           </div>
@@ -5709,9 +6442,7 @@ ${second.dist - best.dist <= 1 ? `<div class="hybrid-notice">Sehr nah an "${seco
           <span onclick="showPage('impressum')">Impressum</span>
           <span onclick="showPage('datenschutz')">Datenschutz</span>
         </div>
-        <div class="footer-note">
-          Keine Cookies · Kein Tracking · Kein externer Datenfluss
-        </div>
+        <div class="footer-note">Keine Cookies · Kein Tracking · SGM-V2</div>
       </div>
     </footer>
   </body>

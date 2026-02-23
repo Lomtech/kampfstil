@@ -1896,13 +1896,16 @@
       <div id="test-bjj" class="test-page-inner active">
         <div class="test-header" data-emoji="🥋">
           <div class="header-label">
-            No-Gi BJJ · SGM-V2 · 6 Achsen · 36 Items · 12 Archetypen
+            No-Gi BJJ · SGM-V2.1 · 6 Achsen · 24 Situationsfragen · 12
+            Archetypen
           </div>
           <h1>BJJ<span>STIL</span></h1>
           <p>
-            Structural Grappling Model V2 — sechsdimensionaler Vektorraum. Jede
-            Aussage wähle jeweils die Option die am besten zu deinem Spiel
-            passt.
+            Structural Grappling Model V2.1 — zwei Modelle:
+            <strong>Profil-Zuordnung</strong> (RBF-Clustering, 6D-Vektorraum) +
+            <strong>Matchup-Engine</strong> (phasenbasierte Interaktion: Entry ·
+            Top · Leg · Back · Tempo). Wähle bei jeder Situation die Option die
+            deinem Default-Verhalten am nächsten kommt.
           </p>
         </div>
         <div class="progress-bar-wrap">
@@ -1959,7 +1962,11 @@
             </div>
           </div>
           <div class="result-panel" style="border-top: 1px solid var(--border)">
-            <div class="panel-title">MATCHUP-MATRIX 8×8</div>
+            <div class="panel-title">SGM-V2.1 DEBUG</div>
+            <div class="panel-body"><div id="debug-bjj"></div></div>
+          </div>
+          <div class="result-panel" style="border-top: 1px solid var(--border)">
+            <div class="panel-title">MATCHUP-MATRIX 12×12</div>
             <div class="matchup-matrix-wrap" id="matrix-bjj"></div>
           </div>
           <div class="answers-section">
@@ -2642,7 +2649,7 @@
         {
           id: 15,
           section: "TRANSITION & SCRAMBLE",
-          text: "Du bist fast durch den Guard-Pass. Der Gegner dreht sich explosiv und gibt dir: einen offenen Rücken mit Seatbelt-Zugang oder ein exponiertes Bein. Was priorisierst du strukturell?",
+          text: "Du bist fast durch den Guard-Pass. Der Gegner dreht sich explosiv und gibt dir: einen offenen Rücken mit Seatbelt-Zugang oder ein exponiertes Bein. Was tust du?",
           options: [
             {
               label: "A",
@@ -2935,7 +2942,7 @@
             "Half Guard Smasher",
             "Leg Pummel to Chest",
           ],
-          centroid: { PCO: 92, FAM: 95, INS: 70, ATC: 40, CTV: 20, TRV: 20 },
+          centroid: { PCO: 92, FAM: 95, INS: 70, ATC: 40, CTV: 20, TRV: 15 },
           modules: {
             FHL: 0.3,
             LEG: 0.1,
@@ -3008,7 +3015,7 @@
             "High-Crotch Specialist",
             "Snap-to-Go-Behind",
           ],
-          centroid: { PCO: 95, FAM: 75, INS: 92, ATC: 30, CTV: 30, TRV: 35 },
+          centroid: { PCO: 95, FAM: 75, INS: 92, ATC: 20, CTV: 30, TRV: 35 },
           modules: {
             FHL: 0.4,
             LEG: 0.2,
@@ -3077,7 +3084,7 @@
             "Side Control Submitter",
             "Back Take from Top",
           ],
-          centroid: { PCO: 85, FAM: 75, INS: 60, ATC: 65, CTV: 35, TRV: 30 },
+          centroid: { PCO: 85, FAM: 75, INS: 60, ATC: 55, CTV: 35, TRV: 30 },
           modules: {
             FHL: 0.4,
             LEG: 0.2,
@@ -3848,11 +3855,25 @@
       }
 
       function sgmConsistency(answersMap) {
-        // For MC: measure how consistently same-section questions align
-        // Simplified: count answered / total as completeness proxy, return 1.0 always
-        const answered = Object.keys(answersMap).length;
-        const total = BJJ_TOTAL_SGM;
-        return answered >= total ? 1.0 : answered / total;
+        // Return per-axis score (0-100) based on how many questions in that axis were answered
+        // For MC system: completeness per section mapped to axes
+        const result = {};
+        const AXES = ["PCO", "FAM", "INS", "ATC", "CTV", "TRV"];
+        AXES.forEach((ax) => {
+          // count how many MC questions touch this axis
+          let touched = 0,
+            answered = 0;
+          BJJ_SGM_MC_QUESTIONS.forEach((q) => {
+            const hasAxis = q.options.some((o) => o.axes && ax in o.axes);
+            if (hasAxis) {
+              touched++;
+              if (answersMap[q.id]) answered++;
+            }
+          });
+          result[ax] =
+            touched > 0 ? Math.round((answered / touched) * 100) : 100;
+        });
+        return result;
       }
 
       function sgmModuleFit(arch, userAxes) {
@@ -3900,11 +3921,10 @@
         return fit / totalBeta;
       }
 
+      // ══════════════════════════════════════════════════════════════════════
+      // SGM-V2.1 — MODEL A: PROFIL-ZUORDNUNG (Clustering)
+      // ══════════════════════════════════════════════════════════════════════
       function bjjClassifySGM(axes) {
-        // SGM-V2: RBF Kernel + Module Fit + Softmax with Temperature
-        const SIGMA = 0.55;
-        const LAMBDA = 0.6;
-        const TEMP = 0.85;
         const ALPHA = {
           PCO: 1.1,
           FAM: 1.1,
@@ -3914,28 +3934,55 @@
           TRV: 1.0,
         };
         const EPS = 1e-9;
+        const POWER = 2;
 
-        // Weighted euclidean distance (normalized to [0,1])
-        const sgmWeightedDist = (a, b) => {
-          return Math.sqrt(
+        // ── A) Specialization Index ────────────────────────────────────────
+        // Hybrid formula: 50% variance-spread + 50% center-deviation
+        // Captures both "wide spread" AND "shifted to extreme" profiles
+        const axVals = Object.keys(ALPHA).map((k) => axes[k] / 100);
+        const axMean = axVals.reduce((a, b) => a + b, 0) / axVals.length;
+        const axVar =
+          axVals.reduce((s, v) => s + (v - axMean) ** 2, 0) / axVals.length;
+        const centerDev =
+          axVals.reduce((s, v) => s + Math.abs(v - 0.5), 0) /
+          (axVals.length * 0.5);
+        const specIndex = Math.round(
+          Math.min(
+            100,
+            ((Math.sqrt(axVar) / 0.5) * 0.5 + centerDev * 0.5) * 100,
+          ),
+        );
+
+        // ── C) Dynamic sharpening: tighter params when Spec > 60 ──────────
+        let SIGMA = 0.25; // was 0.55 → sharper RBF
+        let TEMP = 0.65; // was 0.85 → sharper Softmax
+        let LAMBDA = 0.75; // was 0.60 → stronger module boost
+        if (specIndex > 60) {
+          TEMP = Math.max(0.55, TEMP - 0.1);
+          SIGMA = Math.max(0.2, SIGMA - 0.05);
+        }
+
+        // ── Weighted Euclidean Distance ────────────────────────────────────
+        const sgmDist = (a, b) =>
+          Math.sqrt(
             Object.keys(ALPHA).reduce(
               (s, d) => s + ALPHA[d] * ((a[d] - b[d]) / 100) ** 2,
               0,
             ),
           );
-        };
 
+        // ── RBF + Module Fit + Power Sharpening ───────────────────────────
         const list = Object.values(BJJ_ARCHETYPES).map((arch) => {
-          const D = sgmWeightedDist(axes, arch.centroid);
+          const D = sgmDist(axes, arch.centroid);
           const S_space = Math.exp(-(D * D) / (2 * SIGMA * SIGMA));
           const F = sgmModuleFit(arch, axes);
           const S_mod = 1 + LAMBDA * F;
-          const S_total = S_space * S_mod;
+          const S_total = Math.pow(S_space * S_mod, POWER);
           const z = Math.log(S_total + EPS);
-          return { id: arch.id, D, S_space, S_total, z };
+          return { id: arch.id, D, S_space, S_mod, S_total, z };
         });
 
-        // Softmax with temperature
+        // ── Softmax with Temperature ───────────────────────────────────────
         const maxZ = Math.max(...list.map((x) => x.z));
         const expZ = list.map((x) => ({
           ...x,
@@ -3946,83 +3993,156 @@
           id: x.id,
           share: Math.round((x.ez / sumEZ) * 100),
           D: x.D,
+          S_space: x.S_space,
+          S_mod: x.S_mod,
         }));
-        // Fix rounding
-        const total = distribution.reduce((a, b) => a + b.share, 0);
+        const roundTotal = distribution.reduce((a, b) => a + b.share, 0);
         distribution.sort((a, b) => b.share - a.share);
-        distribution[0].share += 100 - total;
+        distribution[0].share += 100 - roundTotal;
 
-        const p1 = distribution[0].share / 100;
-        const p2 = distribution[1].share / 100;
-        const p3 = distribution[2].share / 100;
+        const p1 = distribution[0].share / 100,
+          p2 = distribution[1].share / 100,
+          p3 = distribution[2].share / 100,
+          gap12 = p1 - p2;
 
-        // Entropy-based confidence
+        // ── B) Confidence: entropy + gap × spec-boost ─────────────────────
         const H = -distribution.reduce((s, d) => {
           const p = d.share / 100;
           return p > 0 ? s + p * Math.log(p) : s;
         }, 0);
         const Hnorm = H / Math.log(distribution.length);
-        const C = 1 - Hnorm;
-        const gap12 = p1 - p2;
-        const G = Math.min(1, gap12 / 0.25);
-        const confidence = Math.round(100 * (0.65 * C + 0.35 * G));
-
-        // Specialization index (axis variance)
-        const axVals = Object.keys(ALPHA).map((k) => axes[k] / 100);
-        const mean = axVals.reduce((a, b) => a + b, 0) / axVals.length;
-        const variance =
-          axVals.reduce((s, v) => s + (v - mean) ** 2, 0) / axVals.length;
-        const specIndex = Math.round(
-          Math.min(100, (Math.sqrt(variance) / 0.5) * 100),
+        const concentration = 1 - Hnorm;
+        const gapClamp = Math.min(1, Math.max(0, gap12 / 0.25));
+        const confBase = 0.65 * concentration + 0.35 * gapClamp;
+        const confidence = Math.round(
+          confBase * (0.65 + 0.35 * (specIndex / 100)) * 100,
         );
 
-        // Hybrid classification
-        let hybridType = "Generalist";
+        // ── E) Classification with Spec override ───────────────────────────
+        const primary = BJJ_ARCHETYPES[distribution[0].id];
+        const secondary = BJJ_ARCHETYPES[distribution[1].id];
+        let hybridType = "__unset";
+
         if (p1 >= 0.45 && gap12 >= 0.15) hybridType = "Spezialist";
         else if (p1 >= 0.25 && p2 >= 0.25 && p1 + p2 >= 0.7)
           hybridType = "Dual-Hybrid";
         else if (p1 >= 0.2 && p1 + p2 + p3 >= 0.8) hybridType = "Tri-Hybrid";
+        else if (specIndex <= 55) hybridType = "Generalist";
+        else if (specIndex > 70 && p1 + p2 >= 0.6) hybridType = "Dual-Hybrid";
+        else {
+          const l1 = primary.label.split(" ").slice(0, 2).join("-");
+          const l2 = secondary.label.split(" ")[0];
+          hybridType = `${l1}+${l2} Hybrid`;
+        }
 
-        const notes = [];
-        const conflicts = [];
-        const primary = BJJ_ARCHETYPES[distribution[0].id];
-        const secondary = BJJ_ARCHETYPES[distribution[1].id];
+        // Dominance-Quadrant override: PCO>80 + FAM>80 + high INS/ATC
+        const fhlProxy = axes.INS * 0.5 + axes.ATC * 0.5;
+        if (axes.PCO > 80 && axes.FAM > 80 && fhlProxy > 65)
+          hybridType = "Pressure+FHL Hybrid";
 
+        // ── D) Debug trace ─────────────────────────────────────────────────
+        const debugTrace = {
+          axes: {
+            PCO: axes.PCO,
+            FAM: axes.FAM,
+            INS: axes.INS,
+            ATC: axes.ATC,
+            CTV: axes.CTV,
+            TRV: axes.TRV,
+          },
+          specIndex,
+          SIGMA,
+          TEMP,
+          LAMBDA,
+          POWER,
+          p1: Math.round(p1 * 100),
+          p2: Math.round(p2 * 100),
+          p3: Math.round(p3 * 100),
+          gap12: Math.round(gap12 * 100),
+          entropy: Math.round(H * 1000) / 1000,
+          concentration: Math.round(concentration * 1000) / 1000,
+          confBase: Math.round(confBase * 100),
+          confidence,
+          top3: distribution.slice(0, 3).map((d) => ({
+            id: d.id,
+            share: d.share,
+            D: +d.D.toFixed(3),
+            S_space: +d.S_space.toFixed(3),
+            S_mod: +d.S_mod.toFixed(3),
+          })),
+        };
+        console.log(
+          "%cSGM-V2.1 Clustering",
+          "color:#b5891e;font-weight:bold;font-size:13px",
+        );
+        console.table(debugTrace.axes);
+        console.table(debugTrace.top3);
+        console.log(
+          "Spec:",
+          specIndex,
+          "| σ:",
+          SIGMA,
+          "T:",
+          TEMP,
+          "λ:",
+          LAMBDA,
+          "| Conf:",
+          confidence,
+          "% | Type:",
+          hybridType,
+        );
+
+        // Notes
+        const notes = [],
+          conflicts = [];
         if (hybridType === "Generalist")
           notes.push(
-            `Generalist-Profil (Spezialisierungsindex: ${specIndex}%): Breite Kompetenz über alle Achsen – wenig Polarisierung, hohe Adaptivität. Kein erzwungener Haupttyp.`,
+            `Generalist (Spec: ${specIndex}%): Breite Kompetenz, wenig Polarisierung – hohe Adaptivität.`,
+          );
+        else if (hybridType === "Pressure+FHL Hybrid")
+          notes.push(
+            "Pressure+FHL Hybrid: Dominanz über Körpergewicht kombiniert mit Submission-Output aus Kopf-/Initiativ-Kontrolle.",
           );
         else if (hybridType === "Dual-Hybrid")
           notes.push(
-            `Dual-Hybrid: "${primary.label}" + "${secondary.label}" – beide Archetypen gleichwertig aktiv (${distribution[0].share}% + ${distribution[1].share}%).`,
+            `Dual-Hybrid: „${primary.label}" + „${secondary.label}" – ${distribution[0].share}% / ${distribution[1].share}%.`,
           );
         else if (hybridType === "Tri-Hybrid")
           notes.push(
-            `Tri-Hybrid: Drei Archetypen aktiv – "${primary.label}" + "${secondary.label}" + "${BJJ_ARCHETYPES[distribution[2].id].label}".`,
+            `Tri-Hybrid: „${primary.label}" + „${secondary.label}" + „${BJJ_ARCHETYPES[distribution[2].id].label}".`,
           );
-        if (axes.PCO > 80 && axes.TRV > 75)
+        else if (hybridType === "Spezialist")
           notes.push(
-            "Hohe PCO + TRV: Wrestler mit Back-Hunter-Qualitäten – gefährlich von Top in Übergängen.",
+            `Spezialist: „${primary.label}" dominiert klar (${distribution[0].share}%, Gap ${Math.round(gap12 * 100)}%).`,
           );
+        else
+          notes.push(
+            `${hybridType} – klare Achsen-Polarisation (Spec: ${specIndex}%).`,
+          );
+
+        if (axes.PCO > 80 && axes.TRV > 75)
+          notes.push("Hohe PCO + TRV: Wrestler mit Back-Hunter-Qualitäten.");
         if (axes.CTV > 80 && axes.ATC > 80)
           notes.push(
-            "Hohe CTV + ATC: Leg-System mit extremer Submission-Bereitschaft – starkes No-Gi-Finish-Profil.",
+            "Hohe CTV + ATC: Leg-System mit extremer Submission-Bereitschaft.",
           );
         if (axes.FAM > 85 && axes.TRV < 25)
           notes.push(
-            "Hohe FAM + niedrige TRV: Maximale Pressure-Orientierung – strukturell sehr stabil, wenig Rotationsexposure.",
+            "Hohe FAM + niedrige TRV: Maximale Pressure-Orientierung.",
           );
         if (axes.INS > 80 && axes.ATC > 80)
           notes.push(
-            "Hohe INS + ATC: Initiativ und angriffswillig – hohes Output-Volumen, Expositions-Management wichtig.",
+            "Hohe INS + ATC: Initiativ und angriffswillig – hohes Output-Volumen.",
           );
         if (axes.PCO > 75 && axes.CTV > 75)
-          notes.push(
-            "Hohe PCO + CTV: Top-Orientierung mit Leg-System – strukturell sehr komplett, Bein-Exposure beim Einsteigen beachten.",
-          );
+          notes.push("Hohe PCO + CTV: Top-Orientierung mit Leg-System.");
         if (axes.FAM > 85 && axes.TRV > 75)
           conflicts.push(
-            "Hohes FAM + TRV: Pressure + Rotation = Over-Commitment-Risiko. Back-Takes treffen dich in Übergängen.",
+            "Hohes FAM + TRV: Pressure + Rotation = Over-Commitment-Risiko.",
+          );
+        if (specIndex > 55)
+          notes.push(
+            `Spezialisierungsindex ${specIndex}% erkannt (σ=${SIGMA}, T=${TEMP}).`,
           );
 
         return {
@@ -4034,6 +4154,94 @@
           confidence,
           hybridType,
           specIndex,
+          debugTrace,
+        };
+      }
+
+      // ══════════════════════════════════════════════════════════════════════
+      // SGM-V2.1 — MODEL B: MATCHUP-ENGINE (Phasenbasierte Interaktion)
+      // Kein Softmax / keine Distanz — strukturelle Phasen-Scores
+      // ══════════════════════════════════════════════════════════════════════
+      function sgmMatchupEngine(axesA, axesB, archA, archB) {
+        // Phase weights
+        const W = { entry: 0.2, top: 0.3, leg: 0.2, back: 0.15, tempo: 0.15 };
+
+        // Raw phase scores: A advantage over B (-1..+1)
+        let entry = 0,
+          top = 0,
+          leg = 0,
+          back = 0,
+          tempo = 0;
+
+        // ENTRY PHASE: INS, FHL, Wrestle-Up
+        entry += ((axesA.INS - axesB.INS) / 100) * 0.5;
+        const fhlA = (axesA.INS * 0.5 + axesA.ATC * 0.5) / 100;
+        const fhlB = (axesB.INS * 0.5 + axesB.ATC * 0.5) / 100;
+        const wupA = archA.modules ? (archA.modules.FHL || 0.5) * fhlA : fhlA;
+        const wupB = archB.modules ? (archB.modules.FHL || 0.5) * fhlB : fhlB;
+        // Module override: FHL high vs opponent's shot (INS high)
+        if (wupA > 0.65 && axesB.INS > 75) entry += 0.2; // FHL stops shots
+        if (wupB > 0.65 && axesA.INS > 75) entry -= 0.2;
+        entry += (wupA - wupB) * 0.3;
+
+        // TOP PHASE: PCO, FAM, PIN module
+        top += ((axesA.PCO - axesB.PCO) / 100) * 0.4;
+        top += ((axesA.FAM - axesB.FAM) / 100) * 0.4;
+        const pinA = archA.modules ? archA.modules.PIN || 0.5 : 0.5;
+        const pinB = archB.modules ? archB.modules.PIN || 0.5 : 0.5;
+        top += (pinA - pinB) * 0.2;
+        // Module override: FAM high vs TRV low opponent → flatten bonus
+        if (axesA.FAM > 80 && axesB.TRV < 30) top += 0.15;
+        if (axesB.FAM > 80 && axesA.TRV < 30) top -= 0.15;
+
+        // LEG PHASE: CTV, LEG module
+        const legA = archA.modules ? archA.modules.LEG || 0.3 : 0.3;
+        const legB = archB.modules ? archB.modules.LEG || 0.3 : 0.3;
+        leg += ((axesA.CTV - axesB.CTV) / 100) * 0.5;
+        leg += (legA - legB) * 0.3;
+        // Module override: Leg high vs PCO/FAM high opponent → leg entry bonus
+        if (legA > 0.7 && axesB.PCO > 80) leg += 0.15;
+        if (legB > 0.7 && axesA.PCO > 80) leg -= 0.15;
+
+        // BACK PHASE: TRV, BACKLINE module
+        const blA = archA.modules ? archA.modules.BACKLINE || 0.4 : 0.4;
+        const blB = archB.modules ? archB.modules.BACKLINE || 0.4 : 0.4;
+        back += ((axesA.TRV - axesB.TRV) / 100) * 0.5;
+        back += (blA - blB) * 0.3;
+        // Module override: TRV high vs FAM high → back-take from passing
+        if (axesA.TRV > 75 && axesB.FAM > 80) back += 0.2;
+        if (axesB.TRV > 75 && axesA.FAM > 80) back -= 0.2;
+
+        // TEMPO PHASE: INS dominance, ATC
+        tempo += ((axesA.INS - axesB.INS) / 100) * 0.4;
+        tempo += ((axesA.ATC - axesB.ATC) / 100) * 0.3;
+        const tcA = archA.modules ? archA.modules.WRESTLEUP || 0.5 : 0.5;
+        const tcB = archB.modules ? archB.modules.WRESTLEUP || 0.5 : 0.5;
+        tempo += (tcA - tcB) * 0.3;
+
+        // Clamp all phases
+        const clamp = (v) => Math.max(-1, Math.min(1, v));
+        entry = clamp(entry);
+        top = clamp(top);
+        leg = clamp(leg);
+        back = clamp(back);
+        tempo = clamp(tempo);
+
+        const total =
+          W.entry * entry +
+          W.top * top +
+          W.leg * leg +
+          W.back * back +
+          W.tempo * tempo;
+
+        let verdict = "even";
+        if (total > 0.15) verdict = "adv";
+        if (total < -0.15) verdict = "dis";
+
+        return {
+          total: Math.round(total * 100) / 100,
+          verdict,
+          phases: { entry, top, leg, back, tempo },
         };
       }
 
@@ -4130,67 +4338,83 @@
         const classification = bjjClassifySGM(axes);
         const primary = BJJ_ARCHETYPES[classification.primary.id];
         const secondary = BJJ_ARCHETYPES[classification.secondary.id];
+        const db = classification.debugTrace;
 
         document.getElementById("quiz-bjj").style.display = "none";
         const ra = document.getElementById("bjj-results-area");
         ra.style.display = "block";
         ra.scrollIntoView({ behavior: "smooth" });
 
-        // Hero
+        // ── HERO ──────────────────────────────────────────────────────────
         const rh = document.getElementById("rh-bjj");
         rh.setAttribute("data-style", primary.label.toUpperCase());
+
+        const isSpecialist = classification.hybridType === "Spezialist";
+        const hybridLine = !isSpecialist
+          ? `<div class="hybrid-notice">${classification.hybridType}: „${primary.label}" + „${secondary.label}" – Confidence ${classification.confidence}% · Spec ${classification.specIndex}%</div>`
+          : "";
+        const conflictsLine = classification.conflicts
+          .map((c) => `<div class="conflict-notice">⚠ ${c}</div>`)
+          .join("");
+
         rh.innerHTML = `
 ${renderArchImage(primary.label, primary.color, "result")}
-<div class="result-label">Dein No-Gi BJJ Profil – SGM-V2</div>
+<div class="result-label">Dein No-Gi BJJ Profil – SGM-V2.1</div>
 <div class="result-name">${primary.emoji} ${primary.label}</div>
 <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">${primary.archetypeName}</div>
 <div class="result-desc">${primary.oneLiner}</div>
 <div class="kpi-row">
-  <div class="kpi"><div class="kpi-label">Primär</div><div class="kpi-val" style="font-size:18px;line-height:1.2">${primary.label}</div></div>
+  <div class="kpi"><div class="kpi-label">Primär</div><div class="kpi-val" style="font-size:16px;line-height:1.2">${primary.label}</div></div>
   <div class="kpi"><div class="kpi-label">Anteil</div><div class="kpi-val">${classification.primary.share}%</div></div>
-  <div class="kpi"><div class="kpi-label">Typ</div><div class="kpi-val" style="font-size:16px;line-height:1.2">${classification.hybridType}</div></div>
+  <div class="kpi"><div class="kpi-label">Typ</div><div class="kpi-val" style="font-size:14px;line-height:1.2">${classification.hybridType}</div></div>
   <div class="kpi"><div class="kpi-label">Confidence</div><div class="kpi-val">${classification.confidence}%</div></div>
-  <div class="kpi"><div class="kpi-label">Spezialisierung</div><div class="kpi-val">${classification.specIndex}%</div></div>
+  <div class="kpi"><div class="kpi-label">Spec-Index</div><div class="kpi-val">${classification.specIndex}%</div></div>
 </div>
-${
-  classification.hybridType !== "Spezialist"
-    ? `<div class="hybrid-notice">${classification.hybridType}: "${primary.label}" + "${secondary.label}" – Confidence ${classification.confidence}% · Spezialisierungsindex ${classification.specIndex}%</div>`
-    : ""
-}
-${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</div>`).join("")}`;
+${hybridLine}${conflictsLine}`;
 
-        // Deep dive
+        // ── DEEP DIVE ─────────────────────────────────────────────────────
         document.getElementById("dd-bjj").innerHTML = primary.longdesc
           .map(
             (p, i) =>
               `<p class="deepdive-intro${i > 0 ? " deepdive-body" : ""}">${p}</p>`,
           )
           .join("");
+
         document.getElementById("sw-bjj").innerHTML = `
 <div class="sw-box"><div class="sw-title pos">Stärken</div><ul class="sw-list">${primary.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
 <div class="sw-box"><div class="sw-title neg">Schwächen</div><ul class="sw-list">${primary.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>`;
 
-        // SGM 6-axis sig boxes
-        document.getElementById("sig-bjj").innerHTML = SGM_AXES.map(
-          (ax) => `
+        // ── 6-AXIS BARS (fix: consistency[ax.key] is now per-axis number) ─
+        document.getElementById("sig-bjj").innerHTML = SGM_AXES.map((ax) => {
+          const axVal = axes[ax.key] !== undefined ? axes[ax.key] : 0;
+          const consVal =
+            consistency && consistency[ax.key] !== undefined
+              ? consistency[ax.key]
+              : 100;
+          return `
 <div class="sig-box">
   <div class="sig-label">${ax.key} – ${ax.label.split(" ").slice(0, 2).join(" ")}</div>
-  <div class="sig-bar-track"><div class="sig-bar-fill" style="width:${axes[ax.key]}%;background:${ax.color}"></div></div>
+  <div class="sig-bar-track"><div class="sig-bar-fill" style="width:${axVal}%;background:${ax.color}"></div></div>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px">
-    <div class="sig-val">${axes[ax.key]}%</div>
-    <div class="sgm-consistency" title="Interne Konsistenz dieser Achse">⬡ ${consistency[ax.key]}%</div>
+    <div class="sig-val">${axVal}%</div>
+    <div class="sgm-consistency" title="Coverage dieser Achse durch Fragen">⬡ ${consVal}%</div>
   </div>
-</div>`,
-        ).join("");
+</div>`;
+        }).join("");
 
         setTimeout(() => drawBJJHexRadar(axes, primary), 80);
 
-        // Arch distribution
+        // ── ARCHETYPE DISTRIBUTION ────────────────────────────────────────
         document.getElementById("arch-dist-bjj").innerHTML =
           classification.distribution
             .map((d) => {
               const arch = BJJ_ARCHETYPES[d.id];
-              return `<div class="arch-dist-row"><div class="arch-dist-label">${arch.emoji} ${arch.label}</div><div class="arch-dist-track"><div class="arch-dist-fill" style="width:${d.share}%;background:${d.id === primary.id ? arch.color : "#d8d2c8"}"></div></div><div class="arch-dist-pct">${d.share}%</div></div>`;
+              const isTop = d.id === primary.id;
+              return `<div class="arch-dist-row">
+  <div class="arch-dist-label">${arch.emoji} ${arch.label}</div>
+  <div class="arch-dist-track"><div class="arch-dist-fill" style="width:${d.share}%;background:${isTop ? arch.color : "#d8d2c8"}"></div></div>
+  <div class="arch-dist-pct">${d.share}%</div>
+</div>`;
             })
             .join("");
 
@@ -4201,12 +4425,32 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           .map((a) => `<li>${a}</li>`)
           .join("");
 
-        const allNotes = [...classification.notes];
-        document.getElementById("notes-bjj").innerHTML = allNotes.length
-          ? allNotes.map((n) => `<div class="note-item">${n}</div>`).join("")
-          : '<div style="font-size:13px;color:var(--muted)">Klares Profil – keine strukturellen Konflikte erkannt.</div>';
+        // ── NOTES ─────────────────────────────────────────────────────────
+        document.getElementById("notes-bjj").innerHTML = classification.notes
+          .length
+          ? classification.notes
+              .map((n) => `<div class="note-item">${n}</div>`)
+              .join("")
+          : '<div style="font-size:13px;color:var(--muted)">Klares Profil – keine strukturellen Anomalien.</div>';
 
-        // Matchup matrix
+        // ── DEBUG PANEL ───────────────────────────────────────────────────
+        const debugEl = document.getElementById("debug-bjj");
+        if (debugEl) {
+          debugEl.innerHTML = `
+<div style="font-family:var(--font-mono);font-size:11px;line-height:1.8;color:var(--muted)">
+<div style="color:var(--accent2);font-weight:700;margin-bottom:6px">SGM-V2.1 Debug – Profil-Zuordnung (Model A)</div>
+<div>Achsen: PCO ${db.axes.PCO} · FAM ${db.axes.FAM} · INS ${db.axes.INS} · ATC ${db.axes.ATC} · CTV ${db.axes.CTV} · TRV ${db.axes.TRV}</div>
+<div>Spec: <b>${db.specIndex}%</b> &nbsp;|&nbsp; σ: ${db.SIGMA} &nbsp;|&nbsp; T: ${db.TEMP} &nbsp;|&nbsp; λ: ${db.LAMBDA} &nbsp;|&nbsp; Power: ${db.POWER}</div>
+<div>p1: ${db.p1}% · p2: ${db.p2}% · p3: ${db.p3}% &nbsp;|&nbsp; Gap₁₂: ${db.gap12}%</div>
+<div>Entropy: ${db.entropy} · Concentration: ${db.concentration}</div>
+<div>Conf_base: ${db.confBase}% → Conf_final: <b>${db.confidence}%</b></div>
+<div style="margin-top:6px;color:var(--accent2)">Top-3 Distanzen:</div>
+${db.top3.map((d) => `<div>&nbsp;&nbsp;${d.id.padEnd(6, "·")} ${String(d.share).padStart(3)}% &nbsp; D: ${d.D} &nbsp; S_space: ${d.S_space} &nbsp; S_mod: ${d.S_mod}</div>`).join("")}
+<div style="margin-top:6px;color:var(--muted);font-size:10px">Model B (Matchup) = sgmMatchupEngine() – phasenbasiert, kein Softmax</div>
+</div>`;
+        }
+
+        // ── MATCHUP MATRIX (Model B) ──────────────────────────────────────
         const { ids, result } = buildBJJMatrix();
         const labelsM = {
           PBP: "PBP",
@@ -4222,9 +4466,9 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           LTC: "LTC",
           TC: "TC",
         };
-        let mt = `<table class="matchup-matrix"><thead><tr><th></th>${ids.map((id) => `<th>${labelsM[id]}</th>`).join("")}</tr></thead><tbody>`;
+        let mt = `<table class="matchup-matrix"><thead><tr><th></th>${ids.map((id) => `<th title="${BJJ_ARCHETYPES[id].label}">${labelsM[id]}</th>`).join("")}</tr></thead><tbody>`;
         ids.forEach((rowId) => {
-          mt += `<tr><th style="text-align:left">${labelsM[rowId]}</th>`;
+          mt += `<tr><th style="text-align:left" title="${BJJ_ARCHETYPES[rowId].label}">${labelsM[rowId]}</th>`;
           ids.forEach((colId) => {
             if (rowId === colId) {
               mt += `<td class="self">—</td>`;
@@ -4239,16 +4483,18 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
                   : "adv-b";
             const txt =
               cell.adv === "even" ? "~" : cell.adv === "adv" ? "✓" : "✗";
-            mt += `<td class="${css}">${txt}</td>`;
+            const score =
+              cell.score !== undefined ? ` title="Score: ${cell.score}"` : "";
+            mt += `<td class="${css}"${score}>${txt}</td>`;
           });
           mt += "</tr>";
         });
         mt += "</tbody></table>";
         mt +=
-          '<div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono)">✓ = Zeile hat strukturellen Vorteil · ✗ = Nachteil · ~ = Ausgeglichen</div>';
+          '<div style="font-size:11px;color:var(--muted);margin-top:8px;font-family:var(--font-mono)">✓ = struktureller Vorteil (Phase-Score &gt; 0.15) · ✗ = Nachteil · ~ = Ausgeglichen &nbsp;|&nbsp; <b>Model B: phasenbasiert, kein Softmax</b></div>';
         document.getElementById("matrix-bjj").innerHTML = mt;
 
-        // Answers review
+        // ── ANSWERS REVIEW ────────────────────────────────────────────────
         const sections = [
           ...new Set(BJJ_SGM_MC_QUESTIONS.map((q) => q.section)),
         ];
@@ -4256,16 +4502,18 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
           .map((sec) => {
             const qs = BJJ_SGM_MC_QUESTIONS.filter((q) => q.section === sec);
             return `<div class="answer-group">
-<div class="answer-group-header">
-  <div><div class="ans-key">${sec}</div></div>
-</div>
+<div class="answer-group-header"><div><div class="ans-key">${sec}</div></div></div>
 <div class="ans-q-rows">${qs
               .map((q) => {
                 const chosen = bjjSGMAnswers[q.id];
-                const opt = q.options.find((o) => o.label === chosen);
+                const opt = chosen
+                  ? q.options.find((o) => o.label === chosen)
+                  : null;
                 return `<div class="ans-q-row" style="grid-template-columns:28px 1fr 24px">
     <span class="ans-q-label">${String(q.id).padStart(2, "0")}</span>
-    <span class="ans-q-text">${q.text}<br><span style="color:var(--accent2);font-size:11px">${chosen ? chosen + ") " + opt.text : "–"}</span></span>
+    <span class="ans-q-text">${q.text}<br>
+      <span style="color:var(--accent2);font-size:11px">${opt ? chosen + ") " + opt.text : "–"}</span>
+    </span>
     <span class="ans-q-val" style="color:var(--accent2)">${chosen || "–"}</span>
   </div>`;
               })
@@ -4420,53 +4668,181 @@ ${classification.conflicts.map((c) => `<div class="conflict-notice">⚠ ${c}</di
       // ── BJJ Library (SGM-V2) ──
       function buildBJJLibrary() {
         const container = document.getElementById("lib-bjj");
-        const axLabels = {
-          PCO: "PCO",
-          FAM: "FAM",
-          INS: "INS",
-          ATC: "ATC",
-          CTV: "CTV",
-          TRV: "TRV",
+
+        // ── WIKI INTRO ──────────────────────────────────────────────────────
+        let html = `
+<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+  <div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">🥋 No-Gi BJJ – SGM-V2 WIKI</div>
+  <button class="lib-start-btn" onclick="showPage('bjj')">TEST STARTEN</button>
+</div>
+
+<div class="sgm-frame" style="margin-bottom:28px">
+  <div class="sgm-frame-title">Structural Grappling Model V2.1</div>
+  <div style="font-size:13px;color:var(--text);line-height:1.85">
+    SGM-V2 ist kein Persönlichkeitstest. Es ist kein Ranking-System. Es bewertet keine Kämpferqualität.<br><br>
+    SGM-V2 ist ein <strong style="color:var(--accent)">strukturelles Entscheidungsmodell</strong>, das stabile Stilpräferenzen im No-Gi Grappling beschreibt.
+    Jeder Athlet wird als Punkt in einem <strong>sechsdimensionalen Vektorraum</strong> modelliert. Archetypen sind Cluster-Zentroide in diesem Raum.<br><br>
+    Das Modell besteht aus zwei unabhängigen Teilen:<br>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+      <div style="padding:12px 14px;border:1px solid var(--border);border-radius:4px;background:var(--surface2)">
+        <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px">MODEL A — PROFIL-ZUORDNUNG</div>
+        <div style="font-size:12px;color:var(--muted)">Weighted Euclidean Distance · RBF-Kernel (σ) · Modul-Verstärkung (λ) · Softmax (T) · Typklassifikation</div>
+      </div>
+      <div style="padding:12px 14px;border:1px solid var(--border);border-radius:4px;background:var(--surface2)">
+        <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px">MODEL B — MATCHUP-ENGINE</div>
+        <div style="font-size:12px;color:var(--muted)">Phasenbasierte Interaktion: Entry · Top · Leg · Back · Tempo. Modul-Overrides. Kein Softmax – kein Distanzmodell.</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--muted)">
+      <strong style="color:var(--text)">Grundannahme:</strong> Ein Grappling-Kampf ist eine Sequenz von Entscheidungszuständen unter Unsicherheit.
+      Athleten zeigen über viele Kämpfe hinweg stabile Präferenzen in Positionswahl, Kontrollmechanismus, Initiativverhalten, Risikobereitschaft, anatomischem Angriffsziel und Übergangslogik.
+    </div>
+  </div>
+</div>
+
+<div style="margin-bottom:12px;font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2)">LIMITATION</div>
+<div style="margin-bottom:28px;padding:12px 16px;border-left:3px solid var(--accent2);background:var(--surface2);font-size:12px;color:var(--muted);line-height:1.75">
+  SGM-V2 misst nicht: Athletik · Kraft · Cardio · Wettkampferfahrung.<br>
+  Regelwerke können Cluster verschieben. Selbsteinschätzungen sind weniger präzise als Videocodierung.<br>
+  Das Modell beschreibt <strong>Struktur – nicht Erfolg</strong>.
+</div>`;
+
+        // ── 6 ACHSEN TABELLE ────────────────────────────────────────────────
+        const axisDescriptions = {
+          PCO: {
+            full: "Positional Control Orientation",
+            poles: [
+              "0 = Guard/Bottom-orientiert",
+              "100 = Top/Wrestling-orientiert",
+            ],
+            meaning: "Zielorientierung, nicht Fähigkeit",
+          },
+          FAM: {
+            full: "Force Application Mode",
+            poles: [
+              "0 = Mobilität, Winkel, Distanz",
+              "100 = Körpergewicht, Flattening, Pin",
+            ],
+            meaning: "Flow vs. Immobilisierung",
+          },
+          INS: {
+            full: "Initiative Structure",
+            poles: [
+              "0 = Reaktiv / Counter",
+              "100 = Initiativ / strukturbildend",
+            ],
+            meaning: "Sequenz-Dominanz",
+          },
+          ATC: {
+            full: "Attack Commitment",
+            poles: ["0 = Position first", "100 = Submission-first"],
+            meaning: "Risikobias, nicht Submission-Skill",
+          },
+          CTV: {
+            full: "Control Target Vector",
+            poles: [
+              "0 = Upper Body (Head-Arm, Bodylock)",
+              "100 = Lower Body (Knee-Line, Leg-System)",
+            ],
+            meaning: "Oberkörperdominanz vs. Leg-Systeme",
+          },
+          TRV: {
+            full: "Transitional Volatility",
+            poles: [
+              "0 = Statisch / Pin-orientiert",
+              "100 = Scramble / Rotation / Backline",
+            ],
+            meaning: "Übergangslogik",
+          },
         };
-
-        let html = `<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-<div style="font-family:var(--font-display);font-size:22px;letter-spacing:1px;color:var(--accent);">🥋 No-Gi BJJ – 12 ARCHETYPEN</div>
-<button class="lib-start-btn" onclick="showPage('bjj')">TEST STARTEN</button>
-</div>`;
-
-        // SGM-V2 Framework intro
-        html += `<div class="sgm-frame" style="margin-bottom:24px">
-<div class="sgm-frame-title">Structural Grappling Model V2 (SGM-V2)</div>
-<div style="font-size:13px;color:var(--text);line-height:1.75">
-Das SGM-V2 ist ein <strong style="color:var(--accent)">sechsdimensionales Vektormodell</strong> zur systematischen Beschreibung individueller No-Gi Stilpräferenzen. Jeder Athlet wird als Punkt im 6D-Raum modelliert. Archetypen stellen Cluster-Zentroide dar. Matchup-Tendenzen ergeben sich aus struktureller Distanz, komplementären Achsenbeziehungen und Risiko-Asymmetrien.
-<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px">
-${SGM_AXES.map((ax) => `<span class="sgm-axis-badge" style="border-color:${ax.color}44;color:${ax.color}"><strong>${ax.key}</strong></span>`).join("")}
-</div>
-</div>
-</div>`;
-
-        // Axis descriptions
-        html += `<div style="margin-bottom:28px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
-<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">SGM-V2 ACHSEN (Skala 0–100)</div>
-<table style="width:100%;border-collapse:collapse;font-size:13px">
-${SGM_AXES.map(
-  (
-    ax,
-    i,
-  ) => `<tr style="${i < 5 ? "border-bottom:1px solid var(--border)" : ""}">
-<td style="padding:10px 16px;width:100px"><span class="sgm-axis-badge" style="border-color:${ax.color}44;color:${ax.color}">${ax.key}</span></td>
-<td style="padding:10px 16px;color:var(--muted)"><strong style="color:var(--text)">${ax.label}</strong> — ${ax.desc}</td>
-</tr>`,
-).join("")}
-</table>
-</div>`;
-
-        // Centroid overview
         html += `<div style="margin-bottom:32px">
-<div class="lib-compare-title" style="margin-bottom:12px">ARCHETYPEN-ZENTROIDE (SGM-V2)</div>
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px">DER SECHSDIMENSIONALE STILRAUM — x = (PCO, FAM, INS, ATC, CTV, TRV)</div>
+<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
+<thead><tr>
+  <th style="padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:1px;color:var(--accent2)">ACHSE</th>
+  <th style="padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:1px;color:var(--accent2)">VOLLNAME</th>
+  <th style="padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:1px;color:var(--accent2)">POLE (0 vs 100)</th>
+  <th style="padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:1px;color:var(--accent2)">MISST</th>
+</tr></thead>
+<tbody>
+${SGM_AXES.map((ax, i) => {
+  const d = axisDescriptions[ax.key];
+  return `<tr style="${i < 5 ? "border-bottom:1px solid var(--border)" : ""}">
+  <td style="padding:10px 14px"><span class="sgm-axis-badge" style="border-color:${ax.color}44;color:${ax.color}">${ax.key}</span></td>
+  <td style="padding:10px 14px;color:var(--text);font-weight:600">${d.full}</td>
+  <td style="padding:10px 14px;color:var(--muted);font-size:11px">${d.poles[0]}<br>${d.poles[1]}</td>
+  <td style="padding:10px 14px;color:var(--muted);font-style:italic;font-size:11px">${d.meaning}</td>
+</tr>`;
+}).join("")}
+</tbody></table></div></div>`;
+
+        // ── PROFIL-ZUORDNUNG ERKLÄRUNG ───────────────────────────────────────
+        html += `<div style="margin-bottom:32px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">MODEL A — PROFIL-ZUORDNUNG (CLUSTERING)</div>
+<div style="padding:16px;font-size:12px;color:var(--muted);line-height:1.85">
+  <strong style="color:var(--text)">Schritt 1:</strong> Weighted Euclidean Distance zu allen 12 Zentroiden<br>
+  <strong style="color:var(--text)">Schritt 2:</strong> RBF-Kernel (σ=0.25) → Ähnlichkeitsberechnung<br>
+  <strong style="color:var(--text)">Schritt 3:</strong> Modul-Verstärkung (FHL, Leg, Bodylock, Wrestle-Up, Backline, Pin) mit λ=0.75<br>
+  <strong style="color:var(--text)">Schritt 4:</strong> Power-Sharpening (Exponent 2) + Softmax (T=0.65)<br><br>
+  <strong style="color:var(--text)">Spezialisierungsindex:</strong> Hybrid-Formel aus Varianz-Spread + Achsen-Abstand vom Zentrum (0.5). Misst Achsen-Polarisation.<br>
+  &lt;40 = breit · 40–60 = moderat · &gt;60 = stark polarisiert<br><br>
+  <strong style="color:var(--text)">Confidence:</strong> Verteilungskonzentration (Entropie) + Gap(p1−p2) × Spec-Boost. Misst Cluster-Klarheit, nicht Kampfstärke.<br><br>
+  <strong style="color:var(--text)">Typklassifikation:</strong><br>
+  Spezialist: p1 ≥ 45% &amp; Gap ≥ 15% · Dual-Hybrid: p1,p2 ≥ 25% &amp; Summe ≥ 70%<br>
+  Tri-Hybrid: p1 ≥ 20% &amp; Top3 ≥ 80% · Generalist: nur wenn Spec ≤ 55%
+</div></div>`;
+
+        // ── MODEL B ERKLÄRUNG ────────────────────────────────────────────────
+        html += `<div style="margin-bottom:32px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">MODEL B — MATCHUP-ENGINE (PHASENBASIERTE INTERAKTION)</div>
+<div style="padding:16px;font-size:12px;color:var(--muted);line-height:1.85">
+  Matchups werden <strong style="color:var(--text)">nicht aus Distanz berechnet</strong>. Sie entstehen aus struktureller Phasen-Interaktion.<br><br>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0">
+    ${[
+      ["ENTRY", "0.20", "INS, FHL"],
+      ["TOP", "0.30", "PCO, FAM, PIN"],
+      ["LEG", "0.20", "CTV, LEG"],
+      ["BACK", "0.15", "TRV, BACKLINE"],
+      ["TEMPO", "0.15", "INS, ATC"],
+    ]
+      .map(
+        ([name, w, ax]) => `
+    <div style="text-align:center;padding:10px 6px;border:1px solid var(--border);border-radius:4px;background:var(--surface2)">
+      <div style="font-family:var(--font-mono);font-size:9px;color:var(--accent2);letter-spacing:1px">${name}</div>
+      <div style="font-family:var(--font-display);font-size:18px;color:var(--accent);margin:4px 0">${w}</div>
+      <div style="font-size:10px;color:var(--muted)">${ax}</div>
+    </div>`,
+      )
+      .join("")}
+  </div>
+  <strong style="color:var(--text)">Modul-Overrides:</strong> FHL hoch + Gegner INS/Shot hoch → Entry-Bonus ·
+  Leg hoch + Gegner PCO/FAM hoch → Leg-Bonus ·
+  TRV hoch + Gegner FAM hoch → Back-Bonus ·
+  FAM hoch + Gegner TRV niedrig → Top-Bonus<br><br>
+  Score &gt; +0.15 = ✓ struktureller Vorteil · Score &lt; −0.15 = ✗ Nachteil · sonst = ~ ausgeglichen
+</div></div>`;
+
+        // ── ZENTROIDEN-ÜBERSICHT ─────────────────────────────────────────────
+        html += `<div style="margin-bottom:32px">
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px">ARCHETYPEN-ZENTROIDE</div>
 <div style="overflow-x:auto"><table class="centroid-table">
-<thead><tr><th>Archetyp</th>${SGM_AXES.map((ax) => `<th style="color:${ax.color}">${ax.key}</th>`).join("")}<th>Dom. Achse</th></tr></thead>
+<thead><tr><th>Archetyp</th>${SGM_AXES.map((ax) => `<th style="color:${ax.color}">${ax.key}</th>`).join("")}<th>Dom.</th><th>Fokus</th></tr></thead>
 <tbody>`;
+
+        const archFocus = {
+          PBP: "Immobilisierung",
+          WTC: "Ortsbestimmung",
+          PPF: "Sicherheit",
+          DN: "Überleben",
+          FHF: "Entry-Bestrafung",
+          RBTS: "Rücken",
+          TSO: "Chaos",
+          DOGR: "Distanz + Winkel",
+          WUGP: "Guard → Top",
+          LIH: "Knee-Line",
+          LTC: "Leg → Position",
+          TC: "Rhythmus",
+        };
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
           const domAxis = SGM_AXES.reduce(
             (best, ax) =>
@@ -4475,15 +4851,164 @@ ${SGM_AXES.map(
           );
           html += `<tr>
 <td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.emoji} ${arch.label}</div></td>
-${SGM_AXES.map((ax) => `<td><span class="centroid-bar" style="width:${arch.centroid[ax.key] * 0.5}px;background:${arch.color};opacity:.7"></span> <span style="font-family:var(--font-mono);font-size:11px;color:var(--muted)">${arch.centroid[ax.key]}</span></td>`).join("")}
-<td style="font-size:11px;color:${domAxis.color};font-family:var(--font-mono)">${domAxis.key}</td>
+${SGM_AXES.map((ax) => {
+  const v = arch.centroid[ax.key];
+  const hi = v >= 75,
+    lo = v <= 30;
+  const style = hi
+    ? `color:var(--accent);font-weight:700`
+    : lo
+      ? `color:var(--muted)`
+      : `color:var(--text)`;
+  return `<td style="font-family:var(--font-mono);font-size:11px;${style}">${v}</td>`;
+}).join("")}
+<td style="font-family:var(--font-mono);font-size:10px;color:${domAxis.color}">${domAxis.key}</td>
+<td style="font-size:11px;color:var(--muted)">${archFocus[arch.id] || "—"}</td>
 </tr>`;
         });
         html += `</tbody></table></div></div>`;
 
-        // Archetype cards
+        // ── ARCHETYPEN-KARTEN (WIKI-FORMAT) ─────────────────────────────────
+        const archWiki = {
+          PBP: {
+            domAxis: "FAM",
+            entryBias: "Clinch, Underhooks, Bodylock-Progression",
+            controlMode: "Körpergewicht, Hüftkontrolle, Flattening",
+            winPath:
+              "Inside Control → Guard-Pass → Mount/Back → kontrollierter Finish",
+            riskProfile: "Niedriges Transitionsrisiko, geringe Leg-Affinität",
+            vulnerability:
+              "Offene Pass-Schritte → Leg-Exposure. Rotation bei hohem TRV des Gegners",
+            opponentProblem: "Frames kollabieren unter Druck",
+            ownWeakness: "Explosive Leg-Lock-Systeme beim Entry",
+          },
+          WTC: {
+            domAxis: "PCO",
+            entryBias: "Level Change, Shot-Chains, Snap-Re-Attack",
+            controlMode: "Ride, Mat-Returns, Positionspunkte",
+            winPath: "Takedown → Stabilisierung → Ride → Kontrolle",
+            riskProfile: "Moderates Leg-Risiko bei Shots",
+            vulnerability:
+              "Front-Headlock-Kontersysteme. Back-Takes bei gescheiterten Shots",
+            opponentProblem: "Wird gezwungen, im falschen Raum zu kämpfen",
+            ownWeakness: "Lineare Entries gegen FHL-Spieler",
+          },
+          PPF: {
+            domAxis: "PCO",
+            entryBias: "Progressiver Positionsaufbau",
+            controlMode: "Isolation, Druck, Stabilität",
+            winPath: "Stabilisieren → isolieren → Submission",
+            riskProfile: "Minimiert Exposition konsequent",
+            vulnerability: "Sehr mobile Gegner. Zeitdruck",
+            opponentProblem:
+              "Kaum Kontermöglichkeiten durch minimale Exposition",
+            ownWeakness: "Tempo- und Scramble-lastige Systeme",
+          },
+          DN: {
+            domAxis: "niedrige INS + ATC",
+            entryBias: "Reaktiv – kein aktiver Entry",
+            controlMode: "Frame, Reset, Vermeidung",
+            winPath: "Fehler des Gegners ausnutzen",
+            riskProfile: "Extrem niedrig – fast keine Exposition",
+            vulnerability:
+              "Aggressive Punktesysteme. Dauerhafte Initiativsysteme",
+            opponentProblem: "Kein klarer Angriffspunkt vorhanden",
+            ownWeakness: "Entscheidungsarmut unter Zeit- oder Punktedruck",
+          },
+          FHF: {
+            domAxis: "INS",
+            entryBias: "Snapdown, Sprawl, Front-Headlock-Trap",
+            controlMode: "Head-Arm-Kontrolle, Nackenpummel",
+            winPath: "Guillotine/D'Arce/Anaconda → Back oder direkt Finish",
+            riskProfile: "Moderates Risiko bei aggressivem Druck",
+            vulnerability: "Leg-Exposure bei hohem Vorwärtsdruck des Gegners",
+            opponentProblem: "Shot-Systeme werden systematisch bestraft",
+            ownWeakness: "Leg-Entanglements beim Passversuch von unten",
+          },
+          RBTS: {
+            domAxis: "TRV",
+            entryBias: "Rotation, Scramble, Turtle-Traps",
+            controlMode: "Back-Control, Harness, Hooks",
+            winPath: "Rotation → Back → RNC/Armlock",
+            riskProfile: "Hohes Transitionsrisiko – akzeptiert bewusst",
+            vulnerability: "Statische Pin-Spieler mit hohem FAM",
+            opponentProblem: "Verliert Orientation in Rotationssequenzen",
+            ownWeakness:
+              "Schwere Pressure gegen Turtle wenn Rotation scheitert",
+          },
+          TSO: {
+            domAxis: "TRV",
+            entryBias: "Instabilität aktiv erzeugen",
+            controlMode: "Kein dominanter Kontrollmodus – Chaos als Strategie",
+            winPath:
+              "Unklare Übergänge gewinnen durch besseres Transition-Reading",
+            riskProfile: "Sehr hoch – bewusst",
+            vulnerability: "Strukturierte Drucksysteme mit hohem FAM/PCO",
+            opponentProblem: "Verliert klare Kampfstruktur in Übergängen",
+            ownWeakness: "Null Vorteil in stationären Kampfphasen",
+          },
+          DOGR: {
+            domAxis: "CTV",
+            entryBias: "Guard Pull, Guard Retention, Distanzarbeit",
+            controlMode: "Leg-Entanglement, Angle, Distanzmanagement",
+            winPath: "Angle → Leg Entry oder Wrestle-Up",
+            riskProfile: "Mittleres Expositionsrisiko am Guard",
+            vulnerability: "Bodylock-Pressure. Direktes Flattening",
+            opponentProblem: "Kann keine Passing-Struktur aufbauen",
+            ownWeakness: "Hohe Exposition gegenüber Bodylock-Passes",
+          },
+          WUGP: {
+            domAxis: "INS",
+            entryBias: "Underhook-Build aus Guard, Sit-Up-Singles",
+            controlMode: "Wrestle-Up, Single-Leg, Top-Stabilisierung",
+            winPath: "Single aus Guard → Top → Stabilisierung → Finish",
+            riskProfile: "Mittleres Risiko beim Wrestle-Up",
+            vulnerability: "Front Headlock bei fehlerhaften Wrestle-Up-Builds",
+            opponentProblem:
+              "Verliert Top-Position durch erzwungene Wrestle-Ups",
+            ownWeakness: "FHL-Systeme kontern Wrestle-Up konsequent",
+          },
+          LIH: {
+            domAxis: "CTV + ATC",
+            entryBias: "Ashi Garami Entry, Inside Saddle",
+            controlMode: "Inside Heel Hook, Kneebar",
+            winPath: "Inside Saddle → Heel Hook-Mechanik",
+            riskProfile: "Sehr hoch – Position für Finish opfern",
+            vulnerability:
+              "Elite-Leg-Defense. Heavytop-Pressure nach gescheitertem Entry",
+            opponentProblem:
+              "Keine strukturell sichere Position gegen Inside Saddle",
+            ownWeakness: "Heavy Top-Pressure wenn Heel Hook scheitert",
+          },
+          LTC: {
+            domAxis: "CTV",
+            entryBias: "Leg Threat als Entry-Mittel",
+            controlMode: "Leg-Exposure erzwingen → Sweep → Top",
+            winPath: "Leg Entry → Sweep → Top → Finish",
+            riskProfile: "Mittleres Risiko am Leg-Layer",
+            vulnerability: "Sehr mobile Gegner. Direkte Counter-Entries",
+            ownWeakness: "Exposition beim Bein-Entry gegen präzise Leg-Defense",
+            opponentProblem:
+              "Muss auf Bein-Angriff reagieren und verliert Top-Position",
+          },
+          TC: {
+            domAxis: "INS",
+            entryBias: "Timing-Dominanz, Rhythmuswechsel",
+            controlMode: "Sequence-Control, Reaktionsprovokation",
+            winPath: "Fehler durch Rhythmuswechsel erzwingen → sauberer Entry",
+            riskProfile: "Mittleres Risiko durch hohe Initiative",
+            vulnerability: "Reine Power-Pressure. Statische Bodylock-Systeme",
+            ownWeakness:
+              "Verliert Vorteil gegen unrhythmische, druckvolle Gegner",
+            opponentProblem: "Verliert eigenen Rhythmus und Timing",
+          },
+        };
+
+        html += `<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px">DIE 12 ARCHETYPEN – STRUKTURELLE PROFILE</div>`;
         html += `<div class="lib-archetypes-grid">`;
+
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
+          const wiki = archWiki[arch.id] || {};
           html += `<div class="lib-archetype-card" id="lib-card-bjj-${arch.id}" onclick="toggleLibCard('bjj','${arch.id}')">
 <div class="lib-card-header">
   <div class="lib-card-color" style="background:${arch.color}"></div>
@@ -4495,33 +5020,71 @@ ${SGM_AXES.map((ax) => `<td><span class="centroid-bar" style="width:${arch.centr
 </div>
 <div class="lib-card-body">
   ${renderArchImage(arch.label, arch.color, "lib")}
-  <div class="arch-theory"><div class="arch-theory-title">Kern-Theorie</div><div class="arch-theory-text">${arch.theory}</div></div>
-  <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">ONE-LINER</div><div style="font-size:14px;font-style:italic;color:var(--text)">"${arch.oneLiner}"</div></div>
-  <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">SUBTYPEN</div><div class="sub-arch-chips">${arch.subArchetypes.map((s) => `<div class="sub-arch-chip">${s}</div>`).join("")}</div></div>
-  ${arch.longdesc.map((p, i) => `<p class="lib-body-desc${i > 0 ? " muted" : ""}">${p}</p>`).join("")}
-  <div style="margin-bottom:14px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">SGM-V2 PROFIL</div>
-  <div>${SGM_AXES.map((ax) => {
-    const v = arch.centroid[ax.key];
-    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px"><span style="font-family:var(--font-mono);font-size:9px;color:${ax.color};width:35px">${ax.key}</span><div style="flex:1;height:4px;background:var(--border);border-radius:2px"><div style="width:${v}%;height:100%;background:${ax.color};border-radius:2px"></div></div><span style="font-family:var(--font-mono);font-size:10px;color:var(--accent);width:28px;text-align:right">${v}</span></div>`;
-  }).join("")}</div></div>
-  <div class="lib-sw-row">
-    <div class="lib-sw-box"><div class="lib-sw-title pos">Stärken</div><ul class="lib-sw-list">${arch.strengths.map((s) => `<li class="pos">${s}</li>`).join("")}</ul></div>
-    <div class="lib-sw-box"><div class="lib-sw-title neg">Schwächen</div><ul class="lib-sw-list">${arch.weaknesses.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
+
+  <div style="margin-bottom:16px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div style="padding:8px 12px;background:var(--surface2);border-radius:3px;border:1px solid var(--border)">
+      <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:4px">DOM. ACHSE</div>
+      <div style="font-size:12px;color:var(--text);font-weight:600">${wiki.domAxis || "—"}</div>
+    </div>
+    <div style="padding:8px 12px;background:var(--surface2);border-radius:3px;border:1px solid var(--border)">
+      <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:4px">FOKUS</div>
+      <div style="font-size:12px;color:var(--text);font-weight:600">${archFocus[arch.id] || "—"}</div>
+    </div>
   </div>
+
+  <table style="width:100%;border-collapse:collapse;font-size:12px;margin-bottom:16px">
+    ${[
+      ["ENTRY-BIAS", wiki.entryBias || "—"],
+      ["KONTROLLMODUS", wiki.controlMode || "—"],
+      ["PRIMARY WIN PATH", wiki.winPath || "—"],
+      ["RISIKO-PROFIL", wiki.riskProfile || "—"],
+      ["VULNERABILITY", wiki.vulnerability || "—"],
+      ["GEGNER-PROBLEM", wiki.opponentProblem || "—"],
+      ["EIGENE SCHWÄCHE", wiki.ownWeakness || "—"],
+    ]
+      .map(
+        (
+          [k, v],
+          i,
+        ) => `<tr style="${i < 6 ? "border-bottom:1px solid var(--border)" : ""}">
+      <td style="padding:7px 12px;width:130px;font-family:var(--font-mono);font-size:8px;letter-spacing:1px;color:var(--accent2);background:var(--surface2);vertical-align:top">${k}</td>
+      <td style="padding:7px 12px;color:var(--muted);line-height:1.6">${v}</td>
+    </tr>`,
+      )
+      .join("")}
+  </table>
+
+  <div style="margin-bottom:14px">
+    <div style="font-family:var(--font-mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">SGM-V2 PROFIL</div>
+    ${SGM_AXES.map((ax) => {
+      const v = arch.centroid[ax.key];
+      return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:5px">
+        <span style="font-family:var(--font-mono);font-size:9px;color:${ax.color};width:35px">${ax.key}</span>
+        <div style="flex:1;height:4px;background:var(--border);border-radius:2px">
+          <div style="width:${v}%;height:100%;background:${ax.color};border-radius:2px"></div>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:10px;color:var(--accent);width:28px;text-align:right">${v}</span>
+      </div>`;
+    }).join("")}
+  </div>
+
   <div class="lib-sw-row">
     <div class="lib-sw-box"><div class="lib-sw-title pos">Win-Conditions</div><ul class="lib-sw-list">${arch.winConditions.map((w) => `<li class="pos">${w}</li>`).join("")}</ul></div>
     <div class="lib-sw-box"><div class="lib-sw-title neg">Anti-Patterns</div><ul class="lib-sw-list">${arch.antiPatterns.map((w) => `<li class="neg">${w}</li>`).join("")}</ul></div>
   </div>
-  <div class="lib-matchup-box"><strong>MATCHUP:</strong> ${arch.matchup}</div>
-  <div style="margin-top:12px"><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">BEKANNTE VERTRETER</div><div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div></div>
+
+  <div style="margin-top:12px"><div style="font-family:var(--font-mono);font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px">BEKANNTE VERTRETER</div>
+    <div class="lib-boxers">${arch.boxers.map((b) => `<div class="lib-boxer-chip">${b}</div>`).join("")}</div>
+  </div>
 </div></div>`;
         });
         html += `</div>`;
 
-        // Full 8×8 matrix
+        // ── MATCHUP MATRIX (Model B) ─────────────────────────────────────────
         html += `<div class="matrix-section">
 <div class="matrix-title">12×12 MATCHUP-MATRIX</div>
-<div class="matrix-subtitle">Strukturelle Vor- und Nachteile zwischen den 12 No-Gi BJJ Archetypen. SGM-V2 Scoring: Weighted Euclidean Distance · RBF-Kernel (σ=0.55) · Modul-Fit-Verstärker (λ=0.6) · Softmax Temperatur T=0.85 · Hybrid-Klassifikation (Spezialist / Dual / Tri / Generalist).</div>`;
+<div class="matrix-subtitle">Model B — Phasenbasierte Interaktion: Entry (0.20) · Top (0.30) · Leg (0.20) · Back (0.15) · Tempo (0.15). Score &gt; +0.15 = ✓ · Score &lt; −0.15 = ✗ · sonst = ~.</div>`;
+
         const { ids, result } = buildBJJMatrix();
         const fullLabels = {
           PBP: "Pressure Bodylock Passer",
@@ -4538,7 +5101,7 @@ ${SGM_AXES.map((ax) => `<td><span class="centroid-bar" style="width:${arch.centr
           TC: "Tempo Controller",
         };
         html += `<div class="matrix-wrap"><table class="matrix-table">
-<thead><tr><th class="row-label">↓ vs →</th>${ids.map((id) => `<th>${fullLabels[id]}</th>`).join("")}</tr></thead><tbody>`;
+<thead><tr><th class="row-label">↓ vs →</th>${ids.map((id) => `<th title="${fullLabels[id]}">${id}</th>`).join("")}</tr></thead><tbody>`;
         ids.forEach((rowId) => {
           html += `<tr><th class="row-label">${fullLabels[rowId]}</th>`;
           ids.forEach((colId) => {
@@ -4547,54 +5110,35 @@ ${SGM_AXES.map((ax) => `<td><span class="centroid-bar" style="width:${arch.centr
               return;
             }
             const cell = result[rowId][colId];
-            const arch = BJJ_ARCHETYPES[rowId];
             const css =
               cell.adv === "even" ? "even" : cell.adv === "adv" ? "adv" : "dis";
             const sym =
               cell.adv === "even" ? "~" : cell.adv === "adv" ? "✓" : "✗";
-            html += `<td class="${css}">${sym}</td>`;
+            const score =
+              cell.score !== undefined
+                ? ` title="Phase-Score: ${cell.score}"`
+                : "";
+            html += `<td class="${css}"${score}>${sym}</td>`;
           });
           html += "</tr>";
         });
-        html += `</tbody></table></div>`;
-        html += `<div class="matrix-legend">
-<div class="legend-item"><span class="legend-sym adv">✓</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Struktureller Vorteil</span></div>
-<div class="legend-item"><span class="legend-sym dis">✗</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Struktureller Nachteil</span></div>
+        html += `</tbody></table></div>
+<div class="matrix-legend">
+<div class="legend-item"><span class="legend-sym adv">✓</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Struktureller Vorteil (Phase-Score &gt; 0.15)</span></div>
+<div class="legend-item"><span class="legend-sym dis">✗</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Struktureller Nachteil (Score &lt; −0.15)</span></div>
 <div class="legend-item"><span class="legend-sym even">~</span><span style="font-family:var(--font-mono);font-size:10px;color:var(--muted)">Ausgeglichen</span></div>
 </div>
-<div class="matrix-note">Systemische Tendenzen – kein deterministisches Ergebnis. Athletik, Erfahrung und Tagesform entscheiden echte Kämpfe.</div>`;
+<div class="matrix-note">Systemische Tendenzen – kein deterministisches Ergebnis. Athletik, Erfahrung und Tagesform entscheiden echte Kämpfe.</div>
+</div>`;
 
-        // Matchup details
-        html += `<div style="margin-top:32px"><div class="lib-compare-title">MATCHUP-ANALYSEN</div>`;
-        Object.values(BJJ_ARCHETYPES).forEach((arch) => {
-          html += `<div style="margin-bottom:16px;padding:14px 16px;border:1px solid var(--border);border-radius:4px;background:var(--surface)">
-<div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-  <div style="width:10px;height:10px;border-radius:50%;background:${arch.color}"></div>
-  <div style="font-family:var(--font-display);font-size:15px;letter-spacing:1px">${arch.emoji} ${arch.label}</div>
-</div>
-<div style="font-size:13px;color:var(--muted);line-height:1.75">${arch.matchup}</div>
-<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
-${ids
-  .filter((id) => id !== arch.id)
-  .map((id) => {
-    const mv = arch.matchupVs && arch.matchupVs[id];
-    const other = BJJ_ARCHETYPES[id];
-    const color =
-      mv === "adv" ? "#4a7c4e" : mv === "dis" ? "#9b3a2f" : "#8a8278";
-    const sym = mv === "adv" ? "✓" : mv === "dis" ? "✗" : "~";
-    return `<div style="font-family:var(--font-mono);font-size:9px;padding:2px 8px;border:1px solid ${color};border-radius:12px;color:${color}">${sym} ${other.label}</div>`;
-  })
-  .join("")}
-</div></div>`;
-        });
-        html += `</div></div>`;
-
-        // Style comparison table
+        // ── STILVERGLEICH TABELLE ────────────────────────────────────────────
         html += `<div class="lib-compare-section" style="margin-top:40px">
-<div class="lib-compare-title">STILVERGLEICH: SGM-V2 VOLLSTÄNDIG</div>
+<div class="lib-compare-title">STILVERGLEICH — STRUKTURELLE ÜBERSICHT</div>
 <div style="overflow-x:auto"><table class="lib-compare-table">
-<thead><tr><th>Archetyp</th><th>Dom. Achse</th><th>Kern-Signatur</th><th>Größte Stärke</th><th>Größte Schwäche</th></tr></thead><tbody>`;
+<thead><tr><th>Archetyp</th><th>Dom. Achse</th><th>Entry-Bias</th><th>Primary Win Path</th><th>Vulnerability</th></tr></thead>
+<tbody>`;
         Object.values(BJJ_ARCHETYPES).forEach((arch) => {
+          const wiki = archWiki[arch.id] || {};
           const domAxis = SGM_AXES.reduce(
             (best, ax) =>
               arch.centroid[ax.key] > arch.centroid[best.key] ? ax : best,
@@ -4602,17 +5146,16 @@ ${ids
           );
           html += `<tr>
 <td><div class="lib-compare-name"><div class="lib-dot" style="background:${arch.color}"></div>${arch.emoji} ${arch.label}</div></td>
-<td style="color:${domAxis.color};font-family:var(--font-mono);font-size:11px">${domAxis.key} (${arch.centroid[domAxis.key]})</td>
-<td style="font-size:12px;color:var(--muted);max-width:160px">${arch.oneLiner.substring(0, 60)}…</td>
-<td style="color:#4a7c4e;font-size:12px">${arch.strengths[0]}</td>
-<td style="color:#9b3a2f;font-size:12px">${arch.weaknesses[0]}</td>
+<td style="color:${domAxis.color};font-family:var(--font-mono);font-size:11px">${domAxis.key}</td>
+<td style="font-size:11px;color:var(--muted)">${(wiki.entryBias || "—").substring(0, 40)}</td>
+<td style="font-size:11px;color:var(--muted)">${(wiki.winPath || "—").substring(0, 50)}</td>
+<td style="font-size:11px;color:#9b3a2f">${(wiki.vulnerability || "—").substring(0, 50)}</td>
 </tr>`;
         });
         html += `</tbody></table></div></div>`;
 
         container.innerHTML = html;
       }
-
       function toggleLibCard(sport, nameKey) {
         const card = document.getElementById(
           "lib-card-" + sport + "-" + nameKey,

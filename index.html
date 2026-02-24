@@ -1741,7 +1741,7 @@
           </div>
           <h2>BJJ</h2>
           <p>
-            6 Achsen (PCO · FAM · INS · ATC · CTV · TRV) · Hexagon-Radar ·
+            6 Achsen (TOP · FLOW · INIT · RISK · ULO · TRANS) · Hexagon-Radar ·
             Strukturelle Matchup-Analyse.
           </p>
           <div class="sport-card-btn">TEST STARTEN</div>
@@ -2214,42 +2214,42 @@
       // ═══════════════════════════════════════════════════════════
       // ████  BJJ SGM-V2 ENGINE  ████
       // Structural Grappling Model – 6D vector space
-      // PCO · FAM · INS · ATC · CTV · TRV
+      // TOP · FLOW · INIT · RISK · ULO · TRANS
       // ═══════════════════════════════════════════════════════════
 
       const SGM_AXES = [
         {
-          key: "PCO",
+          key: "TOP",
           label: "Positional Control Orientation",
           desc: "0 = Guard/Bottom-System · 100 = Top-Controller/Wrestler",
           color: "#5B99C2",
         },
         {
-          key: "FAM",
+          key: "FLOW",
           label: "Force Application Mode",
           desc: "0 = Mobil/Winkel-orientiert · 100 = Flattening/Pin-System",
           color: "#8B5E3C",
         },
         {
-          key: "INS",
+          key: "INIT",
           label: "Initiative Structure",
           desc: "0 = Reaktiv/Counter · 100 = Initiativ/Sequenzen erzwingen",
           color: "#2E7D32",
         },
         {
-          key: "ATC",
+          key: "RISK",
           label: "Attack Commitment",
           desc: "0 = Position first/Kontrolle · 100 = Permanenter Submission-Angriff",
           color: "#C0392B",
         },
         {
-          key: "CTV",
+          key: "ULO",
           label: "Control Target Vector",
           desc: "0 = Upper-Body/Kopf-Arm · 100 = Leg-System/Knee-Line",
           color: "#7B2D8B",
         },
         {
-          key: "TRV",
+          key: "TRANS",
           label: "Transitional Volatility",
           desc: "0 = Statisch/Pin-orientiert · 100 = Back-Hunter/Scrambler",
           color: "#D4A574",
@@ -2269,22 +2269,22 @@
             {
               label: "A",
               text: "Ich baue Underhooks/Bodylock auf.",
-              axes: { PCO: +2, FAM: +2, BODYLOCK: +2 },
+              axes: { TOP: +2, FLOW: +2, BODYLOCK: +2 },
             },
             {
               label: "B",
               text: "Ich suche Snapdowns/Head-Control.",
-              axes: { INS: +2, FHL: +2 },
+              axes: { INIT: +2, FHL: +2 },
             },
             {
               label: "C",
               text: "Ich suche direkt Level-Change / Shot.",
-              axes: { INS: +3, WRESTLEUP: +2 },
+              axes: { INIT: +3, WRESTLEUP: +2 },
             },
             {
               label: "D",
               text: "Ich ziehe Guard in mein System.",
-              axes: { PCO: -2, CTV: +2 },
+              axes: { TOP: -2, ULO: +2 },
             },
           ],
         },
@@ -2296,22 +2296,22 @@
             {
               label: "A",
               text: "Sprawl → Front Headlock aufbauen.",
-              axes: { FHL: +3, INS: +1 },
+              axes: { FHL: +3, INIT: +1 },
             },
             {
               label: "B",
               text: "Sprawl → Back Take über Rotation.",
-              axes: { TRV: +3, BACKLINE: +2 },
+              axes: { TRANS: +3, BACKLINE: +2 },
             },
             {
               label: "C",
               text: "Scramble und erneuter Entry.",
-              axes: { TRV: +2, INS: +2 },
+              axes: { TRANS: +2, INIT: +2 },
             },
             {
               label: "D",
               text: "Sitz-Guard/Leg-Entanglement eingehen.",
-              axes: { CTV: +3, LEG: +2 },
+              axes: { ULO: +3, LEG: +2 },
             },
           ],
         },
@@ -2323,22 +2323,22 @@
             {
               label: "A",
               text: "Angle erzeugen + Leg Entry.",
-              axes: { CTV: +3, ATC: +1 },
+              axes: { ULO: +3, RISK: +1 },
             },
             {
               label: "B",
               text: "Wrestle-Up über Underhook aufbauen.",
-              axes: { PCO: +2, WRESTLEUP: +3 },
+              axes: { TOP: +2, WRESTLEUP: +3 },
             },
             {
               label: "C",
               text: "Arm Drag → Back Exposure erzwingen.",
-              axes: { TRV: +2, BACKLINE: +2 },
+              axes: { TRANS: +2, BACKLINE: +2 },
             },
             {
               label: "D",
               text: "Retention + Abwarten.",
-              axes: { TRV: -1, ATC: -2 },
+              axes: { TRANS: -1, RISK: -2 },
             },
           ],
         },
@@ -2350,22 +2350,22 @@
             {
               label: "A",
               text: "Bodylock – Hüfte kontrollieren und flachen.",
-              axes: { FAM: +3, BODYLOCK: +3 },
+              axes: { FLOW: +3, BODYLOCK: +3 },
             },
             {
               label: "B",
               text: "Snapdown → Kopfkontrolle erzwingen.",
-              axes: { INS: +2, FHL: +2 },
+              axes: { INIT: +2, FHL: +2 },
             },
             {
               label: "C",
               text: "Turtle-Trap / Backtake-Sequenz.",
-              axes: { TRV: +2, BACKLINE: +3 },
+              axes: { TRANS: +2, BACKLINE: +3 },
             },
             {
               label: "D",
               text: "Guard-Zug in Leg-Entanglement.",
-              axes: { CTV: +3, LEG: +2 },
+              axes: { ULO: +3, LEG: +2 },
             },
           ],
         },
@@ -2379,22 +2379,22 @@
             {
               label: "A",
               text: "Bodylock / Inside Control aufbauen.",
-              axes: { FAM: +3, BODYLOCK: +3 },
+              axes: { FLOW: +3, BODYLOCK: +3 },
             },
             {
               label: "B",
               text: "Distance Passing / Leg Drag.",
-              axes: { TRV: +1, CTV: -1 },
+              axes: { TRANS: +1, ULO: -1 },
             },
             {
               label: "C",
               text: "Leg Pummel → Leg Entry.",
-              axes: { CTV: +3, ATC: +1 },
+              axes: { ULO: +3, RISK: +1 },
             },
             {
               label: "D",
               text: "Force Half Guard + Pressure.",
-              axes: { FAM: +2, PIN: +3 },
+              axes: { FLOW: +2, PIN: +3 },
             },
           ],
         },
@@ -2406,22 +2406,22 @@
             {
               label: "A",
               text: "Crossface + Underhook → flach halten.",
-              axes: { FAM: +3, PIN: +3 },
+              axes: { FLOW: +3, PIN: +3 },
             },
             {
               label: "B",
               text: "Backstep → Saddle/Leg-Entanglement.",
-              axes: { CTV: +3, LEG: +3 },
+              axes: { ULO: +3, LEG: +3 },
             },
             {
               label: "C",
               text: "Knee Cut mit Tempo vorantreiben.",
-              axes: { INS: +2, TRV: +1 },
+              axes: { INIT: +2, TRANS: +1 },
             },
             {
               label: "D",
               text: "Stehen bleiben + neu öffnen.",
-              axes: { TRV: -1, FAM: -1 },
+              axes: { TRANS: -1, FLOW: -1 },
             },
           ],
         },
@@ -2433,22 +2433,22 @@
             {
               label: "A",
               text: "Frame setzen + Retention/Reguard.",
-              axes: { TRV: +1, CTV: +1 },
+              axes: { TRANS: +1, ULO: +1 },
             },
             {
               label: "B",
               text: "Leg-Entanglement beim Passversuch anbieten.",
-              axes: { CTV: +3, ATC: +2 },
+              axes: { ULO: +3, RISK: +2 },
             },
             {
               label: "C",
               text: "Turtle → Back Defense → Scramble.",
-              axes: { TRV: +3, BACKLINE: +2 },
+              axes: { TRANS: +3, BACKLINE: +2 },
             },
             {
               label: "D",
               text: "Sit-Up → Wrestle-Up aufbauen.",
-              axes: { INS: +2, WRESTLEUP: +3 },
+              axes: { INIT: +2, WRESTLEUP: +3 },
             },
           ],
         },
@@ -2460,22 +2460,22 @@
             {
               label: "A",
               text: "Frames halten, Distanz wiederherstellen.",
-              axes: { FAM: -2, TRV: -1 },
+              axes: { FLOW: -2, TRANS: -1 },
             },
             {
               label: "B",
               text: "Leg Entry unter dem Druck heraus erzwingen.",
-              axes: { CTV: +3, ATC: +2 },
+              axes: { ULO: +3, RISK: +2 },
             },
             {
               label: "C",
               text: "Hip Escape + Re-Guard.",
-              axes: { TRV: +1, PCO: -1 },
+              axes: { TRANS: +1, TOP: -1 },
             },
             {
               label: "D",
               text: "Wrestle-Up über Underhook / Single.",
-              axes: { PCO: +2, WRESTLEUP: +3 },
+              axes: { TOP: +2, WRESTLEUP: +3 },
             },
           ],
         },
@@ -2489,22 +2489,22 @@
             {
               label: "A",
               text: "Stabilisieren → isolieren → kontrolliert finishen.",
-              axes: { ATC: -1, FAM: +2 },
+              axes: { RISK: -1, FLOW: +2 },
             },
             {
               label: "B",
               text: "Direkt Armbar/Submission-Chain angreifen.",
-              axes: { ATC: +3 },
+              axes: { RISK: +3 },
             },
             {
               label: "C",
               text: "Back Exposure erzwingen → Backtake.",
-              axes: { TRV: +2, BACKLINE: +2 },
+              axes: { TRANS: +2, BACKLINE: +2 },
             },
             {
               label: "D",
               text: "High Mount → maximales Risiko akzeptieren.",
-              axes: { ATC: +3, TRV: +1 },
+              axes: { RISK: +3, TRANS: +1 },
             },
           ],
         },
@@ -2516,22 +2516,22 @@
             {
               label: "A",
               text: "Re-Attack auf dieselbe Lane.",
-              axes: { ATC: +3 },
+              axes: { RISK: +3 },
             },
             {
               label: "B",
               text: "Sweep → oben stabilisieren.",
-              axes: { PCO: +2, FAM: +1 },
+              axes: { TOP: +2, FLOW: +1 },
             },
             {
               label: "C",
               text: "Transition zu anderem Leg-Entanglement.",
-              axes: { TRV: +2, CTV: +2 },
+              axes: { TRANS: +2, ULO: +2 },
             },
             {
               label: "D",
               text: "Abbrechen, Position neu aufbauen.",
-              axes: { ATC: -2 },
+              axes: { RISK: -2 },
             },
           ],
         },
@@ -2543,22 +2543,22 @@
             {
               label: "A",
               text: "Ich nehme die Submission-Chance, Risiko egal.",
-              axes: { ATC: +3 },
+              axes: { RISK: +3 },
             },
             {
               label: "B",
               text: "Ich verbessere erst auf Mount/Back, dann angreifen.",
-              axes: { ATC: -1, PCO: +2 },
+              axes: { RISK: -1, TOP: +2 },
             },
             {
               label: "C",
               text: "Ich attackiere und akzeptiere den möglichen Scramble.",
-              axes: { ATC: +2, TRV: +1 },
+              axes: { RISK: +2, TRANS: +1 },
             },
             {
               label: "D",
               text: "Ich halte Position und warte auf bessere Chance.",
-              axes: { ATC: -2, FAM: +1 },
+              axes: { RISK: -2, FLOW: +1 },
             },
           ],
         },
@@ -2570,22 +2570,22 @@
             {
               label: "A",
               text: "Direkt Guillotine/D'Arce/Anaconda finishen.",
-              axes: { FHL: +3, ATC: +2 },
+              axes: { FHL: +3, RISK: +2 },
             },
             {
               label: "B",
               text: "Front Headlock als Pass-Tool nutzen.",
-              axes: { FHL: +2, PCO: +2 },
+              axes: { FHL: +2, TOP: +2 },
             },
             {
               label: "C",
               text: "Back Take über Rotation erzwingen.",
-              axes: { FHL: +2, BACKLINE: +2, TRV: +1 },
+              axes: { FHL: +2, BACKLINE: +2, TRANS: +1 },
             },
             {
               label: "D",
               text: "Ich halte Kontrolle und warte auf Fehler.",
-              axes: { INS: -1, ATC: -1 },
+              axes: { INIT: -1, RISK: -1 },
             },
           ],
         },
@@ -2599,22 +2599,22 @@
             {
               label: "A",
               text: "Sofort stabilisieren, Kontrolle wiederherstellen.",
-              axes: { TRV: -2, FAM: +1 },
+              axes: { TRANS: -2, FLOW: +1 },
             },
             {
               label: "B",
               text: "Bewusst in die Transition gehen.",
-              axes: { TRV: +3 },
+              axes: { TRANS: +3 },
             },
             {
               label: "C",
               text: "Rücken/Turtle suchen.",
-              axes: { BACKLINE: +3, TRV: +2 },
+              axes: { BACKLINE: +3, TRANS: +2 },
             },
             {
               label: "D",
               text: "Komplett resetten, neutral stehen.",
-              axes: { INS: -2 },
+              axes: { INIT: -2 },
             },
           ],
         },
@@ -2626,22 +2626,22 @@
             {
               label: "A",
               text: "Frame setzen + Underhook neu aufbauen.",
-              axes: { TRV: -1, FAM: +1 },
+              axes: { TRANS: -1, FLOW: +1 },
             },
             {
               label: "B",
               text: "Invertieren / ins Leg-System.",
-              axes: { CTV: +2, TRV: +2 },
+              axes: { ULO: +2, TRANS: +2 },
             },
             {
               label: "C",
               text: "Aggressiver Scramble für bessere Position.",
-              axes: { TRV: +3, INS: +1 },
+              axes: { TRANS: +3, INIT: +1 },
             },
             {
               label: "D",
               text: "Guard Pull zurück in mein System.",
-              axes: { PCO: -2 },
+              axes: { TOP: -2 },
             },
           ],
         },
@@ -2653,22 +2653,22 @@
             {
               label: "A",
               text: "Rücken nehmen – Back Control ist das Ziel.",
-              axes: { BACKLINE: +3, TRV: +2 },
+              axes: { BACKLINE: +3, TRANS: +2 },
             },
             {
               label: "B",
               text: "Wieder in stabile Top-Kontrolle kämpfen.",
-              axes: { PCO: +2, FAM: +1 },
+              axes: { TOP: +2, FLOW: +1 },
             },
             {
               label: "C",
               text: "Transition nutzen, Leg-Entanglement eingehen.",
-              axes: { CTV: +3, TRV: +1 },
+              axes: { ULO: +3, TRANS: +1 },
             },
             {
               label: "D",
               text: "Neutral resetten, kein unnötiges Risiko.",
-              axes: { TRV: -2, INS: -1 },
+              axes: { TRANS: -2, INIT: -1 },
             },
           ],
         },
@@ -2680,7 +2680,7 @@
             {
               label: "A",
               text: "Direkt Back Control erzwingen (Harness/Hooks).",
-              axes: { BACKLINE: +3, TRV: +1 },
+              axes: { BACKLINE: +3, TRANS: +1 },
             },
             {
               label: "B",
@@ -2690,12 +2690,12 @@
             {
               label: "C",
               text: "Leg Entry beim Turtle-Roll anbieten.",
-              axes: { CTV: +3, LEG: +2 },
+              axes: { ULO: +3, LEG: +2 },
             },
             {
               label: "D",
               text: "Reset – oben bleiben und neu aufbauen.",
-              axes: { PCO: +1, TRV: -1 },
+              axes: { TOP: +1, TRANS: -1 },
             },
           ],
         },
@@ -2709,22 +2709,22 @@
             {
               label: "A",
               text: "Finishing-Mechanik erzwingen – Position halten.",
-              axes: { LEG: +3, ATC: +2 },
+              axes: { LEG: +3, RISK: +2 },
             },
             {
               label: "B",
               text: "Übergang zu außen / 50/50.",
-              axes: { LEG: +2, TRV: +2, CTV: +1 },
+              axes: { LEG: +2, TRANS: +2, ULO: +1 },
             },
             {
               label: "C",
               text: "Sweep-Mechanik → oben stabilisieren.",
-              axes: { PCO: +2, LEG: +1 },
+              axes: { TOP: +2, LEG: +1 },
             },
             {
               label: "D",
               text: "Abbrechen, Risiko zu hoch.",
-              axes: { ATC: -2, LEG: -1 },
+              axes: { RISK: -2, LEG: -1 },
             },
           ],
         },
@@ -2736,22 +2736,22 @@
             {
               label: "A",
               text: "Sehr oft – mein primärer Finish-Pfad.",
-              axes: { CTV: +3, LEG: +3, ATC: +1 },
+              axes: { ULO: +3, LEG: +3, RISK: +1 },
             },
             {
               label: "B",
               text: "Manchmal – ich nutze sie aber nicht als primäres System.",
-              axes: { CTV: +1, LEG: +1 },
+              axes: { ULO: +1, LEG: +1 },
             },
             {
               label: "C",
               text: "Selten – eher als Backup.",
-              axes: { CTV: -1 },
+              axes: { ULO: -1 },
             },
             {
               label: "D",
               text: "Fast nie – ich fokussiere Upper-Body.",
-              axes: { CTV: -2, LEG: -2 },
+              axes: { ULO: -2, LEG: -2 },
             },
           ],
         },
@@ -2765,22 +2765,22 @@
             {
               label: "A",
               text: "Snapdown erzwingen → Front Headlock Control.",
-              axes: { FHL: +3, INS: +2 },
+              axes: { FHL: +3, INIT: +2 },
             },
             {
               label: "B",
               text: "Direkt D'Arce/Guillotine-Setup einleiten.",
-              axes: { FHL: +3, ATC: +2 },
+              axes: { FHL: +3, RISK: +2 },
             },
             {
               label: "C",
               text: "Back Take über die Schulter initiieren.",
-              axes: { FHL: +1, BACKLINE: +2, TRV: +2 },
+              axes: { FHL: +1, BACKLINE: +2, TRANS: +2 },
             },
             {
               label: "D",
               text: "Ich nutze die Chance nicht aktiv.",
-              axes: { FHL: -2, INS: -1 },
+              axes: { FHL: -2, INIT: -1 },
             },
           ],
         },
@@ -2792,7 +2792,7 @@
             {
               label: "A",
               text: "Sehr oft – mein stärkster Entry.",
-              axes: { FHL: +3, INS: +2 },
+              axes: { FHL: +3, INIT: +2 },
             },
             {
               label: "B",
@@ -2807,7 +2807,7 @@
             {
               label: "D",
               text: "Fast nie – liegt mir nicht.",
-              axes: { FHL: -2, INS: -1 },
+              axes: { FHL: -2, INIT: -1 },
             },
           ],
         },
@@ -2821,22 +2821,22 @@
             {
               label: "A",
               text: "Crossface + Underhook – ich habe ihn flach.",
-              axes: { FAM: +3, PIN: +3 },
+              axes: { FLOW: +3, PIN: +3 },
             },
             {
               label: "B",
               text: "Ich gebe Reguard frei und passe erneut.",
-              axes: { INS: +1, TRV: +1 },
+              axes: { INIT: +1, TRANS: +1 },
             },
             {
               label: "C",
               text: "Submission-Chance nutzen und Position opfern.",
-              axes: { ATC: +2, TRV: +1 },
+              axes: { RISK: +2, TRANS: +1 },
             },
             {
               label: "D",
               text: "Knee-on-belly als Drucktool.",
-              axes: { FAM: +2, PIN: +1 },
+              axes: { FLOW: +2, PIN: +1 },
             },
           ],
         },
@@ -2848,22 +2848,22 @@
             {
               label: "A",
               text: "Sehr oft – Flattening ist mein primäres Tool.",
-              axes: { FAM: +3, PIN: +3 },
+              axes: { FLOW: +3, PIN: +3 },
             },
             {
               label: "B",
               text: "Regelmäßig, aber Gegner entkommen manchmal.",
-              axes: { FAM: +1, PIN: +1 },
+              axes: { FLOW: +1, PIN: +1 },
             },
             {
               label: "C",
               text: "Selten – ich priorisiere eher Submissions.",
-              axes: { FAM: -1, ATC: +1 },
+              axes: { FLOW: -1, RISK: +1 },
             },
             {
               label: "D",
               text: "Fast nie – ich nutze keinen Flatten-Ansatz.",
-              axes: { FAM: -2, PIN: -2 },
+              axes: { FLOW: -2, PIN: -2 },
             },
           ],
         },
@@ -2877,22 +2877,22 @@
             {
               label: "A",
               text: "Wrestle-Up über Underhook/Single aufbauen.",
-              axes: { WRESTLEUP: +3, PCO: +2 },
+              axes: { WRESTLEUP: +3, TOP: +2 },
             },
             {
               label: "B",
               text: "Reguard → Leg Entry aufbauen.",
-              axes: { CTV: +2, ATC: +1 },
+              axes: { ULO: +2, RISK: +1 },
             },
             {
               label: "C",
               text: "Back-Defense / Turtle für Scramble.",
-              axes: { TRV: +2, BACKLINE: +1 },
+              axes: { TRANS: +2, BACKLINE: +1 },
             },
             {
               label: "D",
               text: "Warten und Frame halten.",
-              axes: { INS: -1, TRV: -1 },
+              axes: { INIT: -1, TRANS: -1 },
             },
           ],
         },
@@ -2904,7 +2904,7 @@
             {
               label: "A",
               text: "Sehr oft – mein Standard-Escape.",
-              axes: { WRESTLEUP: +3, PCO: +2 },
+              axes: { WRESTLEUP: +3, TOP: +2 },
             },
             {
               label: "B",
@@ -2919,7 +2919,7 @@
             {
               label: "D",
               text: "Fast nie – ich priorisiere Guard-Retention.",
-              axes: { WRESTLEUP: -2, PCO: -2 },
+              axes: { WRESTLEUP: -2, TOP: -2 },
             },
           ],
         },
@@ -2927,7 +2927,7 @@
 
       const BJJ_TOTAL_SGM = BJJ_SGM_MC_QUESTIONS.length;
 
-      // ── SGM-V2 Archetypes: centroids in 6D space (PCO, FAM, INS, ATC, CTV, TRV) ──
+      // ── SGM-V2 Archetypes: centroids in 6D space (TOP, FLOW, INIT, RISK, ULO, TRANS) ──
       const BJJ_ARCHETYPES = {
         PBP: {
           id: "PBP",
@@ -2941,7 +2941,7 @@
             "Half Guard Smasher",
             "Leg Pummel to Chest",
           ],
-          centroid: { PCO: 92, FAM: 95, INS: 70, ATC: 40, CTV: 20, TRV: 15 },
+          centroid: { TOP: 92, FLOW: 95, INIT: 70, RISK: 40, ULO: 20, TRANS: 15 },
           modules: {
             FHL: 0.3,
             LEG: 0.1,
@@ -3014,7 +3014,7 @@
             "High-Crotch Specialist",
             "Snap-to-Go-Behind",
           ],
-          centroid: { PCO: 95, FAM: 75, INS: 92, ATC: 20, CTV: 30, TRV: 35 },
+          centroid: { TOP: 95, FLOW: 75, INIT: 92, RISK: 20, ULO: 30, TRANS: 35 },
           modules: {
             FHL: 0.4,
             LEG: 0.2,
@@ -3083,7 +3083,7 @@
             "Side Control Submitter",
             "Back Take from Top",
           ],
-          centroid: { PCO: 85, FAM: 75, INS: 60, ATC: 55, CTV: 35, TRV: 30 },
+          centroid: { TOP: 85, FLOW: 75, INIT: 60, RISK: 55, ULO: 35, TRANS: 30 },
           modules: {
             FHL: 0.4,
             LEG: 0.2,
@@ -3155,7 +3155,7 @@
             "Counter-Grappler",
             "Survival Artist",
           ],
-          centroid: { PCO: 65, FAM: 60, INS: 30, ATC: 25, CTV: 35, TRV: 15 },
+          centroid: { TOP: 65, FLOW: 60, INIT: 30, RISK: 25, ULO: 35, TRANS: 15 },
           modules: {
             FHL: 0.3,
             LEG: 0.3,
@@ -3227,7 +3227,7 @@
             "D'arce Chain",
             "Snapdown Controller",
           ],
-          centroid: { PCO: 60, FAM: 55, INS: 85, ATC: 85, CTV: 40, TRV: 65 },
+          centroid: { TOP: 60, FLOW: 55, INIT: 85, RISK: 85, ULO: 40, TRANS: 65 },
           modules: {
             FHL: 1.0,
             LEG: 0.2,
@@ -3295,7 +3295,7 @@
             "Leg-Drag to Backline",
             "Scramble Back-Hunter",
           ],
-          centroid: { PCO: 60, FAM: 40, INS: 65, ATC: 65, CTV: 45, TRV: 95 },
+          centroid: { TOP: 60, FLOW: 40, INIT: 65, RISK: 65, ULO: 45, TRANS: 95 },
           modules: {
             FHL: 0.6,
             LEG: 0.2,
@@ -3364,7 +3364,7 @@
             "Leg-Pummel Transitional",
             "Wrestle-Up Opportunist",
           ],
-          centroid: { PCO: 50, FAM: 40, INS: 45, ATC: 60, CTV: 50, TRV: 95 },
+          centroid: { TOP: 50, FLOW: 40, INIT: 45, RISK: 60, ULO: 50, TRANS: 95 },
           modules: {
             FHL: 0.5,
             LEG: 0.5,
@@ -3437,7 +3437,7 @@
             "K-Guard / Matrix-Entries",
             "Outside-Retention Specialist",
           ],
-          centroid: { PCO: 20, FAM: 25, INS: 55, ATC: 65, CTV: 85, TRV: 65 },
+          centroid: { TOP: 20, FLOW: 25, INIT: 55, RISK: 65, ULO: 85, TRANS: 65 },
           modules: {
             FHL: 0.4,
             LEG: 0.9,
@@ -3506,7 +3506,7 @@
             "K-Guard to Wrestle-Up",
             "Leg-Pummel Exit",
           ],
-          centroid: { PCO: 60, FAM: 50, INS: 80, ATC: 50, CTV: 65, TRV: 65 },
+          centroid: { TOP: 60, FLOW: 50, INIT: 80, RISK: 50, ULO: 65, TRANS: 65 },
           modules: {
             FHL: 0.4,
             LEG: 0.7,
@@ -3579,7 +3579,7 @@
             "50/50 Strategist",
             "Inside Heel Hook Specialist",
           ],
-          centroid: { PCO: 45, FAM: 30, INS: 70, ATC: 95, CTV: 100, TRV: 75 },
+          centroid: { TOP: 45, FLOW: 30, INIT: 70, RISK: 95, ULO: 100, TRANS: 75 },
           modules: {
             FHL: 0.3,
             LEG: 1.0,
@@ -3648,7 +3648,7 @@
             "Knee-Line to Top",
             "Saddle to Ride",
           ],
-          centroid: { PCO: 70, FAM: 55, INS: 65, ATC: 75, CTV: 90, TRV: 65 },
+          centroid: { TOP: 70, FLOW: 55, INIT: 65, RISK: 75, ULO: 90, TRANS: 65 },
           modules: {
             FHL: 0.3,
             LEG: 0.9,
@@ -3721,7 +3721,7 @@
             "FHL Tempo Trap",
             "Backline Rhythm Hunter",
           ],
-          centroid: { PCO: 55, FAM: 45, INS: 90, ATC: 55, CTV: 50, TRV: 75 },
+          centroid: { TOP: 55, FLOW: 45, INIT: 90, RISK: 55, ULO: 50, TRANS: 75 },
           modules: {
             FHL: 0.6,
             LEG: 0.4,
@@ -3786,8 +3786,8 @@
       function sgmComputeAxes(answersMap) {
         // MC-based: accumulate axis deltas from chosen options
         // Module scores: FHL, LEG, BODYLOCK, WRESTLEUP, BACKLINE, PIN also accumulated
-        const axisAcc = { PCO: 0, FAM: 0, INS: 0, ATC: 0, CTV: 0, TRV: 0 };
-        const axisCount = { PCO: 0, FAM: 0, INS: 0, ATC: 0, CTV: 0, TRV: 0 };
+        const axisAcc = { TOP: 0, FLOW: 0, INIT: 0, RISK: 0, ULO: 0, TRANS: 0 };
+        const axisCount = { TOP: 0, FLOW: 0, INIT: 0, RISK: 0, ULO: 0, TRANS: 0 };
         const modAcc = {
           FHL: 0,
           LEG: 0,
@@ -3805,7 +3805,7 @@
           PIN: 0,
         };
 
-        const CORE_AXES = ["PCO", "FAM", "INS", "ATC", "CTV", "TRV"];
+        const CORE_AXES = ["TOP", "FLOW", "INIT", "RISK", "ULO", "TRANS"];
         const MODULES = [
           "FHL",
           "LEG",
@@ -3857,7 +3857,7 @@
         // Return per-axis score (0-100) based on how many questions in that axis were answered
         // For MC system: completeness per section mapped to axes
         const result = {};
-        const AXES = ["PCO", "FAM", "INS", "ATC", "CTV", "TRV"];
+        const AXES = ["TOP", "FLOW", "INIT", "RISK", "ULO", "TRANS"];
         AXES.forEach((ax) => {
           // count how many MC questions touch this axis
           let touched = 0,
@@ -3889,27 +3889,27 @@
           FHL:
             userAxes._mod_FHL !== undefined
               ? userAxes._mod_FHL / 100
-              : (userAxes.INS / 100) * 0.5 + (userAxes.ATC / 100) * 0.5,
+              : (userAxes.INIT / 100) * 0.5 + (userAxes.RISK / 100) * 0.5,
           LEG:
             userAxes._mod_LEG !== undefined
               ? userAxes._mod_LEG / 100
-              : (userAxes.CTV / 100) * 0.7 + (userAxes.ATC / 100) * 0.3,
+              : (userAxes.ULO / 100) * 0.7 + (userAxes.RISK / 100) * 0.3,
           BODYLOCK:
             userAxes._mod_BODYLOCK !== undefined
               ? userAxes._mod_BODYLOCK / 100
-              : (userAxes.FAM / 100) * 0.6 + (userAxes.PCO / 100) * 0.4,
+              : (userAxes.FLOW / 100) * 0.6 + (userAxes.TOP / 100) * 0.4,
           WRESTLEUP:
             userAxes._mod_WRESTLEUP !== undefined
               ? userAxes._mod_WRESTLEUP / 100
-              : (userAxes.INS / 100) * 0.5 + (userAxes.PCO / 100) * 0.5,
+              : (userAxes.INIT / 100) * 0.5 + (userAxes.TOP / 100) * 0.5,
           BACKLINE:
             userAxes._mod_BACKLINE !== undefined
               ? userAxes._mod_BACKLINE / 100
-              : (userAxes.TRV / 100) * 0.7 + (userAxes.INS / 100) * 0.3,
+              : (userAxes.TRANS / 100) * 0.7 + (userAxes.INIT / 100) * 0.3,
           PIN:
             userAxes._mod_PIN !== undefined
               ? userAxes._mod_PIN / 100
-              : (userAxes.FAM / 100) * 0.6 + (userAxes.TRV < 30 ? 0.4 : 0.2),
+              : (userAxes.FLOW / 100) * 0.6 + (userAxes.TRANS < 30 ? 0.4 : 0.2),
         };
         let fit = 0;
         const totalBeta = Object.values(beta).reduce((a, b) => a + b, 0);
@@ -3925,12 +3925,12 @@
       // ══════════════════════════════════════════════════════════════════════
       function bjjClassifySGM(axes) {
         const ALPHA = {
-          PCO: 1.1,
-          FAM: 1.1,
-          INS: 1.0,
-          ATC: 1.0,
-          CTV: 1.0,
-          TRV: 1.0,
+          TOP: 1.1,
+          FLOW: 1.1,
+          INIT: 1.0,
+          RISK: 1.0,
+          ULO: 1.0,
+          TRANS: 1.0,
         };
         const EPS = 1e-9;
         const POWER = 2;
@@ -4034,20 +4034,20 @@
           hybridType = `${l1}+${l2} Hybrid`;
         }
 
-        // Dominance-Quadrant override: PCO>80 + FAM>80 + high INS/ATC
-        const fhlProxy = axes.INS * 0.5 + axes.ATC * 0.5;
-        if (axes.PCO > 80 && axes.FAM > 80 && fhlProxy > 65)
+        // Dominance-Quadrant override: TOP>80 + FLOW>80 + high INIT/RISK
+        const fhlProxy = axes.INIT * 0.5 + axes.RISK * 0.5;
+        if (axes.TOP > 80 && axes.FLOW > 80 && fhlProxy > 65)
           hybridType = "Pressure+FHL Hybrid";
 
         // ── D) Debug trace ─────────────────────────────────────────────────
         const debugTrace = {
           axes: {
-            PCO: axes.PCO,
-            FAM: axes.FAM,
-            INS: axes.INS,
-            ATC: axes.ATC,
-            CTV: axes.CTV,
-            TRV: axes.TRV,
+            TOP: axes.TOP,
+            FLOW: axes.FLOW,
+            INIT: axes.INIT,
+            RISK: axes.RISK,
+            ULO: axes.ULO,
+            TRANS: axes.TRANS,
           },
           specIndex,
           SIGMA,
@@ -4119,25 +4119,25 @@
             `${hybridType} – klare Achsen-Polarisation (Spec: ${specIndex}%).`,
           );
 
-        if (axes.PCO > 80 && axes.TRV > 75)
-          notes.push("Hohe PCO + TRV: Wrestler mit Back-Hunter-Qualitäten.");
-        if (axes.CTV > 80 && axes.ATC > 80)
+        if (axes.TOP > 80 && axes.TRANS > 75)
+          notes.push("Hohe TOP + TRANS: Wrestler mit Back-Hunter-Qualitäten.");
+        if (axes.ULO > 80 && axes.RISK > 80)
           notes.push(
-            "Hohe CTV + ATC: Leg-System mit extremer Submission-Bereitschaft.",
+            "Hohe ULO + RISK: Leg-System mit extremer Submission-Bereitschaft.",
           );
-        if (axes.FAM > 85 && axes.TRV < 25)
+        if (axes.FLOW > 85 && axes.TRANS < 25)
           notes.push(
-            "Hohe FAM + niedrige TRV: Maximale Pressure-Orientierung.",
+            "Hohe FLOW + niedrige TRANS: Maximale Pressure-Orientierung.",
           );
-        if (axes.INS > 80 && axes.ATC > 80)
+        if (axes.INIT > 80 && axes.RISK > 80)
           notes.push(
-            "Hohe INS + ATC: Initiativ und angriffswillig – hohes Output-Volumen.",
+            "Hohe INIT + RISK: Initiativ und angriffswillig – hohes Output-Volumen.",
           );
-        if (axes.PCO > 75 && axes.CTV > 75)
-          notes.push("Hohe PCO + CTV: Top-Orientierung mit Leg-System.");
-        if (axes.FAM > 85 && axes.TRV > 75)
+        if (axes.TOP > 75 && axes.ULO > 75)
+          notes.push("Hohe TOP + ULO: Top-Orientierung mit Leg-System.");
+        if (axes.FLOW > 85 && axes.TRANS > 75)
           conflicts.push(
-            "Hohes FAM + TRV: Pressure + Rotation = Over-Commitment-Risiko.",
+            "Hohes FLOW + TRANS: Pressure + Rotation = Over-Commitment-Risiko.",
           );
         if (specIndex > 55)
           notes.push(
@@ -4172,48 +4172,48 @@
           back = 0,
           tempo = 0;
 
-        // ENTRY PHASE: INS, FHL, Wrestle-Up
-        entry += ((axesA.INS - axesB.INS) / 100) * 0.5;
-        const fhlA = (axesA.INS * 0.5 + axesA.ATC * 0.5) / 100;
-        const fhlB = (axesB.INS * 0.5 + axesB.ATC * 0.5) / 100;
+        // ENTRY PHASE: INIT, FHL, Wrestle-Up
+        entry += ((axesA.INIT - axesB.INIT) / 100) * 0.5;
+        const fhlA = (axesA.INIT * 0.5 + axesA.RISK * 0.5) / 100;
+        const fhlB = (axesB.INIT * 0.5 + axesB.RISK * 0.5) / 100;
         const wupA = archA.modules ? (archA.modules.FHL || 0.5) * fhlA : fhlA;
         const wupB = archB.modules ? (archB.modules.FHL || 0.5) * fhlB : fhlB;
-        // Module override: FHL high vs opponent's shot (INS high)
-        if (wupA > 0.65 && axesB.INS > 75) entry += 0.2; // FHL stops shots
-        if (wupB > 0.65 && axesA.INS > 75) entry -= 0.2;
+        // Module override: FHL high vs opponent's shot (INIT high)
+        if (wupA > 0.65 && axesB.INIT > 75) entry += 0.2; // FHL stops shots
+        if (wupB > 0.65 && axesA.INIT > 75) entry -= 0.2;
         entry += (wupA - wupB) * 0.3;
 
-        // TOP PHASE: PCO, FAM, PIN module
-        top += ((axesA.PCO - axesB.PCO) / 100) * 0.4;
-        top += ((axesA.FAM - axesB.FAM) / 100) * 0.4;
+        // TOP PHASE: TOP, FLOW, PIN module
+        top += ((axesA.TOP - axesB.TOP) / 100) * 0.4;
+        top += ((axesA.FLOW - axesB.FLOW) / 100) * 0.4;
         const pinA = archA.modules ? archA.modules.PIN || 0.5 : 0.5;
         const pinB = archB.modules ? archB.modules.PIN || 0.5 : 0.5;
         top += (pinA - pinB) * 0.2;
-        // Module override: FAM high vs TRV low opponent → flatten bonus
-        if (axesA.FAM > 80 && axesB.TRV < 30) top += 0.15;
-        if (axesB.FAM > 80 && axesA.TRV < 30) top -= 0.15;
+        // Module override: FLOW high vs TRANS low opponent → flatten bonus
+        if (axesA.FLOW > 80 && axesB.TRANS < 30) top += 0.15;
+        if (axesB.FLOW > 80 && axesA.TRANS < 30) top -= 0.15;
 
-        // LEG PHASE: CTV, LEG module
+        // LEG PHASE: ULO, LEG module
         const legA = archA.modules ? archA.modules.LEG || 0.3 : 0.3;
         const legB = archB.modules ? archB.modules.LEG || 0.3 : 0.3;
-        leg += ((axesA.CTV - axesB.CTV) / 100) * 0.5;
+        leg += ((axesA.ULO - axesB.ULO) / 100) * 0.5;
         leg += (legA - legB) * 0.3;
-        // Module override: Leg high vs PCO/FAM high opponent → leg entry bonus
-        if (legA > 0.7 && axesB.PCO > 80) leg += 0.15;
-        if (legB > 0.7 && axesA.PCO > 80) leg -= 0.15;
+        // Module override: Leg high vs TOP/FLOW high opponent → leg entry bonus
+        if (legA > 0.7 && axesB.TOP > 80) leg += 0.15;
+        if (legB > 0.7 && axesA.TOP > 80) leg -= 0.15;
 
-        // BACK PHASE: TRV, BACKLINE module
+        // BACK PHASE: TRANS, BACKLINE module
         const blA = archA.modules ? archA.modules.BACKLINE || 0.4 : 0.4;
         const blB = archB.modules ? archB.modules.BACKLINE || 0.4 : 0.4;
-        back += ((axesA.TRV - axesB.TRV) / 100) * 0.5;
+        back += ((axesA.TRANS - axesB.TRANS) / 100) * 0.5;
         back += (blA - blB) * 0.3;
-        // Module override: TRV high vs FAM high → back-take from passing
-        if (axesA.TRV > 75 && axesB.FAM > 80) back += 0.2;
-        if (axesB.TRV > 75 && axesA.FAM > 80) back -= 0.2;
+        // Module override: TRANS high vs FLOW high → back-take from passing
+        if (axesA.TRANS > 75 && axesB.FLOW > 80) back += 0.2;
+        if (axesB.TRANS > 75 && axesA.FLOW > 80) back -= 0.2;
 
-        // TEMPO PHASE: INS dominance, ATC
-        tempo += ((axesA.INS - axesB.INS) / 100) * 0.4;
-        tempo += ((axesA.ATC - axesB.ATC) / 100) * 0.3;
+        // TEMPO PHASE: INIT dominance, RISK
+        tempo += ((axesA.INIT - axesB.INIT) / 100) * 0.4;
+        tempo += ((axesA.RISK - axesB.RISK) / 100) * 0.3;
         const tcA = archA.modules ? archA.modules.WRESTLEUP || 0.5 : 0.5;
         const tcB = archB.modules ? archB.modules.WRESTLEUP || 0.5 : 0.5;
         tempo += (tcA - tcB) * 0.3;
@@ -4524,14 +4524,14 @@ ${hybridLine}${conflictsLine}`;
           cy = H / 2 + 10,
           R = Math.min(W, H) * 0.34;
         const N = 6;
-        // Hexagon: PCO(bottom), FAM(bottom-right), INS(top-right), ATC(top), CTV(top-left), TRV(bottom-left)
-        // Start at top (-90°), go clockwise: ATC, INS, FAM, PCO, TRV, CTV...
-        // Per SGM-V2 spec: PCO(bottom)=270°, FAM(bot-right)=330°, INS(top-right)=30°, ATC(top)=90°... wait
+        // Hexagon: TOP(bottom), FLOW(bottom-right), INIT(top-right), RISK(top), ULO(top-left), TRANS(bottom-left)
+        // Start at top (-90°), go clockwise: RISK, INIT, FLOW, TOP, TRANS, ULO...
+        // Per SGM-V2 spec: TOP(bottom)=270°, FLOW(bot-right)=330°, INIT(top-right)=30°, RISK(top)=90°... wait
         // Use equal spacing starting at top (-90° = -Math.PI/2), clockwise
-        const axisOrder = ["PCO", "FAM", "INS", "ATC", "CTV", "TRV"];
-        // Position: top=ATC, top-right=INS, bot-right=FAM, bottom=PCO, bot-left=TRV, top-left=CTV
+        const axisOrder = ["TOP", "FLOW", "INIT", "RISK", "ULO", "TRANS"];
+        // Position: top=RISK, top-right=INIT, bot-right=FLOW, bottom=TOP, bot-left=TRANS, top-left=ULO
         // That matches the SGM-V2 spec diagram
-        const displayOrder = ["ATC", "INS", "FAM", "PCO", "TRV", "CTV"];
+        const displayOrder = ["RISK", "INIT", "FLOW", "TOP", "TRANS", "ULO"];
         const angles = displayOrder.map(
           (_, i) => (i / N) * 2 * Math.PI - Math.PI / 2,
         );
@@ -4691,7 +4691,7 @@ ${hybridLine}${conflictsLine}`;
 
         // ── 6 ACHSEN TABELLE ────────────────────────────────────────────────
         const axisDescriptions = {
-          PCO: {
+          TOP: {
             full: "Positional Control Orientation",
             poles: [
               "0 = Guard/Bottom-orientiert",
@@ -4699,7 +4699,7 @@ ${hybridLine}${conflictsLine}`;
             ],
             meaning: "Zielorientierung, nicht Fähigkeit",
           },
-          FAM: {
+          FLOW: {
             full: "Force Application Mode",
             poles: [
               "0 = Mobilität, Winkel, Distanz",
@@ -4707,7 +4707,7 @@ ${hybridLine}${conflictsLine}`;
             ],
             meaning: "Flow vs. Immobilisierung",
           },
-          INS: {
+          INIT: {
             full: "Initiative Structure",
             poles: [
               "0 = Reaktiv / Counter",
@@ -4715,12 +4715,12 @@ ${hybridLine}${conflictsLine}`;
             ],
             meaning: "Sequenz-Dominanz",
           },
-          ATC: {
+          RISK: {
             full: "Attack Commitment",
             poles: ["0 = Position first", "100 = Submission-first"],
             meaning: "Risikobias, nicht Submission-Skill",
           },
-          CTV: {
+          ULO: {
             full: "Control Target Vector",
             poles: [
               "0 = Upper Body (Head-Arm, Bodylock)",
@@ -4728,7 +4728,7 @@ ${hybridLine}${conflictsLine}`;
             ],
             meaning: "Oberkörperdominanz vs. Leg-Systeme",
           },
-          TRV: {
+          TRANS: {
             full: "Transitional Volatility",
             poles: [
               "0 = Statisch / Pin-orientiert",
@@ -4738,7 +4738,7 @@ ${hybridLine}${conflictsLine}`;
           },
         };
         html += `<div style="margin-bottom:32px">
-<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px">DER SECHSDIMENSIONALE STILRAUM — x = (PCO, FAM, INS, ATC, CTV, TRV)</div>
+<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px">DER SECHSDIMENSIONALE STILRAUM — x = (TOP, FLOW, INIT, RISK, ULO, TRANS)</div>
 <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px;background:var(--surface);border:1px solid var(--border);border-radius:4px">
 <thead><tr>
   <th style="padding:10px 14px;background:var(--surface2);border-bottom:1px solid var(--border);text-align:left;font-family:var(--font-mono);font-size:9px;letter-spacing:1px;color:var(--accent2)">ACHSE</th>
@@ -4808,19 +4808,19 @@ ${SGM_AXES.map((ax) => {
         // ── ARCHETYPEN-KARTEN (WIKI-FORMAT) ─────────────────────────────────
         const archWiki = {
           PBP: {
-            domAxis: "FAM",
+            domAxis: "FLOW",
             entryBias: "Clinch, Underhooks, Bodylock-Progression",
             controlMode: "Körpergewicht, Hüftkontrolle, Flattening",
             winPath:
               "Inside Control → Guard-Pass → Mount/Back → kontrollierter Finish",
             riskProfile: "Niedriges Transitionsrisiko, geringe Leg-Affinität",
             vulnerability:
-              "Offene Pass-Schritte → Leg-Exposure. Rotation bei hohem TRV des Gegners",
+              "Offene Pass-Schritte → Leg-Exposure. Rotation bei hohem TRANS des Gegners",
             opponentProblem: "Frames kollabieren unter Druck",
             ownWeakness: "Explosive Leg-Lock-Systeme beim Entry",
           },
           WTC: {
-            domAxis: "PCO",
+            domAxis: "TOP",
             entryBias: "Level Change, Shot-Chains, Snap-Re-Attack",
             controlMode: "Ride, Mat-Returns, Positionspunkte",
             winPath: "Takedown → Stabilisierung → Ride → Kontrolle",
@@ -4831,7 +4831,7 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "Lineare Entries gegen FHL-Spieler",
           },
           PPF: {
-            domAxis: "PCO",
+            domAxis: "TOP",
             entryBias: "Progressiver Positionsaufbau",
             controlMode: "Isolation, Druck, Stabilität",
             winPath: "Stabilisieren → isolieren → Submission",
@@ -4842,7 +4842,7 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "Tempo- und Scramble-lastige Systeme",
           },
           DN: {
-            domAxis: "niedrige INS + ATC",
+            domAxis: "niedrige INIT + RISK",
             entryBias: "Reaktiv – kein aktiver Entry",
             controlMode: "Frame, Reset, Vermeidung",
             winPath: "Fehler des Gegners ausnutzen",
@@ -4853,7 +4853,7 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "Entscheidungsarmut unter Zeit- oder Punktedruck",
           },
           FHF: {
-            domAxis: "INS",
+            domAxis: "INIT",
             entryBias: "Snapdown, Sprawl, Front-Headlock-Trap",
             controlMode: "Head-Arm-Kontrolle, Nackenpummel",
             winPath: "Guillotine/D'Arce/Anaconda → Back oder direkt Finish",
@@ -4863,29 +4863,29 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "Leg-Entanglements beim Passversuch von unten",
           },
           RBTS: {
-            domAxis: "TRV",
+            domAxis: "TRANS",
             entryBias: "Rotation, Scramble, Turtle-Traps",
             controlMode: "Back-Control, Harness, Hooks",
             winPath: "Rotation → Back → RNC/Armlock",
             riskProfile: "Hohes Transitionsrisiko – akzeptiert bewusst",
-            vulnerability: "Statische Pin-Spieler mit hohem FAM",
+            vulnerability: "Statische Pin-Spieler mit hohem FLOW",
             opponentProblem: "Verliert Orientation in Rotationssequenzen",
             ownWeakness:
               "Schwere Pressure gegen Turtle wenn Rotation scheitert",
           },
           TSO: {
-            domAxis: "TRV",
+            domAxis: "TRANS",
             entryBias: "Instabilität aktiv erzeugen",
             controlMode: "Kein dominanter Kontrollmodus – Chaos als Strategie",
             winPath:
               "Unklare Übergänge gewinnen durch besseres Transition-Reading",
             riskProfile: "Sehr hoch – bewusst",
-            vulnerability: "Strukturierte Drucksysteme mit hohem FAM/PCO",
+            vulnerability: "Strukturierte Drucksysteme mit hohem FLOW/TOP",
             opponentProblem: "Verliert klare Kampfstruktur in Übergängen",
             ownWeakness: "Null Vorteil in stationären Kampfphasen",
           },
           DOGR: {
-            domAxis: "CTV",
+            domAxis: "ULO",
             entryBias: "Guard Pull, Guard Retention, Distanzarbeit",
             controlMode: "Leg-Entanglement, Angle, Distanzmanagement",
             winPath: "Angle → Leg Entry oder Wrestle-Up",
@@ -4895,7 +4895,7 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "Hohe Exposition gegenüber Bodylock-Passes",
           },
           WUGP: {
-            domAxis: "INS",
+            domAxis: "INIT",
             entryBias: "Underhook-Build aus Guard, Sit-Up-Singles",
             controlMode: "Wrestle-Up, Single-Leg, Top-Stabilisierung",
             winPath: "Single aus Guard → Top → Stabilisierung → Finish",
@@ -4906,7 +4906,7 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "FHL-Systeme kontern Wrestle-Up konsequent",
           },
           LIH: {
-            domAxis: "CTV + ATC",
+            domAxis: "ULO + RISK",
             entryBias: "Ashi Garami Entry, Inside Saddle",
             controlMode: "Inside Heel Hook, Kneebar",
             winPath: "Inside Saddle → Heel Hook-Mechanik",
@@ -4918,7 +4918,7 @@ ${SGM_AXES.map((ax) => {
             ownWeakness: "Heavy Top-Pressure wenn Heel Hook scheitert",
           },
           LTC: {
-            domAxis: "CTV",
+            domAxis: "ULO",
             entryBias: "Leg Threat als Entry-Mittel",
             controlMode: "Leg-Exposure erzwingen → Sweep → Top",
             winPath: "Leg Entry → Sweep → Top → Finish",
@@ -4929,7 +4929,7 @@ ${SGM_AXES.map((ax) => {
               "Muss auf Bein-Angriff reagieren und verliert Top-Position",
           },
           TC: {
-            domAxis: "INS",
+            domAxis: "INIT",
             entryBias: "Timing-Dominanz, Rhythmuswechsel",
             controlMode: "Sequence-Control, Reaktionsprovokation",
             winPath: "Fehler durch Rhythmuswechsel erzwingen → sauberer Entry",

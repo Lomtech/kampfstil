@@ -2156,19 +2156,19 @@
         "Boxer-Puncher": "boxer_puncher",
         Swarmer: "swarmer",
         Slugger: "slugger",
-        "Druckspieler": "pressure_bodylock_passer",
-        "Top-Erzwinger": "wrestle_top_controller",
-        "Geduldiger Killer": "positional_patience_finisher",
-        "Neutralisierer": "defensive_neutralizer",
-        "Guillotine-Jäger": "front_headlock_finisher",
-        "Rückenjäger": "rotational_back_take",
-        "Chaos-Spieler":
+        "Pressure Bodylock Passer": "pressure_bodylock_passer",
+        "Wrestle-to-Top Controller": "wrestle_top_controller",
+        "Positional Patience Finisher": "positional_patience_finisher",
+        "Defensive Neutralizer": "defensive_neutralizer",
+        "Front Headlock Finisher": "front_headlock_finisher",
+        "Rotational Back-Take Specialist": "rotational_back_take",
+        "Transitional Scramble Opportunist":
           "transitional_scramble_opportunist",
-        "Winkel-Spieler": "dynamic_outside_guard",
-        "Guard-Wrestler": "wrestle_up_guard_player",
-        "Beinjäger": "leg_lock_inside_saddle",
-        "Sweep-Jäger": "leg_to_top_converter",
-        "Rhythmus-Brecher": "tempo_controller",
+        "Dynamic Outside Guard Retainer": "dynamic_outside_guard",
+        "Wrestle-Up Guard Player": "wrestle_up_guard_player",
+        "Leg-Lock Inside-Saddle Hunter": "leg_lock_inside_saddle",
+        "Leg-to-Top Converter": "leg_to_top_converter",
+        "Tempo Controller": "tempo_controller",
         "Wrestle-Pressure Controller": "wrestle_pressure_controller",
         "Elite Counter-Striker": "elite_counter_striker",
         "Pressure Striker": "pressure_striker",
@@ -2944,7 +2944,7 @@
         PBP: {
           id: "PBP",
           emoji: "💪",
-          label: "Druckspieler",
+          label: "Pressure Bodylock Passer",
           archetypeName: "Bodylock/Inside Passing → Pin-Kontrolle",
           oneLiner:
             "Systemische Erschöpfung durch Körpergewicht – wer flach liegt, verliert.",
@@ -2971,9 +2971,9 @@
           },
           color: "#8B4513",
           theory:
-            "Der Druckspieler gewinnt durch Struktur und Gewicht. Sein Passing-System läuft über Bodylock-Verbindungen, Leg-Pummel und Inside-Kontrolle zur Chest-to-Chest-Verbindung. Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen. Position First – Submissions entstehen aus der Positionsdominanz heraus.",
+            "Der Pressure Bodylock Passer gewinnt durch Struktur und Gewicht. Sein Passing-System läuft über Bodylock-Verbindungen, Leg-Pummel und Inside-Kontrolle zur Chest-to-Chest-Verbindung. Flattening ist sein eigentliches Werkzeug: wer flach ist, kann keine Frames setzen. Position First – Submissions entstehen aus der Positionsdominanz heraus.",
           longdesc: [
-            "Der Druckspieler macht seinen Kampfstil über Nähe und Gewicht. Underhook-Battles, Bodylock-Clinch, Half Guard Smash – jede Phase zielt auf die gleiche Kontrolle: chest-to-chest, Schulter runter, Crossface.",
+            "Der Pressure Bodylock Passer macht seinen Kampfstil über Nähe und Gewicht. Underhook-Battles, Bodylock-Clinch, Half Guard Smash – jede Phase zielt auf die gleiche Kontrolle: chest-to-chest, Schulter runter, Crossface.",
             "Sein Passing ist nicht über Speed sondern über sequentielle Überlastung. Jeder Versuch kostet den Gegner Energie. Flattening ist kein Mittel – es ist das Ziel.",
             "Schwachpunkt: Beinexposition bei frühen Passphasen. Viper-Typen können seine Passschritte direkt angreifen.",
           ],
@@ -3024,7 +3024,7 @@
         WTC: {
           id: "WTC",
           emoji: "🤼",
-          label: "Top-Erzwinger",
+          label: "Wrestle-to-Top Controller",
           archetypeName: "Takedown → Top-Stabilisierung → Ride/Points",
           oneLiner:
             "Ort und Tempo dominieren – Takedown-Chain, Ride, langsame Unterwerfung.",
@@ -3051,9 +3051,9 @@
           },
           color: "#5D4037",
           theory:
-            "Der Top-Erzwinger entscheidet den Kampf im Stand: wer den Takedown gewinnt, kontrolliert den Ort. Single/Double-Chains, High-Crotch, Snap-to-Go-Behind sind seine Primärwerkzeuge. Am Boden: pin, ride, dominieren – Submissions entstehen wenn der Gegner Fehler macht.",
+            "Der Wrestle-to-Top Controller entscheidet den Kampf im Stand: wer den Takedown gewinnt, kontrolliert den Ort. Single/Double-Chains, High-Crotch, Snap-to-Go-Behind sind seine Primärwerkzeuge. Am Boden: pin, ride, dominieren – Submissions entstehen wenn der Gegner Fehler macht.",
           longdesc: [
-            "Der Top-Erzwinger macht seinen Kampfstil über Situationskontrolle: er bringt den Kampf genau dort hin wo er arbeiten will – oben. Takedown-Chains, Bodylock und Hip-Control sind seine Einstiegswerkzeuge.",
+            "Der Wrestle-to-Top Controller macht seinen Kampfstil über Situationskontrolle: er bringt den Kampf genau dort hin wo er arbeiten will – oben. Takedown-Chains, Bodylock und Hip-Control sind seine Einstiegswerkzeuge.",
             "Am Boden gilt: pin → pass → Positionsdominanz. Er senkt das Tempo, erhöht Druck, lässt den Gegner sich selbst erschöpfen. Submissions entstehen aus Kontrolle.",
             "Schwachpunkt: Leg-Systeme bestrafen seine Beinexposition bei Takedown-Einsteigen direkt.",
           ],
@@ -3100,7 +3100,7 @@
         PPF: {
           id: "PPF",
           emoji: "🎯",
-          label: "Geduldiger Killer",
+          label: "Positional Patience Finisher",
           archetypeName: "Stabilisieren → Isolieren → Submission ohne Risiko",
           oneLiner:
             "Kaum Openings für Konter – kontrolliert arbeiten, sicher finishen.",
@@ -3127,9 +3127,9 @@
           },
           color: "#4E342E",
           theory:
-            "Der Geduldiger Killer kombiniert Positions-First-Denken mit Submission-Bereitschaft. Er wartet nicht auf Fehler – er erzwingt sie durch Kontrolle. Pin, Isolierung, Finishing-Sequenz: alles strukturiert, kaum Exposition.",
+            "Der Positional Patience Finisher kombiniert Positions-First-Denken mit Submission-Bereitschaft. Er wartet nicht auf Fehler – er erzwingt sie durch Kontrolle. Pin, Isolierung, Finishing-Sequenz: alles strukturiert, kaum Exposition.",
           longdesc: [
-            "Der Geduldiger Killer ist das strukturell vollständigste Profil im Top-Game. Er stabilisiert, isoliert und finisht – ohne rushing, ohne Exposition.",
+            "Der Positional Patience Finisher ist das strukturell vollständigste Profil im Top-Game. Er stabilisiert, isoliert und finisht – ohne rushing, ohne Exposition.",
             "Submissions sind nie auf Kosten der Position. Wenn die Kontrolle sitzt, entstehen Finishes wie von selbst: Arm-Isolation, Back-Take aus Top, Choke aus Mount.",
             "Schwachpunkt: sehr mobile Gegner können sein statisches Spiel neutralisieren. Leg-Lock-Systeme bieten ihm beim Einsteigen Möglichkeiten.",
           ],
@@ -3180,7 +3180,7 @@
         DN: {
           id: "DN",
           emoji: "🛡",
-          label: "Neutralisierer",
+          label: "Defensive Neutralizer",
           archetypeName: "Neutralisieren → Resetten → Fehler abwarten",
           oneLiner: "Extrem schwer zu submitten – macht den Gegner mürbe.",
           subArchetypes: [
@@ -3206,9 +3206,9 @@
           },
           color: "#546E7A",
           theory:
-            "Der Neutralisierer ist kein passiver Kämpfer – er ist ein Anti-System. Er macht nichts riskantes, bietet keine Openings, zwingt den Gegner zur Überstrukturierung. Wer gegen ihn angreift, macht Fehler.",
+            "Der Defensive Neutralizer ist kein passiver Kämpfer – er ist ein Anti-System. Er macht nichts riskantes, bietet keine Openings, zwingt den Gegner zur Überstrukturierung. Wer gegen ihn angreift, macht Fehler.",
           longdesc: [
-            "Der Neutralisierer baut seinen Stil auf systematische Risikovermeidung. Frames, Recoveries, Re-Guards – er gibt keine Position kampflos auf.",
+            "Der Defensive Neutralizer baut seinen Stil auf systematische Risikovermeidung. Frames, Recoveries, Re-Guards – er gibt keine Position kampflos auf.",
             "Gegen jeden Angriff gibt es eine Antwort: nicht durch Submission-Gefahr sondern durch strukturelle Neutralisation. Der Gegner soll frustriert werden.",
             "Schwachpunkt: geringe eigene Finish-Gefahr. Gegen Scoring-Systeme verliert er oft auf Punkte.",
           ],
@@ -3259,7 +3259,7 @@
         FHF: {
           id: "FHF",
           emoji: "🫴",
-          label: "Guillotine-Jäger",
+          label: "Front Headlock Finisher",
           archetypeName: "Snapdown → Guillotine/D'arce → Back oder Finish",
           oneLiner: "No-Gi Meta-Säule: jeder Entry ist eine Einladung.",
           subArchetypes: [
@@ -3285,9 +3285,9 @@
           },
           color: "#C62828",
           theory:
-            "Der Guillotine-Jäger hat das gefährlichste No-Gi-Waffen-System: der Front Headlock als Meta-Trap. Snapdown, Sprawl, Unterhookte Entries – alles wird zu einem Eingang. High-Wrist Guillotine, D'arce, Anaconda – dreifache Submission-Optionen aus einer Kontrolle.",
+            "Der Front Headlock Finisher hat das gefährlichste No-Gi-Waffen-System: der Front Headlock als Meta-Trap. Snapdown, Sprawl, Unterhookte Entries – alles wird zu einem Eingang. High-Wrist Guillotine, D'arce, Anaconda – dreifache Submission-Optionen aus einer Kontrolle.",
           longdesc: [
-            "Der Guillotine-Jäger wartet auf Kopf-Fehler. Takedown-Versuche, Forward-Leans, lineare Entries – er springt auf jeden dieser Momente. Snapdown → Head/Arm Control → Finish oder Back.",
+            "Der Front Headlock Finisher wartet auf Kopf-Fehler. Takedown-Versuche, Forward-Leans, lineare Entries – er springt auf jeden dieser Momente. Snapdown → Head/Arm Control → Finish oder Back.",
             "Was ihn auszeichnet: aus dem Front Headlock gibt es keine sichere Verteidigung wenn die Kontrolle sitzt. D'arce und Anaconda ergänzen die Guillotine perfekt.",
             "Schwachpunkt: wer sein Head-Position-Management kennt und konsequent Innengriffe hält, gibt ihm wenig Möglichkeiten.",
           ],
@@ -3316,7 +3316,7 @@
           ],
           boxers: ["Dillon Danis", "Garry Tonon", "Neil Melanson (Coach)"],
           matchup:
-            "Stark gegen Top-Erzwinger und Bodylock-Passer (lineare Entries). Schwierig gegen Leg-Lock-Hunter.",
+            "Stark gegen Wrestle-to-Top Controller und Bodylock-Passer (lineare Entries). Schwierig gegen Leg-Lock-Hunter.",
           matchupVs: {
             PBP: "adv",
             WTC: "adv",
@@ -3334,7 +3334,7 @@
         RBTS: {
           id: "RBTS",
           emoji: "🔄",
-          label: "Rückenjäger",
+          label: "Rotational Back-Take Specialist",
           archetypeName: "Rotation → Turtle-Exposure → Back → RNC",
           oneLiner: "Sobald du drehst, bist du verloren.",
           subArchetypes: [
@@ -3360,9 +3360,9 @@
           },
           color: "#1A237E",
           theory:
-            "Der Rückenjäger hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger.",
+            "Der Rotational Back-Take Specialist hat eine einzige Agenda: den Rücken. Egal aus welcher Position – Scramble, Turtle, Leg-Drag – er sieht immer den Weg zur Backline. Wenn der Gegner dreht, ist das kein Problem, sondern der Trigger.",
           longdesc: [
-            "Der Rückenjäger macht Übergänge zu seiner Stärke. Turtle-Exposure, Leg-Drag-Rotationen, Scramble-Situationen – alles mündet in den gleichen Weg: Seatbelt, Hooks, RNC.",
+            "Der Rotational Back-Take Specialist macht Übergänge zu seiner Stärke. Turtle-Exposure, Leg-Drag-Rotationen, Scramble-Situationen – alles mündet in den gleichen Weg: Seatbelt, Hooks, RNC.",
             "Er braucht keine Positions-First-Struktur. Scrambles sind sein Heimvorteil. Seatbelt-Kontrolle und Body Triangle sind seine finale Machtposition.",
             "Schwachpunkt: gegen Gegner die konsequent Guard-up bleiben und nie drehen, hat er weniger organische Möglichkeiten.",
           ],
@@ -3409,7 +3409,7 @@
         TSO: {
           id: "TSO",
           emoji: "⚡",
-          label: "Chaos-Spieler",
+          label: "Transitional Scramble Opportunist",
           archetypeName: "Chaos → Strukturbruch → Opportunistischer Finish",
           oneLiner:
             "Unberechenbar in Übergängen – gewinnt was andere verlieren.",
@@ -3436,9 +3436,9 @@
           },
           color: "#4A148C",
           theory:
-            "Der Chaos-Spieler ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte.",
+            "Der Transitional Scramble Opportunist ist kein chaotischer Kämpfer – er ist ein Chaos-Architekt. Er erzeugt Scrambles bewusst, weil er in Übergangspositionen besser ist als sein Gegner. Granby, Peek-Out, Leg-Pummel: Werkzeuge für die unklare Mitte.",
           longdesc: [
-            "Der Chaos-Spieler erzeugt Chaos mit Plan. Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment.",
+            "Der Transitional Scramble Opportunist erzeugt Chaos mit Plan. Sein Ziel ist nicht primär Submission oder Takedown, sondern der bessere Ausgang aus jedem undefinierten Moment.",
             "Scramble gewinnen bedeutet: hips frei, Stand-up als Druckmittel, oder Position sichern. Er ist dort stärker wo alle anderen verloren sind.",
             "Schwachpunkt: gegen systematische Passer mit frühem Control muss er den Scramble früher triggern.",
           ],
@@ -3489,7 +3489,7 @@
         DOGR: {
           id: "DOGR",
           emoji: "🕸",
-          label: "Winkel-Spieler",
+          label: "Dynamic Outside Guard Retainer",
           archetypeName: "Retention → Angle → Leg Entry oder Wrestle-Up",
           oneLiner:
             "Bottom-Kontrolle über Distanz, Frames und Winkel – Sweep-First.",
@@ -3516,9 +3516,9 @@
           },
           color: "#1B5E20",
           theory:
-            "Der Winkel-Spieler ist kein defensiver Guard-Spieler – er ist ein Bottom-Offensiv-System. Sein Guard ist eine Waffe, keine Schutzposition. DLR, X-Guard, K-Guard sind Hebel, keine Positionen.",
+            "Der Dynamic Outside Guard Retainer ist kein defensiver Guard-Spieler – er ist ein Bottom-Offensiv-System. Sein Guard ist eine Waffe, keine Schutzposition. DLR, X-Guard, K-Guard sind Hebel, keine Positionen.",
           longdesc: [
-            "Der Winkel-Spieler gewinnt nicht dadurch, dass er seinen Guard hält – er gewinnt weil sein Guard selbst eine Waffe ist. Knee-Line-Kontrolle, Outside-Retentions, Angle-Building: alles zielt auf den Sweep oder den Leg-Entry.",
+            "Der Dynamic Outside Guard Retainer gewinnt nicht dadurch, dass er seinen Guard hält – er gewinnt weil sein Guard selbst eine Waffe ist. Knee-Line-Kontrolle, Outside-Retentions, Angle-Building: alles zielt auf den Sweep oder den Leg-Entry.",
             "Im No-Gi-Kontext ist sein Spiel auf Kniescheibenkontrolle und Beinlinien aufgebaut. Ein verlorener Außenwinkel ist der Beginn der nächsten Sweep-Sequenz.",
             "Schwachpunkt: Pressure Passer reduzieren seinen Aktionsradius systematisch durch Schultergewicht und Flattening.",
           ],
@@ -3565,7 +3565,7 @@
         WUGP: {
           id: "WUGP",
           emoji: "🔝",
-          label: "Guard-Wrestler",
+          label: "Wrestle-Up Guard Player",
           archetypeName: "Guard → Single Build → Top Control",
           oneLiner:
             "Hybrid aus Guard und Wrestling – der gefährlichste Übergangsspieler.",
@@ -3592,9 +3592,9 @@
           },
           color: "#006064",
           theory:
-            "Der Guard-Wrestler verbindet zwei Welten: Bottom-Arbeit und Wrestling. Er startet im Guard, baut Single-Leg-Angriffe auf und kommt oben raus. Dieser Übergang ist sein stärkstes Werkzeug.",
+            "Der Wrestle-Up Guard Player verbindet zwei Welten: Bottom-Arbeit und Wrestling. Er startet im Guard, baut Single-Leg-Angriffe auf und kommt oben raus. Dieser Übergang ist sein stärkstes Werkzeug.",
           longdesc: [
-            "Der Guard-Wrestler ist das hybrideste Profil im System. Guard ist nicht sein Ziel – er ist sein Ausgangspunkt für Wrestling-Transitions.",
+            "Der Wrestle-Up Guard Player ist das hybrideste Profil im System. Guard ist nicht sein Ziel – er ist sein Ausgangspunkt für Wrestling-Transitions.",
             "K-Guard, Single-Leg-Build, Leg-Pummel-Exits: alles mündet im Stand oder Top. Er ist weder reiner Guard-Spieler noch reiner Wrestler.",
             "Schwachpunkt: fehlerhafte Builds öffnen Front-Headlock-Gefahr wenn der Kopf exponiert wird.",
           ],
@@ -3645,7 +3645,7 @@
         LIH: {
           id: "LIH",
           emoji: "🦵",
-          label: "Beinjäger",
+          label: "Leg-Lock Inside-Saddle Hunter",
           archetypeName: "Knee-Line → Inside Heel Hook → Finish",
           oneLiner:
             "Knee-Line gewinnen, behalten, finishen – explosiver Finish-Cluster.",
@@ -3672,9 +3672,9 @@
           },
           color: "#B71C1C",
           theory:
-            "Der Beinjäger macht das Spiel vertikal: er ist gefährlich aus Positionen die andere für sicher halten. Ashi Garami, Inside Heel Hook, Saddle – sein Einstieg ist jede Situation mit Beinkontakt.",
+            "Der Leg-Lock Inside-Saddle Hunter macht das Spiel vertikal: er ist gefährlich aus Positionen die andere für sicher halten. Ashi Garami, Inside Heel Hook, Saddle – sein Einstieg ist jede Situation mit Beinkontakt.",
           longdesc: [
-            "Der Beinjäger macht sein System über Knee-Line-Kontrolle. Ashi Garami, 50/50, Inside Heel: sein Einstieg ist jede Beinkontakt-Situation.",
+            "Der Leg-Lock Inside-Saddle Hunter macht sein System über Knee-Line-Kontrolle. Ashi Garami, 50/50, Inside Heel: sein Einstieg ist jede Beinkontakt-Situation.",
             "Sein System ist nicht chaotisch, sondern linear: Knee-Line gewinnen → halten → Mechanik anwenden. Heel Hook, Kneebar, Ankle Lock – und wenn der Gegner entkommt, folgt die nächste Position.",
             "Schwachpunkt: sehr erfahrene Leg-Lock-Verteidiger die Heel-Exposition konsequent minimieren.",
           ],
@@ -3721,7 +3721,7 @@
         LTC: {
           id: "LTC",
           emoji: "🔀",
-          label: "Sweep-Jäger",
+          label: "Leg-to-Top Converter",
           archetypeName: "Leg Threat → Sweep → Top → Finish",
           oneLiner:
             "Leg-System + positional security – der vollständigste Stiltyp.",
@@ -3748,9 +3748,9 @@
           },
           color: "#33691E",
           theory:
-            "Der Sweep-Jäger verbindet das Leg-Lock-System mit Top-Game-Sicherheit. Leg-Threat als primäre Waffe, Sweep zur Top-Kontrolle, dann Finish aus der Position.",
+            "Der Leg-to-Top Converter verbindet das Leg-Lock-System mit Top-Game-Sicherheit. Leg-Threat als primäre Waffe, Sweep zur Top-Kontrolle, dann Finish aus der Position.",
           longdesc: [
-            "Der Sweep-Jäger ist strukturell das vollständigste Profil: Leg-System als Angriff UND als Sweep-Mechanismus, dann Top-Game als Finish-Plattform.",
+            "Der Leg-to-Top Converter ist strukturell das vollständigste Profil: Leg-System als Angriff UND als Sweep-Mechanismus, dann Top-Game als Finish-Plattform.",
             "Er bedroht Beine, erzwingt Reaktionen, sweept oder nimmt Top-Kontrolle. Von dort baut er Submissions über klassische Isolierung.",
             "Schwachpunkt: sehr mobile Opponenten entziehen die Knee-Line systematisch.",
           ],
@@ -3801,7 +3801,7 @@
         TC: {
           id: "TC",
           emoji: "⏱",
-          label: "Rhythmus-Brecher",
+          label: "Tempo Controller",
           archetypeName: "Rhythmus brechen → Entry triggern → Positional Edge",
           oneLiner:
             "Mentale + strukturelle Kontrolle – wer das Tempo setzt, setzt die Regeln.",
@@ -3828,9 +3828,9 @@
           },
           color: "#E65100",
           theory:
-            "Der Rhythmus-Brecher gewinnt nicht über rohe Stärke sondern über Rhythm. Er setzt Tempo, bricht Rhythmus und triggert Entries. Wer gegen ihn kämpft, reagiert immer – und Reaktion kostet Zeit.",
+            "Der Tempo Controller gewinnt nicht über rohe Stärke sondern über Rhythm. Er setzt Tempo, bricht Rhythmus und triggert Entries. Wer gegen ihn kämpft, reagiert immer – und Reaktion kostet Zeit.",
           longdesc: [
-            "Der Rhythmus-Brecher ist der taktisch komplexeste Stil: Initiative ohne reine Aggression. Er setzt Tempo, zwingt den Gegner zur Reaktion, und nutzt die entstehende Struktur.",
+            "Der Tempo Controller ist der taktisch komplexeste Stil: Initiative ohne reine Aggression. Er setzt Tempo, zwingt den Gegner zur Reaktion, und nutzt die entstehende Struktur.",
             "Wrestle-Up-Sequenzen, FHL-Traps, Backline-Threats: alles über Timing und Initiative. Er kämpft nicht harder – er kämpft smarter.",
             "Schwachpunkt: reine Power-Pressure kann Tempo erzwingen und sein Rhythmus-Spiel unterbrechen.",
           ],
@@ -5103,18 +5103,18 @@ ${SGM_AXES.map((ax) => {
 
         const { ids, result } = buildBJJMatrix();
         const fullLabels = {
-          PBP: "Druckspieler",
-          WTC: "Top-Erzwinger",
-          PPF: "Geduldiger Killer",
-          DN: "Neutralisierer",
-          FHF: "Guillotine-Jäger",
-          RBTS: "Rückenjäger",
-          TSO: "Chaos-Spieler",
-          DOGR: "Winkel-Spieler",
-          WUGP: "Guard-Wrestler",
-          LIH: "Beinjäger",
-          LTC: "Sweep-Jäger",
-          TC: "Rhythmus-Brecher",
+          PBP: "Pressure Bodylock Passer",
+          WTC: "Wrestle-to-Top Controller",
+          PPF: "Positional Patience Finisher",
+          DN: "Defensive Neutralizer",
+          FHF: "Front Headlock Finisher",
+          RBTS: "Rotational Back-Take Specialist",
+          TSO: "Transitional Scramble Opportunist",
+          DOGR: "Dynamic Outside Guard Retainer",
+          WUGP: "Wrestle-Up Guard Player",
+          LIH: "Leg-Lock Inside-Saddle Hunter",
+          LTC: "Leg-to-Top Converter",
+          TC: "Tempo Controller",
         };
         html += `<div class="matrix-wrap"><table class="matrix-table">
 <thead><tr><th class="row-label">↓ vs →</th>${ids.map((id) => `<th title="${fullLabels[id]}">${id}</th>`).join("")}</tr></thead><tbody>`;

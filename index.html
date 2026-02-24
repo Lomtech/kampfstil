@@ -4776,52 +4776,6 @@ ${SGM_AXES.map((ax, i) => {
 }).join("")}
 </tbody></table></div></div>`;
 
-        // ── PROFIL-ZUORDNUNG ERKLÄRUNG ───────────────────────────────────────
-        html += `<div style="margin-bottom:32px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
-<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">MODEL A — PROFIL-ZUORDNUNG (CLUSTERING)</div>
-<div style="padding:16px;font-size:12px;color:var(--muted);line-height:1.85">
-  <strong style="color:var(--text)">Schritt 1:</strong> Weighted Euclidean Distance zu allen 12 Zentroiden<br>
-  <strong style="color:var(--text)">Schritt 2:</strong> RBF-Kernel (σ=0.25) → Ähnlichkeitsberechnung<br>
-  <strong style="color:var(--text)">Schritt 3:</strong> Modul-Verstärkung (FHL, Leg, Bodylock, Wrestle-Up, Backline, Pin) mit λ=0.75<br>
-  <strong style="color:var(--text)">Schritt 4:</strong> Power-Sharpening (Exponent 2) + Softmax (T=0.65)<br><br>
-  <strong style="color:var(--text)">Spezialisierungsindex:</strong> Hybrid-Formel aus Varianz-Spread + Achsen-Abstand vom Zentrum (0.5). Misst Achsen-Polarisation.<br>
-  &lt;40 = breit · 40–60 = moderat · &gt;60 = stark polarisiert<br><br>
-  <strong style="color:var(--text)">Confidence:</strong> Verteilungskonzentration (Entropie) + Gap(p1−p2) × Spec-Boost. Misst Cluster-Klarheit, nicht Kampfstärke.<br><br>
-  <strong style="color:var(--text)">Typklassifikation:</strong><br>
-  Spezialist: p1 ≥ 45% &amp; Gap ≥ 15% · Dual-Hybrid: p1,p2 ≥ 25% &amp; Summe ≥ 70%<br>
-  Tri-Hybrid: p1 ≥ 20% &amp; Top3 ≥ 80% · Generalist: nur wenn Spec ≤ 55%
-</div></div>`;
-
-        // ── MODEL B ERKLÄRUNG ────────────────────────────────────────────────
-        html += `<div style="margin-bottom:32px;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden">
-<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);padding:12px 16px;background:var(--surface2);border-bottom:1px solid var(--border)">MODEL B — MATCHUP-ENGINE (PHASENBASIERTE INTERAKTION)</div>
-<div style="padding:16px;font-size:12px;color:var(--muted);line-height:1.85">
-  Matchups werden <strong style="color:var(--text)">nicht aus Distanz berechnet</strong>. Sie entstehen aus struktureller Phasen-Interaktion.<br><br>
-  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:12px 0">
-    ${[
-      ["ENTRY", "0.20", "INS, FHL"],
-      ["TOP", "0.30", "PCO, FAM, PIN"],
-      ["LEG", "0.20", "CTV, LEG"],
-      ["BACK", "0.15", "TRV, BACKLINE"],
-      ["TEMPO", "0.15", "INS, ATC"],
-    ]
-      .map(
-        ([name, w, ax]) => `
-    <div style="text-align:center;padding:10px 6px;border:1px solid var(--border);border-radius:4px;background:var(--surface2)">
-      <div style="font-family:var(--font-mono);font-size:9px;color:var(--accent2);letter-spacing:1px">${name}</div>
-      <div style="font-family:var(--font-display);font-size:18px;color:var(--accent);margin:4px 0">${w}</div>
-      <div style="font-size:10px;color:var(--muted)">${ax}</div>
-    </div>`,
-      )
-      .join("")}
-  </div>
-  <strong style="color:var(--text)">Modul-Overrides:</strong> FHL hoch + Gegner INS/Shot hoch → Entry-Bonus ·
-  Leg hoch + Gegner PCO/FAM hoch → Leg-Bonus ·
-  TRV hoch + Gegner FAM hoch → Back-Bonus ·
-  FAM hoch + Gegner TRV niedrig → Top-Bonus<br><br>
-  Score &gt; +0.15 = ✓ struktureller Vorteil · Score &lt; −0.15 = ✗ Nachteil · sonst = ~ ausgeglichen
-</div></div>`;
-
         // ── ZENTROIDEN-ÜBERSICHT ─────────────────────────────────────────────
         html += `<div style="margin-bottom:32px">
 <div style="font-family:var(--font-mono);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:12px">ARCHETYPEN-ZENTROIDE</div>

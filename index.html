@@ -1962,7 +1962,6 @@
             </div>
           </div>
           <div class="result-panel" style="border-top: 1px solid var(--border)">
-            <div class="panel-title">SGM-V2.1 DEBUG</div>
             <div class="panel-body"><div id="debug-bjj"></div></div>
           </div>
           <div class="result-panel" style="border-top: 1px solid var(--border)">
@@ -4433,23 +4432,6 @@ ${hybridLine}${conflictsLine}`;
               .join("")
           : '<div style="font-size:13px;color:var(--muted)">Klares Profil – keine strukturellen Anomalien.</div>';
 
-        // ── DEBUG PANEL ───────────────────────────────────────────────────
-        const debugEl = document.getElementById("debug-bjj");
-        if (debugEl) {
-          debugEl.innerHTML = `
-<div style="font-family:var(--font-mono);font-size:11px;line-height:1.8;color:var(--muted)">
-<div style="color:var(--accent2);font-weight:700;margin-bottom:6px">SGM-V2.1 Debug – Profil-Zuordnung (Model A)</div>
-<div>Achsen: PCO ${db.axes.PCO} · FAM ${db.axes.FAM} · INS ${db.axes.INS} · ATC ${db.axes.ATC} · CTV ${db.axes.CTV} · TRV ${db.axes.TRV}</div>
-<div>Spec: <b>${db.specIndex}%</b> &nbsp;|&nbsp; σ: ${db.SIGMA} &nbsp;|&nbsp; T: ${db.TEMP} &nbsp;|&nbsp; λ: ${db.LAMBDA} &nbsp;|&nbsp; Power: ${db.POWER}</div>
-<div>p1: ${db.p1}% · p2: ${db.p2}% · p3: ${db.p3}% &nbsp;|&nbsp; Gap₁₂: ${db.gap12}%</div>
-<div>Entropy: ${db.entropy} · Concentration: ${db.concentration}</div>
-<div>Conf_base: ${db.confBase}% → Conf_final: <b>${db.confidence}%</b></div>
-<div style="margin-top:6px;color:var(--accent2)">Top-3 Distanzen:</div>
-${db.top3.map((d) => `<div>&nbsp;&nbsp;${d.id.padEnd(6, "·")} ${String(d.share).padStart(3)}% &nbsp; D: ${d.D} &nbsp; S_space: ${d.S_space} &nbsp; S_mod: ${d.S_mod}</div>`).join("")}
-<div style="margin-top:6px;color:var(--muted);font-size:10px">Model B (Matchup) = sgmMatchupEngine() – phasenbasiert, kein Softmax</div>
-</div>`;
-        }
-
         // ── MATCHUP MATRIX (Model B) ──────────────────────────────────────
         const { ids, result } = buildBJJMatrix();
         const labelsM = {
@@ -4775,6 +4757,7 @@ ${SGM_AXES.map((ax, i) => {
 </tr>`;
 }).join("")}
 </tbody></table></div></div>`;
+
 
         // ── ZENTROIDEN-ÜBERSICHT ─────────────────────────────────────────────
         html += `<div style="margin-bottom:32px">

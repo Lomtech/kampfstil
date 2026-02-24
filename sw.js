@@ -2,7 +2,7 @@ const CACHE_NAME = "kampfstilanalyse-v1";
 const ASSETS = [
   "./",
   "./index.html",
-  "./manifest.webmanifest",
+  "./site.webmanifest",
   "./icon-192.svg",
   "./icon-512.svg",
   "./icon-192.png",
